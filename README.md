@@ -193,33 +193,6 @@ If you want to use a fork, mirror, or different upstream source set:
 
 The local file is meant for personal overrides.
 
-## Advanced Maintenance
-
-Most users do not need this section, but it is here if you want to refresh or rebuild the local data.
-
-Refresh staged data:
-
-```sh
-<python-launcher> plugins/eqemu-oracle/scripts/eqemu_oracle.py refresh --scope all --mode committed
-```
-
-Rebuild merged extension data:
-
-```sh
-<python-launcher> plugins/eqemu-oracle/scripts/eqemu_oracle.py rebuild-extensions --scope all --mode committed
-```
-
-Run tests:
-
-```sh
-<python-launcher> -m unittest discover -s plugins/eqemu-oracle/tests
-```
-
-`<python-launcher>` means:
-
-- `py -3` or `python` on Windows
-- `python3` on macOS/Linux
-
 ## Project Layout
 
 If you want to know where things live:
