@@ -2,6 +2,16 @@ name: Create Release Bundle
 
 on:
   workflow_dispatch:
+    inputs:
+      bump:
+        description: Semantic version increment to apply before releasing
+        required: true
+        default: patch
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
 
 permissions:
   contents: write
@@ -11,29 +21,69 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Require branch-based trigger
+        if: github.ref_type != 'branch'
+        shell: bash
+        run: |
+          echo "This workflow must be triggered from a branch."
+          exit 1
+
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
-      - name: Read plugin version
+      - name: Bump plugin version
         id: version
+        env:
+          BUMP_KIND: ${{ inputs.bump }}
         shell: bash
         run: |
-          VERSION="$(python - <<'PY'
+          python - <<'PY'
           import json
+          import os
           from pathlib import Path
 
           plugin_json = Path("plugins/eqemu-oracle/.codex-plugin/plugin.json")
           data = json.loads(plugin_json.read_text(encoding="utf-8"))
-          print(data["version"])
+          current_version = data["version"]
+          parts = current_version.split(".")
+
+          if len(parts) != 3 or any(not part.isdigit() for part in parts):
+              raise SystemExit(
+                  "Expected plugins/eqemu-oracle/.codex-plugin/plugin.json version to use semantic version format X.Y.Z"
+              )
+
+          major, minor, patch = (int(part) for part in parts)
+          bump_kind = os.environ["BUMP_KIND"]
+
+          if bump_kind == "major":
+              major += 1
+              minor = 0
+              patch = 0
+          elif bump_kind == "minor":
+              minor += 1
+              patch = 0
+          elif bump_kind == "patch":
+              patch += 1
+          else:
+              raise SystemExit(f"Unsupported bump type: {bump_kind}")
+
+          new_version = f"{major}.{minor}.{patch}"
+          data["version"] = new_version
+          plugin_json.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
+
+          github_output = Path(os.environ["GITHUB_OUTPUT"])
+          with github_output.open("a", encoding="utf-8") as handle:
+              handle.write(f"previous_version={current_version}\n")
+              handle.write(f"version={new_version}\n")
+              handle.write(f"tag=v{new_version}\n")
+              handle.write(f"archive_name=eqemu-oracle-v{new_version}.zip\n")
+              handle.write(f"bundle_root=eqemu-oracle-v{new_version}\n")
           PY
-          )"
-          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
-          echo "tag=v${VERSION}" >> "$GITHUB_OUTPUT"
-          echo "archive_name=eqemu-oracle-v${VERSION}.zip" >> "$GITHUB_OUTPUT"
-          echo "bundle_root=eqemu-oracle-v${VERSION}" >> "$GITHUB_OUTPUT"
 
       - name: Fail if release tag already exists
         env:
@@ -44,6 +94,19 @@ jobs:
             echo "Release ${{ steps.version.outputs.tag }} already exists. Bump plugins/eqemu-oracle/.codex-plugin/plugin.json before triggering this workflow again."
             exit 1
           fi
+
+      - name: Commit and push version bump
+        id: commit
+        env:
+          BRANCH_NAME: ${{ github.ref_name }}
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add plugins/eqemu-oracle/.codex-plugin/plugin.json
+          git commit -m "Bump EQEmu Oracle version to v${{ steps.version.outputs.version }}"
+          git push origin "HEAD:${BRANCH_NAME}"
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
       - name: Build release zip
         env:
@@ -81,5 +144,6 @@ jobs:
         run: |
           gh release create "${{ steps.version.outputs.tag }}" \
             "dist/${{ steps.version.outputs.archive_name }}" \
+            --target "${{ steps.commit.outputs.sha }}" \
             --title "EQEmu Oracle v${{ steps.version.outputs.version }}" \
-            --notes "Release bundle for EQEmu Oracle v${{ steps.version.outputs.version }}."
+            --notes "Release bundle for EQEmu Oracle v${{ steps.version.outputs.version }}. Bumped from v${{ steps.version.outputs.previous_version }} using a ${{ inputs.bump }} release."
