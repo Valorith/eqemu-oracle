@@ -12,7 +12,7 @@ from typing import Any
 from .constants import BASE_ROOT, CACHE_ROOT, EXTENSIONS_ROOT, LOCAL_EXTENSIONS_ROOT, MAINTENANCE_LOCK_ROOT, MERGED_ROOT, OVERLAY_ROOT, SEARCH_DB_PATH
 from .extensions import ExtensionValidationError, load_domain_extensions, merge_records
 from .presentation import QUEST_TOPIC_STOPWORDS, add_presentation, add_search_presentation, present_quest_entry, present_quest_topic_summary
-from .utils import deep_merge, dump_json, ensure_dir, excerpt, load_json, markdown_sections, split_identifier_words
+from .utils import deep_merge, dump_json, dump_text, ensure_dir, excerpt, load_json, markdown_sections, split_identifier_words
 
 
 SEARCH_SYNONYMS: dict[str, list[str]] = {
@@ -204,7 +204,7 @@ def find_stale_schema_extensions(
 
 
 def _write_extension_json(path: Path, payload: dict[str, Any]) -> None:
-    path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+    dump_text(path, json.dumps(payload, indent=2) + "\n")
 
 
 def prune_stale_schema_extensions(
@@ -459,16 +459,23 @@ def _search_cache_needs_rebuild(exc: sqlite3.OperationalError) -> bool:
 
 
 def _search_identity(data_root: Path) -> dict[str, str]:
-    identity = {
-        "active_root": str(data_root),
-        "snapshot_version": "",
-        "generated_at": "",
-    }
+    manifest_fingerprint = ""
     manifest_path = data_root.parent / "manifest.json"
     if manifest_path.exists():
         manifest = load_json(manifest_path)
-        identity["snapshot_version"] = str(manifest.get("snapshot_version", ""))
-        identity["generated_at"] = str(manifest.get("generated_at", ""))
+        manifest_fingerprint = json.dumps(
+            {
+                "counts": manifest.get("counts", {}),
+                "merge_scope": manifest.get("merge_scope"),
+                "sources": manifest.get("sources", {}),
+                "extension_health": manifest.get("extension_health", {}),
+            },
+            sort_keys=True,
+        )
+    identity = {
+        "active_root": str(data_root),
+        "manifest_fingerprint": manifest_fingerprint,
+    }
     return identity
 
 
@@ -559,16 +566,16 @@ def write_merged_dataset(base_root: Path, target_root: Path, *, scope: str = "al
             md_path = docs_root / "pages" / f"{page['slug']}.md"
             ensure_dir(md_path.parent)
             if page.get("markdown") is not None:
-                md_path.write_text(page["markdown"], encoding="utf-8")
+                dump_text(md_path, page["markdown"])
                 markdown = page["markdown"]
             else:
                 source_page = base_docs_root / f"{page['slug']}.md"
                 if source_page.exists():
                     markdown = source_page.read_text(encoding="utf-8")
-                    md_path.write_text(markdown, encoding="utf-8")
+                    dump_text(md_path, markdown)
                 else:
                     markdown = page.get("summary", page["title"])
-                    md_path.write_text(markdown, encoding="utf-8")
+                    dump_text(md_path, markdown)
             page["section_count"] = len(markdown_sections(markdown))
             docs_sections.extend(_build_doc_sections(page, markdown))
         dump_json(docs_root / "pages.json", docs_records)
@@ -578,9 +585,6 @@ def write_merged_dataset(base_root: Path, target_root: Path, *, scope: str = "al
         docs_sections = load_json(target_root / "docs" / "sections.json")
 
     manifest = {
-        "generated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-        "snapshot_version": time.strftime("%Y%m%d%H%M%S", time.gmtime()),
-        "active_root": str(target_root),
         "counts": {
             "quest-api": len(quest_records),
             "schema": len(schema_records),
@@ -590,10 +594,6 @@ def write_merged_dataset(base_root: Path, target_root: Path, *, scope: str = "al
         "freshness_state": "fresh",
         "merge_scope": scope,
         "sources": _load_domain_meta(base_root),
-        "extensions": {
-            "repo_root": str(EXTENSIONS_ROOT),
-            "local_root": str(LOCAL_EXTENSIONS_ROOT),
-        },
         "extension_health": {
             "stale_schema_candidate_count": len(stale_schema_extensions),
             "stale_schema_candidates": stale_schema_extensions,

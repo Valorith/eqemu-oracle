@@ -11,9 +11,14 @@ def ensure_dir(path: Path) -> None:
     path.mkdir(parents=True, exist_ok=True)
 
 
-def dump_json(path: Path, payload: Any) -> None:
+def dump_text(path: Path, text: str) -> None:
     ensure_dir(path.parent)
-    path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    with path.open("w", encoding="utf-8", newline="\n") as handle:
+        handle.write(text)
+
+
+def dump_json(path: Path, payload: Any) -> None:
+    dump_text(path, json.dumps(payload, indent=2, sort_keys=True) + "\n")
 
 
 def load_json(path: Path) -> Any:

@@ -13,6 +13,14 @@ from eqemu_oracle.utils import dump_json  # noqa: E402
 
 
 class SearchBehaviorTest(unittest.TestCase):
+    def _manifest_payload(self, quest_count: int) -> dict[str, object]:
+        return {
+            "counts": {"quest-api": quest_count, "schema": 0, "docs": 0, "docs-sections": 0},
+            "merge_scope": "all",
+            "sources": {"quest-api": {"source_ref": "abc123"}},
+            "extension_health": {"stale_schema_candidate_count": 0, "stale_schema_candidates": []},
+        }
+
     def test_prefer_fresh_promotes_newer_results(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
@@ -116,7 +124,7 @@ class SearchBehaviorTest(unittest.TestCase):
             dump_json(data_root / "quest-api" / "index.json", {"counts": {}, "languages": []})
             dump_json(data_root / "schema" / "index.json", [])
             dump_json(data_root / "docs" / "pages.json", [])
-            dump_json(root / "manifest.json", {"snapshot_version": "20260101010101", "generated_at": "2026-01-01T01:01:01Z"})
+            dump_json(root / "manifest.json", self._manifest_payload(0))
             (data_root / "docs" / "pages").mkdir(parents=True, exist_ok=True)
 
             with patch("eqemu_oracle.dataset.current_data_root", return_value=data_root):
@@ -125,7 +133,7 @@ class SearchBehaviorTest(unittest.TestCase):
                         with patch("eqemu_oracle.dataset.SEARCH_DB_PATH", root / "search.sqlite3"):
                             store = DataStore()
                             store.search("anything", ["docs"], 1, True)
-                            dump_json(root / "manifest.json", {"snapshot_version": "20260202020202", "generated_at": "2026-02-02T02:02:02Z"})
+                            dump_json(root / "manifest.json", self._manifest_payload(1))
                             with patch("eqemu_oracle.dataset.build_search_index") as build_search_index:
                                 build_search_index.side_effect = lambda data_root, db_path: None
                                 store.search("anything", ["docs"], 1, True)

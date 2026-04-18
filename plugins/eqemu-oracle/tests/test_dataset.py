@@ -13,6 +13,14 @@ from eqemu_oracle.utils import dump_json  # noqa: E402
 
 
 class DatasetSearchTest(unittest.TestCase):
+    def _manifest_payload(self, quest_count: int) -> dict[str, object]:
+        return {
+            "counts": {"quest-api": quest_count, "schema": 0, "docs": 0, "docs-sections": 0},
+            "merge_scope": "all",
+            "sources": {"quest-api": {"source_ref": "abc123"}},
+            "extension_health": {"stale_schema_candidate_count": 0, "stale_schema_candidates": []},
+        }
+
     def test_build_search_index(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
@@ -32,13 +40,13 @@ class DatasetSearchTest(unittest.TestCase):
             dump_json(data_root / "quest-api" / "records.json", [{"id": "q1", "kind": "method", "language": "perl", "container": "quest", "name": "say", "signature": "say()", "categories": []}])
             dump_json(data_root / "schema" / "index.json", [])
             dump_json(data_root / "docs" / "pages.json", [])
-            dump_json(root / "manifest.json", {"snapshot_version": "20260101010101", "generated_at": "2026-01-01T01:01:01Z"})
+            dump_json(root / "manifest.json", self._manifest_payload(1))
             (data_root / "docs" / "pages").mkdir(parents=True, exist_ok=True)
             db_path = root / "search.sqlite3"
             build_search_index(data_root, db_path)
             self.assertTrue(_search_cache_matches(data_root, db_path))
 
-            dump_json(root / "manifest.json", {"snapshot_version": "20260202020202", "generated_at": "2026-02-02T02:02:02Z"})
+            dump_json(root / "manifest.json", self._manifest_payload(2))
             self.assertFalse(_search_cache_matches(data_root, db_path))
 
             conn = sqlite3.connect(db_path)

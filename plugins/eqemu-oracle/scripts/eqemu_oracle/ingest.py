@@ -11,7 +11,7 @@ from typing import Any
 
 from .config import get_source_config
 from .constants import PLUGIN_VERSION
-from .utils import dump_json, ensure_dir, excerpt, heading_title, markdown_headings, markdown_links, short_hash, slugify, split_identifier_words
+from .utils import dump_json, dump_text, ensure_dir, excerpt, heading_title, markdown_headings, markdown_links, short_hash, slugify, split_identifier_words
 
 
 def fetch_json(url: str) -> Any:
@@ -72,7 +72,6 @@ def normalize_quest_api() -> dict[str, Any]:
     quest_config = get_source_config()["quest_api"]
     payload = fetch_json(quest_config["definitions_url"])["data"]
     spire_commit = fetch_json(quest_config["commit_api"])["sha"]
-    now = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
     methods: list[dict[str, Any]] = []
     events: list[dict[str, Any]] = []
     constants: list[dict[str, Any]] = []
@@ -97,7 +96,6 @@ def normalize_quest_api() -> dict[str, Any]:
                         "source_repo": quest_config["repo"],
                         "source_ref": spire_commit,
                         "source_refreshed_at": payload.get("last_refreshed"),
-                        "fetched_at": now,
                         "related_docs": quest_api_related_docs(language, "method", container),
                         "search_aliases": quest_api_search_aliases(language, "method", container, entry["method"]),
                     }
@@ -122,7 +120,6 @@ def normalize_quest_api() -> dict[str, Any]:
                         "source_repo": quest_config["repo"],
                         "source_ref": spire_commit,
                         "source_refreshed_at": payload.get("last_refreshed"),
-                        "fetched_at": now,
                         "related_docs": quest_api_related_docs(language, "event", container),
                         "search_aliases": quest_api_search_aliases(language, "event", container, event_name),
                 }
@@ -145,7 +142,6 @@ def normalize_quest_api() -> dict[str, Any]:
                         "source_repo": quest_config["repo"],
                         "source_ref": spire_commit,
                         "source_refreshed_at": payload.get("last_refreshed"),
-                        "fetched_at": now,
                         "related_docs": quest_api_related_docs(language, "constant", container),
                         "search_aliases": quest_api_search_aliases(language, "constant", container, constant_name),
                     }
@@ -160,7 +156,6 @@ def normalize_quest_api() -> dict[str, Any]:
             "source_branch": quest_config["branch"],
             "source_ref": spire_commit,
             "last_refreshed": payload.get("last_refreshed"),
-            "fetched_at": now,
         },
         "methods": methods,
         "events": events,
@@ -189,7 +184,6 @@ def parse_schema_markdown(
     markdown: str,
     docs_config: dict[str, str],
     source_ref: str,
-    fetched_at: str,
 ) -> dict[str, Any]:
     normalized_relative_path = relative_path.replace("\\", "/")
     title = heading_title(markdown, Path(relative_path).stem)
@@ -260,7 +254,6 @@ def parse_schema_markdown(
         "source_repo": docs_config["repo"],
         "source_branch": docs_config["branch"],
         "source_ref": source_ref,
-        "fetched_at": fetched_at,
         "related_docs": [site_path],
         "search_aliases": sorted(alias for alias in schema_aliases if alias),
     }
@@ -271,7 +264,6 @@ def parse_doc_markdown(
     markdown: str,
     docs_config: dict[str, str],
     source_ref: str,
-    fetched_at: str,
 ) -> tuple[dict[str, Any], str]:
     normalized_relative_path = relative_path.replace("\\", "/")
     path_without_suffix = normalized_relative_path[:-3]
@@ -291,7 +283,6 @@ def parse_doc_markdown(
         "source_repo": docs_config["repo"],
         "source_branch": docs_config["branch"],
         "source_ref": source_ref,
-        "fetched_at": fetched_at,
         "aliases": [],
         "tags": [],
         "search_aliases": sorted({site_path, " ".join(split_identifier_words(site_path))}),
@@ -302,7 +293,6 @@ def parse_doc_markdown(
 def normalize_docs_and_schema() -> dict[str, Any]:
     docs_config = get_source_config()["docs"]
     docs_commit = fetch_json(docs_config["commit_api"])["sha"]
-    fetched_at = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
     archive_bytes = fetch_bytes(docs_config["archive_url"])
     docs_pages: list[dict[str, Any]] = []
     docs_markdown: dict[str, str] = {}
@@ -321,9 +311,9 @@ def normalize_docs_and_schema() -> dict[str, Any]:
             markdown = file_path.read_text(encoding="utf-8")
             if relative_path.startswith("docs/schema/"):
                 category = Path(relative_path).parent.name
-                schema_tables.append(parse_schema_markdown(category, relative_path, markdown, docs_config, docs_commit, fetched_at))
+                schema_tables.append(parse_schema_markdown(category, relative_path, markdown, docs_config, docs_commit))
             else:
-                page, content = parse_doc_markdown(relative_path, markdown, docs_config, docs_commit, fetched_at)
+                page, content = parse_doc_markdown(relative_path, markdown, docs_config, docs_commit)
                 docs_pages.append(page)
                 docs_markdown[page["path"]] = content
     docs_pages.sort(key=lambda item: item["path"])
@@ -334,7 +324,6 @@ def normalize_docs_and_schema() -> dict[str, Any]:
                 "source_repo": docs_config["repo"],
                 "source_branch": docs_config["branch"],
                 "source_ref": docs_commit,
-                "fetched_at": fetched_at,
             },
             "pages": docs_pages,
             "markdown": docs_markdown,
@@ -344,7 +333,6 @@ def normalize_docs_and_schema() -> dict[str, Any]:
                 "source_repo": docs_config["repo"],
                 "source_branch": docs_config["branch"],
                 "source_ref": docs_commit,
-                "fetched_at": fetched_at,
             },
             "tables": schema_tables,
         },
@@ -390,7 +378,7 @@ def write_base_dataset(target_root: Path, *, scope: str) -> dict[str, Any]:
             markdown = docs_schema_payload["docs"]["markdown"][page["path"]]
             md_path = docs_root / "pages" / f"{page['slug']}.md"
             ensure_dir(md_path.parent)
-            md_path.write_text(markdown, encoding="utf-8")
+            dump_text(md_path, markdown)
         dump_json(docs_root / "meta.json", docs_schema_payload["docs"]["meta"])
         summary["docs"] = {
             "pages": len(docs_schema_payload["docs"]["pages"]),
