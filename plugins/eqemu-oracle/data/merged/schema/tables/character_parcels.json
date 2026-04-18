@@ -2,16 +2,16 @@
   "category": "custom",
   "columns": [
     {
-      "data_type": "tinyint(1) unsigned",
-      "description": "New NOT NULL column with default 0, added after time_creation.",
-      "name": "offline"
+      "data_type": "varchar(16)",
+      "description": "New nullable item identifier, added after aug_slot_6.",
+      "name": "item_unique_id"
     }
   ],
   "extension_flags": {
     "has_local_extension": false,
     "has_repo_extension": true
   },
-  "id": "account_offline",
+  "id": "character_parcels_item_unique_id",
   "mode": "augment",
   "provenance": {
     "contributors": [
@@ -26,10 +26,10 @@
   "relationships": [],
   "source_migrations": [
     {
-      "description": "2026_03_19_account_offline_status.sql",
-      "version": 9337
+      "description": "2026_03_19_character_parcels_item_unique_id.sql",
+      "version": 9333
     }
   ],
-  "table": "account",
-  "title": "account"
+  "table": "character_parcels",
+  "title": "character_parcels"
 }

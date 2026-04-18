@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 from typing import Any
 
 
@@ -29,7 +30,154 @@ def _copy_block(label: str, content: str, language: str = "text") -> dict[str, s
     return {"label": label, "language": language, "content": content}
 
 
-def present_quest_entry(record: dict[str, Any]) -> dict[str, Any]:
+QUEST_TOPIC_STOPWORDS = {
+    "a",
+    "an",
+    "api",
+    "apis",
+    "are",
+    "available",
+    "for",
+    "is",
+    "of",
+    "option",
+    "options",
+    "related",
+    "the",
+    "what",
+}
+
+
+def _extract_section_code_block(markdown: str, heading: str) -> str | None:
+    lines = markdown.splitlines()
+    in_section = False
+    in_code = False
+    code_lines: list[str] = []
+    for line in lines:
+        stripped = line.strip()
+        if stripped.startswith("## "):
+            if in_section:
+                break
+            in_section = stripped[3:].strip() == heading
+            continue
+        if not in_section:
+            continue
+        if stripped.startswith("```"):
+            if in_code:
+                return "\n".join(code_lines).rstrip()
+            in_code = True
+            continue
+        if in_code:
+            code_lines.append(line)
+    return "\n".join(code_lines).rstrip() or None
+
+
+def _extract_matching_lines_from_code_block(markdown: str, matcher: str) -> str | None:
+    lines = markdown.splitlines()
+    in_code = False
+    matches: list[str] = []
+    pattern = re.compile(matcher)
+    for line in lines:
+        stripped = line.strip()
+        if stripped.startswith("```"):
+            in_code = not in_code
+            continue
+        if in_code and pattern.search(stripped):
+            matches.append(stripped)
+    return "\n".join(matches) if matches else None
+
+
+def _generated_perl_event(record: dict[str, Any]) -> str:
+    event_name = record.get("name", "EVENT_UNKNOWN")
+    entity = record.get("details", {}).get("entity_type") or record.get("container", "Entity")
+    event_vars = record.get("details", {}).get("event_vars", []) or []
+    lines = [
+        f"sub {event_name} {{",
+        f"\t# {entity}-{event_name}",
+    ]
+    if event_vars:
+        lines.append("\t# Exported event variables")
+        lines.extend(f'\tquest::debug("{item} " . ${item});' for item in event_vars)
+    lines.append("}")
+    return "\n".join(lines)
+
+
+def _generated_lua_event(record: dict[str, Any]) -> str:
+    event_name = record.get("name", "EVENT_UNKNOWN")
+    entity = record.get("details", {}).get("entity_type") or record.get("container", "Entity")
+    event_vars = record.get("details", {}).get("event_vars", []) or []
+    lines = [
+        f"function {event_name}(e)",
+        f"\t-- {entity}-{event_name}",
+    ]
+    if event_vars:
+        lines.append("\t-- Exported event variables")
+        lines.extend(f'\teq.debug("{item} " .. e.{item});' for item in event_vars)
+    lines.append("end")
+    return "\n".join(lines)
+
+
+def _parameter_name(param: str) -> str:
+    cleaned = param.replace("const ", "").replace("&", " ").replace("*", " ")
+    cleaned = re.sub(r"\b(?:unsigned|signed|struct|class)\b", " ", cleaned)
+    pieces = [piece for piece in re.split(r"\s+", cleaned.strip()) if piece]
+    if not pieces:
+        return "value"
+    candidate = pieces[-1]
+    candidate = re.sub(r"[^A-Za-z0-9_]", "", candidate)
+    return candidate or "value"
+
+
+def _generated_method_call(record: dict[str, Any]) -> tuple[str, str]:
+    language = record.get("language", "perl").lower()
+    container = str(record.get("container", "entity"))
+    target = container.lower() if container else "entity"
+    params = [param for param in (record.get("params") or []) if str(param).strip()]
+    if language == "perl":
+        receiver = f"${target}"
+        args = ", ".join(f"${_parameter_name(param)}" for param in params)
+        call = f"{receiver}->{record.get('name', 'Method')}({args});" if args else f"{receiver}->{record.get('name', 'Method')}();"
+        return call, "pl"
+    receiver = target
+    args = ", ".join(_parameter_name(param) for param in params)
+    call = f"{receiver}:{record.get('name', 'Method')}({args})" if args else f"{receiver}:{record.get('name', 'Method')}()"
+    return call, "lua"
+
+
+def _quest_code_example(record: dict[str, Any], docs_page: dict[str, Any] | None) -> tuple[str | None, str]:
+    language = record.get("language", "text").lower()
+    name = record.get("name", "")
+    markdown = docs_page.get("markdown", "") if docs_page else ""
+    if record.get("kind") == "event":
+        generated = _generated_perl_event(record) if language == "perl" else _generated_lua_event(record)
+        return generated, "pl" if language == "perl" else "lua"
+    if record.get("kind") == "method":
+        container = record.get("container", "")
+        if language == "perl":
+            matcher = rf"\$\w+->\s*{re.escape(name)}\("
+        else:
+            matcher = rf"\w+:\s*{re.escape(name)}\("
+        snippet = _extract_matching_lines_from_code_block(markdown, matcher) if markdown else None
+        if snippet:
+            return snippet, "pl" if language == "perl" else "lua"
+        fallback = record.get("signature", name)
+        if language == "perl":
+            fallback = f"${container.lower() or 'entity'}->{fallback};"
+        else:
+            fallback = f"{container.lower() or 'entity'}:{fallback}"
+        return fallback, "pl" if language == "perl" else "lua"
+    if record.get("kind") == "constant":
+        container = record.get("container", "")
+        matcher = rf"{re.escape(container)}\.{re.escape(name)}"
+        snippet = _extract_matching_lines_from_code_block(markdown, matcher) if markdown else None
+        if snippet:
+            return snippet, "lua" if language == "lua" else "pl"
+        fallback = f"{container}.{name}" if language == "lua" else name
+        return fallback, "lua" if language == "lua" else "pl"
+    return None, "text"
+
+
+def present_quest_entry(record: dict[str, Any], docs_page: dict[str, Any] | None = None) -> dict[str, Any]:
     language = record.get("language", "").title()
     kind = record.get("kind", "entry").title()
     name = record.get("name", "")
@@ -37,16 +185,22 @@ def present_quest_entry(record: dict[str, Any]) -> dict[str, Any]:
     signature = record.get("signature", name)
     params = record.get("params", [])
     related_docs = record.get("related_docs", [])
-    copy_blocks = [_copy_block("Signature", signature)]
+    code_example, code_language = _quest_code_example(record, docs_page)
+    copy_blocks = []
+    if code_example:
+        label = "Quest Example" if record.get("kind") == "event" else "Quest API Snippet"
+        copy_blocks.append(_copy_block(label, code_example, code_language))
+    else:
+        copy_blocks.append(_copy_block("Signature", signature))
     lines = [
         f"## {language} {kind}: `{name}`",
         "",
         f"Container: `{container}`",
-        "",
-        "```text",
-        signature,
-        "```",
     ]
+    if code_example:
+        lines.extend(["", f"```{code_language}", code_example, "```"])
+    else:
+        lines.extend(["", "```text", signature, "```"])
     if params:
         lines.extend(["", "**Parameters**"])
         lines.extend(f"- `{param}`" for param in params)
@@ -163,6 +317,68 @@ def present_search_results(result: dict[str, Any]) -> dict[str, Any]:
         "title": f"Search Results: {result.get('query', '')}",
         "markdown": "\n".join(lines),
         "copy_blocks": [],
+    }
+
+
+def present_quest_topic_summary(
+    query: str,
+    language: str,
+    events: list[dict[str, Any]],
+    methods: list[dict[str, Any]],
+    constants: list[dict[str, Any]],
+) -> dict[str, Any]:
+    display_language = language.title()
+    lines = [f"## {display_language} Quest API Topic: `{query}`", ""]
+    copy_blocks: list[dict[str, str]] = []
+
+    if events:
+        lines.append("**Event Handlers**")
+        for event in events[:3]:
+            lines.extend(["", f"`{event['container']}::{event['name']}`", "", f"```{event['presentation']['copy_blocks'][0]['language']}", event["presentation"]["copy_blocks"][0]["content"], "```"])
+            copy_blocks.append(_copy_block(f"{event['name']} Handler", event["presentation"]["copy_blocks"][0]["content"], event["presentation"]["copy_blocks"][0]["language"]))
+
+    if methods:
+        method_calls: list[str] = []
+        method_lang = "pl" if language == "perl" else "lua"
+        lines.extend(["", "**Method Calls**"])
+        for method in methods[:10]:
+            call, method_lang = _generated_method_call(method)
+            method_calls.append(call)
+        if method_calls:
+            method_block = "\n".join(method_calls)
+            lines.extend(["", f"```{method_lang}", method_block, "```"])
+            copy_blocks.append(_copy_block("Method Calls", method_block, method_lang))
+        lines.extend(["", "**Method Reference**"])
+        for method in methods[:10]:
+            categories = ", ".join(method.get("categories") or [])
+            category_suffix = f" [{categories}]" if categories else ""
+            lines.append(f"- `{method['container']}::{method['name']}`{category_suffix}")
+
+    if constants:
+        constant_lang = "lua" if language == "lua" else "pl"
+        constant_lines = []
+        for constant in constants[:10]:
+            snippet, _ = _quest_code_example(constant, None)
+            if snippet:
+                constant_lines.append(snippet)
+        if constant_lines:
+            constant_block = "\n".join(constant_lines)
+            lines.extend(["", "**Constants**", "", f"```{constant_lang}", constant_block, "```"])
+            copy_blocks.append(_copy_block("Constants", constant_block, constant_lang))
+
+    related_docs = []
+    for record in [*events, *methods, *constants]:
+        related_docs.extend(record.get("related_docs", []))
+    if related_docs:
+        unique_docs = list(dict.fromkeys(related_docs))
+        lines.extend(["", "**Related Docs**"])
+        lines.extend(f"- [{path}]({_docs_url_from_path(path)})" for path in unique_docs[:8])
+
+    return {
+        "template": "quest-api-topic-summary",
+        "title": f"{display_language} Quest API Topic: {query}",
+        "markdown": "\n".join(lines),
+        "copy_blocks": copy_blocks,
     }
 
 

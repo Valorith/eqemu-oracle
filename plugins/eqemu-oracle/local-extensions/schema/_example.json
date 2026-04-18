@@ -1,0 +1,19 @@
+{
+  "tables": [
+    {
+      "id": "my_local_table",
+      "table": "my_local_table",
+      "title": "my_local_table",
+      "category": "custom",
+      "columns": [
+        {
+          "name": "id",
+          "data_type": "int",
+          "description": "Primary key."
+        }
+      ],
+      "relationships": [],
+      "mode": "augment"
+    }
+  ]
+}

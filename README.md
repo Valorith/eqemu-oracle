@@ -180,7 +180,7 @@ The plugin exposes deterministic lookup tools through its local MCP server:
 
 Lookup tools now also include a presentation layer for user-facing answers:
 
-- quest API entries return a consistent method/event/constant template with copyable signature blocks
+- quest API entries return a consistent Spire-style method/event/constant template with copyable code blocks
 - schema entries return a consistent table template with a copyable SQL-style column outline
 - docs pages return a consistent page summary template
 - search results return a compact, repeatable result list template

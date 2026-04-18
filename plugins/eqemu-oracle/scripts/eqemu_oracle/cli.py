@@ -5,9 +5,11 @@ import json
 import os
 import stat
 import shutil
+import sys
 
 from .constants import BASE_ROOT, CACHE_ROOT, MERGED_ROOT, OVERLAY_ROOT
-from .dataset import write_merged_dataset
+from .dataset import prune_stale_schema_extensions, write_merged_dataset
+from .extensions import ExtensionValidationError
 from .ingest import write_base_dataset
 from .mcp import serve_mcp
 from .updater import update_plugin_repo
@@ -21,6 +23,23 @@ def _remove_tree(path) -> None:
     shutil.rmtree(path, onexc=onerror)
 
 
+def _print_schema_extension_health(manifest: dict[str, object]) -> None:
+    extension_health = manifest.get("extension_health")
+    if not isinstance(extension_health, dict):
+        return
+    candidate_count = int(extension_health.get("stale_schema_candidate_count", 0))
+    if candidate_count <= 0:
+        return
+    print(
+        (
+            f"Warning: {candidate_count} schema extension entr"
+            f"{'y looks' if candidate_count == 1 else 'ies look'} stale because upstream schema now covers them.\n"
+            "Run `prune-stale-schema-extensions` to review them or `prune-stale-schema-extensions --apply` to remove them automatically."
+        ),
+        file=sys.stderr,
+    )
+
+
 def refresh(args: argparse.Namespace) -> int:
     target_root = BASE_ROOT if args.mode == "committed" else OVERLAY_ROOT / "base"
     merged_root = MERGED_ROOT if args.mode == "committed" else OVERLAY_ROOT / "merged"
@@ -32,14 +51,27 @@ def refresh(args: argparse.Namespace) -> int:
         if OVERLAY_ROOT.exists():
             _remove_tree(OVERLAY_ROOT)
     write_base_dataset(target_root, scope=args.scope)
-    write_merged_dataset(target_root, merged_root)
+    manifest = write_merged_dataset(target_root, merged_root)
+    _print_schema_extension_health(manifest)
     return 0
 
 
 def rebuild_extensions(args: argparse.Namespace) -> int:
     target_base = BASE_ROOT if args.mode == "committed" else OVERLAY_ROOT / "base"
     target_merged = MERGED_ROOT if args.mode == "committed" else OVERLAY_ROOT / "merged"
-    write_merged_dataset(target_base, target_merged)
+    manifest = write_merged_dataset(target_base, target_merged)
+    _print_schema_extension_health(manifest)
+    return 0
+
+
+def prune_schema_extensions(args: argparse.Namespace) -> int:
+    target_base = BASE_ROOT if args.mode == "committed" else OVERLAY_ROOT / "base"
+    target_merged = MERGED_ROOT if args.mode == "committed" else OVERLAY_ROOT / "merged"
+    result = prune_stale_schema_extensions(target_base, apply=bool(args.apply))
+    print(json.dumps(result, indent=2, sort_keys=True))
+    if args.apply and result["removed_count"]:
+        manifest = write_merged_dataset(target_base, target_merged)
+        _print_schema_extension_health(manifest)
     return 0
 
 
@@ -68,6 +100,14 @@ def main() -> int:
     rebuild_parser.add_argument("--mode", choices=["committed", "overlay"], default="committed")
     rebuild_parser.set_defaults(func=rebuild_extensions)
 
+    prune_parser = subparsers.add_parser(
+        "prune-stale-schema-extensions",
+        help="Preview or remove schema extension entries that now appear to be covered by upstream schema data",
+    )
+    prune_parser.add_argument("--apply", action="store_true", help="Remove the stale schema extension entries from their JSON files")
+    prune_parser.add_argument("--mode", choices=["committed", "overlay"], default="committed")
+    prune_parser.set_defaults(func=prune_schema_extensions)
+
     update_parser = subparsers.add_parser("update-plugin", help="Pull the plugin repo from Git and rebuild committed merged data")
     update_parser.add_argument("--remote", default="origin")
     update_parser.add_argument("--branch")
@@ -80,4 +120,8 @@ def main() -> int:
 
     args = parser.parse_args()
     CACHE_ROOT.mkdir(parents=True, exist_ok=True)
-    return int(args.func(args))
+    try:
+        return int(args.func(args))
+    except ExtensionValidationError as exc:
+        print(str(exc), file=sys.stderr)
+        return 2

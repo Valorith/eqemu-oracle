@@ -1,10 +1,3 @@
-# Docs Extensions
-
-Create JSON files with a `pages` array.
-
-`_example.json` in this folder is ignored by the loader and can be copied as a starting point.
-
-```json
 {
   "pages": [
     {
@@ -12,11 +5,16 @@ Create JSON files with a `pages` array.
       "path": "custom/example-page",
       "slug": "custom-example-page",
       "title": "Example Page",
+      "summary": "Custom docs content.",
       "markdown": "# Example Page\n\nCustom docs content.",
       "aliases": [],
-      "tags": ["custom"],
+      "tags": [
+        "custom"
+      ],
+      "search_aliases": [
+        "example page"
+      ],
       "mode": "augment"
     }
   ]
 }
-```

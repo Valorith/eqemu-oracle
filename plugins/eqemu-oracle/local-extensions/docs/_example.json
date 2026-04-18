@@ -1,0 +1,20 @@
+{
+  "pages": [
+    {
+      "id": "local/example-page",
+      "path": "local/example-page",
+      "slug": "local-example-page",
+      "title": "Local Example Page",
+      "summary": "Machine-local docs content.",
+      "markdown": "# Local Example Page\n\nMachine-local docs content.",
+      "aliases": [],
+      "tags": [
+        "local"
+      ],
+      "search_aliases": [
+        "local example page"
+      ],
+      "mode": "augment"
+    }
+  ]
+}

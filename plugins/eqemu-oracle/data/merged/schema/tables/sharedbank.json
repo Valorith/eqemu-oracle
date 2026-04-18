@@ -1,150 +1,50 @@
 {
-  "category": "account",
+  "category": "custom",
   "columns": [
     {
-      "data_type": "int",
-      "description": "[Unique Account Identifier](account.md)",
-      "name": "acctid"
-    },
-    {
-      "data_type": "mediumint",
-      "description": "[Slot Identifier](../../../../server/inventory/inventory-slots)",
-      "name": "slotid"
-    },
-    {
-      "data_type": "int",
-      "description": "[Item Identifier](../../schema/items/items.md)",
-      "name": "itemid"
-    },
-    {
-      "data_type": "smallint",
-      "description": "Charges",
-      "name": "charges"
-    },
-    {
-      "data_type": "mediumint",
-      "description": "Augment Slot 1",
-      "name": "augslot1"
-    },
-    {
-      "data_type": "mediumint",
-      "description": "Augment Slot 2",
-      "name": "augslot2"
-    },
-    {
-      "data_type": "mediumint",
-      "description": "Augment Slot 3",
-      "name": "augslot3"
-    },
-    {
-      "data_type": "mediumint",
-      "description": "Augment Slot 4",
-      "name": "augslot4"
-    },
-    {
-      "data_type": "mediumint",
-      "description": "Augment Slot 5",
-      "name": "augslot5"
-    },
-    {
-      "data_type": "mediumint",
-      "description": "Augment Slot 6",
-      "name": "augslot6"
-    },
-    {
-      "data_type": "text",
-      "description": "Custom Data",
-      "name": "custom_data"
+      "data_type": "varchar(16)",
+      "description": "New nullable unique item identifier, added after ornament_hero_model.",
+      "name": "item_unique_id"
     }
   ],
-  "docs_url": "https://docs.eqemu.dev/schema/account/sharedbank/",
-  "domain": "schema",
+  "drops": [
+    {
+      "column": "guid",
+      "description": "Dropped as part of the item_unique_id migration."
+    }
+  ],
   "extension_flags": {
     "has_local_extension": false,
-    "has_repo_extension": false
+    "has_repo_extension": true
   },
-  "fetched_at": "2026-04-18T17:54:31Z",
-  "headings": [
-    "sharedbank",
-    "Relationships",
-    "Schema"
+  "id": "sharedbank_item_unique_id",
+  "indexes": [
+    {
+      "columns": [
+        "item_unique_id"
+      ],
+      "name": "idx_item_unique_id",
+      "type": "unique"
+    }
   ],
-  "id": "sharedbank",
-  "path": "schema/account/sharedbank",
+  "mode": "augment",
   "provenance": {
     "contributors": [
       {
-        "id": "sharedbank",
-        "source": "base"
+        "file": "C:\\Users\\rgagn\\OneDrive\\Documents\\Github Projects\\EQEmu Oracle\\plugins\\eqemu-oracle\\extensions\\schema\\schema_extension.json",
+        "mode": "augment",
+        "source": "repo_extension"
       }
     ],
-    "effective_source": "base"
+    "effective_source": "repo_extension"
   },
-  "related_docs": [
-    "schema/account/sharedbank"
-  ],
-  "relationships": [
+  "relationships": [],
+  "source_migrations": [
     {
-      "local_key": "acctid",
-      "relationship_type": "One-to-One",
-      "remote_key": "id",
-      "remote_table": "[account](../../schema/account/account.md)"
-    },
-    {
-      "local_key": "augslot1",
-      "relationship_type": "One-to-One",
-      "remote_key": "id",
-      "remote_table": "[items](../../schema/items/items.md)"
-    },
-    {
-      "local_key": "augslot2",
-      "relationship_type": "One-to-One",
-      "remote_key": "id",
-      "remote_table": "[items](../../schema/items/items.md)"
-    },
-    {
-      "local_key": "augslot3",
-      "relationship_type": "One-to-One",
-      "remote_key": "id",
-      "remote_table": "[items](../../schema/items/items.md)"
-    },
-    {
-      "local_key": "augslot4",
-      "relationship_type": "One-to-One",
-      "remote_key": "id",
-      "remote_table": "[items](../../schema/items/items.md)"
-    },
-    {
-      "local_key": "augslot5",
-      "relationship_type": "One-to-One",
-      "remote_key": "id",
-      "remote_table": "[items](../../schema/items/items.md)"
-    },
-    {
-      "local_key": "augslot6",
-      "relationship_type": "One-to-One",
-      "remote_key": "id",
-      "remote_table": "[items](../../schema/items/items.md)"
-    },
-    {
-      "local_key": "itemid",
-      "relationship_type": "One-to-One",
-      "remote_key": "id",
-      "remote_table": "[items](../../schema/items/items.md)"
+      "description": "2026_03_19_sharedbank_item_unique_id.sql",
+      "version": 9332
     }
   ],
-  "search_aliases": [
-    "account",
-    "columns",
-    "database",
-    "mysql",
-    "schema",
-    "sharedbank",
-    "table"
-  ],
-  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
-  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
-  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/account/sharedbank.md",
   "table": "sharedbank",
   "title": "sharedbank"
 }

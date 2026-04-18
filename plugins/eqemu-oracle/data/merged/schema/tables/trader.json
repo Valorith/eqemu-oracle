@@ -1,88 +1,111 @@
 {
-  "category": "trader",
+  "category": "custom",
   "columns": [
     {
-      "data_type": "int",
-      "description": "[Unique Character Identifier](../../schema/characters/character_data.md)",
-      "name": "char_id"
-    },
-    {
-      "data_type": "int",
-      "description": "[Item Identifier](../../schema/items/items.md)",
-      "name": "item_id"
-    },
-    {
-      "data_type": "int",
-      "description": "Serial Number",
-      "name": "serialnumber"
-    },
-    {
-      "data_type": "int",
-      "description": "Charges",
-      "name": "charges"
-    },
-    {
-      "data_type": "int",
-      "description": "Item Cost",
-      "name": "item_cost"
-    },
-    {
-      "data_type": "tinyint",
-      "description": "[Slot Identifier](../../../../server/inventory/inventory-slots)",
-      "name": "slot_id"
+      "data_type": "varchar(16)",
+      "description": "New nullable unique item identifier, added after item_id.",
+      "name": "item_unique_id"
     }
   ],
-  "docs_url": "https://docs.eqemu.dev/schema/trader/trader/",
-  "domain": "schema",
+  "drops": [
+    {
+      "column": "item_sn",
+      "description": "Dropped as part of the item_unique_id migration."
+    },
+    {
+      "description": "Dropped before new unique item index was added.",
+      "index": "idx_trader_item_sn"
+    },
+    {
+      "description": "Dropped and recreated on character_id/zone columns.",
+      "index": "idx_trader_char"
+    }
+  ],
   "extension_flags": {
     "has_local_extension": false,
-    "has_repo_extension": false
+    "has_repo_extension": true
   },
-  "fetched_at": "2026-04-18T17:54:31Z",
-  "headings": [
-    "trader",
-    "Relationships",
-    "Schema"
+  "id": "trader_item_unique_id",
+  "indexes": [
+    {
+      "columns": [
+        "character_id",
+        "char_zone_id",
+        "char_zone_instance_id"
+      ],
+      "name": "idx_trader_char",
+      "type": "index"
+    },
+    {
+      "columns": [
+        "item_unique_id"
+      ],
+      "name": "idx_item_unique_id",
+      "type": "unique"
+    }
   ],
-  "id": "trader",
-  "path": "schema/trader/trader",
+  "mode": "augment",
   "provenance": {
     "contributors": [
       {
-        "id": "trader",
-        "source": "base"
+        "file": "C:\\Users\\rgagn\\OneDrive\\Documents\\Github Projects\\EQEmu Oracle\\plugins\\eqemu-oracle\\extensions\\schema\\schema_extension.json",
+        "mode": "augment",
+        "source": "repo_extension"
       }
     ],
-    "effective_source": "base"
+    "effective_source": "repo_extension"
   },
-  "related_docs": [
-    "schema/trader/trader"
-  ],
-  "relationships": [
+  "relationships": [],
+  "renames": [
     {
-      "local_key": "char_id",
-      "relationship_type": "One-to-One",
-      "remote_key": "id",
-      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+      "data_type": "int(11) unsigned",
+      "description": "Renamed and kept NOT NULL default 0.",
+      "from": "char_id",
+      "to": "character_id"
     },
     {
-      "local_key": "item_id",
-      "relationship_type": "One-to-One",
-      "remote_key": "id",
-      "remote_table": "[items](../../schema/items/items.md)"
+      "data_type": "int(10) unsigned",
+      "description": "Renamed and kept NOT NULL default 0.",
+      "from": "aug_slot_1",
+      "to": "augment_one"
+    },
+    {
+      "data_type": "int(10) unsigned",
+      "description": "Renamed and kept NOT NULL default 0.",
+      "from": "aug_slot_2",
+      "to": "augment_two"
+    },
+    {
+      "data_type": "int(10) unsigned",
+      "description": "Renamed and kept NOT NULL default 0.",
+      "from": "aug_slot_3",
+      "to": "augment_three"
+    },
+    {
+      "data_type": "int(10) unsigned",
+      "description": "Renamed and kept NOT NULL default 0.",
+      "from": "aug_slot_4",
+      "to": "augment_four"
+    },
+    {
+      "data_type": "int(10) unsigned",
+      "description": "Renamed and kept NOT NULL default 0.",
+      "from": "aug_slot_5",
+      "to": "augment_five"
+    },
+    {
+      "data_type": "int(10) unsigned",
+      "description": "Renamed and kept NOT NULL default 0.",
+      "from": "aug_slot_6",
+      "to": "augment_six"
     }
   ],
-  "search_aliases": [
-    "columns",
-    "database",
-    "mysql",
-    "schema",
-    "table",
-    "trader"
+  "source_migrations": [
+    {
+      "description": "2026_03_19_trader_item_unique_id.sql",
+      "version": 9336
+    }
   ],
-  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
-  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
-  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/trader/trader.md",
   "table": "trader",
   "title": "trader"
 }

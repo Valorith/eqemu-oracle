@@ -1,0 +1,571 @@
+{
+  "comparison": {
+    "local_ref": "master",
+    "upstream_ref": "upstream/master",
+    "method": "git diff of schema-related files in local master against upstream/master"
+  },
+  "tables": [
+    {
+      "id": "tasks_allowed_classes",
+      "table": "tasks",
+      "title": "tasks",
+      "category": "custom",
+      "source_migrations": [
+        {
+          "version": 9341,
+          "description": "2026_03_25_tasks_allowed_classes.sql"
+        }
+      ],
+      "columns": [
+        {
+          "name": "allowed_classes",
+          "data_type": "int(10) unsigned",
+          "description": "New NOT NULL column with default 0, added after faction_amount."
+        }
+      ],
+      "relationships": [],
+      "mode": "augment"
+    },
+    {
+      "id": "character_buffs_suppressed",
+      "table": "character_buffs",
+      "title": "character_buffs",
+      "category": "custom",
+      "source_migrations": [
+        {
+          "version": 9329,
+          "description": "2026_03_08_add_suppressed_to_character_buffs.sql"
+        }
+      ],
+      "columns": [
+        {
+          "name": "suppressed",
+          "data_type": "tinyint(1) unsigned",
+          "description": "New NOT NULL column with default 0, added after instrument_mod to persist buff suppression state."
+        }
+      ],
+      "relationships": [],
+      "mode": "augment"
+    },
+    {
+      "id": "character_pet_buffs_suppressed",
+      "table": "character_pet_buffs",
+      "title": "character_pet_buffs",
+      "category": "custom",
+      "source_migrations": [
+        {
+          "version": 9330,
+          "description": "2026_03_09_add_suppressed_to_character_pet_buffs.sql"
+        }
+      ],
+      "columns": [
+        {
+          "name": "suppressed",
+          "data_type": "tinyint(1) unsigned",
+          "description": "New NOT NULL column with default 0, added after instrument_mod to persist pet buff suppression state."
+        }
+      ],
+      "relationships": [],
+      "mode": "augment"
+    },
+    {
+      "id": "inventory_item_unique_id",
+      "table": "inventory",
+      "title": "inventory",
+      "category": "custom",
+      "source_migrations": [
+        {
+          "version": 9331,
+          "description": "2026_03_19_inventory_item_unique_id.sql"
+        }
+      ],
+      "columns": [
+        {
+          "name": "item_unique_id",
+          "data_type": "varchar(16)",
+          "description": "New nullable unique item identifier, added after ornament_hero_model."
+        }
+      ],
+      "indexes": [
+        {
+          "name": "idx_item_unique_id",
+          "type": "unique",
+          "columns": ["item_unique_id"]
+        }
+      ],
+      "drops": [
+        {
+          "column": "guid",
+          "description": "Dropped as part of the item_unique_id migration."
+        }
+      ],
+      "relationships": [],
+      "mode": "augment"
+    },
+    {
+      "id": "sharedbank_item_unique_id",
+      "table": "sharedbank",
+      "title": "sharedbank",
+      "category": "custom",
+      "source_migrations": [
+        {
+          "version": 9332,
+          "description": "2026_03_19_sharedbank_item_unique_id.sql"
+        }
+      ],
+      "columns": [
+        {
+          "name": "item_unique_id",
+          "data_type": "varchar(16)",
+          "description": "New nullable unique item identifier, added after ornament_hero_model."
+        }
+      ],
+      "indexes": [
+        {
+          "name": "idx_item_unique_id",
+          "type": "unique",
+          "columns": ["item_unique_id"]
+        }
+      ],
+      "drops": [
+        {
+          "column": "guid",
+          "description": "Dropped as part of the item_unique_id migration."
+        }
+      ],
+      "relationships": [],
+      "mode": "augment"
+    },
+    {
+      "id": "character_parcels_item_unique_id",
+      "table": "character_parcels",
+      "title": "character_parcels",
+      "category": "custom",
+      "source_migrations": [
+        {
+          "version": 9333,
+          "description": "2026_03_19_character_parcels_item_unique_id.sql"
+        }
+      ],
+      "columns": [
+        {
+          "name": "item_unique_id",
+          "data_type": "varchar(16)",
+          "description": "New nullable item identifier, added after aug_slot_6."
+        }
+      ],
+      "relationships": [],
+      "mode": "augment"
+    },
+    {
+      "id": "character_parcels_containers_item_unique_id",
+      "table": "character_parcels_containers",
+      "title": "character_parcels_containers",
+      "category": "custom",
+      "source_migrations": [
+        {
+          "version": 9334,
+          "description": "2026_03_19_character_parcels_containers_item_unique_id.sql"
+        }
+      ],
+      "columns": [
+        {
+          "name": "item_unique_id",
+          "data_type": "varchar(16)",
+          "description": "New nullable item identifier, added after item_id."
+        }
+      ],
+      "relationships": [],
+      "mode": "augment"
+    },
+    {
+      "id": "inventory_snapshots_item_unique_id",
+      "table": "inventory_snapshots",
+      "title": "inventory_snapshots",
+      "category": "custom",
+      "source_migrations": [
+        {
+          "version": 9335,
+          "description": "2026_03_19_inventory_snapshots_item_unique_id.sql"
+        }
+      ],
+      "columns": [
+        {
+          "name": "item_unique_id",
+          "data_type": "varchar(16)",
+          "description": "New nullable item identifier, added after ornament_hero_model."
+        }
+      ],
+      "renames": [
+        {
+          "from": "charid",
+          "to": "character_id",
+          "data_type": "int(11) unsigned",
+          "description": "Renamed and kept NOT NULL default 0."
+        },
+        {
+          "from": "slotid",
+          "to": "slot_id",
+          "data_type": "mediumint(7) unsigned",
+          "description": "Renamed and kept NOT NULL default 0."
+        },
+        {
+          "from": "itemid",
+          "to": "item_id",
+          "data_type": "int(11) unsigned",
+          "description": "Renamed; nullable with default 0."
+        },
+        {
+          "from": "augslot1",
+          "to": "augment_one",
+          "data_type": "mediumint(7) unsigned",
+          "description": "Renamed and kept NOT NULL default 0."
+        },
+        {
+          "from": "augslot2",
+          "to": "augment_two",
+          "data_type": "mediumint(7) unsigned",
+          "description": "Renamed and kept NOT NULL default 0."
+        },
+        {
+          "from": "augslot3",
+          "to": "augment_three",
+          "data_type": "mediumint(7) unsigned",
+          "description": "Renamed and kept NOT NULL default 0."
+        },
+        {
+          "from": "augslot4",
+          "to": "augment_four",
+          "data_type": "mediumint(7) unsigned",
+          "description": "Renamed and kept NOT NULL default 0."
+        },
+        {
+          "from": "augslot5",
+          "to": "augment_five",
+          "data_type": "mediumint(7) unsigned",
+          "description": "Renamed; nullable with default 0."
+        },
+        {
+          "from": "augslot6",
+          "to": "augment_six",
+          "data_type": "mediumint(7)",
+          "description": "Renamed and kept NOT NULL default 0."
+        },
+        {
+          "from": "ornamenticon",
+          "to": "ornament_icon",
+          "data_type": "int(11) unsigned",
+          "description": "Renamed and kept NOT NULL default 0."
+        },
+        {
+          "from": "ornamentidfile",
+          "to": "ornament_idfile",
+          "data_type": "int(11) unsigned",
+          "description": "Renamed and kept NOT NULL default 0."
+        }
+      ],
+      "indexes": [
+        {
+          "name": "PRIMARY",
+          "type": "primary",
+          "columns": ["time_index", "character_id", "slot_id"],
+          "description": "Primary key recreated after column renames."
+        }
+      ],
+      "drops": [
+        {
+          "column": "guid",
+          "description": "Dropped as part of the item_unique_id migration."
+        }
+      ],
+      "relationships": [],
+      "mode": "augment"
+    },
+    {
+      "id": "trader_item_unique_id",
+      "table": "trader",
+      "title": "trader",
+      "category": "custom",
+      "source_migrations": [
+        {
+          "version": 9336,
+          "description": "2026_03_19_trader_item_unique_id.sql"
+        }
+      ],
+      "columns": [
+        {
+          "name": "item_unique_id",
+          "data_type": "varchar(16)",
+          "description": "New nullable unique item identifier, added after item_id."
+        }
+      ],
+      "renames": [
+        {
+          "from": "char_id",
+          "to": "character_id",
+          "data_type": "int(11) unsigned",
+          "description": "Renamed and kept NOT NULL default 0."
+        },
+        {
+          "from": "aug_slot_1",
+          "to": "augment_one",
+          "data_type": "int(10) unsigned",
+          "description": "Renamed and kept NOT NULL default 0."
+        },
+        {
+          "from": "aug_slot_2",
+          "to": "augment_two",
+          "data_type": "int(10) unsigned",
+          "description": "Renamed and kept NOT NULL default 0."
+        },
+        {
+          "from": "aug_slot_3",
+          "to": "augment_three",
+          "data_type": "int(10) unsigned",
+          "description": "Renamed and kept NOT NULL default 0."
+        },
+        {
+          "from": "aug_slot_4",
+          "to": "augment_four",
+          "data_type": "int(10) unsigned",
+          "description": "Renamed and kept NOT NULL default 0."
+        },
+        {
+          "from": "aug_slot_5",
+          "to": "augment_five",
+          "data_type": "int(10) unsigned",
+          "description": "Renamed and kept NOT NULL default 0."
+        },
+        {
+          "from": "aug_slot_6",
+          "to": "augment_six",
+          "data_type": "int(10) unsigned",
+          "description": "Renamed and kept NOT NULL default 0."
+        }
+      ],
+      "indexes": [
+        {
+          "name": "idx_trader_char",
+          "type": "index",
+          "columns": ["character_id", "char_zone_id", "char_zone_instance_id"]
+        },
+        {
+          "name": "idx_item_unique_id",
+          "type": "unique",
+          "columns": ["item_unique_id"]
+        }
+      ],
+      "drops": [
+        {
+          "column": "item_sn",
+          "description": "Dropped as part of the item_unique_id migration."
+        },
+        {
+          "index": "idx_trader_item_sn",
+          "description": "Dropped before new unique item index was added."
+        },
+        {
+          "index": "idx_trader_char",
+          "description": "Dropped and recreated on character_id/zone columns."
+        }
+      ],
+      "relationships": [],
+      "mode": "augment"
+    },
+    {
+      "id": "account_offline",
+      "table": "account",
+      "title": "account",
+      "category": "custom",
+      "source_migrations": [
+        {
+          "version": 9337,
+          "description": "2026_03_19_account_offline_status.sql"
+        }
+      ],
+      "columns": [
+        {
+          "name": "offline",
+          "data_type": "tinyint(1) unsigned",
+          "description": "New NOT NULL column with default 0, added after time_creation."
+        }
+      ],
+      "relationships": [],
+      "mode": "augment"
+    },
+    {
+      "id": "character_offline_transactions",
+      "table": "character_offline_transactions",
+      "title": "character_offline_transactions",
+      "category": "custom",
+      "source_migrations": [
+        {
+          "version": 9338,
+          "description": "2026_03_19_character_offline_transactions.sql"
+        }
+      ],
+      "columns": [
+        {
+          "name": "id",
+          "data_type": "bigint(20) unsigned",
+          "description": "Primary key, auto_increment."
+        },
+        {
+          "name": "character_id",
+          "data_type": "int(10) unsigned",
+          "description": "Owning character id, NOT NULL default 0."
+        },
+        {
+          "name": "type",
+          "data_type": "int(10) unsigned",
+          "description": "Transaction type, nullable default 0."
+        },
+        {
+          "name": "item_name",
+          "data_type": "varchar(64)",
+          "description": "Item name, nullable."
+        },
+        {
+          "name": "quantity",
+          "data_type": "int(11)",
+          "description": "Quantity, nullable default 0."
+        },
+        {
+          "name": "price",
+          "data_type": "bigint(20) unsigned",
+          "description": "Transaction price, nullable default 0."
+        },
+        {
+          "name": "buyer_name",
+          "data_type": "varchar(64)",
+          "description": "Buyer name, nullable."
+        }
+      ],
+      "indexes": [
+        {
+          "name": "PRIMARY",
+          "type": "primary",
+          "columns": ["id"]
+        },
+        {
+          "name": "idx_character_id",
+          "type": "index",
+          "columns": ["character_id"]
+        }
+      ],
+      "relationships": [],
+      "mode": "augment"
+    },
+    {
+      "id": "offline_character_sessions",
+      "table": "offline_character_sessions",
+      "title": "offline_character_sessions",
+      "category": "custom",
+      "source_migrations": [
+        {
+          "version": 9339,
+          "description": "2026_03_19_offline_character_sessions.sql"
+        }
+      ],
+      "columns": [
+        {
+          "name": "id",
+          "data_type": "bigint(20) unsigned",
+          "description": "Primary key, auto_increment."
+        },
+        {
+          "name": "account_id",
+          "data_type": "int(10) unsigned",
+          "description": "Account id, NOT NULL default 0."
+        },
+        {
+          "name": "character_id",
+          "data_type": "int(10) unsigned",
+          "description": "Character id, NOT NULL default 0."
+        },
+        {
+          "name": "mode",
+          "data_type": "varchar(16)",
+          "description": "Offline mode, NOT NULL default 'trader'."
+        },
+        {
+          "name": "zone_id",
+          "data_type": "int(10) unsigned",
+          "description": "Zone id, NOT NULL default 0."
+        },
+        {
+          "name": "instance_id",
+          "data_type": "int(11)",
+          "description": "Instance id, NOT NULL default 0."
+        },
+        {
+          "name": "entity_id",
+          "data_type": "int(10) unsigned",
+          "description": "Entity id, NOT NULL default 0."
+        },
+        {
+          "name": "started_at",
+          "data_type": "timestamp",
+          "description": "Session start time, NOT NULL default CURRENT_TIMESTAMP."
+        }
+      ],
+      "indexes": [
+        {
+          "name": "PRIMARY",
+          "type": "primary",
+          "columns": ["id"]
+        },
+        {
+          "name": "idx_account_id",
+          "type": "unique",
+          "columns": ["account_id"]
+        },
+        {
+          "name": "idx_character_id",
+          "type": "index",
+          "columns": ["character_id"]
+        },
+        {
+          "name": "idx_zone_instance",
+          "type": "index",
+          "columns": ["zone_id", "instance_id"]
+        }
+      ],
+      "relationships": [],
+      "mode": "augment"
+    },
+    {
+      "id": "item_unique_id_reservations",
+      "table": "item_unique_id_reservations",
+      "title": "item_unique_id_reservations",
+      "category": "custom",
+      "source_migrations": [
+        {
+          "version": 9340,
+          "description": "2026_03_19_item_unique_id_reservations.sql"
+        }
+      ],
+      "columns": [
+        {
+          "name": "item_unique_id",
+          "data_type": "varchar(16)",
+          "description": "Primary key."
+        },
+        {
+          "name": "reserved_at",
+          "data_type": "timestamp",
+          "description": "Reservation timestamp, NOT NULL default CURRENT_TIMESTAMP."
+        }
+      ],
+      "indexes": [
+        {
+          "name": "PRIMARY",
+          "type": "primary",
+          "columns": ["item_unique_id"]
+        }
+      ],
+      "relationships": [],
+      "mode": "augment"
+    }
+  ]
+}

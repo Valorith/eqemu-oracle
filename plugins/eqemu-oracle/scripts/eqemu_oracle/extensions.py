@@ -6,10 +6,34 @@ from typing import Any
 from .utils import deep_merge, load_json
 
 
+class ExtensionValidationError(ValueError):
+    def __init__(self, issues: list[str]) -> None:
+        self.issues = issues
+        message = (
+            "EQEmu Oracle extension validation failed. "
+            "Fix the extension files and rebuild before using extension-backed data.\n- "
+            + "\n- ".join(issues)
+        )
+        super().__init__(message)
+
+
 def _iter_extension_files(root: Path) -> list[Path]:
     if not root.exists():
         return []
-    return sorted(path for path in root.rglob("*.json") if path.is_file())
+    return sorted(
+        path
+        for path in root.rglob("*.json")
+        if path.is_file() and path.name != "_example.json" and not path.name.endswith(".example.json")
+    )
+
+
+def extension_inputs_fingerprint(*roots: Path) -> tuple[tuple[str, int, int], ...]:
+    fingerprint: list[tuple[str, int, int]] = []
+    for root in roots:
+        for path in _iter_extension_files(root):
+            stat = path.stat()
+            fingerprint.append((str(path), stat.st_mtime_ns, stat.st_size))
+    return tuple(sorted(fingerprint))
 
 
 def load_domain_extensions(root: Path, domain: str) -> list[dict[str, Any]]:

@@ -94,4 +94,4 @@ See:
 - `rebuild_eqemu_extensions`
 - `update_eqemu_oracle_plugin`
 
-Getter and search tools also attach `presentation.markdown` and `copy_blocks` so Codex can answer users with a consistent polished format while still keeping the raw structured record available to agents.
+Getter and search tools also attach `presentation.markdown` and `copy_blocks` so Codex can answer users with a consistent polished format while still keeping the raw structured record available to agents. Quest API events are rendered in a Spire-style copyable code format.

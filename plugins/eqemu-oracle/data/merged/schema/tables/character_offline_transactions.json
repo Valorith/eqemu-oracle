@@ -1,0 +1,81 @@
+{
+  "category": "custom",
+  "columns": [
+    {
+      "data_type": "bigint(20) unsigned",
+      "description": "Primary key, auto_increment.",
+      "name": "id"
+    },
+    {
+      "data_type": "int(10) unsigned",
+      "description": "Owning character id, NOT NULL default 0.",
+      "name": "character_id"
+    },
+    {
+      "data_type": "int(10) unsigned",
+      "description": "Transaction type, nullable default 0.",
+      "name": "type"
+    },
+    {
+      "data_type": "varchar(64)",
+      "description": "Item name, nullable.",
+      "name": "item_name"
+    },
+    {
+      "data_type": "int(11)",
+      "description": "Quantity, nullable default 0.",
+      "name": "quantity"
+    },
+    {
+      "data_type": "bigint(20) unsigned",
+      "description": "Transaction price, nullable default 0.",
+      "name": "price"
+    },
+    {
+      "data_type": "varchar(64)",
+      "description": "Buyer name, nullable.",
+      "name": "buyer_name"
+    }
+  ],
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": true
+  },
+  "id": "character_offline_transactions",
+  "indexes": [
+    {
+      "columns": [
+        "id"
+      ],
+      "name": "PRIMARY",
+      "type": "primary"
+    },
+    {
+      "columns": [
+        "character_id"
+      ],
+      "name": "idx_character_id",
+      "type": "index"
+    }
+  ],
+  "mode": "augment",
+  "provenance": {
+    "contributors": [
+      {
+        "file": "C:\\Users\\rgagn\\OneDrive\\Documents\\Github Projects\\EQEmu Oracle\\plugins\\eqemu-oracle\\extensions\\schema\\schema_extension.json",
+        "mode": "augment",
+        "source": "repo_extension"
+      }
+    ],
+    "effective_source": "repo_extension"
+  },
+  "relationships": [],
+  "source_migrations": [
+    {
+      "description": "2026_03_19_character_offline_transactions.sql",
+      "version": 9338
+    }
+  ],
+  "table": "character_offline_transactions",
+  "title": "character_offline_transactions"
+}

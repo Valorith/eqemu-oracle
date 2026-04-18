@@ -1,0 +1,22 @@
+{
+  "records": [
+    {
+      "id": "perl:method:quest:my-local-method:example",
+      "language": "perl",
+      "kind": "method",
+      "container": "quest",
+      "name": "MyLocalMethod",
+      "signature": "MyLocalMethod()",
+      "params": [],
+      "return_type": "void",
+      "categories": [
+        "Local Custom"
+      ],
+      "search_aliases": [
+        "local method"
+      ],
+      "related_docs": [],
+      "mode": "augment"
+    }
+  ]
+}

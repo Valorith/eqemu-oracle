@@ -20,13 +20,23 @@ class RuntimeSmokeTest(unittest.TestCase):
         quest = store.get_quest_entry("perl", "method", "Say")
         self.assertEqual(quest["name"], "Say")
         self.assertEqual(quest["presentation"]["template"], "quest-api-entry")
-        self.assertIn("```text", quest["presentation"]["markdown"])
+        self.assertIn("```pl", quest["presentation"]["markdown"])
         self.assertTrue(quest["presentation"]["copy_blocks"])
 
         page = store.get_doc_page("quest-api/constants/lua-appearance")
         self.assertEqual(page["title"], "lua-appearance")
         self.assertTrue(page["sections"])
         self.assertEqual(page["presentation"]["template"], "docs-page")
+
+    def test_event_presentation_matches_spire_style(self) -> None:
+        store = DataStore()
+        event = store.get_quest_entry("perl", "event", "EVENT_LOOT")
+        markdown = event["presentation"]["markdown"]
+        copy_block = event["presentation"]["copy_blocks"][0]["content"]
+        self.assertIn("```pl", markdown)
+        self.assertIn("sub EVENT_LOOT {", markdown)
+        self.assertIn('quest::debug("looted_id " . $looted_id);', markdown)
+        self.assertIn("# Item-EVENT_LOOT", copy_block)
 
     def test_language_filtered_search(self) -> None:
         store = DataStore()
@@ -46,6 +56,16 @@ class RuntimeSmokeTest(unittest.TestCase):
         self.assertTrue(hits)
         self.assertIn("quest-api/npc-item-handin", hits[0]["uri"])
         self.assertIn(hits[0]["entity_type"], {"page", "section"})
+
+    def test_quest_topic_summary_uses_script_examples(self) -> None:
+        store = DataStore()
+        summary = store.summarize_quest_topic("aggro related api options", "perl")
+        markdown = summary["presentation"]["markdown"]
+        self.assertEqual(summary["presentation"]["template"], "quest-api-topic-summary")
+        self.assertIn("```pl", markdown)
+        self.assertIn("sub EVENT_AGGRO", markdown)
+        self.assertIn("$mob->CheckAggro($other);", markdown)
+        self.assertNotIn("Mob* other", markdown)
 
 
 if __name__ == "__main__":

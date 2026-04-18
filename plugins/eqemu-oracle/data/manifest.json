@@ -4,15 +4,19 @@
     "docs": 377,
     "docs-sections": 4741,
     "quest-api": 10524,
-    "schema": 261
+    "schema": 274
+  },
+  "extension_health": {
+    "stale_schema_candidate_count": 0,
+    "stale_schema_candidates": []
   },
   "extensions": {
     "local_root": "C:\\Users\\rgagn\\OneDrive\\Documents\\Github Projects\\EQEmu Oracle\\plugins\\eqemu-oracle\\local-extensions",
     "repo_root": "C:\\Users\\rgagn\\OneDrive\\Documents\\Github Projects\\EQEmu Oracle\\plugins\\eqemu-oracle\\extensions"
   },
   "freshness_state": "fresh",
-  "generated_at": "2026-04-18T17:54:43Z",
-  "snapshot_version": "20260418175443",
+  "generated_at": "2026-04-18T18:55:01Z",
+  "snapshot_version": "20260418185501",
   "sources": {
     "docs": {
       "fetched_at": "2026-04-18T17:54:31Z",

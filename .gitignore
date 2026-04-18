@@ -20,6 +20,15 @@ tmp/
 plugins/eqemu-oracle/cache/
 plugins/eqemu-oracle/local-extensions/*
 !plugins/eqemu-oracle/local-extensions/README.md
+!plugins/eqemu-oracle/local-extensions/docs/
+!plugins/eqemu-oracle/local-extensions/quest-api/
+!plugins/eqemu-oracle/local-extensions/schema/
+plugins/eqemu-oracle/local-extensions/docs/*
+plugins/eqemu-oracle/local-extensions/quest-api/*
+plugins/eqemu-oracle/local-extensions/schema/*
+!plugins/eqemu-oracle/local-extensions/docs/_example.json
+!plugins/eqemu-oracle/local-extensions/quest-api/_example.json
+!plugins/eqemu-oracle/local-extensions/schema/_example.json
 
 # Local secrets
 .env

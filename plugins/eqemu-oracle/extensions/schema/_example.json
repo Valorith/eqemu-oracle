@@ -1,10 +1,3 @@
-# Schema Extensions
-
-Create JSON files with a `tables` array.
-
-`_example.json` in this folder is ignored by the loader and can be copied as a starting point.
-
-```json
 {
   "tables": [
     {
@@ -16,7 +9,7 @@ Create JSON files with a `tables` array.
         {
           "name": "id",
           "data_type": "int",
-          "description": "Primary key"
+          "description": "Primary key."
         }
       ],
       "relationships": [],
@@ -24,4 +17,3 @@ Create JSON files with a `tables` array.
     }
   ]
 }
-```

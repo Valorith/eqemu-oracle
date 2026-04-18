@@ -7,9 +7,9 @@ from pathlib import Path
 from typing import Any
 
 from .constants import BASE_ROOT, CACHE_ROOT, EXTENSIONS_ROOT, LOCAL_EXTENSIONS_ROOT, MERGED_ROOT, OVERLAY_ROOT, SEARCH_DB_PATH
-from .extensions import load_domain_extensions, merge_records
-from .presentation import add_presentation, add_search_presentation
-from .utils import dump_json, ensure_dir, excerpt, load_json, markdown_sections, split_identifier_words
+from .extensions import ExtensionValidationError, load_domain_extensions, merge_records
+from .presentation import QUEST_TOPIC_STOPWORDS, add_presentation, add_search_presentation, present_quest_entry, present_quest_topic_summary
+from .utils import deep_merge, dump_json, ensure_dir, excerpt, load_json, markdown_sections, split_identifier_words
 
 
 SEARCH_SYNONYMS: dict[str, list[str]] = {
@@ -25,6 +25,25 @@ SEARCH_SYNONYMS: dict[str, list[str]] = {
     "schema": ["database", "db", "table", "columns"],
     "spawn": ["npc", "mob"],
     "table": ["schema", "database", "columns"],
+}
+
+QUEST_EVENT_CONTAINER_PRIORITY = {
+    "npc": 0,
+    "player": 1,
+    "item": 2,
+    "bot": 3,
+    "merc": 4,
+}
+
+QUEST_METHOD_CONTAINER_PRIORITY = {
+    "mob": 0,
+    "npc": 1,
+    "client": 2,
+    "entitylist": 3,
+    "quest": 4,
+    "zone": 5,
+    "spell": 6,
+    "hateentry": 7,
 }
 
 
@@ -87,6 +106,146 @@ def load_schema_base(root: Path) -> list[dict[str, Any]]:
 def load_docs_base(root: Path) -> list[dict[str, Any]]:
     pages_path = root / "docs" / "pages.json"
     return load_json(pages_path) if pages_path.exists() else []
+
+
+def validate_extension_overlays(
+    base_root: Path,
+    repo_root: Path = EXTENSIONS_ROOT,
+    local_root: Path = LOCAL_EXTENSIONS_ROOT,
+) -> None:
+    issues: list[str] = []
+    domain_loaders = {
+        "quest-api": load_quest_base,
+        "schema": load_schema_base,
+        "docs": load_docs_base,
+    }
+    for domain, loader in domain_loaders.items():
+        try:
+            merge_records(
+                loader(base_root),
+                load_domain_extensions(repo_root, domain),
+                load_domain_extensions(local_root, domain),
+            )
+        except Exception as exc:
+            issues.append(f"{domain}: {exc}")
+    if issues:
+        raise ExtensionValidationError(issues)
+
+
+def _normalize_schema_record(record: dict[str, Any] | None) -> dict[str, Any] | None:
+    if record is None:
+        return None
+    ignored_keys = {
+        "id",
+        "title",
+        "category",
+        "source_migrations",
+        "search_aliases",
+        "related_docs",
+        "source_url",
+        "source_ref",
+        "docs_url",
+        "provenance",
+        "extension_flags",
+    }
+    return {key: value for key, value in record.items() if key not in ignored_keys}
+
+
+def _schema_extension_merged_against_base(base_record: dict[str, Any], extension: dict[str, Any]) -> dict[str, Any] | None:
+    mode = extension.get("mode")
+    if mode == "disable":
+        return None
+    overlay = {
+        key: value
+        for key, value in extension.items()
+        if not key.startswith("_") and key not in {"id", "mode"}
+    }
+    list_mode = "replace" if mode == "override" else "append_unique"
+    return deep_merge(base_record, overlay, list_mode=list_mode)
+
+
+def find_stale_schema_extensions(
+    base_root: Path,
+    repo_root: Path = EXTENSIONS_ROOT,
+    local_root: Path = LOCAL_EXTENSIONS_ROOT,
+) -> list[dict[str, Any]]:
+    validate_extension_overlays(base_root, repo_root, local_root)
+    base_by_table = {
+        record.get("table"): record
+        for record in load_schema_base(base_root)
+        if isinstance(record, dict) and record.get("table")
+    }
+    stale_candidates: list[dict[str, Any]] = []
+    for source_name, root in (("repo_extension", repo_root), ("local_extension", local_root)):
+        for extension in load_domain_extensions(root, "schema"):
+            table_name = extension.get("table")
+            if not table_name:
+                continue
+            base_record = base_by_table.get(table_name)
+            if base_record is None:
+                continue
+            merged_record = _schema_extension_merged_against_base(base_record, extension)
+            if _normalize_schema_record(merged_record) != _normalize_schema_record(base_record):
+                continue
+            stale_candidates.append(
+                {
+                    "id": extension.get("id"),
+                    "table": table_name,
+                    "mode": extension.get("mode"),
+                    "source": source_name,
+                    "file": extension.get("_extension_file"),
+                    "reason": f"Upstream table '{table_name}' already covers this extension payload.",
+                }
+            )
+    return sorted(stale_candidates, key=lambda item: (str(item.get("file", "")), str(item.get("table", "")), str(item.get("id", ""))))
+
+
+def _write_extension_json(path: Path, payload: dict[str, Any]) -> None:
+    path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+
+
+def prune_stale_schema_extensions(
+    base_root: Path,
+    repo_root: Path = EXTENSIONS_ROOT,
+    local_root: Path = LOCAL_EXTENSIONS_ROOT,
+    *,
+    apply: bool = False,
+) -> dict[str, Any]:
+    stale_candidates = find_stale_schema_extensions(base_root, repo_root, local_root)
+    files: dict[str, list[dict[str, Any]]] = {}
+    for candidate in stale_candidates:
+        files.setdefault(str(candidate["file"]), []).append(candidate)
+
+    removed_entries: list[dict[str, Any]] = []
+    file_results: list[dict[str, Any]] = []
+
+    if apply:
+        for file_path, candidates in files.items():
+            path = Path(file_path)
+            payload = load_json(path)
+            remaining: list[dict[str, Any]] = []
+            pending = [(item.get("id"), item.get("table")) for item in candidates]
+            removed_count = 0
+            for entry in payload.get("tables", []):
+                entry_key = (entry.get("id"), entry.get("table"))
+                if entry_key in pending:
+                    pending.remove(entry_key)
+                    removed_count += 1
+                    removed_entries.append({"file": file_path, "id": entry.get("id"), "table": entry.get("table")})
+                    continue
+                remaining.append(entry)
+            payload["tables"] = remaining
+            _write_extension_json(path, payload)
+            file_results.append({"file": file_path, "removed_count": removed_count, "remaining_count": len(remaining)})
+
+    return {
+        "apply": apply,
+        "stale_candidates": stale_candidates,
+        "candidate_count": len(stale_candidates),
+        "removed_entries": removed_entries,
+        "removed_count": len(removed_entries),
+        "files": file_results,
+    }
 
 
 def _load_domain_meta(base_root: Path) -> dict[str, Any]:
@@ -233,6 +392,8 @@ def _compose_search_text(record: dict[str, Any], domain: str, root: Path) -> tup
 def write_merged_dataset(base_root: Path, target_root: Path) -> dict[str, Any]:
     ensure_dir(target_root)
     ensure_dir(CACHE_ROOT)
+    validate_extension_overlays(base_root)
+    stale_schema_extensions = find_stale_schema_extensions(base_root)
     quest_records = merge_records(
         load_quest_base(base_root),
         load_domain_extensions(EXTENSIONS_ROOT, "quest-api"),
@@ -308,6 +469,10 @@ def write_merged_dataset(base_root: Path, target_root: Path) -> dict[str, Any]:
         "extensions": {
             "repo_root": str(EXTENSIONS_ROOT),
             "local_root": str(LOCAL_EXTENSIONS_ROOT),
+        },
+        "extension_health": {
+            "stale_schema_candidate_count": len(stale_schema_extensions),
+            "stale_schema_candidates": stale_schema_extensions,
         },
     }
     dump_json(target_root.parent / "manifest.json", manifest)
@@ -448,6 +613,16 @@ class DataStore:
     def docs_index(self) -> list[dict[str, Any]]:
         return self.docs_records
 
+    def _raw_doc_page(self, path_or_slug: str) -> dict[str, Any] | None:
+        needle = path_or_slug.strip("/").lower().split("#", 1)[0]
+        for page in self.docs_records:
+            if page.get("path", "").lower() == needle or page.get("slug", "").lower() == needle:
+                full_page = dict(page)
+                full_page["markdown"] = _doc_markdown(self.data_root, page)
+                full_page["sections"] = [section for section in self.docs_sections if section.get("page_id") == page["id"]]
+                return full_page
+        return None
+
     def get_quest_entry(self, language: str, kind: str, name: str, group_or_type: str | None = None) -> dict[str, Any] | None:
         for item in self.quest_records:
             if (
@@ -456,7 +631,12 @@ class DataStore:
                 and item.get("name", "").lower() == name.lower()
                 and (not group_or_type or item.get("container", "").lower() == group_or_type.lower())
             ):
-                return add_presentation("quest-api", item)
+                full_item = dict(item)
+                docs_page = None
+                if full_item.get("related_docs"):
+                    docs_page = self._raw_doc_page(full_item["related_docs"][0])
+                full_item["presentation"] = present_quest_entry(full_item, docs_page)
+                return full_item
         return None
 
     def get_table(self, table_name: str) -> dict[str, Any] | None:
@@ -466,14 +646,8 @@ class DataStore:
         return None
 
     def get_doc_page(self, path_or_slug: str) -> dict[str, Any] | None:
-        needle = path_or_slug.strip("/").lower().split("#", 1)[0]
-        for page in self.docs_records:
-            if page.get("path", "").lower() == needle or page.get("slug", "").lower() == needle:
-                full_page = dict(page)
-                full_page["markdown"] = _doc_markdown(self.data_root, page)
-                full_page["sections"] = [section for section in self.docs_sections if section.get("page_id") == page["id"]]
-                return add_presentation("docs", full_page)
-        return None
+        full_page = self._raw_doc_page(path_or_slug)
+        return add_presentation("docs", full_page) if full_page else None
 
     def explain_provenance(self, domain: str, record_id: str) -> dict[str, Any] | None:
         collection = {"quest-api": self.quest_records, "schema": self.schema_records, "docs": self.docs_records}.get(domain)
@@ -503,6 +677,113 @@ class DataStore:
             if item.get("id") == record_id:
                 return item.get("language") == language
         return False
+
+    def summarize_quest_topic(self, query: str, language: str = "perl", limit: int = 16) -> dict[str, Any]:
+        requested_language = language.lower()
+        query_tokens = [token for token in split_identifier_words(query) if token not in QUEST_TOPIC_STOPWORDS]
+        if not query_tokens:
+            query_tokens = split_identifier_words(query)
+
+        scored: list[tuple[int, dict[str, Any]]] = []
+        for record in self.quest_records:
+            if record.get("language") != requested_language:
+                continue
+            name_text = " ".join(split_identifier_words(record.get("name", "")))
+            container_text = " ".join(split_identifier_words(record.get("container", "")))
+            category_text = " ".join(split_identifier_words(" ".join(record.get("categories") or [])))
+            alias_text = " ".join(split_identifier_words(" ".join(record.get("search_aliases") or [])))
+            docs_text = " ".join(split_identifier_words(" ".join(record.get("related_docs") or [])))
+            details_text = " ".join(split_identifier_words(json.dumps(record.get("details", {}), sort_keys=True) if record.get("details") else ""))
+            haystack_parts = [
+                record.get("name", ""),
+                record.get("container", ""),
+                record.get("signature", ""),
+                " ".join(record.get("categories") or []),
+                " ".join(record.get("search_aliases") or []),
+                " ".join(record.get("related_docs") or []),
+                json.dumps(record.get("details", {}), sort_keys=True) if record.get("details") else "",
+            ]
+            haystack = " ".join(haystack_parts).lower()
+            score = 0
+            for token in query_tokens:
+                if token in name_text:
+                    score += 24
+                if token in container_text:
+                    score += 8
+                if token in category_text:
+                    score += 10
+                if token in alias_text:
+                    score += 8
+                if token in docs_text:
+                    score += 8
+                if token in details_text:
+                    score += 10
+                if token in haystack:
+                    score += 4
+                for synonym in SEARCH_SYNONYMS.get(token, []):
+                    synonym_token = synonym.lower()
+                    if synonym_token in name_text:
+                        score += 12
+                    elif synonym_token in haystack:
+                        score += 4
+            if "Hate and Aggro" in (record.get("categories") or []):
+                score += 3
+            if record.get("kind") == "event":
+                score += 4
+            if record.get("kind") == "event" and any(token in name_text for token in query_tokens):
+                score += 12
+            if record.get("kind") == "method" and any(token in name_text for token in query_tokens):
+                score += 10
+            if score > 0:
+                scored.append((score, record))
+
+        scored.sort(key=lambda item: (-item[0], item[1].get("kind", ""), item[1].get("container", ""), item[1].get("name", "")))
+
+        grouped_events: list[dict[str, Any]] = []
+        grouped_methods: list[dict[str, Any]] = []
+        grouped_constants: list[dict[str, Any]] = []
+        seen_keys: set[tuple[str, str, str]] = set()
+
+        for _score, record in scored:
+            key = (record.get("kind", ""), record.get("container", ""), record.get("name", ""))
+            if key in seen_keys:
+                continue
+            seen_keys.add(key)
+            full_record = self.get_quest_entry(requested_language, record["kind"], record["name"], record.get("container"))
+            if not full_record:
+                continue
+            if record.get("kind") == "event":
+                grouped_events.append(full_record)
+            elif record.get("kind") == "method":
+                grouped_methods.append(full_record)
+            elif record.get("kind") == "constant":
+                grouped_constants.append(full_record)
+            if len(grouped_events) + len(grouped_methods) + len(grouped_constants) >= limit:
+                break
+
+        grouped_events.sort(
+            key=lambda item: (
+                QUEST_EVENT_CONTAINER_PRIORITY.get(str(item.get("container", "")).lower(), 99),
+                str(item.get("name", "")),
+            )
+        )
+        grouped_methods.sort(
+            key=lambda item: (
+                QUEST_METHOD_CONTAINER_PRIORITY.get(str(item.get("container", "")).lower(), 99),
+                str(item.get("name", "")),
+            )
+        )
+
+        result = {
+            "query": query,
+            "language": requested_language,
+            "events": grouped_events[:4],
+            "methods": grouped_methods[:10],
+            "constants": grouped_constants[:6],
+            "manifest": self.manifest(),
+        }
+        result["presentation"] = present_quest_topic_summary(query, requested_language, result["events"], result["methods"], result["constants"])
+        return result
 
     def search(
         self,

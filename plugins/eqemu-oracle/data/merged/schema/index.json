@@ -815,6 +815,41 @@
     "title": "account_ip"
   },
   {
+    "category": "custom",
+    "columns": [
+      {
+        "data_type": "tinyint(1) unsigned",
+        "description": "New NOT NULL column with default 0, added after time_creation.",
+        "name": "offline"
+      }
+    ],
+    "extension_flags": {
+      "has_local_extension": false,
+      "has_repo_extension": true
+    },
+    "id": "account_offline",
+    "mode": "augment",
+    "provenance": {
+      "contributors": [
+        {
+          "file": "C:\\Users\\rgagn\\OneDrive\\Documents\\Github Projects\\EQEmu Oracle\\plugins\\eqemu-oracle\\extensions\\schema\\schema_extension.json",
+          "mode": "augment",
+          "source": "repo_extension"
+        }
+      ],
+      "effective_source": "repo_extension"
+    },
+    "relationships": [],
+    "source_migrations": [
+      {
+        "description": "2026_03_19_account_offline_status.sql",
+        "version": 9337
+      }
+    ],
+    "table": "account",
+    "title": "account"
+  },
+  {
     "category": "account",
     "columns": [
       {
@@ -5658,6 +5693,41 @@
     "title": "character_buffs"
   },
   {
+    "category": "custom",
+    "columns": [
+      {
+        "data_type": "tinyint(1) unsigned",
+        "description": "New NOT NULL column with default 0, added after instrument_mod to persist buff suppression state.",
+        "name": "suppressed"
+      }
+    ],
+    "extension_flags": {
+      "has_local_extension": false,
+      "has_repo_extension": true
+    },
+    "id": "character_buffs_suppressed",
+    "mode": "augment",
+    "provenance": {
+      "contributors": [
+        {
+          "file": "C:\\Users\\rgagn\\OneDrive\\Documents\\Github Projects\\EQEmu Oracle\\plugins\\eqemu-oracle\\extensions\\schema\\schema_extension.json",
+          "mode": "augment",
+          "source": "repo_extension"
+        }
+      ],
+      "effective_source": "repo_extension"
+    },
+    "relationships": [],
+    "source_migrations": [
+      {
+        "description": "2026_03_08_add_suppressed_to_character_buffs.sql",
+        "version": 9329
+      }
+    ],
+    "table": "character_buffs",
+    "title": "character_buffs"
+  },
+  {
     "category": "characters",
     "columns": [
       {
@@ -8293,6 +8363,157 @@
     "title": "character_memmed_spells"
   },
   {
+    "category": "custom",
+    "columns": [
+      {
+        "data_type": "bigint(20) unsigned",
+        "description": "Primary key, auto_increment.",
+        "name": "id"
+      },
+      {
+        "data_type": "int(10) unsigned",
+        "description": "Owning character id, NOT NULL default 0.",
+        "name": "character_id"
+      },
+      {
+        "data_type": "int(10) unsigned",
+        "description": "Transaction type, nullable default 0.",
+        "name": "type"
+      },
+      {
+        "data_type": "varchar(64)",
+        "description": "Item name, nullable.",
+        "name": "item_name"
+      },
+      {
+        "data_type": "int(11)",
+        "description": "Quantity, nullable default 0.",
+        "name": "quantity"
+      },
+      {
+        "data_type": "bigint(20) unsigned",
+        "description": "Transaction price, nullable default 0.",
+        "name": "price"
+      },
+      {
+        "data_type": "varchar(64)",
+        "description": "Buyer name, nullable.",
+        "name": "buyer_name"
+      }
+    ],
+    "extension_flags": {
+      "has_local_extension": false,
+      "has_repo_extension": true
+    },
+    "id": "character_offline_transactions",
+    "indexes": [
+      {
+        "columns": [
+          "id"
+        ],
+        "name": "PRIMARY",
+        "type": "primary"
+      },
+      {
+        "columns": [
+          "character_id"
+        ],
+        "name": "idx_character_id",
+        "type": "index"
+      }
+    ],
+    "mode": "augment",
+    "provenance": {
+      "contributors": [
+        {
+          "file": "C:\\Users\\rgagn\\OneDrive\\Documents\\Github Projects\\EQEmu Oracle\\plugins\\eqemu-oracle\\extensions\\schema\\schema_extension.json",
+          "mode": "augment",
+          "source": "repo_extension"
+        }
+      ],
+      "effective_source": "repo_extension"
+    },
+    "relationships": [],
+    "source_migrations": [
+      {
+        "description": "2026_03_19_character_offline_transactions.sql",
+        "version": 9338
+      }
+    ],
+    "table": "character_offline_transactions",
+    "title": "character_offline_transactions"
+  },
+  {
+    "category": "custom",
+    "columns": [
+      {
+        "data_type": "varchar(16)",
+        "description": "New nullable item identifier, added after item_id.",
+        "name": "item_unique_id"
+      }
+    ],
+    "extension_flags": {
+      "has_local_extension": false,
+      "has_repo_extension": true
+    },
+    "id": "character_parcels_containers_item_unique_id",
+    "mode": "augment",
+    "provenance": {
+      "contributors": [
+        {
+          "file": "C:\\Users\\rgagn\\OneDrive\\Documents\\Github Projects\\EQEmu Oracle\\plugins\\eqemu-oracle\\extensions\\schema\\schema_extension.json",
+          "mode": "augment",
+          "source": "repo_extension"
+        }
+      ],
+      "effective_source": "repo_extension"
+    },
+    "relationships": [],
+    "source_migrations": [
+      {
+        "description": "2026_03_19_character_parcels_containers_item_unique_id.sql",
+        "version": 9334
+      }
+    ],
+    "table": "character_parcels_containers",
+    "title": "character_parcels_containers"
+  },
+  {
+    "category": "custom",
+    "columns": [
+      {
+        "data_type": "varchar(16)",
+        "description": "New nullable item identifier, added after aug_slot_6.",
+        "name": "item_unique_id"
+      }
+    ],
+    "extension_flags": {
+      "has_local_extension": false,
+      "has_repo_extension": true
+    },
+    "id": "character_parcels_item_unique_id",
+    "mode": "augment",
+    "provenance": {
+      "contributors": [
+        {
+          "file": "C:\\Users\\rgagn\\OneDrive\\Documents\\Github Projects\\EQEmu Oracle\\plugins\\eqemu-oracle\\extensions\\schema\\schema_extension.json",
+          "mode": "augment",
+          "source": "repo_extension"
+        }
+      ],
+      "effective_source": "repo_extension"
+    },
+    "relationships": [],
+    "source_migrations": [
+      {
+        "description": "2026_03_19_character_parcels_item_unique_id.sql",
+        "version": 9333
+      }
+    ],
+    "table": "character_parcels",
+    "title": "character_parcels"
+  },
+  {
     "category": "characters",
     "columns": [
       {
@@ -8474,6 +8695,41 @@
     "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_pet_buffs.md",
+    "table": "character_pet_buffs",
+    "title": "character_pet_buffs"
+  },
+  {
+    "category": "custom",
+    "columns": [
+      {
+        "data_type": "tinyint(1) unsigned",
+        "description": "New NOT NULL column with default 0, added after instrument_mod to persist pet buff suppression state.",
+        "name": "suppressed"
+      }
+    ],
+    "extension_flags": {
+      "has_local_extension": false,
+      "has_repo_extension": true
+    },
+    "id": "character_pet_buffs_suppressed",
+    "mode": "augment",
+    "provenance": {
+      "contributors": [
+        {
+          "file": "C:\\Users\\rgagn\\OneDrive\\Documents\\Github Projects\\EQEmu Oracle\\plugins\\eqemu-oracle\\extensions\\schema\\schema_extension.json",
+          "mode": "augment",
+          "source": "repo_extension"
+        }
+      ],
+      "effective_source": "repo_extension"
+    },
+    "relationships": [],
+    "source_migrations": [
+      {
+        "description": "2026_03_09_add_suppressed_to_character_pet_buffs.sql",
+        "version": 9330
+      }
+    ],
     "table": "character_pet_buffs",
     "title": "character_pet_buffs"
   },
@@ -14546,6 +14802,56 @@
     "title": "inventory"
   },
   {
+    "category": "custom",
+    "columns": [
+      {
+        "data_type": "varchar(16)",
+        "description": "New nullable unique item identifier, added after ornament_hero_model.",
+        "name": "item_unique_id"
+      }
+    ],
+    "drops": [
+      {
+        "column": "guid",
+        "description": "Dropped as part of the item_unique_id migration."
+      }
+    ],
+    "extension_flags": {
+      "has_local_extension": false,
+      "has_repo_extension": true
+    },
+    "id": "inventory_item_unique_id",
+    "indexes": [
+      {
+        "columns": [
+          "item_unique_id"
+        ],
+        "name": "idx_item_unique_id",
+        "type": "unique"
+      }
+    ],
+    "mode": "augment",
+    "provenance": {
+      "contributors": [
+        {
+          "file": "C:\\Users\\rgagn\\OneDrive\\Documents\\Github Projects\\EQEmu Oracle\\plugins\\eqemu-oracle\\extensions\\schema\\schema_extension.json",
+          "mode": "augment",
+          "source": "repo_extension"
+        }
+      ],
+      "effective_source": "repo_extension"
+    },
+    "relationships": [],
+    "source_migrations": [
+      {
+        "description": "2026_03_19_inventory_item_unique_id.sql",
+        "version": 9331
+      }
+    ],
+    "table": "inventory",
+    "title": "inventory"
+  },
+  {
     "category": "inventory",
     "columns": [
       {
@@ -14723,6 +15029,127 @@
     "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/inventory/inventory_snapshots.md",
+    "table": "inventory_snapshots",
+    "title": "inventory_snapshots"
+  },
+  {
+    "category": "custom",
+    "columns": [
+      {
+        "data_type": "varchar(16)",
+        "description": "New nullable item identifier, added after ornament_hero_model.",
+        "name": "item_unique_id"
+      }
+    ],
+    "drops": [
+      {
+        "column": "guid",
+        "description": "Dropped as part of the item_unique_id migration."
+      }
+    ],
+    "extension_flags": {
+      "has_local_extension": false,
+      "has_repo_extension": true
+    },
+    "id": "inventory_snapshots_item_unique_id",
+    "indexes": [
+      {
+        "columns": [
+          "time_index",
+          "character_id",
+          "slot_id"
+        ],
+        "description": "Primary key recreated after column renames.",
+        "name": "PRIMARY",
+        "type": "primary"
+      }
+    ],
+    "mode": "augment",
+    "provenance": {
+      "contributors": [
+        {
+          "file": "C:\\Users\\rgagn\\OneDrive\\Documents\\Github Projects\\EQEmu Oracle\\plugins\\eqemu-oracle\\extensions\\schema\\schema_extension.json",
+          "mode": "augment",
+          "source": "repo_extension"
+        }
+      ],
+      "effective_source": "repo_extension"
+    },
+    "relationships": [],
+    "renames": [
+      {
+        "data_type": "int(11) unsigned",
+        "description": "Renamed and kept NOT NULL default 0.",
+        "from": "charid",
+        "to": "character_id"
+      },
+      {
+        "data_type": "mediumint(7) unsigned",
+        "description": "Renamed and kept NOT NULL default 0.",
+        "from": "slotid",
+        "to": "slot_id"
+      },
+      {
+        "data_type": "int(11) unsigned",
+        "description": "Renamed; nullable with default 0.",
+        "from": "itemid",
+        "to": "item_id"
+      },
+      {
+        "data_type": "mediumint(7) unsigned",
+        "description": "Renamed and kept NOT NULL default 0.",
+        "from": "augslot1",
+        "to": "augment_one"
+      },
+      {
+        "data_type": "mediumint(7) unsigned",
+        "description": "Renamed and kept NOT NULL default 0.",
+        "from": "augslot2",
+        "to": "augment_two"
+      },
+      {
+        "data_type": "mediumint(7) unsigned",
+        "description": "Renamed and kept NOT NULL default 0.",
+        "from": "augslot3",
+        "to": "augment_three"
+      },
+      {
+        "data_type": "mediumint(7) unsigned",
+        "description": "Renamed and kept NOT NULL default 0.",
+        "from": "augslot4",
+        "to": "augment_four"
+      },
+      {
+        "data_type": "mediumint(7) unsigned",
+        "description": "Renamed; nullable with default 0.",
+        "from": "augslot5",
+        "to": "augment_five"
+      },
+      {
+        "data_type": "mediumint(7)",
+        "description": "Renamed and kept NOT NULL default 0.",
+        "from": "augslot6",
+        "to": "augment_six"
+      },
+      {
+        "data_type": "int(11) unsigned",
+        "description": "Renamed and kept NOT NULL default 0.",
+        "from": "ornamenticon",
+        "to": "ornament_icon"
+      },
+      {
+        "data_type": "int(11) unsigned",
+        "description": "Renamed and kept NOT NULL default 0.",
+        "from": "ornamentidfile",
+        "to": "ornament_idfile"
+      }
+    ],
+    "source_migrations": [
+      {
+        "description": "2026_03_19_inventory_snapshots_item_unique_id.sql",
+        "version": 9335
+      }
+    ],
     "table": "inventory_snapshots",
     "title": "inventory_snapshots"
   },
@@ -14945,6 +15372,55 @@
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/items/item_tick.md",
     "table": "item_tick",
     "title": "item_tick"
+  },
+  {
+    "category": "custom",
+    "columns": [
+      {
+        "data_type": "varchar(16)",
+        "description": "Primary key.",
+        "name": "item_unique_id"
+      },
+      {
+        "data_type": "timestamp",
+        "description": "Reservation timestamp, NOT NULL default CURRENT_TIMESTAMP.",
+        "name": "reserved_at"
+      }
+    ],
+    "extension_flags": {
+      "has_local_extension": false,
+      "has_repo_extension": true
+    },
+    "id": "item_unique_id_reservations",
+    "indexes": [
+      {
+        "columns": [
+          "item_unique_id"
+        ],
+        "name": "PRIMARY",
+        "type": "primary"
+      }
+    ],
+    "mode": "augment",
+    "provenance": {
+      "contributors": [
+        {
+          "file": "C:\\Users\\rgagn\\OneDrive\\Documents\\Github Projects\\EQEmu Oracle\\plugins\\eqemu-oracle\\extensions\\schema\\schema_extension.json",
+          "mode": "augment",
+          "source": "repo_extension"
+        }
+      ],
+      "effective_source": "repo_extension"
+    },
+    "relationships": [],
+    "source_migrations": [
+      {
+        "description": "2026_03_19_item_unique_id_reservations.sql",
+        "version": 9340
+      }
+    ],
+    "table": "item_unique_id_reservations",
+    "title": "item_unique_id_reservations"
   },
   {
     "category": "items",
@@ -22878,6 +23354,107 @@
     "title": "object_contents"
   },
   {
+    "category": "custom",
+    "columns": [
+      {
+        "data_type": "bigint(20) unsigned",
+        "description": "Primary key, auto_increment.",
+        "name": "id"
+      },
+      {
+        "data_type": "int(10) unsigned",
+        "description": "Account id, NOT NULL default 0.",
+        "name": "account_id"
+      },
+      {
+        "data_type": "int(10) unsigned",
+        "description": "Character id, NOT NULL default 0.",
+        "name": "character_id"
+      },
+      {
+        "data_type": "varchar(16)",
+        "description": "Offline mode, NOT NULL default 'trader'.",
+        "name": "mode"
+      },
+      {
+        "data_type": "int(10) unsigned",
+        "description": "Zone id, NOT NULL default 0.",
+        "name": "zone_id"
+      },
+      {
+        "data_type": "int(11)",
+        "description": "Instance id, NOT NULL default 0.",
+        "name": "instance_id"
+      },
+      {
+        "data_type": "int(10) unsigned",
+        "description": "Entity id, NOT NULL default 0.",
+        "name": "entity_id"
+      },
+      {
+        "data_type": "timestamp",
+        "description": "Session start time, NOT NULL default CURRENT_TIMESTAMP.",
+        "name": "started_at"
+      }
+    ],
+    "extension_flags": {
+      "has_local_extension": false,
+      "has_repo_extension": true
+    },
+    "id": "offline_character_sessions",
+    "indexes": [
+      {
+        "columns": [
+          "id"
+        ],
+        "name": "PRIMARY",
+        "type": "primary"
+      },
+      {
+        "columns": [
+          "account_id"
+        ],
+        "name": "idx_account_id",
+        "type": "unique"
+      },
+      {
+        "columns": [
+          "character_id"
+        ],
+        "name": "idx_character_id",
+        "type": "index"
+      },
+      {
+        "columns": [
+          "zone_id",
+          "instance_id"
+        ],
+        "name": "idx_zone_instance",
+        "type": "index"
+      }
+    ],
+    "mode": "augment",
+    "provenance": {
+      "contributors": [
+        {
+          "file": "C:\\Users\\rgagn\\OneDrive\\Documents\\Github Projects\\EQEmu Oracle\\plugins\\eqemu-oracle\\extensions\\schema\\schema_extension.json",
+          "mode": "augment",
+          "source": "repo_extension"
+        }
+      ],
+      "effective_source": "repo_extension"
+    },
+    "relationships": [],
+    "source_migrations": [
+      {
+        "description": "2026_03_19_offline_character_sessions.sql",
+        "version": 9339
+      }
+    ],
+    "table": "offline_character_sessions",
+    "title": "offline_character_sessions"
+  },
+  {
     "category": "admin",
     "columns": [
       {
@@ -27002,6 +27579,56 @@
     "title": "sharedbank"
   },
   {
+    "category": "custom",
+    "columns": [
+      {
+        "data_type": "varchar(16)",
+        "description": "New nullable unique item identifier, added after ornament_hero_model.",
+        "name": "item_unique_id"
+      }
+    ],
+    "drops": [
+      {
+        "column": "guid",
+        "description": "Dropped as part of the item_unique_id migration."
+      }
+    ],
+    "extension_flags": {
+      "has_local_extension": false,
+      "has_repo_extension": true
+    },
+    "id": "sharedbank_item_unique_id",
+    "indexes": [
+      {
+        "columns": [
+          "item_unique_id"
+        ],
+        "name": "idx_item_unique_id",
+        "type": "unique"
+      }
+    ],
+    "mode": "augment",
+    "provenance": {
+      "contributors": [
+        {
+          "file": "C:\\Users\\rgagn\\OneDrive\\Documents\\Github Projects\\EQEmu Oracle\\plugins\\eqemu-oracle\\extensions\\schema\\schema_extension.json",
+          "mode": "augment",
+          "source": "repo_extension"
+        }
+      ],
+      "effective_source": "repo_extension"
+    },
+    "relationships": [],
+    "source_migrations": [
+      {
+        "description": "2026_03_19_sharedbank_item_unique_id.sql",
+        "version": 9332
+      }
+    ],
+    "table": "sharedbank",
+    "title": "sharedbank"
+  },
+  {
     "category": "client-files",
     "columns": [
       {
@@ -30058,6 +30685,41 @@
     "title": "tasks"
   },
   {
+    "category": "custom",
+    "columns": [
+      {
+        "data_type": "int(10) unsigned",
+        "description": "New NOT NULL column with default 0, added after faction_amount.",
+        "name": "allowed_classes"
+      }
+    ],
+    "extension_flags": {
+      "has_local_extension": false,
+      "has_repo_extension": true
+    },
+    "id": "tasks_allowed_classes",
+    "mode": "augment",
+    "provenance": {
+      "contributors": [
+        {
+          "file": "C:\\Users\\rgagn\\OneDrive\\Documents\\Github Projects\\EQEmu Oracle\\plugins\\eqemu-oracle\\extensions\\schema\\schema_extension.json",
+          "mode": "augment",
+          "source": "repo_extension"
+        }
+      ],
+      "effective_source": "repo_extension"
+    },
+    "relationships": [],
+    "source_migrations": [
+      {
+        "description": "2026_03_25_tasks_allowed_classes.sql",
+        "version": 9341
+      }
+    ],
+    "table": "tasks",
+    "title": "tasks"
+  },
+  {
     "category": "tasks",
     "columns": [
       {
@@ -30693,6 +31355,117 @@
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/trader/trader_audit.md",
     "table": "trader_audit",
     "title": "trader_audit"
+  },
+  {
+    "category": "custom",
+    "columns": [
+      {
+        "data_type": "varchar(16)",
+        "description": "New nullable unique item identifier, added after item_id.",
+        "name": "item_unique_id"
+      }
+    ],
+    "drops": [
+      {
+        "column": "item_sn",
+        "description": "Dropped as part of the item_unique_id migration."
+      },
+      {
+        "description": "Dropped before new unique item index was added.",
+        "index": "idx_trader_item_sn"
+      },
+      {
+        "description": "Dropped and recreated on character_id/zone columns.",
+        "index": "idx_trader_char"
+      }
+    ],
+    "extension_flags": {
+      "has_local_extension": false,
+      "has_repo_extension": true
+    },
+    "id": "trader_item_unique_id",
+    "indexes": [
+      {
+        "columns": [
+          "character_id",
+          "char_zone_id",
+          "char_zone_instance_id"
+        ],
+        "name": "idx_trader_char",
+        "type": "index"
+      },
+      {
+        "columns": [
+          "item_unique_id"
+        ],
+        "name": "idx_item_unique_id",
+        "type": "unique"
+      }
+    ],
+    "mode": "augment",
+    "provenance": {
+      "contributors": [
+        {
+          "file": "C:\\Users\\rgagn\\OneDrive\\Documents\\Github Projects\\EQEmu Oracle\\plugins\\eqemu-oracle\\extensions\\schema\\schema_extension.json",
+          "mode": "augment",
+          "source": "repo_extension"
+        }
+      ],
+      "effective_source": "repo_extension"
+    },
+    "relationships": [],
+    "renames": [
+      {
+        "data_type": "int(11) unsigned",
+        "description": "Renamed and kept NOT NULL default 0.",
+        "from": "char_id",
+        "to": "character_id"
+      },
+      {
+        "data_type": "int(10) unsigned",
+        "description": "Renamed and kept NOT NULL default 0.",
+        "from": "aug_slot_1",
+        "to": "augment_one"
+      },
+      {
+        "data_type": "int(10) unsigned",
+        "description": "Renamed and kept NOT NULL default 0.",
+        "from": "aug_slot_2",
+        "to": "augment_two"
+      },
+      {
+        "data_type": "int(10) unsigned",
+        "description": "Renamed and kept NOT NULL default 0.",
+        "from": "aug_slot_3",
+        "to": "augment_three"
+      },
+      {
+        "data_type": "int(10) unsigned",
+        "description": "Renamed and kept NOT NULL default 0.",
+        "from": "aug_slot_4",
+        "to": "augment_four"
+      },
+      {
+        "data_type": "int(10) unsigned",
+        "description": "Renamed and kept NOT NULL default 0.",
+        "from": "aug_slot_5",
+        "to": "augment_five"
+      },
+      {
+        "data_type": "int(10) unsigned",
+        "description": "Renamed and kept NOT NULL default 0.",
+        "from": "aug_slot_6",
+        "to": "augment_six"
+      }
+    ],
+    "source_migrations": [
+      {
+        "description": "2026_03_19_trader_item_unique_id.sql",
+        "version": 9336
+      }
+    ],
+    "table": "trader",
+    "title": "trader"
   },
   {
     "category": "tradeskills",

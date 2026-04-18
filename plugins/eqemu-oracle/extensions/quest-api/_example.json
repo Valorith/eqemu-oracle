@@ -1,0 +1,22 @@
+{
+  "records": [
+    {
+      "id": "perl:method:quest:my-custom-method:example",
+      "language": "perl",
+      "kind": "method",
+      "container": "quest",
+      "name": "MyCustomMethod",
+      "signature": "MyCustomMethod()",
+      "params": [],
+      "return_type": "void",
+      "categories": [
+        "Custom"
+      ],
+      "search_aliases": [
+        "custom method"
+      ],
+      "related_docs": [],
+      "mode": "augment"
+    }
+  ]
+}

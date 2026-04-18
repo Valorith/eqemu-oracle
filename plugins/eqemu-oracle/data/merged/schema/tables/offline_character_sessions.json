@@ -1,0 +1,101 @@
+{
+  "category": "custom",
+  "columns": [
+    {
+      "data_type": "bigint(20) unsigned",
+      "description": "Primary key, auto_increment.",
+      "name": "id"
+    },
+    {
+      "data_type": "int(10) unsigned",
+      "description": "Account id, NOT NULL default 0.",
+      "name": "account_id"
+    },
+    {
+      "data_type": "int(10) unsigned",
+      "description": "Character id, NOT NULL default 0.",
+      "name": "character_id"
+    },
+    {
+      "data_type": "varchar(16)",
+      "description": "Offline mode, NOT NULL default 'trader'.",
+      "name": "mode"
+    },
+    {
+      "data_type": "int(10) unsigned",
+      "description": "Zone id, NOT NULL default 0.",
+      "name": "zone_id"
+    },
+    {
+      "data_type": "int(11)",
+      "description": "Instance id, NOT NULL default 0.",
+      "name": "instance_id"
+    },
+    {
+      "data_type": "int(10) unsigned",
+      "description": "Entity id, NOT NULL default 0.",
+      "name": "entity_id"
+    },
+    {
+      "data_type": "timestamp",
+      "description": "Session start time, NOT NULL default CURRENT_TIMESTAMP.",
+      "name": "started_at"
+    }
+  ],
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": true
+  },
+  "id": "offline_character_sessions",
+  "indexes": [
+    {
+      "columns": [
+        "id"
+      ],
+      "name": "PRIMARY",
+      "type": "primary"
+    },
+    {
+      "columns": [
+        "account_id"
+      ],
+      "name": "idx_account_id",
+      "type": "unique"
+    },
+    {
+      "columns": [
+        "character_id"
+      ],
+      "name": "idx_character_id",
+      "type": "index"
+    },
+    {
+      "columns": [
+        "zone_id",
+        "instance_id"
+      ],
+      "name": "idx_zone_instance",
+      "type": "index"
+    }
+  ],
+  "mode": "augment",
+  "provenance": {
+    "contributors": [
+      {
+        "file": "C:\\Users\\rgagn\\OneDrive\\Documents\\Github Projects\\EQEmu Oracle\\plugins\\eqemu-oracle\\extensions\\schema\\schema_extension.json",
+        "mode": "augment",
+        "source": "repo_extension"
+      }
+    ],
+    "effective_source": "repo_extension"
+  },
+  "relationships": [],
+  "source_migrations": [
+    {
+      "description": "2026_03_19_offline_character_sessions.sql",
+      "version": 9339
+    }
+  ],
+  "table": "offline_character_sessions",
+  "title": "offline_character_sessions"
+}

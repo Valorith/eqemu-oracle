@@ -3,28 +3,27 @@
   "columns": [
     {
       "data_type": "varchar(16)",
-      "description": "New nullable unique item identifier, added after ornament_hero_model.",
+      "description": "Primary key.",
       "name": "item_unique_id"
-    }
-  ],
-  "drops": [
+    },
     {
-      "column": "guid",
-      "description": "Dropped as part of the item_unique_id migration."
+      "data_type": "timestamp",
+      "description": "Reservation timestamp, NOT NULL default CURRENT_TIMESTAMP.",
+      "name": "reserved_at"
     }
   ],
   "extension_flags": {
     "has_local_extension": false,
     "has_repo_extension": true
   },
-  "id": "inventory_item_unique_id",
+  "id": "item_unique_id_reservations",
   "indexes": [
     {
       "columns": [
         "item_unique_id"
       ],
-      "name": "idx_item_unique_id",
-      "type": "unique"
+      "name": "PRIMARY",
+      "type": "primary"
     }
   ],
   "mode": "augment",
@@ -41,10 +40,10 @@
   "relationships": [],
   "source_migrations": [
     {
-      "description": "2026_03_19_inventory_item_unique_id.sql",
-      "version": 9331
+      "description": "2026_03_19_item_unique_id_reservations.sql",
+      "version": 9340
     }
   ],
-  "table": "inventory",
-  "title": "inventory"
+  "table": "item_unique_id_reservations",
+  "title": "item_unique_id_reservations"
 }

@@ -2,6 +2,8 @@
 
 Create JSON files with a `records` array.
 
+`_example.json` in this folder is ignored by the loader and can be copied as a starting point.
+
 ```json
 {
   "records": [

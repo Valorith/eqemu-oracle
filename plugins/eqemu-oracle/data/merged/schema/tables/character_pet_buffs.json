@@ -1,115 +1,35 @@
 {
-  "category": "characters",
+  "category": "custom",
   "columns": [
     {
-      "data_type": "int",
-      "description": "[Character Identifier](character_data.md)",
-      "name": "char_id"
-    },
-    {
-      "data_type": "int",
-      "description": "Pet",
-      "name": "pet"
-    },
-    {
-      "data_type": "int",
-      "description": "Slot",
-      "name": "slot"
-    },
-    {
-      "data_type": "int",
-      "description": "[Spell Identifier](../../schema/spells/spells_new.md)",
-      "name": "spell_id"
-    },
-    {
-      "data_type": "tinyint",
-      "description": "Caster Level",
-      "name": "caster_level"
-    },
-    {
-      "data_type": "varchar",
-      "description": "Caster Name",
-      "name": "castername"
-    },
-    {
-      "data_type": "int",
-      "description": "Tics Remaining",
-      "name": "ticsremaining"
-    },
-    {
-      "data_type": "int",
-      "description": "Counters",
-      "name": "counters"
-    },
-    {
-      "data_type": "int",
-      "description": "Number of Hits",
-      "name": "numhits"
-    },
-    {
-      "data_type": "int",
-      "description": "Rune",
-      "name": "rune"
-    },
-    {
-      "data_type": "tinyint",
-      "description": "Instrument Modifier",
-      "name": "instrument_mod"
+      "data_type": "tinyint(1) unsigned",
+      "description": "New NOT NULL column with default 0, added after instrument_mod to persist pet buff suppression state.",
+      "name": "suppressed"
     }
   ],
-  "docs_url": "https://docs.eqemu.dev/schema/characters/character_pet_buffs/",
-  "domain": "schema",
   "extension_flags": {
     "has_local_extension": false,
-    "has_repo_extension": false
+    "has_repo_extension": true
   },
-  "fetched_at": "2026-04-18T17:54:31Z",
-  "headings": [
-    "character_pet_buffs",
-    "Relationships",
-    "Schema"
-  ],
-  "id": "character_pet_buffs",
-  "path": "schema/characters/character_pet_buffs",
+  "id": "character_pet_buffs_suppressed",
+  "mode": "augment",
   "provenance": {
     "contributors": [
       {
-        "id": "character_pet_buffs",
-        "source": "base"
+        "file": "C:\\Users\\rgagn\\OneDrive\\Documents\\Github Projects\\EQEmu Oracle\\plugins\\eqemu-oracle\\extensions\\schema\\schema_extension.json",
+        "mode": "augment",
+        "source": "repo_extension"
       }
     ],
-    "effective_source": "base"
+    "effective_source": "repo_extension"
   },
-  "related_docs": [
-    "schema/characters/character_pet_buffs"
-  ],
-  "relationships": [
+  "relationships": [],
+  "source_migrations": [
     {
-      "local_key": "char_id",
-      "relationship_type": "One-to-One",
-      "remote_key": "id",
-      "remote_table": "[character_data](../../schema/characters/character_data.md)"
-    },
-    {
-      "local_key": "spell_id",
-      "relationship_type": "One-to-One",
-      "remote_key": "id",
-      "remote_table": "[spells_new](../../schema/spells/spells_new.md)"
+      "description": "2026_03_09_add_suppressed_to_character_pet_buffs.sql",
+      "version": 9330
     }
   ],
-  "search_aliases": [
-    "character pet buffs",
-    "character_pet_buffs",
-    "characters",
-    "columns",
-    "database",
-    "mysql",
-    "schema",
-    "table"
-  ],
-  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
-  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
-  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_pet_buffs.md",
   "table": "character_pet_buffs",
   "title": "character_pet_buffs"
 }
