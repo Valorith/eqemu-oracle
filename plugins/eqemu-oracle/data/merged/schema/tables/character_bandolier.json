@@ -38,7 +38,6 @@
     "has_local_extension": false,
     "has_repo_extension": false
   },
-  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "character_bandolier",
     "Relationships",
@@ -82,6 +81,7 @@
     "schema",
     "table"
   ],
+  "source_branch": "main",
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
   "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_bandolier.md",
