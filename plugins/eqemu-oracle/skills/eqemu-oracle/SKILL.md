@@ -17,3 +17,11 @@ Use this skill when the task needs authoritative EQEmu context.
 6. Surface provenance when answering so the user can tell whether a result came from upstream or an overlay extension.
 7. If the user asks to update or refresh the plugin itself from Git, use `update_eqemu_oracle_plugin`.
 8. When a plugin result includes `presentation.markdown`, prefer that structure for the user-facing answer so API, schema, and docs responses stay consistent.
+9. When the task involves reviewing, fixing, or writing quest scripts, resolve the active quest file before suggesting changes. Check the plugin's quest loading guidance and do not assume that the first file mentioned by the user is the file the server actually loads.
+10. For quest script work, keep these rules in mind:
+    - `/plugins` is a Perl-only global helper area on this server.
+    - `plugin::FunctionName(...)` means the called helper should live in a global Perl plugin script under `/plugins`.
+    - NPC ID file names beat NPC name file names within the same scope.
+    - `.lua` only beats `.pl` when the basename is the same exact match.
+    - `quests/global/<npc_id|npc_name>.[ext]` participates in normal script selection, while `quests/global/global_player.[ext]` and `quests/global/global_npc.[ext]` are overlays that run in addition to the selected script.
+11. When example quest structure is useful, prefer the ProjectEQ quest repository as an example source, but do not let example repository conventions override the active server layout or official EQEmu loading rules.

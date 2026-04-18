@@ -1,0 +1,41 @@
+{
+  "pages": [
+    {
+      "id": "custom/quest-script-loading",
+      "path": "custom/quest-script-loading",
+      "slug": "custom-quest-script-loading",
+      "title": "Quest Script Loading And File Resolution",
+      "summary": "Server-specific guidance for how EQEmu quest files resolve across /plugins, /quests/<zone>, /quests/global, and the official quest loading hierarchy.",
+      "markdown": "# Quest Script Loading And File Resolution\n\n## Why This Matters\n\nWhen reviewing, debugging, or generating EQEmu quest scripts, determine which file actually loads before proposing changes. Do not assume a script is active just because a matching file exists.\n\n## Perl Plugins\n\nOn this server, `/plugins` is a Perl-only global helper area. Treat files there as reusable Perl plugin code that can be called from other Perl quest scripts through `plugin::...` helpers. Do not treat `/plugins` as a Lua feature.\n\nUpstream EQEmu docs also note that the `plugins` folder may live under `quests/` or be linked there, but the server convention documented here is a top-level `/plugins` content folder.\n\nIf a Perl quest script calls `plugin::SomeFunction(...)`, treat that as a direct signal that `SomeFunction` should be defined in a global Perl plugin file under `/plugins`, not in the local NPC, player, item, or other zone script itself.\n\n## NPC Script Resolution\n\nFor NPC quest resolution, work through the hierarchy in order and stop at the first matching script.\n\n1. `quests/<zone>/v<instance_version>/<npc_id>.[ext]`\n2. `quests/<zone>/v<instance_version>/<npc_name>.[ext]`\n3. `quests/<zone>/<npc_id>.[ext]`\n4. `quests/<zone>/<npc_name>.[ext]`\n5. `quests/global/<npc_id>.[ext]`\n6. `quests/global/<npc_name>.[ext]`\n7. `quests/<zone>/v<instance_version>/default.[ext]`\n8. `quests/<zone>/default.[ext]`\n9. `quests/global/default.[ext]`\n\nAdditional rules:\n\n- An NPC script can be named either after the NPC's name or its `npc_types.id` / `NPCTypeID`.\n- When both an ID-based file and a name-based file match in the same scope, the ID-based file wins.\n- Lua only beats Perl when the basename is the same exact match, because upstream loading rules give `.lua` precedence over `.pl` for the same file name.\n- A `quests/global/<npc_id>.[ext]` or `quests/global/<npc_name>.[ext]` script is global in scope and will be selected before zone or global `default.[ext]` fallbacks.\n- `global_npc.[ext]` is different from `1234.pl`, `Some_NPC.lua`, or `default.pl`: `global_npc.[ext]` overlays on top of the selected NPC script instead of replacing the selected script.\n\n## Global Overlay Scripts\n\nThe `quests/global` folder also supports overlay scripts that run in addition to the selected zone- or global-scoped script.\n\n- `quests/global/global_player.[ext]`\n- `quests/global/global_npc.[ext]`\n- `quests/global/global_bot.[ext]`\n- `quests/global/global_merc.[ext]`\n\nImportant behavior:\n\n- `global_player.[ext]` and `global_npc.[ext]` are overlays, not replacements.\n- If a zone-scoped `player.[ext]` or NPC script exists, the matching global overlay still executes on top of it.\n- Upstream docs note that `global_npc.[ext]` runs in a zone-wide context, so NPCs in the same zone can see and change shared variables in that script context.\n\n## Other Official Quest Loading Hierarchies\n\nThe official `Quest Loading` page also defines first-match load order for other quest types. Use these when the task is about non-NPC scripts.\n\n### Players\n\n1. `quests/<zone>/v<instance_version>/player.[ext]`\n2. `quests/<zone>/player_v<instance_version>.[ext]`\n3. `quests/<zone>/player.[ext]`\n4. `quests/global/player.[ext]`\n\n`global_player.[ext]` still overlays on top of the selected player script.\n\n### Encounters\n\n1. `quests/<zone>/v<instance_version>/encounters/<name>.[ext]`\n2. `quests/<zone>/encounters/<name>.[ext]`\n3. `quests/global/encounters/<name>.[ext]`\n\n### Items\n\n1. `quests/<zone>/v<instance_version>/items/<item_script>.[ext]`\n2. `quests/<zone>/items/<item_script>.[ext]`\n3. `quests/global/items/<item_script>.[ext]`\n4. `quests/<zone>/items/default.[ext]`\n5. `quests/global/items/default.[ext]`\n\n### Spells\n\n1. `quests/<zone>/v<instance_version>/spells/<spell_id>.[ext]`\n2. `quests/<zone>/spells/<spell_id>.[ext]`\n3. `quests/global/spells/<spell_id>.[ext]`\n4. `quests/<zone>/spells/default.[ext]`\n5. `quests/global/spells/default.[ext]`\n\n### Bots\n\n1. `quests/<zone>/v<instance_version>/bot.[ext]`\n2. `quests/<zone>/bot_v<instance_version>.[ext]`\n3. `quests/<zone>/bot.[ext]`\n4. `quests/global/bot.[ext]`\n\n### Mercenaries\n\n1. `quests/<zone>/v<instance_version>/merc.[ext]`\n2. `quests/<zone>/merc_v<instance_version>.[ext]`\n3. `quests/<zone>/merc.[ext]`\n4. `quests/global/merc.[ext]`\n\n## Example Repository\n\nFor real-world examples, the ProjectEQ quest repository is a useful reference set:\n\n- Repository: `https://github.com/ProjectEQ/projecteqquests`\n- It contains zone folders, a `global` folder, and plugin examples that are helpful when the agent needs example script structure.\n\nUse ProjectEQ as an example source, not as a substitute for the server's active file layout or the official EQEmu load order.\n\n## Agent Guidance\n\nBefore editing a quest, answer these questions:\n\n1. What script type is this: NPC, player, item, spell, encounter, bot, or mercenary?\n2. Is there a version-specific `v<instance_version>` path that would load before the plain zone path?\n3. Is there an ID-based file that beats a name-based file?\n4. Is there a same-name `.lua` file that beats a `.pl` file?\n5. Is a `quests/global/...` match replacing the zone fallback?\n6. Is a `global_player.[ext]` or `global_npc.[ext]` overlay also running on top of the selected script?\n7. If the task mentions `plugin::`, which global Perl plugin file under `/plugins` owns that helper?\n8. If the task mentions Perl plugins, should reusable logic live in `/plugins` instead of being duplicated inside quest scripts?\n",
+      "aliases": [
+        "quest loading",
+        "quest script loading",
+        "quest file precedence",
+        "npc script precedence",
+        "global player",
+        "global npc",
+        "perl plugins"
+      ],
+      "tags": [
+        "custom",
+        "quests",
+        "loading",
+        "precedence",
+        "plugins"
+      ],
+      "search_aliases": [
+        "quest loading hierarchy",
+        "quest file resolution",
+        "npc id precedence",
+        "lua vs perl precedence",
+        "quests global overlay",
+        "global_player overlay",
+        "global_npc overlay",
+        "plugin namespace perl",
+        "plugin prefix function",
+        "projecteq quests examples"
+      ],
+      "mode": "augment"
+    }
+  ]
+}
