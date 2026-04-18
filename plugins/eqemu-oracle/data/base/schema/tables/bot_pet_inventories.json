@@ -19,7 +19,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/bots/bot_pet_inventories/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "bot_pet_inventories",
     "Relationships",
@@ -27,7 +27,9 @@
   ],
   "id": "bot_pet_inventories",
   "path": "schema/bots/bot_pet_inventories",
-  "related_docs": [],
+  "related_docs": [
+    "schema/bots/bot_pet_inventories"
+  ],
   "relationships": [
     {
       "local_key": "pets_index",
@@ -41,6 +43,16 @@
       "remote_key": "id",
       "remote_table": "[items](../../schema/items/items.md)"
     }
+  ],
+  "search_aliases": [
+    "bot pet inventories",
+    "bot_pet_inventories",
+    "bots",
+    "columns",
+    "database",
+    "mysql",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

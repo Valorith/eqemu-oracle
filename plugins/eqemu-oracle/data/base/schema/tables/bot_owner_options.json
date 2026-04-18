@@ -19,7 +19,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/bots/bot_owner_options/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "bot_owner_options",
     "Relationships",
@@ -27,7 +27,9 @@
   ],
   "id": "bot_owner_options",
   "path": "schema/bots/bot_owner_options",
-  "related_docs": [],
+  "related_docs": [
+    "schema/bots/bot_owner_options"
+  ],
   "relationships": [
     {
       "local_key": "owner_id",
@@ -35,6 +37,16 @@
       "remote_key": "id",
       "remote_table": "[character_data](../../schema/characters/character_data.md)"
     }
+  ],
+  "search_aliases": [
+    "bot owner options",
+    "bot_owner_options",
+    "bots",
+    "columns",
+    "database",
+    "mysql",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

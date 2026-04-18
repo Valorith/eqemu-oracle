@@ -34,7 +34,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/merchants/merchantlist_temp/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "merchantlist_temp",
     "Relationships",
@@ -42,7 +42,9 @@
   ],
   "id": "merchantlist_temp",
   "path": "schema/merchants/merchantlist_temp",
-  "related_docs": [],
+  "related_docs": [
+    "schema/merchants/merchantlist_temp"
+  ],
   "relationships": [
     {
       "local_key": "itemid",
@@ -56,6 +58,16 @@
       "remote_key": "id",
       "remote_table": "[npc_types](../../schema/npcs/npc_types.md)"
     }
+  ],
+  "search_aliases": [
+    "columns",
+    "database",
+    "merchantlist temp",
+    "merchantlist_temp",
+    "merchants",
+    "mysql",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

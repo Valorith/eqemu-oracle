@@ -14,7 +14,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/adventures/adventure_members/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "adventure_members",
     "Relationships",
@@ -22,7 +22,9 @@
   ],
   "id": "adventure_members",
   "path": "schema/adventures/adventure_members",
-  "related_docs": [],
+  "related_docs": [
+    "schema/adventures/adventure_members"
+  ],
   "relationships": [
     {
       "local_key": "id",
@@ -36,6 +38,16 @@
       "remote_key": "id",
       "remote_table": "[character_data](../../schema/characters/character_data.md)"
     }
+  ],
+  "search_aliases": [
+    "adventure members",
+    "adventure_members",
+    "adventures",
+    "columns",
+    "database",
+    "mysql",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

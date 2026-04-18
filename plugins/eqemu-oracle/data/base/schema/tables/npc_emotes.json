@@ -29,7 +29,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/npcs/npc_emotes/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "npc_emotes",
     "Relationships",
@@ -37,7 +37,9 @@
   ],
   "id": "npc_emotes",
   "path": "schema/npcs/npc_emotes",
-  "related_docs": [],
+  "related_docs": [
+    "schema/npcs/npc_emotes"
+  ],
   "relationships": [
     {
       "local_key": "emoteid",
@@ -45,6 +47,16 @@
       "remote_key": "emoteid",
       "remote_table": "[npc_types](../../schema/npcs/npc_types.md)"
     }
+  ],
+  "search_aliases": [
+    "columns",
+    "database",
+    "mysql",
+    "npc emotes",
+    "npc_emotes",
+    "npcs",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

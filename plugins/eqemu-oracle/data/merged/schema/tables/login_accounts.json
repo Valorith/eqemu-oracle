@@ -53,7 +53,7 @@
     "has_local_extension": false,
     "has_repo_extension": false
   },
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "login_accounts",
     "Relationships",
@@ -70,7 +70,9 @@
     ],
     "effective_source": "base"
   },
-  "related_docs": [],
+  "related_docs": [
+    "schema/loginserver/login_accounts"
+  ],
   "relationships": [
     {
       "local_key": "account_name",
@@ -84,6 +86,16 @@
       "remote_key": "ip",
       "remote_table": "[account_ip](../../schema/account/account_ip.md)"
     }
+  ],
+  "search_aliases": [
+    "columns",
+    "database",
+    "login accounts",
+    "login_accounts",
+    "loginserver",
+    "mysql",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

@@ -19,7 +19,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/characters/character_alt_currency/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "character_alt_currency",
     "Relationships",
@@ -27,7 +27,9 @@
   ],
   "id": "character_alt_currency",
   "path": "schema/characters/character_alt_currency",
-  "related_docs": [],
+  "related_docs": [
+    "schema/characters/character_alt_currency"
+  ],
   "relationships": [
     {
       "local_key": "char_id",
@@ -41,6 +43,16 @@
       "remote_key": "id",
       "remote_table": "[alternate_currency](../../schema/alternate-currency/alternate_currency.md)"
     }
+  ],
+  "search_aliases": [
+    "character alt currency",
+    "character_alt_currency",
+    "characters",
+    "columns",
+    "database",
+    "mysql",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

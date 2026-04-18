@@ -28,7 +28,7 @@
     "has_local_extension": false,
     "has_repo_extension": false
   },
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "character_alternate_abilities",
     "Relationships",
@@ -45,7 +45,9 @@
     ],
     "effective_source": "base"
   },
-  "related_docs": [],
+  "related_docs": [
+    "schema/characters/character_alternate_abilities"
+  ],
   "relationships": [
     {
       "local_key": "id",
@@ -59,6 +61,16 @@
       "remote_key": "id",
       "remote_table": "[aa_ranks](../../schema/aas/aa_ranks.md)"
     }
+  ],
+  "search_aliases": [
+    "character alternate abilities",
+    "character_alternate_abilities",
+    "characters",
+    "columns",
+    "database",
+    "mysql",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

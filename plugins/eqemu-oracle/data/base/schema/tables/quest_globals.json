@@ -34,7 +34,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/data-storage/quest_globals/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "quest_globals",
     "Relationships",
@@ -42,7 +42,9 @@
   ],
   "id": "quest_globals",
   "path": "schema/data-storage/quest_globals",
-  "related_docs": [],
+  "related_docs": [
+    "schema/data-storage/quest_globals"
+  ],
   "relationships": [
     {
       "local_key": "charid",
@@ -80,6 +82,16 @@
       "remote_key": "zoneidnumber",
       "remote_table": "[zone](../../schema/zone/zone.md)"
     }
+  ],
+  "search_aliases": [
+    "columns",
+    "data-storage",
+    "database",
+    "mysql",
+    "quest globals",
+    "quest_globals",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

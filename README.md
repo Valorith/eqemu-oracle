@@ -19,6 +19,7 @@ Normal lookups are deterministic:
 - committed upstream snapshots live in `plugins/eqemu-oracle/data/base/`
 - merged effective records live in `plugins/eqemu-oracle/data/merged/`
 - a local search index is built in `plugins/eqemu-oracle/cache/`
+- docs are additionally split into section-level search records for better retrieval
 
 Two overlay roots can change the effective data:
 
@@ -87,6 +88,12 @@ python .\plugins\eqemu-oracle\scripts\eqemu_oracle.py rebuild-extensions --scope
 ```
 
 Use `--mode overlay` with `rebuild-extensions` if you want the rebuild to target the local overlay instead of the committed merged snapshot.
+
+Update the plugin code from its Git remote and rebuild the committed merged dataset:
+
+```powershell
+python .\plugins\eqemu-oracle\scripts\eqemu_oracle.py update-plugin
+```
 
 ## Extension Overlays
 
@@ -169,6 +176,14 @@ The plugin exposes deterministic lookup tools through its local MCP server:
 - `explain_eqemu_provenance`
 - `refresh_eqemu_oracle`
 - `rebuild_eqemu_extensions`
+- `update_eqemu_oracle_plugin`
+
+Lookup tools now also include a presentation layer for user-facing answers:
+
+- quest API entries return a consistent method/event/constant template with copyable signature blocks
+- schema entries return a consistent table template with a copyable SQL-style column outline
+- docs pages return a consistent page summary template
+- search results return a compact, repeatable result list template
 
 It also exposes read resources for staged indexes and direct record navigation:
 
@@ -199,4 +214,6 @@ The plugin is scaffolded and functional for local development:
 - staged upstream ingest is implemented
 - extension overlays are implemented
 - merged search and deterministic MCP lookup are implemented
+- docs are indexed at page and section granularity
+- query expansion and EQEmu-specific aliases improve search recall
 - refresh automation is wired through GitHub Actions

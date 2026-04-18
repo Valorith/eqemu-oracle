@@ -19,7 +19,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/mercenaries/merc_merchant_template_entries/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "merc_merchant_template_entries",
     "Relationships",
@@ -27,7 +27,9 @@
   ],
   "id": "merc_merchant_template_entries",
   "path": "schema/mercenaries/merc_merchant_template_entries",
-  "related_docs": [],
+  "related_docs": [
+    "schema/mercenaries/merc_merchant_template_entries"
+  ],
   "relationships": [
     {
       "local_key": "merc_merchant_template_id",
@@ -41,6 +43,16 @@
       "remote_key": "merc_template_id",
       "remote_table": "[merc_templates](../../schema/mercenaries/merc_templates.md)"
     }
+  ],
+  "search_aliases": [
+    "columns",
+    "database",
+    "merc merchant template entries",
+    "merc_merchant_template_entries",
+    "mercenaries",
+    "mysql",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

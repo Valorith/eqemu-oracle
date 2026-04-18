@@ -99,7 +99,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/mercenaries/merc_buffs/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "merc_buffs",
     "Relationships",
@@ -107,7 +107,9 @@
   ],
   "id": "merc_buffs",
   "path": "schema/mercenaries/merc_buffs",
-  "related_docs": [],
+  "related_docs": [
+    "schema/mercenaries/merc_buffs"
+  ],
   "relationships": [
     {
       "local_key": "MercId",
@@ -121,6 +123,16 @@
       "remote_key": "id",
       "remote_table": "[spells_new](../../schema/spells/spells_new.md)"
     }
+  ],
+  "search_aliases": [
+    "columns",
+    "database",
+    "merc buffs",
+    "merc_buffs",
+    "mercenaries",
+    "mysql",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

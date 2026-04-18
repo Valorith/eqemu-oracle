@@ -24,7 +24,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/books/books/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "books",
     "Relationships",
@@ -32,7 +32,9 @@
   ],
   "id": "books",
   "path": "schema/books/books",
-  "related_docs": [],
+  "related_docs": [
+    "schema/books/books"
+  ],
   "relationships": [
     {
       "local_key": "id",
@@ -40,6 +42,14 @@
       "remote_key": "book",
       "remote_table": "[items](../../schema/items/items.md)"
     }
+  ],
+  "search_aliases": [
+    "books",
+    "columns",
+    "database",
+    "mysql",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

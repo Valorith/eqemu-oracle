@@ -23,7 +23,7 @@
     "has_local_extension": false,
     "has_repo_extension": false
   },
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "dynamic_zone_members",
     "Relationships",
@@ -40,7 +40,9 @@
     ],
     "effective_source": "base"
   },
-  "related_docs": [],
+  "related_docs": [
+    "schema/dynamic-zones/dynamic_zone_members"
+  ],
   "relationships": [
     {
       "local_key": "character_id",
@@ -54,6 +56,16 @@
       "remote_key": "id",
       "remote_table": "[dynamic_zones](../../schema/tasks/shared_task_dynamic_zones.md)"
     }
+  ],
+  "search_aliases": [
+    "columns",
+    "database",
+    "dynamic zone members",
+    "dynamic-zones",
+    "dynamic_zone_members",
+    "mysql",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

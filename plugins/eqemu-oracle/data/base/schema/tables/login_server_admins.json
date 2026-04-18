@@ -44,7 +44,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/loginserver/login_server_admins/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "login_server_admins",
     "Relationships",
@@ -52,7 +52,9 @@
   ],
   "id": "login_server_admins",
   "path": "schema/loginserver/login_server_admins",
-  "related_docs": [],
+  "related_docs": [
+    "schema/loginserver/login_server_admins"
+  ],
   "relationships": [
     {
       "local_key": "id",
@@ -72,6 +74,16 @@
       "remote_key": "ip",
       "remote_table": "[account_ip](../../schema/account/account_ip.md)"
     }
+  ],
+  "search_aliases": [
+    "columns",
+    "database",
+    "login server admins",
+    "login_server_admins",
+    "loginserver",
+    "mysql",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

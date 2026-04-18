@@ -103,7 +103,7 @@
     "has_local_extension": false,
     "has_repo_extension": false
   },
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "ground_spawns",
     "Relationships",
@@ -120,7 +120,9 @@
     ],
     "effective_source": "base"
   },
-  "related_docs": [],
+  "related_docs": [
+    "schema/ground-spawns/ground_spawns"
+  ],
   "relationships": [
     {
       "local_key": "content_flags",
@@ -152,6 +154,16 @@
       "remote_key": "zoneidnumber",
       "remote_table": "[zone](../../schema/zone/zone.md)"
     }
+  ],
+  "search_aliases": [
+    "columns",
+    "database",
+    "ground spawns",
+    "ground-spawns",
+    "ground_spawns",
+    "mysql",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

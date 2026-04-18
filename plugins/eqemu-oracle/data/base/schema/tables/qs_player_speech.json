@@ -44,7 +44,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/query-server/qs_player_speech/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "qs_player_speech",
     "Relationships",
@@ -52,7 +52,9 @@
   ],
   "id": "qs_player_speech",
   "path": "schema/query-server/qs_player_speech",
-  "related_docs": [],
+  "related_docs": [
+    "schema/query-server/qs_player_speech"
+  ],
   "relationships": [
     {
       "local_key": "from",
@@ -72,6 +74,16 @@
       "remote_key": "id",
       "remote_table": "[guilds](../../schema/guilds/guilds.md)"
     }
+  ],
+  "search_aliases": [
+    "columns",
+    "database",
+    "mysql",
+    "qs player speech",
+    "qs_player_speech",
+    "query-server",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

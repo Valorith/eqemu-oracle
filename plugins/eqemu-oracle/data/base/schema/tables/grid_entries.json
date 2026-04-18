@@ -49,7 +49,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/grids/grid_entries/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "grid_entries",
     "Relationships",
@@ -57,7 +57,9 @@
   ],
   "id": "grid_entries",
   "path": "schema/grids/grid_entries",
-  "related_docs": [],
+  "related_docs": [
+    "schema/grids/grid_entries"
+  ],
   "relationships": [
     {
       "local_key": "grid_id",
@@ -71,6 +73,16 @@
       "remote_key": "zoneidnumber",
       "remote_table": "[zone](../../schema/zone/zone.md)"
     }
+  ],
+  "search_aliases": [
+    "columns",
+    "database",
+    "grid entries",
+    "grid_entries",
+    "grids",
+    "mysql",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

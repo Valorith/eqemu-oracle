@@ -54,7 +54,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/query-server/qs_player_handin_record_entries/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "qs_player_handin_record_entries",
     "Relationships",
@@ -62,7 +62,9 @@
   ],
   "id": "qs_player_handin_record_entries",
   "path": "schema/query-server/qs_player_handin_record_entries",
-  "related_docs": [],
+  "related_docs": [
+    "schema/query-server/qs_player_handin_record_entries"
+  ],
   "relationships": [
     {
       "local_key": "aug_1",
@@ -100,6 +102,16 @@
       "remote_key": "id",
       "remote_table": "[items](../../schema/items/items.md)"
     }
+  ],
+  "search_aliases": [
+    "columns",
+    "database",
+    "mysql",
+    "qs player handin record entries",
+    "qs_player_handin_record_entries",
+    "query-server",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

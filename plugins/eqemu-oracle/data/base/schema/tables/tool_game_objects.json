@@ -34,7 +34,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/tools/tool_game_objects/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "tool_game_objects",
     "Relationships",
@@ -42,7 +42,9 @@
   ],
   "id": "tool_game_objects",
   "path": "schema/tools/tool_game_objects",
-  "related_docs": [],
+  "related_docs": [
+    "schema/tools/tool_game_objects"
+  ],
   "relationships": [
     {
       "local_key": "zoneid",
@@ -56,6 +58,16 @@
       "remote_key": "short_name",
       "remote_table": "[zone](../../schema/zone/zone.md)"
     }
+  ],
+  "search_aliases": [
+    "columns",
+    "database",
+    "mysql",
+    "schema",
+    "table",
+    "tool game objects",
+    "tool_game_objects",
+    "tools"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

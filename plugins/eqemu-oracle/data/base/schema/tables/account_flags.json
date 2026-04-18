@@ -19,7 +19,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/account/account_flags/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "account_flags",
     "Relationships",
@@ -27,7 +27,9 @@
   ],
   "id": "account_flags",
   "path": "schema/account/account_flags",
-  "related_docs": [],
+  "related_docs": [
+    "schema/account/account_flags"
+  ],
   "relationships": [
     {
       "local_key": "p_accid",
@@ -35,6 +37,16 @@
       "remote_key": "id",
       "remote_table": "[account](../../schema/account/account.md)"
     }
+  ],
+  "search_aliases": [
+    "account",
+    "account flags",
+    "account_flags",
+    "columns",
+    "database",
+    "mysql",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

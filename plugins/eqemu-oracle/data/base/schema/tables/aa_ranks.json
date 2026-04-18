@@ -69,7 +69,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/aas/aa_ranks/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "aa_ranks",
     "Relationships",
@@ -77,7 +77,9 @@
   ],
   "id": "aa_ranks",
   "path": "schema/aas/aa_ranks",
-  "related_docs": [],
+  "related_docs": [
+    "schema/aas/aa_ranks"
+  ],
   "relationships": [
     {
       "local_key": "id",
@@ -109,6 +111,18 @@
       "remote_key": "aa_id",
       "remote_table": "[character_alternate_abilities](../../schema/characters/character_alternate_abilities.md)"
     }
+  ],
+  "search_aliases": [
+    "aa",
+    "aa ranks",
+    "aa_ranks",
+    "aas",
+    "alternate advancement",
+    "columns",
+    "database",
+    "mysql",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

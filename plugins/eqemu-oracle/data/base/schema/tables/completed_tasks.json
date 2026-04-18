@@ -24,7 +24,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/tasks/completed_tasks/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "completed_tasks",
     "Relationships",
@@ -32,7 +32,9 @@
   ],
   "id": "completed_tasks",
   "path": "schema/tasks/completed_tasks",
-  "related_docs": [],
+  "related_docs": [
+    "schema/tasks/completed_tasks"
+  ],
   "relationships": [
     {
       "local_key": "charid",
@@ -52,6 +54,16 @@
       "remote_key": "activityid",
       "remote_table": "[task_activities](../../schema/tasks/task_activities.md)"
     }
+  ],
+  "search_aliases": [
+    "columns",
+    "completed tasks",
+    "completed_tasks",
+    "database",
+    "mysql",
+    "schema",
+    "table",
+    "tasks"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

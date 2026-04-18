@@ -49,7 +49,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/pets/pets/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "pets",
     "Relationships",
@@ -57,7 +57,9 @@
   ],
   "id": "pets",
   "path": "schema/pets/pets",
-  "related_docs": [],
+  "related_docs": [
+    "schema/pets/pets"
+  ],
   "relationships": [
     {
       "local_key": "npcID",
@@ -77,6 +79,14 @@
       "remote_key": "set_id",
       "remote_table": "[pets_equipmentset](../../schema/pets/pets_equipmentset.md)"
     }
+  ],
+  "search_aliases": [
+    "columns",
+    "database",
+    "mysql",
+    "pets",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

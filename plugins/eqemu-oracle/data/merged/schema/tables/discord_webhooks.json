@@ -33,7 +33,7 @@
     "has_local_extension": false,
     "has_repo_extension": false
   },
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "discord_webhooks",
     "Relationships",
@@ -50,7 +50,9 @@
     ],
     "effective_source": "base"
   },
-  "related_docs": [],
+  "related_docs": [
+    "schema/admin/discord_webhooks"
+  ],
   "relationships": [
     {
       "local_key": "id",
@@ -58,6 +60,16 @@
       "remote_key": "discord_webhook_id",
       "remote_table": "[logsys_categories](../../schema/admin/logsys_categories.md)"
     }
+  ],
+  "search_aliases": [
+    "admin",
+    "columns",
+    "database",
+    "discord webhooks",
+    "discord_webhooks",
+    "mysql",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

@@ -23,7 +23,7 @@
     "has_local_extension": false,
     "has_repo_extension": false
   },
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "ip_exemptions",
     "Relationships",
@@ -40,7 +40,9 @@
     ],
     "effective_source": "base"
   },
-  "related_docs": [],
+  "related_docs": [
+    "schema/admin/ip_exemptions"
+  ],
   "relationships": [
     {
       "local_key": "exemption_ip",
@@ -48,6 +50,16 @@
       "remote_key": "ip",
       "remote_table": "[account_ip](../../schema/account/account_ip.md)"
     }
+  ],
+  "search_aliases": [
+    "admin",
+    "columns",
+    "database",
+    "ip exemptions",
+    "ip_exemptions",
+    "mysql",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

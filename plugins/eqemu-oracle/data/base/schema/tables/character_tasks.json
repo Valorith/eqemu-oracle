@@ -34,7 +34,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/characters/character_tasks/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "character_tasks",
     "Relationships",
@@ -42,7 +42,9 @@
   ],
   "id": "character_tasks",
   "path": "schema/characters/character_tasks",
-  "related_docs": [],
+  "related_docs": [
+    "schema/characters/character_tasks"
+  ],
   "relationships": [
     {
       "local_key": "charid",
@@ -62,6 +64,16 @@
       "remote_key": "type",
       "remote_table": "[tasks](../../schema/tasks/tasks.md)"
     }
+  ],
+  "search_aliases": [
+    "character tasks",
+    "character_tasks",
+    "characters",
+    "columns",
+    "database",
+    "mysql",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

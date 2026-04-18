@@ -29,7 +29,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/aas/aa_rank_effects/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "aa_rank_effects",
     "Relationships",
@@ -37,7 +37,9 @@
   ],
   "id": "aa_rank_effects",
   "path": "schema/aas/aa_rank_effects",
-  "related_docs": [],
+  "related_docs": [
+    "schema/aas/aa_rank_effects"
+  ],
   "relationships": [
     {
       "local_key": "rank_id",
@@ -45,6 +47,18 @@
       "remote_key": "id",
       "remote_table": "[aa_ranks](../../schema/aas/aa_ranks.md)"
     }
+  ],
+  "search_aliases": [
+    "aa",
+    "aa rank effects",
+    "aa_rank_effects",
+    "aas",
+    "alternate advancement",
+    "columns",
+    "database",
+    "mysql",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

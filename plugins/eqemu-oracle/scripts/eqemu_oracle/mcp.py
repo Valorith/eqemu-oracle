@@ -8,11 +8,19 @@ from typing import Any
 from .constants import OVERLAY_ROOT, PLUGIN_VERSION, SERVER_NAME
 from .dataset import DataStore, write_merged_dataset
 from .ingest import write_base_dataset
+from .updater import update_plugin_repo
 
 
 class McpServer:
     def __init__(self) -> None:
         self.store = DataStore()
+
+    def _content_text(self, result: Any) -> str:
+        if isinstance(result, dict):
+            presentation = result.get("presentation")
+            if isinstance(presentation, dict) and isinstance(presentation.get("markdown"), str):
+                return presentation["markdown"]
+        return json.dumps(result, indent=2, sort_keys=True, default=str)
 
     def _reply(self, request_id: Any, result: Any = None, error: dict[str, Any] | None = None) -> dict[str, Any]:
         payload: dict[str, Any] = {"jsonrpc": "2.0", "id": request_id}
@@ -123,6 +131,19 @@ class McpServer:
                     "type": "object",
                     "properties": {"scope": {"type": "string"}}
                 }
+            },
+            {
+                "name": "update_eqemu_oracle_plugin",
+                "description": "Pull the EQEmu Oracle plugin repo from Git and rebuild committed merged data.",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "remote": {"type": "string"},
+                        "branch": {"type": "string"},
+                        "allow_dirty": {"type": "boolean"},
+                        "skip_rebuild": {"type": "boolean"}
+                    }
+                }
             }
         ]
 
@@ -174,10 +195,18 @@ class McpServer:
         elif name == "rebuild_eqemu_extensions":
             result = write_merged_dataset(self.store.base_root, self.store.data_root)
             self.store = DataStore()
+        elif name == "update_eqemu_oracle_plugin":
+            result = update_plugin_repo(
+                remote=arguments.get("remote", "origin"),
+                branch=arguments.get("branch"),
+                allow_dirty=bool(arguments.get("allow_dirty", False)),
+                skip_rebuild=bool(arguments.get("skip_rebuild", False)),
+            )
+            self.store = DataStore()
         else:
             raise ValueError(f"Unknown tool '{name}'")
         return {
-            "content": [{"type": "text", "text": json.dumps(result, indent=2, sort_keys=True, default=str)}],
+            "content": [{"type": "text", "text": self._content_text(result)}],
             "structuredContent": result,
             "isError": result is None,
         }

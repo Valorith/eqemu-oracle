@@ -29,7 +29,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/mercenaries/merc_npc_types/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "merc_npc_types",
     "Relationships",
@@ -37,7 +37,9 @@
   ],
   "id": "merc_npc_types",
   "path": "schema/mercenaries/merc_npc_types",
-  "related_docs": [],
+  "related_docs": [
+    "schema/mercenaries/merc_npc_types"
+  ],
   "relationships": [
     {
       "local_key": "merc_npc_type_id",
@@ -63,6 +65,16 @@
       "remote_key": "merc_npc_type_id",
       "remote_table": "[merc_weaponinfo](../../schema/mercenaries/merc_weaponinfo.md)"
     }
+  ],
+  "search_aliases": [
+    "columns",
+    "database",
+    "merc npc types",
+    "merc_npc_types",
+    "mercenaries",
+    "mysql",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

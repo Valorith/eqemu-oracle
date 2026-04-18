@@ -1189,7 +1189,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/spells/spells_new/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "spells_new",
     "Relationships",
@@ -1197,7 +1197,9 @@
   ],
   "id": "spells_new",
   "path": "schema/spells/spells_new",
-  "related_docs": [],
+  "related_docs": [
+    "schema/spells/spells_new"
+  ],
   "relationships": [
     {
       "local_key": "descnum",
@@ -1361,6 +1363,16 @@
       "remote_key": "spellid",
       "remote_table": "[spell_globals](../../schema/spells/spell_globals.md)"
     }
+  ],
+  "search_aliases": [
+    "columns",
+    "database",
+    "mysql",
+    "schema",
+    "spells",
+    "spells new",
+    "spells_new",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

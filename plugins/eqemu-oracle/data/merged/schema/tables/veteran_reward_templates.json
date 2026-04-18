@@ -33,7 +33,7 @@
     "has_local_extension": false,
     "has_repo_extension": false
   },
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "veteran_reward_templates",
     "Relationships",
@@ -50,7 +50,9 @@
     ],
     "effective_source": "base"
   },
-  "related_docs": [],
+  "related_docs": [
+    "schema/admin/veteran_reward_templates"
+  ],
   "relationships": [
     {
       "local_key": "claim_id",
@@ -64,6 +66,16 @@
       "remote_key": "id",
       "remote_table": "[items](../../schema/items/items.md)"
     }
+  ],
+  "search_aliases": [
+    "admin",
+    "columns",
+    "database",
+    "mysql",
+    "schema",
+    "table",
+    "veteran reward templates",
+    "veteran_reward_templates"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

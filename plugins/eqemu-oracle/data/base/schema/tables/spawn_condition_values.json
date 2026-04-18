@@ -24,7 +24,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/spawns/spawn_condition_values/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "spawn_condition_values",
     "Relationships",
@@ -32,7 +32,9 @@
   ],
   "id": "spawn_condition_values",
   "path": "schema/spawns/spawn_condition_values",
-  "related_docs": [],
+  "related_docs": [
+    "schema/spawns/spawn_condition_values"
+  ],
   "relationships": [
     {
       "local_key": "id",
@@ -52,6 +54,16 @@
       "remote_key": "short_name",
       "remote_table": "[zone](../../schema/zone/zone.md)"
     }
+  ],
+  "search_aliases": [
+    "columns",
+    "database",
+    "mysql",
+    "schema",
+    "spawn condition values",
+    "spawn_condition_values",
+    "spawns",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

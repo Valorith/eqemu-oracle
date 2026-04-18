@@ -24,7 +24,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/tributes/tribute_levels/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "tribute_levels",
     "Relationships",
@@ -32,7 +32,9 @@
   ],
   "id": "tribute_levels",
   "path": "schema/tributes/tribute_levels",
-  "related_docs": [],
+  "related_docs": [
+    "schema/tributes/tribute_levels"
+  ],
   "relationships": [
     {
       "local_key": "item_id",
@@ -46,6 +48,16 @@
       "remote_key": "id",
       "remote_table": "[tributes](../../schema/tributes/tributes.md)"
     }
+  ],
+  "search_aliases": [
+    "columns",
+    "database",
+    "mysql",
+    "schema",
+    "table",
+    "tribute levels",
+    "tribute_levels",
+    "tributes"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

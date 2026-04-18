@@ -74,7 +74,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/titles/titles/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "titles",
     "Relationships",
@@ -82,7 +82,9 @@
   ],
   "id": "titles",
   "path": "schema/titles/titles",
-  "related_docs": [],
+  "related_docs": [
+    "schema/titles/titles"
+  ],
   "relationships": [
     {
       "local_key": "char_id",
@@ -102,6 +104,14 @@
       "remote_key": "title_set",
       "remote_table": "[player_titlesets](../../schema/characters/player_titlesets.md)"
     }
+  ],
+  "search_aliases": [
+    "columns",
+    "database",
+    "mysql",
+    "schema",
+    "table",
+    "titles"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

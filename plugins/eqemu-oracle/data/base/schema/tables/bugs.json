@@ -69,7 +69,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/admin/bugs/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "bugs",
     "Relationships",
@@ -77,7 +77,9 @@
   ],
   "id": "bugs",
   "path": "schema/admin/bugs",
-  "related_docs": [],
+  "related_docs": [
+    "schema/admin/bugs"
+  ],
   "relationships": [
     {
       "local_key": "zone",
@@ -91,6 +93,15 @@
       "remote_key": "name",
       "remote_table": "[character_data](../../schema/characters/character_data.md)"
     }
+  ],
+  "search_aliases": [
+    "admin",
+    "bugs",
+    "columns",
+    "database",
+    "mysql",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

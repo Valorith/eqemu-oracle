@@ -44,7 +44,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/npcs/npc_spells_effects_entries/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "npc_spells_effects_entries",
     "Relationships",
@@ -52,7 +52,9 @@
   ],
   "id": "npc_spells_effects_entries",
   "path": "schema/npcs/npc_spells_effects_entries",
-  "related_docs": [],
+  "related_docs": [
+    "schema/npcs/npc_spells_effects_entries"
+  ],
   "relationships": [
     {
       "local_key": "npc_spells_effects_id",
@@ -60,6 +62,16 @@
       "remote_key": "id",
       "remote_table": "[npc_spells_effects](../../schema/npcs/npc_spells_effects.md)"
     }
+  ],
+  "search_aliases": [
+    "columns",
+    "database",
+    "mysql",
+    "npc spells effects entries",
+    "npc_spells_effects_entries",
+    "npcs",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

@@ -9,6 +9,7 @@
 - Official EQEmu documentation lookup
 - Shared and local extension overlays
 - Refresh and merge tooling for staged data
+- Section-level docs indexing and synonym-aware search
 
 ## Key Files And Folders
 
@@ -48,6 +49,12 @@ Rebuild merged data from existing snapshots plus overlays:
 python .\plugins\eqemu-oracle\scripts\eqemu_oracle.py rebuild-extensions --scope all --mode committed
 ```
 
+Update the plugin from its Git remote and rebuild committed merged data:
+
+```powershell
+python .\plugins\eqemu-oracle\scripts\eqemu_oracle.py update-plugin
+```
+
 ## Overlay Model
 
 Effective data is built from three layers:
@@ -85,3 +92,6 @@ See:
 - `explain_eqemu_provenance`
 - `refresh_eqemu_oracle`
 - `rebuild_eqemu_extensions`
+- `update_eqemu_oracle_plugin`
+
+Getter and search tools also attach `presentation.markdown` and `copy_blocks` so Codex can answer users with a consistent polished format while still keeping the raw structured record available to agents.

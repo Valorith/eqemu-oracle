@@ -34,7 +34,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/items/item_tick/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "item_tick",
     "Relationships",
@@ -42,7 +42,9 @@
   ],
   "id": "item_tick",
   "path": "schema/items/item_tick",
-  "related_docs": [],
+  "related_docs": [
+    "schema/items/item_tick"
+  ],
   "relationships": [
     {
       "local_key": "it_itemid",
@@ -56,6 +58,16 @@
       "remote_key": "name",
       "remote_table": "[quest_globals](../../schema/data-storage/quest_globals.md)"
     }
+  ],
+  "search_aliases": [
+    "columns",
+    "database",
+    "item tick",
+    "item_tick",
+    "items",
+    "mysql",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

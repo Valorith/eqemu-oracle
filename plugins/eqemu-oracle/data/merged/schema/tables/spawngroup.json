@@ -73,7 +73,7 @@
     "has_local_extension": false,
     "has_repo_extension": false
   },
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "spawngroup",
     "Relationships",
@@ -90,7 +90,9 @@
     ],
     "effective_source": "base"
   },
-  "related_docs": [],
+  "related_docs": [
+    "schema/spawns/spawngroup"
+  ],
   "relationships": [
     {
       "local_key": "id",
@@ -98,6 +100,15 @@
       "remote_key": "spawngroupID",
       "remote_table": "[spawn2](../../schema/spawns/spawn2.md)"
     }
+  ],
+  "search_aliases": [
+    "columns",
+    "database",
+    "mysql",
+    "schema",
+    "spawngroup",
+    "spawns",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

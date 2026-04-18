@@ -14,7 +14,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/rules/rule_sets/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "rule_sets",
     "Relationships",
@@ -22,7 +22,9 @@
   ],
   "id": "rule_sets",
   "path": "schema/rules/rule_sets",
-  "related_docs": [],
+  "related_docs": [
+    "schema/rules/rule_sets"
+  ],
   "relationships": [
     {
       "local_key": "ruleset_id",
@@ -30,6 +32,16 @@
       "remote_key": "ruleset_id",
       "remote_table": "[rule_values](../../schema/rules/rule_values.md)"
     }
+  ],
+  "search_aliases": [
+    "columns",
+    "database",
+    "mysql",
+    "rule sets",
+    "rule_sets",
+    "rules",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

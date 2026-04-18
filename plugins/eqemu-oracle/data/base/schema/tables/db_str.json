@@ -19,7 +19,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/client-files/db_str/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "db_str",
     "Relationships",
@@ -27,7 +27,9 @@
   ],
   "id": "db_str",
   "path": "schema/client-files/db_str",
-  "related_docs": [],
+  "related_docs": [
+    "schema/client-files/db_str"
+  ],
   "relationships": [
     {
       "local_key": "id",
@@ -65,6 +67,16 @@
       "remote_key": "typedescnum",
       "remote_table": "[spells_new](../../schema/spells/spells_new.md)"
     }
+  ],
+  "search_aliases": [
+    "client-files",
+    "columns",
+    "database",
+    "db str",
+    "db_str",
+    "mysql",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

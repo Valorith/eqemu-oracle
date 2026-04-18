@@ -29,7 +29,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/tasks/shared_task_activity_state/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "shared_task_activity_state",
     "Relationships",
@@ -37,7 +37,9 @@
   ],
   "id": "shared_task_activity_state",
   "path": "schema/tasks/shared_task_activity_state",
-  "related_docs": [],
+  "related_docs": [
+    "schema/tasks/shared_task_activity_state"
+  ],
   "relationships": [
     {
       "local_key": "activity_id",
@@ -51,6 +53,16 @@
       "remote_key": "id",
       "remote_table": "[shared_tasks](../../schema/tasks/shared_tasks.md)"
     }
+  ],
+  "search_aliases": [
+    "columns",
+    "database",
+    "mysql",
+    "schema",
+    "shared task activity state",
+    "shared_task_activity_state",
+    "table",
+    "tasks"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

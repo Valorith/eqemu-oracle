@@ -1433,7 +1433,7 @@
     "has_local_extension": false,
     "has_repo_extension": false
   },
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "items",
     "Relationships",
@@ -1450,7 +1450,9 @@
     ],
     "effective_source": "base"
   },
-  "related_docs": [],
+  "related_docs": [
+    "schema/items/items"
+  ],
   "relationships": [
     {
       "local_key": "bardeffect",
@@ -1860,6 +1862,14 @@
       "remote_key": "id",
       "remote_table": "[spells_new](../../schema/spells/spells_new.md)"
     }
+  ],
+  "search_aliases": [
+    "columns",
+    "database",
+    "items",
+    "mysql",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

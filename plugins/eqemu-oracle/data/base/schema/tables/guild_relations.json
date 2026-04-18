@@ -19,7 +19,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/guilds/guild_relations/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "guild_relations",
     "Relationships",
@@ -27,7 +27,9 @@
   ],
   "id": "guild_relations",
   "path": "schema/guilds/guild_relations",
-  "related_docs": [],
+  "related_docs": [
+    "schema/guilds/guild_relations"
+  ],
   "relationships": [
     {
       "local_key": "guild1",
@@ -41,6 +43,16 @@
       "remote_key": "id",
       "remote_table": "[guilds](../../schema/guilds/guilds.md)"
     }
+  ],
+  "search_aliases": [
+    "columns",
+    "database",
+    "guild relations",
+    "guild_relations",
+    "guilds",
+    "mysql",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

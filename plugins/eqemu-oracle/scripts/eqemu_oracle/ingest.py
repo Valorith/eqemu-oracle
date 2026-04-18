@@ -18,7 +18,7 @@ from .constants import (
     QUEST_API_URL,
     SPIRE_COMMIT_API,
 )
-from .utils import dump_json, ensure_dir, excerpt, heading_title, markdown_headings, markdown_links, short_hash, slugify
+from .utils import dump_json, ensure_dir, excerpt, heading_title, markdown_headings, markdown_links, short_hash, slugify, split_identifier_words
 
 
 def fetch_json(url: str) -> Any:
@@ -44,6 +44,35 @@ def build_schema_id(table_name: str) -> str:
 
 def build_doc_id(path_without_suffix: str) -> str:
     return path_without_suffix.replace("\\", "/").strip("/")
+
+
+def quest_api_related_docs(language: str, kind: str, container: str) -> list[str]:
+    container_slug = slugify(container or "global")
+    if kind == "method":
+        return [f"quest-api/methods/{container_slug}"]
+    if kind == "event":
+        return [f"quest-api/events/{language}-{container_slug}"]
+    if kind == "constant":
+        return [f"quest-api/constants/{language}-{container_slug}"]
+    return []
+
+
+def quest_api_search_aliases(language: str, kind: str, container: str, name: str) -> list[str]:
+    aliases = {
+        language,
+        kind,
+        container,
+        name,
+        " ".join(split_identifier_words(name)),
+        " ".join(split_identifier_words(container)),
+    }
+    if kind == "method":
+        aliases.update({"function", "call"})
+    if kind == "event":
+        aliases.update({"callback", "trigger"})
+    if kind == "constant":
+        aliases.update({"enum", "value"})
+    return sorted(alias for alias in aliases if alias)
 
 
 def normalize_quest_api() -> dict[str, Any]:
@@ -75,7 +104,8 @@ def normalize_quest_api() -> dict[str, Any]:
                         "source_ref": spire_commit,
                         "source_refreshed_at": payload.get("last_refreshed"),
                         "fetched_at": now,
-                        "related_docs": [],
+                        "related_docs": quest_api_related_docs(language, "method", container),
+                        "search_aliases": quest_api_search_aliases(language, "method", container, entry["method"]),
                     }
                 )
         for entry in api["events"]:
@@ -99,7 +129,8 @@ def normalize_quest_api() -> dict[str, Any]:
                     "source_ref": spire_commit,
                     "source_refreshed_at": payload.get("last_refreshed"),
                     "fetched_at": now,
-                    "related_docs": [],
+                    "related_docs": quest_api_related_docs(language, "event", container),
+                    "search_aliases": quest_api_search_aliases(language, "event", container, event_name),
                 }
             )
         for container, entries in api["constants"].items():
@@ -121,7 +152,8 @@ def normalize_quest_api() -> dict[str, Any]:
                         "source_ref": spire_commit,
                         "source_refreshed_at": payload.get("last_refreshed"),
                         "fetched_at": now,
-                        "related_docs": [],
+                        "related_docs": quest_api_related_docs(language, "constant", container),
+                        "search_aliases": quest_api_search_aliases(language, "constant", container, constant_name),
                     }
                 )
     methods.sort(key=lambda item: (item["language"], item["container"], item["name"], item["signature"]))
@@ -197,6 +229,19 @@ def parse_schema_markdown(category: str, relative_path: str, markdown: str, sour
     path_without_suffix = relative_path[:-3].replace("\\", "/")
     site_path = path_without_suffix.removeprefix("docs/")
     docs_url = "https://docs.eqemu.dev/" + site_path.rstrip("/") + "/"
+    table_tokens = split_identifier_words(table_name)
+    schema_aliases = {
+        category,
+        table_name,
+        " ".join(table_tokens),
+        "mysql",
+        "database",
+        "schema",
+        "table",
+        "columns",
+    }
+    if table_name.startswith("aa_"):
+        schema_aliases.update({"aa", "alternate advancement"})
     return {
         "id": build_schema_id(table_name),
         "domain": "schema",
@@ -212,7 +257,8 @@ def parse_schema_markdown(category: str, relative_path: str, markdown: str, sour
         "source_repo": DOCS_REPO,
         "source_ref": source_ref,
         "fetched_at": fetched_at,
-        "related_docs": [],
+        "related_docs": [site_path],
+        "search_aliases": sorted(alias for alias in schema_aliases if alias),
     }
 
 
@@ -236,6 +282,7 @@ def parse_doc_markdown(relative_path: str, markdown: str, source_ref: str, fetch
         "fetched_at": fetched_at,
         "aliases": [],
         "tags": [],
+        "search_aliases": sorted({site_path, " ".join(split_identifier_words(site_path))}),
     }
     return page, markdown
 

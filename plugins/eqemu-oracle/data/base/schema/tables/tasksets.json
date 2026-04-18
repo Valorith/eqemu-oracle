@@ -14,7 +14,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/tasks/tasksets/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "tasksets",
     "Relationships",
@@ -22,7 +22,9 @@
   ],
   "id": "tasksets",
   "path": "schema/tasks/tasksets",
-  "related_docs": [],
+  "related_docs": [
+    "schema/tasks/tasksets"
+  ],
   "relationships": [
     {
       "local_key": "taskid",
@@ -30,6 +32,15 @@
       "remote_key": "id",
       "remote_table": "[tasks](../../schema/tasks/tasks.md)"
     }
+  ],
+  "search_aliases": [
+    "columns",
+    "database",
+    "mysql",
+    "schema",
+    "table",
+    "tasks",
+    "tasksets"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

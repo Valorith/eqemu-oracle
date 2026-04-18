@@ -24,7 +24,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/account/account_ip/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "account_ip",
     "Relationships",
@@ -32,7 +32,9 @@
   ],
   "id": "account_ip",
   "path": "schema/account/account_ip",
-  "related_docs": [],
+  "related_docs": [
+    "schema/account/account_ip"
+  ],
   "relationships": [
     {
       "local_key": "ip",
@@ -52,6 +54,16 @@
       "remote_key": "exemption_ip",
       "remote_table": "[ip_exemptions](../../schema/admin/ip_exemptions.md)"
     }
+  ],
+  "search_aliases": [
+    "account",
+    "account ip",
+    "account_ip",
+    "columns",
+    "database",
+    "mysql",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

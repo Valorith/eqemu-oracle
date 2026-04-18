@@ -34,7 +34,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/characters/char_create_combinations/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "char_create_combinations",
     "Relationships",
@@ -42,7 +42,9 @@
   ],
   "id": "char_create_combinations",
   "path": "schema/characters/char_create_combinations",
-  "related_docs": [],
+  "related_docs": [
+    "schema/characters/char_create_combinations"
+  ],
   "relationships": [
     {
       "local_key": "allocation_id",
@@ -56,6 +58,16 @@
       "remote_key": "zoneidnumber",
       "remote_table": "[zone](../../schema/zone/zone.md)"
     }
+  ],
+  "search_aliases": [
+    "char create combinations",
+    "char_create_combinations",
+    "characters",
+    "columns",
+    "database",
+    "mysql",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

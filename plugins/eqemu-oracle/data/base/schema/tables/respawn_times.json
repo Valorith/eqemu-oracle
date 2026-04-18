@@ -24,7 +24,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/spawns/respawn_times/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "respawn_times",
     "Relationships",
@@ -32,7 +32,9 @@
   ],
   "id": "respawn_times",
   "path": "schema/spawns/respawn_times",
-  "related_docs": [],
+  "related_docs": [
+    "schema/spawns/respawn_times"
+  ],
   "relationships": [
     {
       "local_key": "id",
@@ -46,6 +48,16 @@
       "remote_key": "id",
       "remote_table": "[instance_list](../../schema/instances/instance_list.md)"
     }
+  ],
+  "search_aliases": [
+    "columns",
+    "database",
+    "mysql",
+    "respawn times",
+    "respawn_times",
+    "schema",
+    "spawns",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

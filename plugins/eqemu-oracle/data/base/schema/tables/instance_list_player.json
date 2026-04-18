@@ -14,7 +14,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/instances/instance_list_player/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "instance_list_player",
     "Relationships",
@@ -22,7 +22,9 @@
   ],
   "id": "instance_list_player",
   "path": "schema/instances/instance_list_player",
-  "related_docs": [],
+  "related_docs": [
+    "schema/instances/instance_list_player"
+  ],
   "relationships": [
     {
       "local_key": "charid",
@@ -36,6 +38,16 @@
       "remote_key": "id",
       "remote_table": "[instance_list](../../schema/instances/instance_list.md)"
     }
+  ],
+  "search_aliases": [
+    "columns",
+    "database",
+    "instance list player",
+    "instance_list_player",
+    "instances",
+    "mysql",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

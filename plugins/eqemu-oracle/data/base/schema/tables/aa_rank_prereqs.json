@@ -19,7 +19,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/aas/aa_rank_prereqs/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "aa_rank_prereqs",
     "Relationships",
@@ -27,7 +27,9 @@
   ],
   "id": "aa_rank_prereqs",
   "path": "schema/aas/aa_rank_prereqs",
-  "related_docs": [],
+  "related_docs": [
+    "schema/aas/aa_rank_prereqs"
+  ],
   "relationships": [
     {
       "local_key": "aa_id",
@@ -41,6 +43,18 @@
       "remote_key": "id",
       "remote_table": "[aa_ranks](../../schema/aas/aa_ranks.md)"
     }
+  ],
+  "search_aliases": [
+    "aa",
+    "aa rank prereqs",
+    "aa_rank_prereqs",
+    "aas",
+    "alternate advancement",
+    "columns",
+    "database",
+    "mysql",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

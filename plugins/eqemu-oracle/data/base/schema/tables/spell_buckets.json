@@ -19,7 +19,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/spells/spell_buckets/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "spell_buckets",
     "Relationships",
@@ -27,7 +27,9 @@
   ],
   "id": "spell_buckets",
   "path": "schema/spells/spell_buckets",
-  "related_docs": [],
+  "related_docs": [
+    "schema/spells/spell_buckets"
+  ],
   "relationships": [
     {
       "local_key": "spellid",
@@ -41,6 +43,16 @@
       "remote_key": "key",
       "remote_table": "[data_buckets](../../schema/data-storage/data_buckets.md)"
     }
+  ],
+  "search_aliases": [
+    "columns",
+    "database",
+    "mysql",
+    "schema",
+    "spell buckets",
+    "spell_buckets",
+    "spells",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

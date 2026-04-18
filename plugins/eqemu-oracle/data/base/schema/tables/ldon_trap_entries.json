@@ -14,7 +14,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/traps/ldon_trap_entries/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "ldon_trap_entries",
     "Relationships",
@@ -22,7 +22,9 @@
   ],
   "id": "ldon_trap_entries",
   "path": "schema/traps/ldon_trap_entries",
-  "related_docs": [],
+  "related_docs": [
+    "schema/traps/ldon_trap_entries"
+  ],
   "relationships": [
     {
       "local_key": "trap_id",
@@ -30,6 +32,16 @@
       "remote_key": "id",
       "remote_table": "[ldon_trap_templates](../../schema/traps/ldon_trap_templates.md)"
     }
+  ],
+  "search_aliases": [
+    "columns",
+    "database",
+    "ldon trap entries",
+    "ldon_trap_entries",
+    "mysql",
+    "schema",
+    "table",
+    "traps"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

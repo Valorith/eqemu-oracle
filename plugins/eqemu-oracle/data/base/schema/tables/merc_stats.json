@@ -169,7 +169,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/mercenaries/merc_stats/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "merc_stats",
     "Relationships",
@@ -177,7 +177,9 @@
   ],
   "id": "merc_stats",
   "path": "schema/mercenaries/merc_stats",
-  "related_docs": [],
+  "related_docs": [
+    "schema/mercenaries/merc_stats"
+  ],
   "relationships": [
     {
       "local_key": "merc_npc_type_id",
@@ -185,6 +187,16 @@
       "remote_key": "merc_npc_type_id",
       "remote_table": "[merc_npc_types](../../schema/mercenaries/merc_npc_types.md)"
     }
+  ],
+  "search_aliases": [
+    "columns",
+    "database",
+    "merc stats",
+    "merc_stats",
+    "mercenaries",
+    "mysql",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

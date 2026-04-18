@@ -39,7 +39,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/trader/trader_audit/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "trader_audit",
     "Relationships",
@@ -47,7 +47,9 @@
   ],
   "id": "trader_audit",
   "path": "schema/trader/trader_audit",
-  "related_docs": [],
+  "related_docs": [
+    "schema/trader/trader_audit"
+  ],
   "relationships": [
     {
       "local_key": "buyer",
@@ -67,6 +69,16 @@
       "remote_key": "name",
       "remote_table": "[character_data](../../schema/characters/character_data.md)"
     }
+  ],
+  "search_aliases": [
+    "columns",
+    "database",
+    "mysql",
+    "schema",
+    "table",
+    "trader",
+    "trader audit",
+    "trader_audit"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

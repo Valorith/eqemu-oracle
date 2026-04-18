@@ -99,7 +99,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/admin/start_zones/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "start_zones",
     "Relationships",
@@ -107,7 +107,9 @@
   ],
   "id": "start_zones",
   "path": "schema/admin/start_zones",
-  "related_docs": [],
+  "related_docs": [
+    "schema/admin/start_zones"
+  ],
   "relationships": [
     {
       "local_key": "content_flags",
@@ -133,6 +135,16 @@
       "remote_key": "zoneidnumber",
       "remote_table": "[zone](../../schema/zone/zone.md)"
     }
+  ],
+  "search_aliases": [
+    "admin",
+    "columns",
+    "database",
+    "mysql",
+    "schema",
+    "start zones",
+    "start_zones",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

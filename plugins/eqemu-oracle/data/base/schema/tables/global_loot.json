@@ -89,7 +89,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/loot/global_loot/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "global_loot",
     "Relationships",
@@ -97,7 +97,9 @@
   ],
   "id": "global_loot",
   "path": "schema/loot/global_loot",
-  "related_docs": [],
+  "related_docs": [
+    "schema/loot/global_loot"
+  ],
   "relationships": [
     {
       "local_key": "content_flags",
@@ -123,6 +125,16 @@
       "remote_key": "short_name",
       "remote_table": "[zone](../../schema/zone/zone.md)"
     }
+  ],
+  "search_aliases": [
+    "columns",
+    "database",
+    "global loot",
+    "global_loot",
+    "loot",
+    "mysql",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

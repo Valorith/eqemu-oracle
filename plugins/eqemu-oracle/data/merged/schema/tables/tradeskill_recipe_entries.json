@@ -48,7 +48,7 @@
     "has_local_extension": false,
     "has_repo_extension": false
   },
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "tradeskill_recipe_entries",
     "Relationships",
@@ -65,7 +65,9 @@
     ],
     "effective_source": "base"
   },
-  "related_docs": [],
+  "related_docs": [
+    "schema/tradeskills/tradeskill_recipe_entries"
+  ],
   "relationships": [
     {
       "local_key": "item_id",
@@ -79,6 +81,16 @@
       "remote_key": "id",
       "remote_table": "[tradeskill_recipe](../../schema/tradeskills/tradeskill_recipe.md)"
     }
+  ],
+  "search_aliases": [
+    "columns",
+    "database",
+    "mysql",
+    "schema",
+    "table",
+    "tradeskill recipe entries",
+    "tradeskill_recipe_entries",
+    "tradeskills"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

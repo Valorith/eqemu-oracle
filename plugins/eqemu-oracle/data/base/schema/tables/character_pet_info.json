@@ -49,7 +49,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/characters/character_pet_info/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "character_pet_info",
     "Relationships",
@@ -57,7 +57,9 @@
   ],
   "id": "character_pet_info",
   "path": "schema/characters/character_pet_info",
-  "related_docs": [],
+  "related_docs": [
+    "schema/characters/character_pet_info"
+  ],
   "relationships": [
     {
       "local_key": "char_id",
@@ -71,6 +73,16 @@
       "remote_key": "id",
       "remote_table": "[spells_new](../../schema/spells/spells_new.md)"
     }
+  ],
+  "search_aliases": [
+    "character pet info",
+    "character_pet_info",
+    "characters",
+    "columns",
+    "database",
+    "mysql",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

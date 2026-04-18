@@ -54,7 +54,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/mercenaries/merc_armorinfo/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "merc_armorinfo",
     "Relationships",
@@ -62,7 +62,9 @@
   ],
   "id": "merc_armorinfo",
   "path": "schema/mercenaries/merc_armorinfo",
-  "related_docs": [],
+  "related_docs": [
+    "schema/mercenaries/merc_armorinfo"
+  ],
   "relationships": [
     {
       "local_key": "armortint_id",
@@ -76,6 +78,16 @@
       "remote_key": "merc_npc_type_id",
       "remote_table": "[merc_npc_types](../../schema/mercenaries/merc_npc_types.md)"
     }
+  ],
+  "search_aliases": [
+    "columns",
+    "database",
+    "merc armorinfo",
+    "merc_armorinfo",
+    "mercenaries",
+    "mysql",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

@@ -109,7 +109,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/npcs/npc_spells/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "npc_spells",
     "Relationships",
@@ -117,7 +117,9 @@
   ],
   "id": "npc_spells",
   "path": "schema/npcs/npc_spells",
-  "related_docs": [],
+  "related_docs": [
+    "schema/npcs/npc_spells"
+  ],
   "relationships": [
     {
       "local_key": "id",
@@ -161,6 +163,16 @@
       "remote_key": "npc_spells_id",
       "remote_table": "[npc_spells_entries](../../schema/npcs/npc_spells_entries.md)"
     }
+  ],
+  "search_aliases": [
+    "columns",
+    "database",
+    "mysql",
+    "npc spells",
+    "npc_spells",
+    "npcs",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

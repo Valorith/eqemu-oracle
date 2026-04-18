@@ -19,7 +19,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/characters/keyring/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "keyring",
     "Relationships",
@@ -27,7 +27,9 @@
   ],
   "id": "keyring",
   "path": "schema/characters/keyring",
-  "related_docs": [],
+  "related_docs": [
+    "schema/characters/keyring"
+  ],
   "relationships": [
     {
       "local_key": "char_id",
@@ -41,6 +43,15 @@
       "remote_key": "id",
       "remote_table": "[items](../../schema/items/items.md)"
     }
+  ],
+  "search_aliases": [
+    "characters",
+    "columns",
+    "database",
+    "keyring",
+    "mysql",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

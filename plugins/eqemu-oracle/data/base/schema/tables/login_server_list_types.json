@@ -14,7 +14,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/loginserver/login_server_list_types/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "login_server_list_types",
     "Relationships",
@@ -22,7 +22,9 @@
   ],
   "id": "login_server_list_types",
   "path": "schema/loginserver/login_server_list_types",
-  "related_docs": [],
+  "related_docs": [
+    "schema/loginserver/login_server_list_types"
+  ],
   "relationships": [
     {
       "local_key": "id",
@@ -30,6 +32,16 @@
       "remote_key": "login_server_list_type_id",
       "remote_table": "[login_world_servers](../../schema/loginserver/login_world_servers.md)"
     }
+  ],
+  "search_aliases": [
+    "columns",
+    "database",
+    "login server list types",
+    "login_server_list_types",
+    "loginserver",
+    "mysql",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

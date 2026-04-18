@@ -24,7 +24,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/factions/faction_list_mod/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "faction_list_mod",
     "Relationships",
@@ -32,7 +32,9 @@
   ],
   "id": "faction_list_mod",
   "path": "schema/factions/faction_list_mod",
-  "related_docs": [],
+  "related_docs": [
+    "schema/factions/faction_list_mod"
+  ],
   "relationships": [
     {
       "local_key": "faction_id",
@@ -40,6 +42,16 @@
       "remote_key": "id",
       "remote_table": "[faction_list](../../schema/factions/faction_list.md)"
     }
+  ],
+  "search_aliases": [
+    "columns",
+    "database",
+    "faction list mod",
+    "faction_list_mod",
+    "factions",
+    "mysql",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

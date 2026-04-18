@@ -23,7 +23,7 @@
     "has_local_extension": false,
     "has_repo_extension": false
   },
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "merc_merchant_templates",
     "Relationships",
@@ -40,7 +40,9 @@
     ],
     "effective_source": "base"
   },
-  "related_docs": [],
+  "related_docs": [
+    "schema/mercenaries/merc_merchant_templates"
+  ],
   "relationships": [
     {
       "local_key": "merc_merchant_template_id",
@@ -60,6 +62,16 @@
       "remote_key": "name",
       "remote_table": "[quest_globals](../../schema/data-storage/quest_globals.md)"
     }
+  ],
+  "search_aliases": [
+    "columns",
+    "database",
+    "merc merchant templates",
+    "merc_merchant_templates",
+    "mercenaries",
+    "mysql",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",

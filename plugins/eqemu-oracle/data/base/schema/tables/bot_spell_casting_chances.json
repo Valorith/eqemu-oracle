@@ -104,7 +104,7 @@
   ],
   "docs_url": "https://docs.eqemu.dev/schema/bots/bot_spell_casting_chances/",
   "domain": "schema",
-  "fetched_at": "2026-04-18T16:08:49Z",
+  "fetched_at": "2026-04-18T17:54:31Z",
   "headings": [
     "bot_spell_casting_chances",
     "Relationships",
@@ -112,7 +112,9 @@
   ],
   "id": "bot_spell_casting_chances",
   "path": "schema/bots/bot_spell_casting_chances",
-  "related_docs": [],
+  "related_docs": [
+    "schema/bots/bot_spell_casting_chances"
+  ],
   "relationships": [
     {
       "local_key": "spell_type_index",
@@ -120,6 +122,16 @@
       "remote_key": "type",
       "remote_table": "[bot_spells_entries](../../schema/bots/bot_spells_entries.md)"
     }
+  ],
+  "search_aliases": [
+    "bot spell casting chances",
+    "bot_spell_casting_chances",
+    "bots",
+    "columns",
+    "database",
+    "mysql",
+    "schema",
+    "table"
   ],
   "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
   "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
