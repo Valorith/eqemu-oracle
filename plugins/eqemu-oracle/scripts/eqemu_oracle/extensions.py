@@ -27,6 +27,15 @@ def _iter_extension_files(root: Path) -> list[Path]:
     )
 
 
+def _stable_extension_file_label(path: Path, root: Path) -> str:
+    try:
+        if root.name in {"extensions", "local-extensions"}:
+            return path.relative_to(root.parent).as_posix()
+        return path.relative_to(root).as_posix()
+    except ValueError:
+        return path.name
+
+
 def extension_inputs_fingerprint(*roots: Path) -> tuple[tuple[str, int, int], ...]:
     fingerprint: list[tuple[str, int, int]] = []
     for root in roots:
@@ -55,7 +64,7 @@ def load_domain_extensions(root: Path, domain: str) -> list[dict[str, Any]]:
             if not isinstance(item, dict):
                 raise ValueError(f"{path} contains a non-object extension entry")
             item_copy = dict(item)
-            item_copy["_extension_file"] = str(path)
+            item_copy["_extension_file"] = _stable_extension_file_label(path, root)
             entries.append(item_copy)
     return entries
 

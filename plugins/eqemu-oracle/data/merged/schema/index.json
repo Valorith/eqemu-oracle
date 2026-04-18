@@ -832,7 +832,7 @@
     "provenance": {
       "contributors": [
         {
-          "file": "/home/runner/work/eqemu-oracle/eqemu-oracle/plugins/eqemu-oracle/extensions/schema/schema_extension.json",
+          "file": "extensions/schema/schema_extension.json",
           "mode": "augment",
           "source": "repo_extension"
         }
@@ -5710,7 +5710,7 @@
     "provenance": {
       "contributors": [
         {
-          "file": "/home/runner/work/eqemu-oracle/eqemu-oracle/plugins/eqemu-oracle/extensions/schema/schema_extension.json",
+          "file": "extensions/schema/schema_extension.json",
           "mode": "augment",
           "source": "repo_extension"
         }
@@ -8426,7 +8426,7 @@
     "provenance": {
       "contributors": [
         {
-          "file": "/home/runner/work/eqemu-oracle/eqemu-oracle/plugins/eqemu-oracle/extensions/schema/schema_extension.json",
+          "file": "extensions/schema/schema_extension.json",
           "mode": "augment",
           "source": "repo_extension"
         }
@@ -8461,7 +8461,7 @@
     "provenance": {
       "contributors": [
         {
-          "file": "/home/runner/work/eqemu-oracle/eqemu-oracle/plugins/eqemu-oracle/extensions/schema/schema_extension.json",
+          "file": "extensions/schema/schema_extension.json",
           "mode": "augment",
           "source": "repo_extension"
         }
@@ -8496,7 +8496,7 @@
     "provenance": {
       "contributors": [
         {
-          "file": "/home/runner/work/eqemu-oracle/eqemu-oracle/plugins/eqemu-oracle/extensions/schema/schema_extension.json",
+          "file": "extensions/schema/schema_extension.json",
           "mode": "augment",
           "source": "repo_extension"
         }
@@ -8716,7 +8716,7 @@
     "provenance": {
       "contributors": [
         {
-          "file": "/home/runner/work/eqemu-oracle/eqemu-oracle/plugins/eqemu-oracle/extensions/schema/schema_extension.json",
+          "file": "extensions/schema/schema_extension.json",
           "mode": "augment",
           "source": "repo_extension"
         }
@@ -14834,7 +14834,7 @@
     "provenance": {
       "contributors": [
         {
-          "file": "/home/runner/work/eqemu-oracle/eqemu-oracle/plugins/eqemu-oracle/extensions/schema/schema_extension.json",
+          "file": "extensions/schema/schema_extension.json",
           "mode": "augment",
           "source": "repo_extension"
         }
@@ -15068,7 +15068,7 @@
     "provenance": {
       "contributors": [
         {
-          "file": "/home/runner/work/eqemu-oracle/eqemu-oracle/plugins/eqemu-oracle/extensions/schema/schema_extension.json",
+          "file": "extensions/schema/schema_extension.json",
           "mode": "augment",
           "source": "repo_extension"
         }
@@ -15405,7 +15405,7 @@
     "provenance": {
       "contributors": [
         {
-          "file": "/home/runner/work/eqemu-oracle/eqemu-oracle/plugins/eqemu-oracle/extensions/schema/schema_extension.json",
+          "file": "extensions/schema/schema_extension.json",
           "mode": "augment",
           "source": "repo_extension"
         }
@@ -23437,7 +23437,7 @@
     "provenance": {
       "contributors": [
         {
-          "file": "/home/runner/work/eqemu-oracle/eqemu-oracle/plugins/eqemu-oracle/extensions/schema/schema_extension.json",
+          "file": "extensions/schema/schema_extension.json",
           "mode": "augment",
           "source": "repo_extension"
         }
@@ -27611,7 +27611,7 @@
     "provenance": {
       "contributors": [
         {
-          "file": "/home/runner/work/eqemu-oracle/eqemu-oracle/plugins/eqemu-oracle/extensions/schema/schema_extension.json",
+          "file": "extensions/schema/schema_extension.json",
           "mode": "augment",
           "source": "repo_extension"
         }
@@ -30702,7 +30702,7 @@
     "provenance": {
       "contributors": [
         {
-          "file": "/home/runner/work/eqemu-oracle/eqemu-oracle/plugins/eqemu-oracle/extensions/schema/schema_extension.json",
+          "file": "extensions/schema/schema_extension.json",
           "mode": "augment",
           "source": "repo_extension"
         }
@@ -31406,7 +31406,7 @@
     "provenance": {
       "contributors": [
         {
-          "file": "/home/runner/work/eqemu-oracle/eqemu-oracle/plugins/eqemu-oracle/extensions/schema/schema_extension.json",
+          "file": "extensions/schema/schema_extension.json",
           "mode": "augment",
           "source": "repo_extension"
         }

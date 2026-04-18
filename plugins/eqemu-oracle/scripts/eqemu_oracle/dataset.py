@@ -207,6 +207,26 @@ def _write_extension_json(path: Path, payload: dict[str, Any]) -> None:
     dump_text(path, json.dumps(payload, indent=2) + "\n")
 
 
+def _resolve_extension_file(file_value: str, source: str, repo_root: Path, local_root: Path) -> Path:
+    candidate = Path(file_value)
+    if candidate.is_absolute():
+        return candidate
+
+    roots: list[Path]
+    if source == "repo_extension":
+        roots = [repo_root.parent, repo_root]
+    elif source == "local_extension":
+        roots = [local_root.parent, local_root]
+    else:
+        roots = [repo_root.parent, repo_root, local_root.parent, local_root]
+
+    for root in roots:
+        resolved = root / candidate
+        if resolved.exists():
+            return resolved
+    return roots[0] / candidate
+
+
 def prune_stale_schema_extensions(
     base_root: Path,
     repo_root: Path = EXTENSIONS_ROOT,
@@ -224,7 +244,7 @@ def prune_stale_schema_extensions(
 
     if apply:
         for file_path, candidates in files.items():
-            path = Path(file_path)
+            path = _resolve_extension_file(file_path, str(candidates[0].get("source", "")), repo_root, local_root)
             payload = load_json(path)
             remaining: list[dict[str, Any]] = []
             pending = [(item.get("id"), item.get("table")) for item in candidates]

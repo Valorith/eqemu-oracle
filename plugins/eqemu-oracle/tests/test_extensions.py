@@ -88,6 +88,21 @@ class MergeRecordsTest(unittest.TestCase):
 
             self.assertEqual(len(loaded), 1)
             self.assertEqual(loaded[0]["id"], "real_table")
+            self.assertEqual(loaded[0]["_extension_file"], "schema/real_extension.json")
+
+    def test_extension_file_labels_are_stable_for_standard_roots(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            repo_root = root / "extensions"
+            dump_json(
+                repo_root / "schema" / "real_extension.json",
+                {"tables": [{"id": "real_table", "table": "real_table", "mode": "augment"}]},
+            )
+
+            loaded = load_domain_extensions(repo_root, "schema")
+
+            self.assertEqual(len(loaded), 1)
+            self.assertEqual(loaded[0]["_extension_file"], "extensions/schema/real_extension.json")
 
     def test_find_stale_schema_extensions_detects_upstream_covered_overlay(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
