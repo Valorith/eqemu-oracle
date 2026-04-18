@@ -1,0 +1,89 @@
+{
+  "category": "data-storage",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "[Character Identifier](../../schema/characters/character_data.md)",
+      "name": "charid"
+    },
+    {
+      "data_type": "int",
+      "description": "[NPC Type Identifier](../../schema/npcs/npc_types.md)",
+      "name": "npcid"
+    },
+    {
+      "data_type": "int",
+      "description": "[Zone Identifier](../../../../server/zones/zone-list)",
+      "name": "zoneid"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Name",
+      "name": "name"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Value",
+      "name": "value"
+    },
+    {
+      "data_type": "int",
+      "description": "Expiration Date UNIX Timestamp",
+      "name": "expdate"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/data-storage/quest_globals/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "quest_globals",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "quest_globals",
+  "path": "schema/data-storage/quest_globals",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "charid",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    },
+    {
+      "local_key": "name",
+      "relationship_type": "Has-Many",
+      "remote_key": "it_qglobal",
+      "remote_table": "[item_tick](../../schema/items/item_tick.md)"
+    },
+    {
+      "local_key": "name",
+      "relationship_type": "Has-Many",
+      "remote_key": "qglobal",
+      "remote_table": "[merc_merchant_templates](../../schema/mercenaries/merc_merchant_templates.md)"
+    },
+    {
+      "local_key": "name",
+      "relationship_type": "Has-Many",
+      "remote_key": "qglobal",
+      "remote_table": "[spell_globals](../../schema/spells/spell_globals.md)"
+    },
+    {
+      "local_key": "npcid",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[npc_types](../../schema/npcs/npc_types.md)"
+    },
+    {
+      "local_key": "zoneid",
+      "relationship_type": "One-to-One",
+      "remote_key": "zoneidnumber",
+      "remote_table": "[zone](../../schema/zone/zone.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/data-storage/quest_globals.md",
+  "table": "quest_globals",
+  "title": "quest_globals"
+}

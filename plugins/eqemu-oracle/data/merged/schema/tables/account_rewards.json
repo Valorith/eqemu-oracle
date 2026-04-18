@@ -1,0 +1,57 @@
+{
+  "category": "account",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "[Account Identifier](account.md)",
+      "name": "account_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Veteran Reward Identifier](../../schema/admin/veteran_reward_templates.md)",
+      "name": "reward_id"
+    },
+    {
+      "data_type": "int",
+      "description": "Amount",
+      "name": "amount"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/account/account_rewards/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "account_rewards",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "account_rewards",
+  "path": "schema/account/account_rewards",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "account_rewards",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "reward_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "claim_id",
+      "remote_table": "[veteran_reward_templates](../../schema/admin/veteran_reward_templates.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/account/account_rewards.md",
+  "table": "account_rewards",
+  "title": "account_rewards"
+}

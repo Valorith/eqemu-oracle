@@ -1,0 +1,58 @@
+{
+  "category": "adventures",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "[Adventure Identifier](adventure_details.md)",
+      "name": "id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Character Identifier](../../schema/characters/character_data.md)",
+      "name": "charid"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/adventures/adventure_members/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "adventure_members",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "adventure_members",
+  "path": "schema/adventures/adventure_members",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "adventure_members",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[adventure_details](../../schema/adventures/adventure_details.md)"
+    },
+    {
+      "local_key": "charid",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/adventures/adventure_members.md",
+  "table": "adventure_members",
+  "title": "adventure_members"
+}

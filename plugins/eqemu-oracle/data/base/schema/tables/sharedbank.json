@@ -1,0 +1,126 @@
+{
+  "category": "account",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "[Unique Account Identifier](account.md)",
+      "name": "acctid"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "[Slot Identifier](../../../../server/inventory/inventory-slots)",
+      "name": "slotid"
+    },
+    {
+      "data_type": "int",
+      "description": "[Item Identifier](../../schema/items/items.md)",
+      "name": "itemid"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Charges",
+      "name": "charges"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Augment Slot 1",
+      "name": "augslot1"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Augment Slot 2",
+      "name": "augslot2"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Augment Slot 3",
+      "name": "augslot3"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Augment Slot 4",
+      "name": "augslot4"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Augment Slot 5",
+      "name": "augslot5"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Augment Slot 6",
+      "name": "augslot6"
+    },
+    {
+      "data_type": "text",
+      "description": "Custom Data",
+      "name": "custom_data"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/account/sharedbank/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "sharedbank",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "sharedbank",
+  "path": "schema/account/sharedbank",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "acctid",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[account](../../schema/account/account.md)"
+    },
+    {
+      "local_key": "augslot1",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[items](../../schema/items/items.md)"
+    },
+    {
+      "local_key": "augslot2",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[items](../../schema/items/items.md)"
+    },
+    {
+      "local_key": "augslot3",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[items](../../schema/items/items.md)"
+    },
+    {
+      "local_key": "augslot4",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[items](../../schema/items/items.md)"
+    },
+    {
+      "local_key": "augslot5",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[items](../../schema/items/items.md)"
+    },
+    {
+      "local_key": "augslot6",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[items](../../schema/items/items.md)"
+    },
+    {
+      "local_key": "itemid",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[items](../../schema/items/items.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/account/sharedbank.md",
+  "table": "sharedbank",
+  "title": "sharedbank"
+}

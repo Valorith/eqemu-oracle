@@ -1,0 +1,55 @@
+{
+  "category": "characters",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "[Character Identifier](character_data.md)",
+      "name": "id"
+    },
+    {
+      "data_type": "smallint",
+      "description": "[AA Identifier](../../schema/aas/aa_ability.md)",
+      "name": "aa_id"
+    },
+    {
+      "data_type": "smallint",
+      "description": "AA Value",
+      "name": "aa_value"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Charges",
+      "name": "charges"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/characters/character_alternate_abilities/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "character_alternate_abilities",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "character_alternate_abilities",
+  "path": "schema/characters/character_alternate_abilities",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    },
+    {
+      "local_key": "aa_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[aa_ranks](../../schema/aas/aa_ranks.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_alternate_abilities.md",
+  "table": "character_alternate_abilities",
+  "title": "character_alternate_abilities"
+}

@@ -1,0 +1,194 @@
+{
+  "category": "mercenaries",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "[Mercenary NPC Type Identifier](merc_npc_types.md)",
+      "name": "merc_npc_type_id"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Client Level",
+      "name": "clientlevel"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Level",
+      "name": "level"
+    },
+    {
+      "data_type": "int",
+      "description": "Health",
+      "name": "hp"
+    },
+    {
+      "data_type": "int",
+      "description": "Mana",
+      "name": "mana"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Armor Class",
+      "name": "AC"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Attack",
+      "name": "ATK"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Strength",
+      "name": "STR"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Stamina",
+      "name": "STA"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Dexterity",
+      "name": "DEX"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Agility",
+      "name": "AGI"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Intelligence",
+      "name": "_INT"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Wisdom",
+      "name": "WIS"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Charisma",
+      "name": "CHA"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Magic Resistance",
+      "name": "MR"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Cold Resistance",
+      "name": "CR"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Disease Resistance",
+      "name": "DR"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Fire Resistance",
+      "name": "FR"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Poison Resistance",
+      "name": "PR"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Corruption Resistance",
+      "name": "Corrup"
+    },
+    {
+      "data_type": "int",
+      "description": "Minimum Damage",
+      "name": "mindmg"
+    },
+    {
+      "data_type": "int",
+      "description": "Maximum Damage",
+      "name": "maxdmg"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Attack Count",
+      "name": "attack_count"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Attack Speed: The lower the number, the faster the NPC hits. (Deprecated)",
+      "name": "attack_speed"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Attack Delay: Delay between the attack arounds in 10ths of a second.",
+      "name": "attack_delay"
+    },
+    {
+      "data_type": "text",
+      "description": "Special Abilities",
+      "name": "special_abilities"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Accuracy",
+      "name": "Accuracy"
+    },
+    {
+      "data_type": "int",
+      "description": "Health Regeneration Rate",
+      "name": "hp_regen_rate"
+    },
+    {
+      "data_type": "int",
+      "description": "Mana Regeneration Rate",
+      "name": "mana_regen_rate"
+    },
+    {
+      "data_type": "float",
+      "description": "Run Speed",
+      "name": "runspeed"
+    },
+    {
+      "data_type": "int",
+      "description": "Stat Scale: 50 = 50%, 100 = 100%, 150 = 150%",
+      "name": "statscale"
+    },
+    {
+      "data_type": "float",
+      "description": "Spell Scale: 50 = 50%, 100 = 100%, 150 = 150%",
+      "name": "spellscale"
+    },
+    {
+      "data_type": "float",
+      "description": "Heal Scale: 50 = 50%, 100 = 100%, 150 = 150%",
+      "name": "healscale"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/mercenaries/merc_stats/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "merc_stats",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "merc_stats",
+  "path": "schema/mercenaries/merc_stats",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "merc_npc_type_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "merc_npc_type_id",
+      "remote_table": "[merc_npc_types](../../schema/mercenaries/merc_npc_types.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/mercenaries/merc_stats.md",
+  "table": "merc_stats",
+  "title": "merc_stats"
+}

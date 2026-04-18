@@ -1,0 +1,50 @@
+{
+  "category": "dynamic-zones",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Dynamic Zone Member Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Dynamic Zone Identifier](dynamic_zones.md)",
+      "name": "dynamic_zone_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Character Identifier](../../schema/characters/character_data.md)",
+      "name": "character_id"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/dynamic-zones/dynamic_zone_members/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "dynamic_zone_members",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "dynamic_zone_members",
+  "path": "schema/dynamic-zones/dynamic_zone_members",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "character_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    },
+    {
+      "local_key": "dynamic_zone_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[dynamic_zones](../../schema/tasks/shared_task_dynamic_zones.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/dynamic-zones/dynamic_zone_members.md",
+  "table": "dynamic_zone_members",
+  "title": "dynamic_zone_members"
+}

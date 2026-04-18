@@ -1,0 +1,192 @@
+{
+  "category": "tasks",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Task Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Task Type](../../../../server/task-system-guide/task-types)",
+      "name": "type"
+    },
+    {
+      "data_type": "int",
+      "description": "Duration",
+      "name": "duration"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Duration Code](../../../../server/task-system-guide/task-duration-codes)",
+      "name": "duration_code"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Title",
+      "name": "title"
+    },
+    {
+      "data_type": "text",
+      "description": "Description",
+      "name": "description"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Reward Description",
+      "name": "reward"
+    },
+    {
+      "data_type": "int",
+      "description": "[Reward Item Identifier](../../schema/items/items.md)",
+      "name": "rewardid"
+    },
+    {
+      "data_type": "int",
+      "description": "Cash Reward in Copper",
+      "name": "cash_reward"
+    },
+    {
+      "data_type": "int",
+      "description": "Experience Reward",
+      "name": "xpreward"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Reward Method: 0 = Single Item ID, 1 = List of Items, 2 = Quest Controlled",
+      "name": "rewardmethod"
+    },
+    {
+      "data_type": "int",
+      "description": "Reward Points",
+      "name": "reward_points"
+    },
+    {
+      "data_type": "int",
+      "description": "Reward Point Type: 4 = Radiant, 5 = Ebon",
+      "name": "reward_point_type"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Minimum Level",
+      "name": "min_level"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Maximum Level",
+      "name": "max_level"
+    },
+    {
+      "data_type": "int",
+      "description": "Level Spread",
+      "name": "level_spread"
+    },
+    {
+      "data_type": "int",
+      "description": "Minimum Players",
+      "name": "min_players"
+    },
+    {
+      "data_type": "int",
+      "description": "Maximum Players",
+      "name": "max_players"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Repeatable: 0 = False, 1 = True",
+      "name": "repeatable"
+    },
+    {
+      "data_type": "int",
+      "description": "Faction Reward",
+      "name": "faction_reward"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Completion Emote",
+      "name": "completion_emote"
+    },
+    {
+      "data_type": "int",
+      "description": "Group Replay Timer in Seconds",
+      "name": "replay_timer_group"
+    },
+    {
+      "data_type": "int",
+      "description": "Replay Timer in Seconds",
+      "name": "replay_timer_seconds"
+    },
+    {
+      "data_type": "int",
+      "description": "Group Request Timer in Seconds",
+      "name": "request_timer_group"
+    },
+    {
+      "data_type": "int",
+      "description": "Request Timer in Seconds",
+      "name": "request_timer_seconds"
+    },
+    {
+      "data_type": "int",
+      "description": "[Dynamic Zone Template Identifier](../../schema/dynamic-zones/dynamic_zone_templates.md)",
+      "name": "dz_template_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Lock Activity Identifier](../../schema/tasks/task_activities.md)",
+      "name": "lock_activity_id"
+    },
+    {
+      "data_type": "int",
+      "description": "Faction Amount",
+      "name": "faction_amount"
+    },
+    {
+      "data_type": "smallint",
+      "description": "",
+      "name": "enabled"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/tasks/tasks/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "tasks",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "tasks",
+  "path": "schema/tasks/tasks",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "taskid",
+      "remote_table": "[task_activities](../../schema/tasks/task_activities.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "taskid",
+      "remote_table": "[tasksets](../../schema/tasks/tasksets.md)"
+    },
+    {
+      "local_key": "type",
+      "relationship_type": "Has-Many",
+      "remote_key": "type",
+      "remote_table": "[character_tasks](../../schema/characters/character_tasks.md)"
+    },
+    {
+      "local_key": "dz_template_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[dynamic_zone_templates](../../schema/dynamic-zones/dynamic_zone_templates.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/tasks/tasks.md",
+  "table": "tasks",
+  "title": "tasks"
+}

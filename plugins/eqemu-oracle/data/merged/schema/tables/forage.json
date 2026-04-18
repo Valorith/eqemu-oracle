@@ -1,0 +1,105 @@
+{
+  "category": "tradeskills",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Forage Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Zone Identifier](../../../../server/zones/zone-list)",
+      "name": "zoneid"
+    },
+    {
+      "data_type": "int",
+      "description": "[Item Identifier](../../schema/items/items.md)",
+      "name": "Itemid"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Level",
+      "name": "level"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Chance: 0 = Never, 100 = Always",
+      "name": "chance"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Minimum Expansion](../../../../server/operation/expansion-list)",
+      "name": "min_expansion"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Maximum Expansion](../../../../server/operation/expansion-list)",
+      "name": "max_expansion"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Content Flags Required to be Enabled",
+      "name": "content_flags"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Content Flags Required to be Disabled",
+      "name": "content_flags_disabled"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/tradeskills/forage/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "forage",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "forage",
+  "path": "schema/tradeskills/forage",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "forage",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "content_flags",
+      "relationship_type": "One-to-One",
+      "remote_key": "flag_name",
+      "remote_table": "[content_flags](../../schema/flagging/content_flags.md)"
+    },
+    {
+      "local_key": "content_flags_disabled",
+      "relationship_type": "One-to-One",
+      "remote_key": "flag_name",
+      "remote_table": "[content_flags](../../schema/flagging/content_flags.md)"
+    },
+    {
+      "local_key": "Itemid",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[items](../../schema/items/items.md)"
+    },
+    {
+      "local_key": "zoneid",
+      "relationship_type": "One-to-One",
+      "remote_key": "zoneidnumber",
+      "remote_table": "[zone](../../schema/zone/zone.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/tradeskills/forage.md",
+  "table": "forage",
+  "title": "forage"
+}

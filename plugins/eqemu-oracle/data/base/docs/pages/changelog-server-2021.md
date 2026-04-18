@@ -1,0 +1,1106 @@
+# 2021
+
+## 11/25/2021
+
+**Akkadius** [Hotfix] Crash fix that apparently didn't make it in another PR  
+**Akkadius** [Hotfix] Default PR [#1758](https://github.com/EQEmu/Server/pull/1758) to false  
+**Akkadius** [Hotfix] Line ending changes  
+**Akkadius** Revert "[BugFix] Charm Targeting and other issues. ([#1655](https://github.com/EQEmu/Server/pull/1655))"  
+**Akkadius** Revert "Shared task kill update fix"  
+**Akkadius** Shared task kill update fix  
+**Akkadius** [Charm] Push up fragments of Kayen's PR back up ([#1659](https://github.com/EQEmu/Server/pull/1659))  
+**Akkadius** [Commands] Fix Z on #spawnfix ([#1647](https://github.com/EQEmu/Server/pull/1647))  
+**Akkadius** [Dialogue Window / Saylinks] Missing Changes ([#1574](https://github.com/EQEmu/Server/pull/1574))  
+**Akkadius** [DiaWind] Tag Adjustments for title, button\_one, button\_two ([#1610](https://github.com/EQEmu/Server/pull/1610))  
+**Akkadius** [GM Command] Door Manipulation Command Port ([#1524](https://github.com/EQEmu/Server/pull/1524))  
+**Akkadius** [GM Commands] Split GM Commands Into Separate Files ([#1766](https://github.com/EQEmu/Server/pull/1766))  
+**Akkadius** [Hotfix] Fix freeze formatting for Quest API parsing (Spire) ([#1547](https://github.com/EQEmu/Server/pull/1547))  
+**Akkadius** [Hotfix] Gate some new shared task logic behind task rule ([#1656](https://github.com/EQEmu/Server/pull/1656))  
+**Akkadius** [HP Updates] Fix for Titanium clients not being updated properly by removing client version check ([#1596](https://github.com/EQEmu/Server/pull/1596))  
+**Akkadius** [Loginserver] Add config option to display player count ([#1738](https://github.com/EQEmu/Server/pull/1738))  
+**Akkadius** [Loginserver] Add some resiliency to LS requests ([#1663](https://github.com/EQEmu/Server/pull/1663))  
+**Akkadius** [Loginserver] Code Cleanup and Tweaks ([#1653](https://github.com/EQEmu/Server/pull/1653))  
+**Akkadius** [Loginserver] Health Checks ([#1665](https://github.com/EQEmu/Server/pull/1665))  
+**Akkadius** [Loginserver] Worldserver Name Sanitization ([#1739](https://github.com/EQEmu/Server/pull/1739))  
+**Akkadius** [Rez] Fix Z during Resurrection ([#1648](https://github.com/EQEmu/Server/pull/1648))  
+**Akkadius** [Saylinks] Fix auto saylink injection edge cases ([#1620](https://github.com/EQEmu/Server/pull/1620))  
+**Akkadius** [Saylinks] Implement Auto Saylink Injection ([#1525](https://github.com/EQEmu/Server/pull/1525))  
+**Akkadius** [Saylinks] In-Memory Saylink Lookups ([#1644](https://github.com/EQEmu/Server/pull/1644))  
+**Akkadius** [Saylinks] Multiple saylinks in brackets ([#1643](https://github.com/EQEmu/Server/pull/1643))  
+**Akkadius** [Shared Tasks] Task Kill Update Fix ([#1573](https://github.com/EQEmu/Server/pull/1573))  
+**Akkadius** [Shared Tasks] World Reload Task Data on #task reloadall ([#1641](https://github.com/EQEmu/Server/pull/1641))  
+**Akkadius** [Spells/Disciplines] Bulk Train / Scribe ([#1640](https://github.com/EQEmu/Server/pull/1640))  
+**Akkadius** Update changelog.txt  
+**Alex** [Networking] Servertalk Legacy World Connections for Login ([#1662](https://github.com/EQEmu/Server/pull/1662))  
+**Chris** [Bots] Fix for Bot Pets Taunting ([#1519](https://github.com/EQEmu/Server/pull/1519))  
+**Cole-SoD** Minor corrections ([#1582](https://github.com/EQEmu/Server/pull/1582))  
+**Cole-SoD** [Zone] Add LavaDamage and MinLavaDamage support to ZoneHeader ([#1540](https://github.com/EQEmu/Server/pull/1540))  
+**cybernine186** [Rules] Gate /tgb, /autofire and /melody ([#1679](https://github.com/EQEmu/Server/pull/1679))  
+**hg** [Cleanup] Remove unused door variable. ([#1685](https://github.com/EQEmu/Server/pull/1685))  
+**hg** [Hotfix] Add include to fix windows build ([#1657](https://github.com/EQEmu/Server/pull/1657))  
+**hg** [Loginserver] Identify unknown login client packet fields ([#1680](https://github.com/EQEmu/Server/pull/1680))  
+**hg** Make columns in doors table not nullable ([#1597](https://github.com/EQEmu/Server/pull/1597))  
+**hg** [Quest API] Add back removed lua class properties ([#1742](https://github.com/EQEmu/Server/pull/1742))  
+**hg** [Quest API] Add client->SummonBaggedItems(bag\_item\_id, bag\_items\_ref) to Perl/Lua.  
+**hg** [Quest API] Add mob SetPet and RemovePet quest apis ([#1569](https://github.com/EQEmu/Server/pull/1569))  
+**hg** [Quest API] Add perl hash apis for dz creation ([#1571](https://github.com/EQEmu/Server/pull/1571))  
+**hg** Remove unnecessary includes ([#1585](https://github.com/EQEmu/Server/pull/1585))  
+**hg** [Repositories] Use repositories to load doors ([#1572](https://github.com/EQEmu/Server/pull/1572))  
+**hg** [Shared Tasks] Start solo task replay timers from completion time ([#1568](https://github.com/EQEmu/Server/pull/1568))  
+**JJ** [Bug Fix] Removed unused pointer. Fixes [#157](https://github.com/EQEmu/Server/issues/157). ([#1748](https://github.com/EQEmu/Server/pull/1748))  
+**JJ** [Config] Delete extra versions ([#1763](https://github.com/EQEmu/Server/pull/1763))  
+**JJ** [Hotfix] Optional SQL for existing servers ([#1756](https://github.com/EQEmu/Server/pull/1756))  
+**JJ** [Loginserver] Increase IP/hostname size a bit more ([#1765](https://github.com/EQEmu/Server/pull/1765))  
+**JJ** [Logs] Show local\_address in correct location ([#1721](https://github.com/EQEmu/Server/pull/1721))  
+**JJ** Make room for host names.  
+**JJ** Update 2021\_03\_03\_instance\_safereturns.sql ([#1636](https://github.com/EQEmu/Server/pull/1636))  
+**KayenEQ** [API] mob->SpellEffect small perl fix ([#1820](https://github.com/EQEmu/Server/pull/1820))  
+**KayenEQ** [BugFix] Charm Targeting and other issues. ([#1655](https://github.com/EQEmu/Server/pull/1655))  
+**KayenEQ** [BugFix] Fix for bard song instrument mod formula from recent update ([#1654](https://github.com/EQEmu/Server/pull/1654))  
+**KayenEQ** [Bug Fix] Fix for dual wield animation when same delay weapons. ([#1671](https://github.com/EQEmu/Server/pull/1671))  
+**KayenEQ** [Bug Fix] Healing pets not correctly dropping out of combat status ([#1603](https://github.com/EQEmu/Server/pull/1603))  
+**KayenEQ** [Bug Fix] Melee Life tap overflowing and causing damage ([#1773](https://github.com/EQEmu/Server/pull/1773))  
+**KayenEQ** [Bug Fix] Prevent critical DOTs from affecting beneficial damage over time ([#1710](https://github.com/EQEmu/Server/pull/1710))  
+**KayenEQ** [BugFix] Remove potential nullptrs in Virus Code ([#1658](https://github.com/EQEmu/Server/pull/1658))  
+**KayenEQ** [Bug Fix] SOF+ clients item click recast timer not met check ([#1682](https://github.com/EQEmu/Server/pull/1682))  
+**KayenEQ** [Combat] Updates to IMMUNE\_MELEE\_NONMAGICAL mechanics ([#1616](https://github.com/EQEmu/Server/pull/1616))  
+**KayenEQ** [Commands] #tune command rewrite ([#1677](https://github.com/EQEmu/Server/pull/1677))  
+**KayenEQ** [Bug Fix] Fixes IMMUNE MELEE NONMAGICAL logic  ([#1606](https://github.com/EQEmu/Server/pull/1606))  
+**KayenEQ** [Bug Fix] Bard instrument modifiers applying to effects when it shouldn't under certain conditions. ([#1822](https://github.com/EQEmu/Server/pull/1822))  
+**KayenEQ** [Quest API] Added NPC special ability to modify Riposte/Dodge/Parry/Block chance ([#1683](https://github.com/EQEmu/Server/pull/1683))  
+**KayenEQ** [Bug Fix] Prevent buffs that Persist Death from being removed from SE_SpellOnDeath ([#1604](https://github.com/EQEmu/Server/pull/1604))  
+**KayenEQ** [API] mob->SpellEffect can now properly display spell effect that are used on a target.  ([#1785](https://github.com/EQEmu/Server/pull/1785))  
+**KayenEQ** [Spells] Allow item click effects to have cast time and recast time modified by focus effects. ([#1695](https://github.com/EQEmu/Server/pull/1695))  
+**KayenEQ** [Spells] Corrected implementation of SE\_Purify 291 ([#1541](https://github.com/EQEmu/Server/pull/1541))  
+**KayenEQ** [Spells] Fixed proc rate for Ranged procs ([#1715](https://github.com/EQEmu/Server/pull/1715))  
+**KayenEQ** [Spells] Fix to prevent Charmed Pets from continuing fight target if owner is dead. ([#1600](https://github.com/EQEmu/Server/pull/1600))  
+**KayenEQ** [Spells] Implemented SPA 415 SE\_FFItemClass ([#1688](https://github.com/EQEmu/Server/pull/1688))  
+**KayenEQ** [Spells] Implemented SPA 511 SE\_Ff\_FocusTimerMin ([#1645](https://github.com/EQEmu/Server/pull/1645))  
+**KayenEQ** [Spells] Implemented SPA 512 SE\_Proc\_Timer\_Modifier, Fixed AA procs not working ([#1646](https://github.com/EQEmu/Server/pull/1646))  
+**KayenEQ** [Spells] Rework for SPA 413 SE\_FcBaseEffects and Bard updates ([#1629](https://github.com/EQEmu/Server/pull/1629))  
+**KayenEQ** [Spells] Rework of Virus Effect code ([#1593](https://github.com/EQEmu/Server/pull/1593))  
+**KayenEQ** [Spells] Support for SPA 161 and 450 to give percent spell or dot mitigation from Items or AA's. ([#1793](https://github.com/EQEmu/Server/pull/1793))  
+**KayenEQ** [Spells] Updated Memory Blur SPA 63 - Implemented Live Mechanics ([#1559](https://github.com/EQEmu/Server/pull/1559))  
+**KayenEQ** [Spells] Update SPA 101 SE\_CompleteHeal ([#1544](https://github.com/EQEmu/Server/pull/1544))  
+**KayenEQ** [Spells] Update SPA158 Reflect ([#1590](https://github.com/EQEmu/Server/pull/1590))  
+**KayenEQ** [Spells] Update to Charm target restriction code ([#1666](https://github.com/EQEmu/Server/pull/1666))  
+**KayenEQ** [Spells] Update to how Bard Instrument mods are applied to spell effects ([#1628](https://github.com/EQEmu/Server/pull/1628))  
+**KayenEQ** [Spells] Update to IsCombatProc checks ([#1741](https://github.com/EQEmu/Server/pull/1741))  
+**KayenEQ** [Spells] Update to SPA305 ([#1545](https://github.com/EQEmu/Server/pull/1545))  
+**KayenEQ** [Spells] Update to SPA 442 and 443 (SE\_TriggerOnReqTarget, SE\_TriggerOnReqCaster) ([#1543](https://github.com/EQEmu/Server/pull/1543))  
+**KayenEQ** [BugFix] Charm Targeting Fix ([#1668](https://github.com/EQEmu/Server/pull/1668))  
+**KayenEQ** [Spells] Update and fix for SPA382 SE_NegateEffect ([#1670](https://github.com/EQEmu/Server/pull/1670))  
+**KayenEQ** [Spells] Fix for Spell Buff Max Hits not displaying when initially cast ([#1554](https://github.com/EQEmu/Server/pull/1554))  
+**KayenEQ** [BugFix] Missing safe delete of action packet ([#1635](https://github.com/EQEmu/Server/pull/1635))  
+**Kinglykrab** [Bug Fix] Allow invisible to be cast on Raid Group members. ([#1607](https://github.com/EQEmu/Server/pull/1607))  
+**Kinglykrab** [Bug Fix] Dialogue Window Name replace. ([#1581](https://github.com/EQEmu/Server/pull/1581))  
+**Kinglykrab** [Bug Fix] Fix Character Recast Type -1 saving to database. ([#1598](https://github.com/EQEmu/Server/pull/1598))  
+**Kinglykrab** [Bug Fix] Fix Elemental Illusion spells not using proper texture. ([#1691](https://github.com/EQEmu/Server/pull/1691))  
+**Kinglykrab** [Bug Fix] Fixes EVENT\_DISCONNECT for /quit and /exit. ([#1542](https://github.com/EQEmu/Server/pull/1542))  
+**Kinglykrab** [Bug Fix] Fix missing format in client message. ([#1637](https://github.com/EQEmu/Server/pull/1637))  
+**Kinglykrab** [Bug Fix] Fix Mob::ShowStats() Proximity Display. ([#1708](https://github.com/EQEmu/Server/pull/1708))  
+**Kinglykrab** [Bug Fix] Fix OpenSSL Support for Windows ([#1625](https://github.com/EQEmu/Server/pull/1625))  
+**Kinglykrab** [Bug Fix] Fix possible #proximity crash. ([#1639](https://github.com/EQEmu/Server/pull/1639))  
+**Kinglykrab** [Bug Fix] GetSpellStat() Identifiers were comparing improperly. ([#1552](https://github.com/EQEmu/Server/pull/1552))  
+**Kinglykrab** [Bug Fix] Loginserver Error String Constants. ([#1747](https://github.com/EQEmu/Server/pull/1747))  
+**Kinglykrab** [Bug Fix] Resolves issues with improper genders and textures on spells. ([#1533](https://github.com/EQEmu/Server/pull/1533))  
+**Kinglykrab** [Bug Fix] Send appearance wasn't setting size properly when changing races. ([#1586](https://github.com/EQEmu/Server/pull/1586))  
+**Kinglykrab** [Bug Fix] Trim output in hidden dialogue response. ([#1587](https://github.com/EQEmu/Server/pull/1587))  
+**Kinglykrab** [Bug Fix] Trim trailing whitespace off output in Popup. ([#1584](https://github.com/EQEmu/Server/pull/1584))  
+**Kinglykrab** [Cleanup] Add Entity ID to ShowStats() NPC display. ([#1770](https://github.com/EQEmu/Server/pull/1770))  
+**Kinglykrab** [Cleanup] Convert DeleteItemInInventory quantity to int16. ([#1767](https://github.com/EQEmu/Server/pull/1767))  
+**Kinglykrab** [Cleanup] Make use of AccountStatus constants wherever status is checked or used. ([#1764](https://github.com/EQEmu/Server/pull/1764))  
+**Kinglykrab** [Cleanup] Utilize ConvertSecondsToTime() method. ([#1805](https://github.com/EQEmu/Server/pull/1805))  
+**Kinglykrab** [Commands] Add #emptyinventory Command. ([#1684](https://github.com/EQEmu/Server/pull/1684))  
+**Kinglykrab** [Commands] Add #findfaction Command. ([#1697](https://github.com/EQEmu/Server/pull/1697))  
+**Kinglykrab** [Commands] Add #findskill [search criteria] Command. ([#1674](https://github.com/EQEmu/Server/pull/1674))  
+**Kinglykrab** [Commands] Add #findtask [search criteria] Command. ([#1675](https://github.com/EQEmu/Server/pull/1675))  
+**Kinglykrab** [Commands] Adds #dye command. ([#1537](https://github.com/EQEmu/Server/pull/1537))  
+**Kinglykrab** [Commands] Cleanup #advnpcspawn and #npcspawn Commands. ([#1754](https://github.com/EQEmu/Server/pull/1754))  
+**Kinglykrab** [Commands] Cleanup #aggro Command. ([#1799](https://github.com/EQEmu/Server/pull/1799))  
+**Kinglykrab** [Commands] Cleanup #aggrozone Command. ([#1798](https://github.com/EQEmu/Server/pull/1798))  
+**Kinglykrab** [Commands] Cleanup #camerashake Command. ([#1787](https://github.com/EQEmu/Server/pull/1787))  
+**Kinglykrab** [Commands] Cleanup #cast Command. ([#1706](https://github.com/EQEmu/Server/pull/1706))  
+**Kinglykrab** [Commands] Cleanup #checklos Command. ([#1744](https://github.com/EQEmu/Server/pull/1744))  
+**Kinglykrab** [Commands] Cleanup #corpse Command. ([#1790](https://github.com/EQEmu/Server/pull/1790))  
+**Kinglykrab** [Commands] Cleanup #cvs Command. ([#1709](https://github.com/EQEmu/Server/pull/1709))  
+**Kinglykrab** [Commands] Cleanup #damage Command. ([#1789](https://github.com/EQEmu/Server/pull/1789))  
+**Kinglykrab** [Commands] Cleanup #disablerecipe Command. ([#1816](https://github.com/EQEmu/Server/pull/1816))  
+**Kinglykrab** [Commands] Cleanup #distance Command. ([#1707](https://github.com/EQEmu/Server/pull/1707))  
+**Kinglykrab** [Commands] Cleanup #enablerecipe Command. ([#1817](https://github.com/EQEmu/Server/pull/1817))  
+**Kinglykrab** [Commands] Cleanup #endurance Command. ([#1719](https://github.com/EQEmu/Server/pull/1719))  
+**Kinglykrab** [Commands] Cleanup #faction Command. ([#1716](https://github.com/EQEmu/Server/pull/1716))  
+**Kinglykrab** [Commands] Cleanup #findnpctype Command. ([#1714](https://github.com/EQEmu/Server/pull/1714))  
+**Kinglykrab** [Commands] Cleanup #flags Command. ([#1783](https://github.com/EQEmu/Server/pull/1783))  
+**Kinglykrab** [Commands] Cleanup #fov Command. ([#1701](https://github.com/EQEmu/Server/pull/1701))  
+**Kinglykrab** [Commands] Cleanup #ginfo Command. ([#1788](https://github.com/EQEmu/Server/pull/1788))  
+**Kinglykrab** [Commands] Cleanup #givemoney Command. ([#1781](https://github.com/EQEmu/Server/pull/1781))  
+**Kinglykrab** [Commands] Cleanup #givemoney Command. ([#1804](https://github.com/EQEmu/Server/pull/1804))  
+**Kinglykrab** [Commands] Cleanup #heal Command. ([#1717](https://github.com/EQEmu/Server/pull/1717))  
+**Kinglykrab** [Commands] Cleanup #instance Command. ([#1803](https://github.com/EQEmu/Server/pull/1803))  
+**Kinglykrab** [Commands] Cleanup #invul Command. ([#1780](https://github.com/EQEmu/Server/pull/1780))  
+**Kinglykrab** [Commands] Cleanup #killallnpcs Command. ([#1797](https://github.com/EQEmu/Server/pull/1797))  
+**Kinglykrab** [Commands] Cleanup #lastname Command. ([#1802](https://github.com/EQEmu/Server/pull/1802))  
+**Kinglykrab** [Commands] Cleanup #loc Command. ([#1752](https://github.com/EQEmu/Server/pull/1752))  
+**Kinglykrab** [Commands] Cleanup #mana Command. ([#1718](https://github.com/EQEmu/Server/pull/1718))  
+**Kinglykrab** [Commands] Cleanup #memspell Command. ([#1801](https://github.com/EQEmu/Server/pull/1801))  
+**Kinglykrab** [Commands] Cleanup #myskills Command. ([#1796](https://github.com/EQEmu/Server/pull/1796))  
+**Kinglykrab** [Commands] Cleanup #npccast Command. ([#1699](https://github.com/EQEmu/Server/pull/1699))  
+**Kinglykrab** [Commands] Cleanup #npcstats Command. ([#1690](https://github.com/EQEmu/Server/pull/1690))  
+**Kinglykrab** [Commands] Cleanup #nukebuffs Command. ([#1795](https://github.com/EQEmu/Server/pull/1795))  
+**Kinglykrab** [Commands] Cleanup #nukeitem Command. ([#1782](https://github.com/EQEmu/Server/pull/1782))  
+**Kinglykrab** [Commands] Cleanup #peqzone Command. ([#1794](https://github.com/EQEmu/Server/pull/1794))  
+**Kinglykrab** [Commands] Cleanup #permaclass Command. ([#1777](https://github.com/EQEmu/Server/pull/1777))  
+**Kinglykrab** [Commands] Cleanup #permagender Command. ([#1779](https://github.com/EQEmu/Server/pull/1779))  
+**Kinglykrab** [Commands] Cleanup #permarace Command. ([#1778](https://github.com/EQEmu/Server/pull/1778))  
+**Kinglykrab** [Commands] Cleanup #pvp Command. ([#1800](https://github.com/EQEmu/Server/pull/1800))  
+**Kinglykrab** [Commands] Cleanup #raidloot Command. ([#1757](https://github.com/EQEmu/Server/pull/1757))  
+**Kinglykrab** [Commands] Cleanup #reloadquest Command. ([#1712](https://github.com/EQEmu/Server/pull/1712))  
+**Kinglykrab** [Commands] Cleanup #setaapts Command. ([#1750](https://github.com/EQEmu/Server/pull/1750))  
+**Kinglykrab** [Commands] Cleanup #setaaxp Command. ([#1751](https://github.com/EQEmu/Server/pull/1751))  
+**Kinglykrab** [Commands] Cleanup #setanim Command. ([#1791](https://github.com/EQEmu/Server/pull/1791))  
+**Kinglykrab** [Commands] Cleanup #setcrystals Command. ([#1745](https://github.com/EQEmu/Server/pull/1745))  
+**Kinglykrab** [Commands] Cleanup #setfaction Command. ([#1792](https://github.com/EQEmu/Server/pull/1792))  
+**Kinglykrab** [Commands] Cleanup #setlanguage Command. ([#1705](https://github.com/EQEmu/Server/pull/1705))  
+**Kinglykrab** [Commands] Cleanup #setpvppoints Command. ([#1755](https://github.com/EQEmu/Server/pull/1755))  
+**Kinglykrab** [Commands] Cleanup #setskill Command. ([#1704](https://github.com/EQEmu/Server/pull/1704))  
+**Kinglykrab** [Commands] Cleanup #showskills Command. ([#1698](https://github.com/EQEmu/Server/pull/1698))  
+**Kinglykrab** [Commands] Cleanup #showspellslist Command. ([#1703](https://github.com/EQEmu/Server/pull/1703))  
+**Kinglykrab** [Commands] Cleanup #showstats Command. ([#1700](https://github.com/EQEmu/Server/pull/1700))  
+**Kinglykrab** [Commands] Cleanup #stun Command. ([#1749](https://github.com/EQEmu/Server/pull/1749))  
+**Kinglykrab** [Commands] Cleanup #viewnpctype Command. ([#1713](https://github.com/EQEmu/Server/pull/1713))  
+**Kinglykrab** [Commands] Cleanup #viewzoneloot Command. ([#1702](https://github.com/EQEmu/Server/pull/1702))  
+**Kinglykrab** [Commands] Cleanup #worldshutdown Command. ([#1694](https://github.com/EQEmu/Server/pull/1694))  
+**Kinglykrab** [Commands] Cleanup #zclip Command. ([#1812](https://github.com/EQEmu/Server/pull/1812))  
+**Kinglykrab** [Commands] Cleanup #zcolor Command. ([#1813](https://github.com/EQEmu/Server/pull/1813))  
+**Kinglykrab** [Commands] Cleanup #zheader Command. ([#1814](https://github.com/EQEmu/Server/pull/1814))  
+**Kinglykrab** [Commands] Cleanup #zonelock Command. ([#1711](https://github.com/EQEmu/Server/pull/1711))  
+**Kinglykrab** [Commands] Cleanup #zsafecoords Command. ([#1806](https://github.com/EQEmu/Server/pull/1806))  
+**Kinglykrab** [Commands] Cleanup #zsave Command. ([#1807](https://github.com/EQEmu/Server/pull/1807))  
+**Kinglykrab** [Commands] Cleanup #zsky Command. ([#1808](https://github.com/EQEmu/Server/pull/1808))  
+**Kinglykrab** [Commands] Cleanup #zstats Command. ([#1687](https://github.com/EQEmu/Server/pull/1687))  
+**Kinglykrab** [Commands] Cleanup #zunderworld Command. ([#1809](https://github.com/EQEmu/Server/pull/1809))  
+**Kinglykrab** [Commands] Convert item ID search to use saylinks similar to name search. ([#1589](https://github.com/EQEmu/Server/pull/1589))  
+**Kinglykrab** [Commands] Further implement #worldwide functionality. ([#1693](https://github.com/EQEmu/Server/pull/1693))  
+**Kinglykrab** [Commands] Overhauled #npcedit. ([#1538](https://github.com/EQEmu/Server/pull/1538))  
+**Kinglykrab** [Commands] Remove #bug Command. ([#1737](https://github.com/EQEmu/Server/pull/1737))  
+**Kinglykrab** [Commands] Remove #clearinvsnapshots Command. ([#1736](https://github.com/EQEmu/Server/pull/1736))  
+**Kinglykrab** [Commands] Remove #connectworldserver Command. ([#1735](https://github.com/EQEmu/Server/pull/1735))  
+**Kinglykrab** [Commands] Remove #crashtest Command. ([#1734](https://github.com/EQEmu/Server/pull/1734))  
+**Kinglykrab** [Commands] Remove #d1 Command. ([#1733](https://github.com/EQEmu/Server/pull/1733))  
+**Kinglykrab** [Commands] Remove duplicate commands. ([#1819](https://github.com/EQEmu/Server/pull/1819))  
+**Kinglykrab** [Commands] Remove #ipc Command. ([#1732](https://github.com/EQEmu/Server/pull/1732))  
+**Kinglykrab** [Commands] Remove #listnpcs Command. ([#1696](https://github.com/EQEmu/Server/pull/1696))  
+**Kinglykrab** [Commands] Remove #logtest Command. ([#1731](https://github.com/EQEmu/Server/pull/1731))  
+**Kinglykrab** [Commands] Remove #manastat Command. ([#1730](https://github.com/EQEmu/Server/pull/1730))  
+**Kinglykrab** [Commands] Remove #mysqltest Command. ([#1729](https://github.com/EQEmu/Server/pull/1729))  
+**Kinglykrab** [Commands] Remove #numauths Command. ([#1728](https://github.com/EQEmu/Server/pull/1728))  
+**Kinglykrab** [Commands] Remove #optest Command. ([#1727](https://github.com/EQEmu/Server/pull/1727))  
+**Kinglykrab** [Commands] Remove #qtest Command. ([#1725](https://github.com/EQEmu/Server/pull/1725))  
+**Kinglykrab** [Commands] Remove #refundaa Command. ([#1726](https://github.com/EQEmu/Server/pull/1726))  
+**Kinglykrab** [Commands] Remove #sendop Command. ([#1722](https://github.com/EQEmu/Server/pull/1722))  
+**Kinglykrab** [Commands] Remove #serversidename Command. ([#1720](https://github.com/EQEmu/Server/pull/1720))  
+**Kinglykrab** [Commands] Remove #synctod Command. ([#1723](https://github.com/EQEmu/Server/pull/1723))  
+**Kinglykrab** [Commands] Remove #testspawn and #testspawnkill Commands. ([#1724](https://github.com/EQEmu/Server/pull/1724))  
+**Kinglykrab** [Commands] Remove #test, #spon, and #spoff Commands. ([#1686](https://github.com/EQEmu/Server/pull/1686))  
+**Kinglykrab** [Commands] Remove #zonespawn Command. ([#1811](https://github.com/EQEmu/Server/pull/1811))  
+**Kinglykrab** [Commands] Remove #zuwcoords Command. ([#1810](https://github.com/EQEmu/Server/pull/1810))  
+**Kinglykrab** [Dialogue] Add hidden response support. ([#1583](https://github.com/EQEmu/Server/pull/1583))  
+**Kinglykrab** [Dialogue] Add support for Dialogue Window buttons. ([#1546](https://github.com/EQEmu/Server/pull/1546))  
+**Kinglykrab** [Dialogue] Add support for Dialogue Window titles. ([#1563](https://github.com/EQEmu/Server/pull/1563))  
+**Kinglykrab** [Door Manipulation] Resolve some typos and add a GM check. ([#1550](https://github.com/EQEmu/Server/pull/1550))  
+**Kinglykrab** [Quest API] Add attuned/augment support to client->SummonBaggedItems() in Perl/Lua. ([#1580](https://github.com/EQEmu/Server/pull/1580))  
+**Kinglykrab** [Quest API] Add client->ReadBookByName(book\_name, book\_type) to Perl/Lua.  
+**Kinglykrab** [Quest API] Add corpse->GetLootList() and npc->GetLootList() to Perl and Lua. ([#1529](https://github.com/EQEmu/Server/pull/1529))  
+**Kinglykrab** [Quest API] Add corpse->RemoveItemByID(item\_id, quantity) to Perl and Lua. ([#1535](https://github.com/EQEmu/Server/pull/1535))  
+**Kinglykrab** [Quest API] Add cross zone and world wide dialogue windows to Perl/Lua. ([#1599](https://github.com/EQEmu/Server/pull/1599))  
+**Kinglykrab** [Quest API] Add EVENT\_COMBINE to Perl and Lua. ([#1536](https://github.com/EQEmu/Server/pull/1536))  
+**Kinglykrab** [Quest API] Add EVENT\_CONSIDER\_CORPSE to Perl and Lua. ([#1530](https://github.com/EQEmu/Server/pull/1530))  
+**Kinglykrab** [Quest API] Add EVENT\_CONSIDER to Perl and Lua. ([#1531](https://github.com/EQEmu/Server/pull/1531))  
+**Kinglykrab** [Quest API] Add GetHateRandomBot(), GetHateRandomClient(), and GetHateRandomNPC() to Perl/Lua. ([#1613](https://github.com/EQEmu/Server/pull/1613))  
+**Kinglykrab** [Quest API] Add GetIPExemption(), GetIPString(), and SetIPExemption(exemption\_amount) to Perl/Lua.  
+**Kinglykrab** [Quest API] Add IsNPCSpawned(npc\_ids) and CountSpawnedNPCs(npc\_ids) to Perl/Lua. ([#1570](https://github.com/EQEmu/Server/pull/1570))  
+**Kinglykrab** [Quest API] Add LavaDamage and MinLavaDamage to UpdateZoneHeader in Perl/Lua. ([#1578](https://github.com/EQEmu/Server/pull/1578))  
+**Kinglykrab** [Quest API] Add remove LDoN Win/Loss to Perl and Lua. ([#1611](https://github.com/EQEmu/Server/pull/1611))  
+**Kinglykrab** [Quest API] Add Spell methods to Perl. ([#1631](https://github.com/EQEmu/Server/pull/1631))  
+**Kinglykrab** [Quest API] Add UntrainDiscBySpellID(spell\_id, update\_client) to Perl/Lua. ([#1565](https://github.com/EQEmu/Server/pull/1565))  
+**Kinglykrab** [Quest API] Alphabetize Lua method exports. ([#1673](https://github.com/EQEmu/Server/pull/1673))  
+**Kinglykrab** [Quest API] Alphabetize Perl method exports. ([#1672](https://github.com/EQEmu/Server/pull/1672))  
+**Kinglykrab** [Quest API] Convert all char arrays to strings. ([#1612](https://github.com/EQEmu/Server/pull/1612))  
+**Kinglykrab** [Quest API] Convert Spell Events to similar formats and exports. ([#1618](https://github.com/EQEmu/Server/pull/1618))  
+**Kinglykrab** [Quest API] Cross zone and world wide method overhaul. ([#1520](https://github.com/EQEmu/Server/pull/1520))  
+**Kinglykrab** [Quest API] Further char array cleanup. ([#1634](https://github.com/EQEmu/Server/pull/1634))  
+**Kinglykrab** [Quest API] Simplify bulk Scribe and Train logic. ([#1660](https://github.com/EQEmu/Server/pull/1660))  
+**Kinglykrab** [Quest API] Typo in Perl $entity\_lsit->IsMobSpawnedByNpcTypeID(). ([#1576](https://github.com/EQEmu/Server/pull/1576))  
+**Kinglykrab** [Rules] Add Archery/Throwing Ammo Consumption Rules. ([#1743](https://github.com/EQEmu/Server/pull/1743))  
+**Kinglykrab** [Rules] Add Resurrection Sickness rules for Characters/Bots. ([#1692](https://github.com/EQEmu/Server/pull/1692))  
+**Logan** [Rules] Added rule to extend max race id ([#1630](https://github.com/EQEmu/Server/pull/1630))  
+**Michael Cook (mackal)** Fix Channel TellEcho issues ([#1676](https://github.com/EQEmu/Server/pull/1676))  
+**Michael Cook (mackal)** Fix issue with new summmon method putting players OOB ([#1649](https://github.com/EQEmu/Server/pull/1649))  
+**Michael Cook (mackal)** Fix linking tests due to [ddcb184](https://github.com/EQEmu/Server/commit/ddcb1841835d2d244df73db5c1aee415e7fd7c36) ([#1769](https://github.com/EQEmu/Server/pull/1769))  
+**Michael Cook (mackal)** [Summoning] Make Summon a bit more live like ([#1539](https://github.com/EQEmu/Server/pull/1539))  
+**mmcgarvey** [Rules] Add optional rule for lifetap heals ([#1689](https://github.com/EQEmu/Server/pull/1689))  
+**Natedog2012** [Bug Fix] Do not check tics remaining on non-buff spells ([#1633](https://github.com/EQEmu/Server/pull/1633))  
+**Natedog2012** [Bug Fix] Fix startzone rule to default players to correct zone when not found … ([#1669](https://github.com/EQEmu/Server/pull/1669))  
+**Natedog2012** Fix resetAA to actually remove all AAs except granted AAs ([#1681](https://github.com/EQEmu/Server/pull/1681))  
+**Natedog2012** [Quest API] Add EVENT\_LOOT\_ZONE to zone\_controller ([#1608](https://github.com/EQEmu/Server/pull/1608))  
+**Natedog2012** [Rules] Add optional rules for HealAmt and SpellAmt to scale DoTs/HoTs. ([#1661](https://github.com/EQEmu/Server/pull/1661))  
+**Natedog2012** [Rules] Add option rule to load AA based on CurrentExpansion rule ([#1758](https://github.com/EQEmu/Server/pull/1758))  
+**Paul Coene** (akkadius/login-changes) Fix issue with droplimit code ([#1650](https://github.com/EQEmu/Server/pull/1650))  
+**Paul Coene** [Bug Fix] Edge cases where min\_drop 1 not honored with valid choices ([#1617](https://github.com/EQEmu/Server/pull/1617))  
+**Paul Coene** [BugFix] Remove detection of client pets from Sense[Summoned|Undead|Animal] spells ([#1601](https://github.com/EQEmu/Server/pull/1601))  
+**Paul Coene** [Bug Fix] Urgent - Previous fix for TimeSync on static zones broke dynamic zones. ([#1605](https://github.com/EQEmu/Server/pull/1605))  
+**splose** [Bug Fix] Autofire attacking yourself ([#1776](https://github.com/EQEmu/Server/pull/1776))  
+**splose** [Bug Fix] Frenzy is supposed to use 1H Animation. ([#1774](https://github.com/EQEmu/Server/pull/1774))  
+**splose** [Bug Fix] - Monk AA Spirit of Master Wu ([#1775](https://github.com/EQEmu/Server/pull/1775))  
+**splose** define caster to fix a crash from [#1618](https://github.com/EQEmu/Server/pull/1618) ([#1632](https://github.com/EQEmu/Server/pull/1632))  
+**splose** [Rules] Missing Character:TradeskillUpTailoring ([#1667](https://github.com/EQEmu/Server/pull/1667))
+
+## 9/9/2021
+
+**Akkadius** [Compile Fix] Squelch warnings  
+**Akkadius** [Quest API] Port DiaWind Plugin to Native Quest API ([#1521](https://github.com/EQEmu/Server/pull/1521))  
+**Akkadius** [Hitpoints] Remove HP Update Throttling ([#1517](https://github.com/EQEmu/Server/pull/1517))  
+**Akkadius** [Hotfix] Fixing FMT Format Crash ([#1516](https://github.com/EQEmu/Server/pull/1516))  
+**Akkadius** [Logging] Implement World GMSay Logging ([#1505](https://github.com/EQEmu/Server/pull/1505))  
+**Akkadius** Pad zero size packets which is what we did on encrypted connections prior to [#1464](https://github.com/EQEmu/Server/pull/1464) ([#1504](https://github.com/EQEmu/Server/pull/1504))  
+**Akkadius** [Repositories] Add datetime support to repositories ([#1503](https://github.com/EQEmu/Server/pull/1503))  
+**Akkadius** [Server] Tweak inter process keepalive timers; this is a very tiny overhead for inter-process chatter to check for connection liveness ([#1502](https://github.com/EQEmu/Server/pull/1502))  
+**Akkadius** [Shared Tasks] Shared Tasks System Implementation ([#1451](https://github.com/EQEmu/Server/pull/1451))  
+**Alex** [Netcode] Remove security from servertalk connections ([#1464](https://github.com/EQEmu/Server/pull/1464))  
+**Dencelle** [Cheat Detection] Anti-Cheat reimplementation ([#1434](https://github.com/EQEmu/Server/pull/1434))  
+**Gangsta** [Quest API] Sit method ([#1449](https://github.com/EQEmu/Server/pull/1449))  
+**Gangsta** [Spells] IsInvisSpell() Method + InvisRequireGroup Rule ([#1453](https://github.com/EQEmu/Server/pull/1453))  
+**KayenEQ** [Feature] Implemented /shield ability and related affects ([#1494](https://github.com/EQEmu/Server/pull/1494))  
+**KayenEQ** [Spells] Fix SE_TwinCastBlocker to block twinproc ([#1476](https://github.com/EQEmu/Server/pull/1476))  
+**KayenEQ** [Spells] Implemented SPA 482 SE_Skill_Base_Damage_Mod ([#1474](https://github.com/EQEmu/Server/pull/1474))  
+**KayenEQ** [Spells] Implemented SPA 498 and 499 (extra attack chance effects) ([#1475](https://github.com/EQEmu/Server/pull/1475))  
+**KayenEQ** [Spells] Added constant labeling to all StatBonuses that use as arrays. ([#1485](https://github.com/EQEmu/Server/pull/1485))  
+**KayenEQ** [Spells] Allow SE_SecondaryForte 248 to be calculated as a bonus instead of hardcoded AA ([#1507](https://github.com/EQEmu/Server/pull/1507))  
+**KayenEQ** [Spells] Bug fix for AOE Harmony/Lull ([#1472](https://github.com/EQEmu/Server/pull/1472))  
+**KayenEQ** [Spells] Fix SPA 209 SE_DispelBeneficial not causing aggro ([#1495](https://github.com/EQEmu/Server/pull/1495))  
+**KayenEQ** [Spells] Focus related functions to use int32 instead of int16  
+**KayenEQ** [Spells] Implemented SPA 390 SE_FcTimerLockout ([#1496](https://github.com/EQEmu/Server/pull/1496))  
+**KayenEQ** [Spells] Implemented SPA 471 SE_Double_Melee_Round ([#1492](https://github.com/EQEmu/Server/pull/1492))  
+**KayenEQ** [Spells] Implemented SPA 476 SE_Weapons_Stance and Live-like AA Enable/Disable Toggle ([#1477](https://github.com/EQEmu/Server/pull/1477))  
+**KayenEQ** [Spells] Implemented SPA 489 SE_Worn_Endurance_Regen_Cap ([#1493](https://github.com/EQEmu/Server/pull/1493))  
+**KayenEQ** [Spells] Implemented SPA 504 and 506 ([#1488](https://github.com/EQEmu/Server/pull/1488))  
+**KayenEQ** [Spells] Major update to cast restriction code and new spell field 'caster_requirement_id' (field220) implemented ([#1508](https://github.com/EQEmu/Server/pull/1508))  
+**KayenEQ** [Spells] New SPA focus effects and focus limits ([#1462](https://github.com/EQEmu/Server/pull/1462))  
+**KayenEQ** [Spells] SPIndex fix for wrong const in variable ([#1487](https://github.com/EQEmu/Server/pull/1487))  
+**KayenEQ** [Spells] Updated pet suspend code to use spell effect data and bonuses ([#1501](https://github.com/EQEmu/Server/pull/1501))  
+**KayenEQ** [Spells] Updated SE_NegateSpellEffect SPA 382, new functionality ([#1514](https://github.com/EQEmu/Server/pull/1514))  
+**KayenEQ** [Spells] Update for SPA 403 and 404 ([#1482](https://github.com/EQEmu/Server/pull/1482))  
+**KayenEQ** [Spells] Update SPA 339 SE_TriggerOnCast ([#1478](https://github.com/EQEmu/Server/pull/1478))  
+**KayenEQ** [Spells] Update to SPA 130 and SPA 131 focus calculation, focus code improvements ([#1486](https://github.com/EQEmu/Server/pull/1486))  
+**KayenEQ** [Spells] Update to focus SE_BlockNextSpell ([#1479](https://github.com/EQEmu/Server/pull/1479))  
+**Kinglykrab** [Bug Fix] Shared Bank Charges Fix ([#1511](https://github.com/EQEmu/Server/pull/1511))  
+**Kinglykrab** [Quest API] Add GetHealScale() and GetSpellScale() to Perl and Lua. ([#1515](https://github.com/EQEmu/Server/pull/1515))  
+**Kinglykrab** [Quest API] Adds new methods to NPCs and Corpses ([#1510](https://github.com/EQEmu/Server/pull/1510))  
+**Kinglykrab** [Quest API] Modify GetItemStat() and GetSpellStat() functionality. ([#1509](https://github.com/EQEmu/Server/pull/1509))  
+**Logan** [Mods] Added Hastev3Cap ([#1506](https://github.com/EQEmu/Server/pull/1506))  
+**Michael Cook (mackal)** [CI] Enable Bots (Typo) in Drone Config ([#1481](https://github.com/EQEmu/Server/pull/1481))  
+**Michael Cook (mackal)** [cmake] Update min cmake version due to [fe7cb76](https://github.com/EQEmu/Server/commit/fe7cb764b2c41707766ac127c5f5ea713cc31258) ([#1489](https://github.com/EQEmu/Server/pull/1489))  
+**Michael Cook (mackal)** Fix bots with ExtraAttackChance changes ([#1480](https://github.com/EQEmu/Server/pull/1480))  
+**Michael Cook (mackal)** [Spells] Implement PVP resist and duration overrides ([#1513](https://github.com/EQEmu/Server/pull/1513))  
+**splose** [Hitpoints] More HP Fixes - Remove Hacks ([#1518](https://github.com/EQEmu/Server/pull/1518))
+
+### [Shared Tasks] Shared Task System Implementation (#1451)
+
+See [[Shared Tasks] Design Doc](https://docs.google.com/document/d/1lGbAMLCt4ZcOxah6jG_M7D66JR2Z-F0hwCbB80X8yUU/edit#heading=h.qj70bkoeg4ls) for design details. Huge props to @hgtw co-writing this system with me over the past 6 months or so
+
+**Demo Videos During Development**
+
+* [[Shared Tasks] Task Update Stress Testing](https://www.youtube.com/watch?v=udLamI6_Gdg)
+* [[Shared Tasks] Demo #2 Member Updating (Delete, Add, Leader) & Task Sync](https://www.youtube.com/watch?v=2GTjOri0hTQ)
+* [[Shared Tasks] Functionality Demo](https://www.youtube.com/watch?v=xmkkvWn9Mog)
+
+**Goals**
+
+* Shared tasks implementation to be as simple as possible
+* Shared tasks implementation to be least invasive to existing Quest API’s (Keep majority existing functionality)
+* Shared tasks to be least invasive to existing zone state management handling and use the zone-level state management to be a “client” or “subscriber” of * world when handling a task of type “shared”
+* Utilize all of the zone-level state management but insert middleware to intercept functionality where world should be authoritative over state management
+* World should be able to fully restore shared task state on crash or restart and pick up exactly where it left off
+* Attempt to keep zone as un-aware of any shared task state data as possible; none if at all possible outside of caches for duplicate update checking
+
+**High Level Notes**
+
+* Shared task creation fully works out of the box either through existing `quest::assigntask()` or `quest::taskselector()` methods. You cannot mix shared tasks with regular tasks in the task selector window.
+* Validation fully in place for Shared Task requests / adding and removal of players
+* World keeps all shared task state and keeps the local state of players in sync with the single source of truth (World) through `SharedTaskManager`
+* `DynamicZones` were decoupled from `Expeditions` by HG to be able to be used flexibly with Shared Tasks
+* Most crucial shared task messaging support has been added. Eg. players being removed, added, leadership transfer, acquiring, validation etc.
+* Existing task packets consolidated and cleaned up
+* Lockouts fully implemented (Task timers)
+* Rate limiters added to some task commands for a small DOS mitigation layer
+* Shared Task completions get historically recorded for any sort of player logging
+
+**Client Command Support**
+
+* /tasktimers
+* /taskplayerlist
+* /taskremove
+* /taskmakeleader
+* /taskadd
+* /taskquit
+
+**New Tables**
+
+* character_instance_safereturns - Handles instance safe returns
+* character_task_timers - Character task timers / lockouts
+* completed_shared_task_activity_state - Historical Shared Task information
+* completed_shared_task_members - Historical Shared Task information
+* completed_shared_tasks - Historical Shared Task information
+* shared_task_activity_state - Shared Task activity state
+* shared_task_dynamic_zones - Shared Task dynamic zones associations
+* shared_task_members - Shared Task members
+* shared_tasks - Shared Tasks
+
+```text
+describe character_instance_safereturns;
++------------------+------------------+------+-----+---------+----------------+
+| Field            | Type             | Null | Key | Default | Extra          |
++------------------+------------------+------+-----+---------+----------------+
+| id               | int(10) unsigned | NO   | PRI | NULL    | auto_increment |
+| character_id     | int(10) unsigned | NO   | UNI | NULL    |                |
+| instance_zone_id | int(11)          | NO   |     | 0       |                |
+| instance_id      | int(11)          | NO   |     | 0       |                |
+| safe_zone_id     | int(11)          | NO   |     | 0       |                |
+| safe_x           | float            | NO   |     | 0       |                |
+| safe_y           | float            | NO   |     | 0       |                |
+| safe_z           | float            | NO   |     | 0       |                |
+| safe_heading     | float            | NO   |     | 0       |                |
++------------------+------------------+------+-----+---------+----------------+
+9 rows in set (0.001 sec)
+
+MariaDB [peq]> describe character_task_timers;
++--------------+------------------+------+-----+---------------------+----------------+
+| Field        | Type             | Null | Key | Default             | Extra          |
++--------------+------------------+------+-----+---------------------+----------------+
+| id           | int(10) unsigned | NO   | PRI | NULL                | auto_increment |
+| character_id | int(10) unsigned | NO   | MUL | 0                   |                |
+| task_id      | int(10) unsigned | NO   | MUL | 0                   |                |
+| timer_type   | int(11)          | NO   |     | 0                   |                |
+| expire_time  | datetime         | NO   |     | current_timestamp() |                |
++--------------+------------------+------+-----+---------------------+----------------+
+5 rows in set (0.001 sec)
+
+MariaDB [peq]> describe completed_shared_task_activity_state;
++----------------+------------+------+-----+---------+-------+
+| Field          | Type       | Null | Key | Default | Extra |
++----------------+------------+------+-----+---------+-------+
+| shared_task_id | bigint(20) | NO   | PRI | NULL    |       |
+| activity_id    | int(11)    | NO   | PRI | NULL    |       |
+| done_count     | int(11)    | YES  |     | NULL    |       |
+| updated_time   | datetime   | YES  |     | NULL    |       |
+| completed_time | datetime   | YES  |     | NULL    |       |
++----------------+------------+------+-----+---------+-------+
+5 rows in set (0.000 sec)
+
+MariaDB [peq]> describe completed_shared_task_members;
++----------------+------------+------+-----+---------+-------+
+| Field          | Type       | Null | Key | Default | Extra |
++----------------+------------+------+-----+---------+-------+
+| shared_task_id | bigint(20) | NO   | PRI | NULL    |       |
+| character_id   | bigint(20) | NO   | PRI | NULL    |       |
+| is_leader      | tinyint(4) | YES  |     | NULL    |       |
++----------------+------------+------+-----+---------+-------+
+3 rows in set (0.000 sec)
+
+MariaDB [peq]> describe completed_shared_tasks;
++-----------------+------------+------+-----+---------+-------+
+| Field           | Type       | Null | Key | Default | Extra |
++-----------------+------------+------+-----+---------+-------+
+| id              | bigint(20) | NO   | PRI | NULL    |       |
+| task_id         | int(11)    | YES  |     | NULL    |       |
+| accepted_time   | datetime   | YES  |     | NULL    |       |
+| expire_time     | datetime   | YES  |     | NULL    |       |
+| completion_time | datetime   | YES  |     | NULL    |       |
+| is_locked       | tinyint(1) | YES  |     | NULL    |       |
++-----------------+------------+------+-----+---------+-------+
+6 rows in set (0.000 sec)
+
+MariaDB [peq]> describe shared_task_activity_state;
++----------------+------------+------+-----+---------+-------+
+| Field          | Type       | Null | Key | Default | Extra |
++----------------+------------+------+-----+---------+-------+
+| shared_task_id | bigint(20) | NO   | PRI | NULL    |       |
+| activity_id    | int(11)    | NO   | PRI | NULL    |       |
+| done_count     | int(11)    | YES  |     | NULL    |       |
+| updated_time   | datetime   | YES  |     | NULL    |       |
+| completed_time | datetime   | YES  |     | NULL    |       |
++----------------+------------+------+-----+---------+-------+
+5 rows in set (0.000 sec)
+
+MariaDB [peq]> describe shared_task_dynamic_zones;
++-----------------+------------------+------+-----+---------+-------+
+| Field           | Type             | Null | Key | Default | Extra |
++-----------------+------------------+------+-----+---------+-------+
+| shared_task_id  | bigint(20)       | NO   | PRI | NULL    |       |
+| dynamic_zone_id | int(10) unsigned | NO   | PRI | NULL    |       |
++-----------------+------------------+------+-----+---------+-------+
+2 rows in set (0.000 sec)
+
+MariaDB [peq]> describe shared_task_members;
++----------------+------------+------+-----+---------+-------+
+| Field          | Type       | Null | Key | Default | Extra |
++----------------+------------+------+-----+---------+-------+
+| shared_task_id | bigint(20) | NO   | PRI | NULL    |       |
+| character_id   | bigint(20) | NO   | PRI | NULL    |       |
+| is_leader      | tinyint(4) | YES  |     | NULL    |       |
++----------------+------------+------+-----+---------+-------+
+3 rows in set (0.000 sec)
+
+MariaDB [peq]> describe shared_tasks;
++-----------------+------------+------+-----+---------+----------------+
+| Field           | Type       | Null | Key | Default | Extra          |
++-----------------+------------+------+-----+---------+----------------+
+| id              | bigint(20) | NO   | PRI | NULL    | auto_increment |
+| task_id         | int(11)    | YES  |     | NULL    |                |
+| accepted_time   | datetime   | YES  |     | NULL    |                |
+| expire_time     | datetime   | YES  |     | NULL    |                |
+| completion_time | datetime   | YES  |     | NULL    |                |
+| is_locked       | tinyint(1) | YES  |     | NULL    |                |
++-----------------+------------+------+-----+---------+----------------+
+6 rows in set (0.001 sec)
+```
+
+**Newly Handled Ops**
+
+* OP_SharedTaskAcceptNew
+* OP_SharedTaskAddPlayer
+* OP_SharedTaskInvite
+* OP_SharedTaskInviteResponse
+* OP_SharedTaskMakeLeader
+* OP_SharedTaskMemberChange
+* OP_SharedTaskMemberInvite
+* OP_SharedTaskMemberList
+* OP_SharedTaskPlayerList
+* OP_SharedTaskQuit
+* OP_SharedTaskRemovePlayer
+* OP_SharedTaskSelectWindow
+* OP_TaskRequestTimer
+* OP_TaskSelectWindow
+* OP_TaskTimers
+
+**Relevant Shared Task Source Files**
+
+```text
+./common/shared_tasks.h
+./common/shared_tasks.cpp
+./common/repositories/completed_shared_tasks_repository.h
+./common/repositories/completed_shared_task_members_repository.h
+./common/repositories/shared_task_dynamic_zones_repository.h
+./common/repositories/completed_shared_task_activity_state_repository.h
+./common/repositories/shared_task_members_repository.h
+./common/repositories/shared_tasks_repository.h
+./common/repositories/base/base_shared_task_dynamic_zones_repository.h
+./common/repositories/base/base_completed_shared_tasks_repository.h
+./common/repositories/base/base_shared_tasks_repository.h
+./common/repositories/base/base_shared_task_activity_state_repository.h
+./common/repositories/base/base_completed_shared_task_members_repository.h
+./common/repositories/base/base_shared_task_members_repository.h
+./common/repositories/base/base_completed_shared_task_activity_state_repository.h
+./common/repositories/shared_task_activity_state_repository.h
+./zone/shared_task_zone_messaging.cpp
+./zone/shared_task_zone_messaging.h
+./world/shared_task_world_messaging.cpp
+./world/shared_task_manager.cpp
+./world/shared_task_world_messaging.h
+./world/shared_task_manager.h
+```
+
+**Images**
+
+![image](https://user-images.githubusercontent.com/3319450/132078967-18136d5d-c24f-4712-b1be-1904ce6a55cb.png) ![image](https://user-images.githubusercontent.com/3319450/132078975-22ad4174-a28e-4c90-9fee-6a5e6f0d6a11.png) ![image](https://user-images.githubusercontent.com/3319450/132078977-c3bcc499-ce33-4707-9314-a48fa6a2bdcd.png)
+
+### [Quest API] Port DiaWind Plugin to Native Quest API
+
+This PR ports the following Perl plugin to native source and is available to both Lua and Perl
+
+[https://docs.eqemu.io/quest-api/perl/plugins/diawind](https://docs.eqemu.io/quest-api/perl/plugins/diawind)
+
+**New Quest API Methods**
+
+```perl
+$client->DialogueWindow("markdown");
+$client->DiaWind("markdown"); // alias
+```
+
+```lua
+e.other:DialogueWindow("markdown");
+e.other:DiaWind("markdown"); // alias
+```
+
+**Markdown**
+
+* **{lb}** = Light Blue Color
+* **{y}** = Yellow Color
+* **{gold}** = Gold Color
+* **{g}** = Green Color
+* **{r}** = Red Color
+* **{gray}** = Gray Color
+* **~** = End Color Tag ()
+* **&gt;** = Response Text (Not Visible) - This is what the player responds with, for example: [What else do we need to do?&gt;
+* **** = Response Text (Visible) - If a NPC has multiple brackets, it will give the player multiple saylinks to click, if there is just one [bracket] inline with the text, the player will respond by clicking 'Yes' on the window
+* **+66+** = Animation number - As long as there is a number between two plus signs together, the NPC will perform that animation
+* **+salute+** = Animation phrase - This references
+* **{bullet}** - Equivalent to a bullet such as the one in this list
+* **{in}** - Will indent the text
+* **{linebreak}** - Will create a linebreak
+* **mysterious** - If the text 'mysterious' is anywhere in the text, it will not show up in the player window, but it will format the window as 'Mysterious Voice tells you'
+* **wintype:0/1** - If this is 1 the window will be Yes/No
+* **popupid:ID** - If this option is present, it will give the popup window and ID
+* **noquotes** - This tells the window to not use any quotes for special formatting at times
+* **nosound** - No sound affect will play with the window
+* **=Timer=** - If a number is specified between the two ==, it will countdown a timer on the popup window
+
+  **Images**
+
+![image](https://user-images.githubusercontent.com/3319450/132143042-0b3b1711-988b-40fb-a9aa-192b496c503d.png)
+
+**HTML Color Codes**
+
+You can also callout the follow color codes to use in the window as well by calling them out in brackets
+
+```text
+{color_name}something~
+```
+
+```cpp
+    {"black",                  "#000000"},
+    {"brown",                  "#804000"},
+    {"burgundy",               "#800000"},
+    {"cadet_blue",             "#77BFC7"},
+    {"cadet_blue_1",           "#4C787E"},
+    {"chartreuse",             "#8AFB17"},
+    {"chartreuse_1",           "#7FE817"},
+    {"chartreuse_2",           "#6CC417"},
+    {"chartreuse_3",           "#437C17"},
+    {"chocolate",              "#C85A17"},
+    {"coral",                  "#F76541"},
+    {"coral_1",                "#E55B3C"},
+    {"coral_2",                "#C34A2C"},
+    {"cornflower_blue",        "#151B8D"},
+    {"cyan",                   "#00FFFF"},
+    {"cyan_1",                 "#57FEFF"},
+    {"cyan_2",                 "#50EBEC"},
+    {"cyan_3",                 "#46C7C7"},
+    {"cyan_4",                 "#307D7E"},
+    {"dark_blue",              "#0000A0"},
+    {"dark_goldenrod",         "#AF7817"},
+    {"dark_goldenrod_1",       "#FBB117"},
+    {"dark_goldenrod_2",       "#E8A317"},
+    {"dark_goldenrod_3",       "#C58917"},
+    {"dark_goldenrod_4",       "#7F5217"},
+    {"dark_green",             "#254117"},
+    {"dark_grey",              "#808080"},
+    {"dark_olive_green",       "#CCFB5D"},
+    {"dark_olive_green_2",     "#BCE954"},
+    {"dark_olive_green_3",     "#A0C544"},
+    {"dark_olive_green_4",     "#667C26"},
+    {"dark_orange",            "#F88017"},
+    {"dark_orange_1",          "#F87217"},
+    {"dark_orange_2",          "#E56717"},
+    {"dark_orange_3",          "#7E3117"},
+    {"dark_orange_3",          "#C35617"},
+    {"dark_orchid",            "#7D1B7E"},
+    {"dark_orchid_1",          "#B041FF"},
+    {"dark_orchid_2",          "#A23BEC"},
+    {"dark_orchid_3",          "#8B31C7"},
+    {"dark_orchid_4",          "#571B7e"},
+    {"dark_purple",            "#800080"},
+    {"dark_salmon",            "#E18B6B"},
+    {"dark_sea_green",         "#8BB381"},
+    {"dark_sea_green_1",       "#C3FDB8"},
+    {"dark_sea_green_2",       "#B5EAAA"},
+    {"dark_sea_green_3",       "#99C68E"},
+    {"dark_sea_green_4",       "#617C58"},
+    {"dark_slate_blue",        "#2B3856"},
+    {"dark_slate_gray",        "#25383C"},
+    {"dark_slate_gray_1",      "#9AFEFF"},
+    {"dark_slate_gray_2",      "#8EEBEC"},
+    {"dark_slate_gray_3",      "#78c7c7"},
+    {"dark_slate_gray_4",      "#4C7D7E"},
+    {"dark_turquoise",         "#3B9C9C"},
+    {"dark_violet",            "#842DCE"},
+    {"deep_pink",              "#F52887"},
+    {"deep_pink_1",            "#E4287C"},
+    {"deep_pink_2",            "#C12267"},
+    {"deep_pink_3",            "#7D053F"},
+    {"deep_sky_blue",          "#3BB9FF"},
+    {"deep_sky_blue_1",        "#38ACEC"},
+    {"deep_sky_blue_2",        "#3090C7"},
+    {"deep_sky_blue_3",        "#25587E"},
+    {"dim_gray",               "#463E41"},
+    {"dodger_blue",            "#1589FF"},
+    {"dodger_blue_1",          "#157DEC"},
+    {"dodger_blue_2",          "#1569C7"},
+    {"dodger_blue_3",          "#153E7E"},
+    {"firebrick",              "#800517"},
+    {"firebrick_1",            "#F62817"},
+    {"firebrick_2",            "#E42217"},
+    {"firebrick_3",            "#C11B17"},
+    {"forest_green",           "#4E9258"},
+    {"forest_green_1",         "#808000"},
+    {"gold",                   "#D4A017"},
+    {"gold_1",                 "#FDD017"},
+    {"gold_2",                 "#EAC117"},
+    {"gold_3",                 "#C7A317"},
+    {"gold_4",                 "#806517"},
+    {"goldenrod",              "#EDDA74"},
+    {"goldenrod_1",            "#FBB917"},
+    {"goldenrod_2",            "#E9AB17"},
+    {"goldenrod_3",            "#C68E17"},
+    {"goldenrod_4",            "#805817"},
+    {"grass_green",            "#408080"},
+    {"gray",                   "#736F6E"},
+    {"gray_1",                 "#150517"},
+    {"gray_2",                 "#250517"},
+    {"gray_3",                 "#2B1B17"},
+    {"gray_4",                 "#302217"},
+    {"gray_5",                 "#302226"},
+    {"gray_6",                 "#342826"},
+    {"gray_7",                 "#34282C"},
+    {"gray_8",                 "#382D2C"},
+    {"gray_9",                 "#3b3131"},
+    {"gray_10",                "#3E3535"},
+    {"gray_11",                "#413839"},
+    {"gray_12",                "#41383C"},
+    {"gray_13",                "#463E3F"},
+    {"gray_14",                "#4A4344"},
+    {"gray_15",                "#4C4646"},
+    {"gray_16",                "#4E4848"},
+    {"gray_17",                "#504A4B"},
+    {"gray_18",                "#544E4F"},
+    {"gray_19",                "#565051"},
+    {"gray_19",                "#595454"},
+    {"gray_20",                "#5C5858"},
+    {"gray_21",                "#5F5A59"},
+    {"gray_22",                "#625D5D"},
+    {"gray_23",                "#646060"},
+    {"gray_24",                "#666362"},
+    {"gray_25",                "#696565"},
+    {"gray_26",                "#6D6968"},
+    {"gray_27",                "#6E6A6B"},
+    {"gray_28",                "#726E6D"},
+    {"gray_29",                "#747170"},
+    {"green",                  "#00FF00"},
+    {"green_1",                "#5FFB17"},
+    {"green_2",                "#59E817"},
+    {"green_3",                "#4CC417"},
+    {"green_4",                "#347C17"},
+    {"green_yellow",           "#B1FB17"},
+    {"hot_pink",               "#F660AB"},
+    {"hot_pink_1",             "#F665AB"},
+    {"hot_pink_2",             "#E45E9D"},
+    {"hot_pink_3",             "#C25283"},
+    {"hot_pink_4",             "#7D2252"},
+    {"indian_red",             "#F75D59"},
+    {"indian_red_2",           "#E55451"},
+    {"indian_red_3",           "#C24641"},
+    {"indian_red_4",           "#7E2217"},
+    {"khaki",                  "#ADA96E"},
+    {"khaki_1",                "#FFF380"},
+    {"khaki_2",                "#EDE275"},
+    {"khaki_3",                "#C9BE62"},
+    {"khaki_4",                "#827839"},
+    {"lavender",               "#E3E4FA"},
+    {"lavender_blush",         "#FDEEF4"},
+    {"lavender_blush_1",       "#EBDDE2"},
+    {"lavender_blush_2",       "#C8BBBE"},
+    {"lavender_blush_3",       "#817679"},
+    {"lawn_green",             "#87F717"},
+    {"lemon_chiffon",          "#FFF8C6"},
+    {"lemon_chiffon_1",        "#ECE5B6"},
+    {"lemon_chiffon_2",        "#C9C299"},
+    {"lemon_chiffon_3",        "#827B60"},
+    {"light_blue",             "#0000FF"},
+    {"light_blue_1",           "#ADDFFF"},
+    {"light_blue_2",           "#BDEDFF"},
+    {"light_blue_3",           "#AFDCEC"},
+    {"light_blue_4",           "#95B9C7"},
+    {"light_blue_5",           "#5E767E"},
+    {"light_coral",            "#E77471"},
+    {"light_cyan",             "#E0FFFF"},
+    {"light_cyan_1",           "#CFECEC"},
+    {"light_cyan_2",           "#AFC7C7"},
+    {"light_cyan_3",           "#717D7D"},
+    {"light_golden",           "#ECD672"},
+    {"light_goldenrod",        "#ECD872"},
+    {"light_goldenrod_1",      "#FFE87C"},
+    {"light_goldenrod_2",      "#C8B560"},
+    {"light_goldenrod_3",      "#817339"},
+    {"light_goldenrod_yellow", "#FAF8CC"},
+    {"light_grey",             "#C0C0C0"},
+    {"light_pink",             "#FAAFBA"},
+    {"light_pink_1",           "#F9A7B0"},
+    {"light_pink_2",           "#E799A3"},
+    {"light_pink_3",           "#C48189"},
+    {"light_pink_4",           "#7F4E52"},
+    {"light_purple",           "#FF0080"},
+    {"light_salmon",           "#F9966B"},
+    {"light_salmon_1",         "#E78A61"},
+    {"light_salmon_2",         "#C47451"},
+    {"light_salmon_3",         "#7F462C"},
+    {"light_sea_green",        "#3EA99F"},
+    {"light_sky_blue",         "#82CAFA"},
+    {"light_sky_blue_1",       "#A0CFEC"},
+    {"light_sky_blue_2",       "#87AFC7"},
+    {"light_sky_blue_3",       "#566D7E"},
+    {"light_slate_blue",       "#736AFF"},
+    {"light_slate_gray",       "#6D7B8D"},
+    {"light_steel_blue",       "#728FCE"},
+    {"light_steel_blue_1",     "#C6DEFF"},
+    {"light_steel_blue_2",     "#B7CEEC"},
+    {"light_steel_blue_3",     "#646D7E"},
+    {"lime_green",             "#41A317"},
+    {"magenta",                "#FF00FF"},
+    {"magenta_1",              "#F433FF"},
+    {"magenta_2",              "#E238EC"},
+    {"magenta_3",              "#C031C7"},
+    {"maroon",                 "#810541"},
+    {"maroon_1",               "#F535AA"},
+    {"maroon_2",               "#E3319D"},
+    {"maroon_3",               "#C12283"},
+    {"maroon_4",               "#7D0552"},
+    {"medium_aquamarine",      "#348781"},
+    {"medium_forest_green",    "#347235"},
+    {"medium_orchid",          "#B048B5"},
+    {"medium_orchid_1",        "#D462FF"},
+    {"medium_orchid_2",        "#C45AEC"},
+    {"medium_orchid_3",        "#A74AC7"},
+    {"medium_orchid_4",        "#6A287E"},
+    {"medium_purple",          "#8467D7"},
+    {"medium_purple_1",        "#9E7BFF"},
+    {"medium_purple_2",        "#9172EC"},
+    {"medium_purple_3",        "#7A5DC7"},
+    {"medium_purple_4",        "#4E387E"},
+    {"medium_sea_green",       "#306754"},
+    {"medium_slate_blue",      "#5E5A80"},
+    {"medium_spring_green",    "#348017"},
+    {"medium_turquoise",       "#48CCCD"},
+    {"medium_violet_red",      "#CA226B"},
+    {"midnight_blue",          "#151B54"},
+    {"orange",                 "#FF8040"},
+    {"pale_turquoise",         "#92C7C7"},
+    {"pale_turquoise_1",       "#5E7D7E"},
+    {"pale_violet_red",        "#D16587"},
+    {"pale_violet_red_1",      "#F778A1"},
+    {"pale_violet_red_2",      "#E56E94"},
+    {"pale_violet_red_3",      "#C25A7C"},
+    {"pale_violet_red_4",      "#7E354D"},
+    {"pastel_green",           "#00FF00"},
+    {"pink",                   "#FAAFBE"},
+    {"pink_1",                 "#FF00FF"},
+    {"pink_2",                 "#E7A1B0"},
+    {"pink_3",                 "#C48793"},
+    {"pink_4",                 "#7F525D"},
+    {"plum",                   "#B93B8F"},
+    {"plum_1",                 "#F9B7FF"},
+    {"plum_2",                 "#E6A9EC"},
+    {"plum_3",                 "#C38EC7"},
+    {"plum_4",                 "#7E587E"},
+    {"purple",                 "#8E35EF"},
+    {"purple_1",               "#893BFF"},
+    {"purple_2",               "#7F38EC"},
+    {"purple_3",               "#6C2DC7"},
+    {"purple_4",               "#461B7E"},
+    {"red",                    "#FF0000"},
+    {"red_1",                  "#F62217"},
+    {"red_2",                  "#E41B17"},
+    {"rosy_brown",             "#B38481"},
+    {"rosy_brown_1",           "#FBBBB9"},
+    {"rosy_brown_2",           "#E8ADAA"},
+    {"rosy_brown_3",           "#C5908E"},
+    {"rosy_brown_4",           "#7F5A58"},
+    {"royal_blue",             "#2B60DE"},
+    {"royal_blue_1",           "#306EFF"},
+    {"royal_blue_2",           "#2B65EC"},
+    {"royal_blue_3",           "#2554C7"},
+    {"royal_blue_4",           "#15317E"},
+    {"salmon_1",               "#F88158"},
+    {"salmon_2",               "#E67451"},
+    {"salmon_3",               "#C36241"},
+    {"salmon_4",               "#7E3817"},
+    {"sandy_brown",            "#EE9A4D"},
+    {"sea_green",              "#4E8975"},
+    {"sea_green_1",            "#6AFB92"},
+    {"sea_green_2",            "#64E986"},
+    {"sea_green_3",            "#54C571"},
+    {"sea_green_4",            "#387C44"},
+    {"sienna",                 "#8A4117"},
+    {"sienna_1",               "#F87431"},
+    {"sienna_2",               "#E66C2C"},
+    {"sienna_3",               "#C35817"},
+    {"sienna_4",               "#7E3517"},
+    {"sky_blue",               "#82CAFF"},
+    {"sky_blue_1",             "#6698FF"},
+    {"sky_blue_2",             "#79BAEC"},
+    {"sky_blue_3",             "#659EC7"},
+    {"sky_blue_4",             "#41627E"},
+    {"slate_blue",             "#357EC7"},
+    {"slate_blue_1",           "#737CA1"},
+    {"slate_blue_2",           "#6960EC"},
+    {"slate_blue_3",           "#342D7E"},
+    {"slate_gray",             "#657383"},
+    {"slate_gray_1",           "#C2DFFF"},
+    {"slate_gray_2",           "#B4CFEC"},
+    {"slate_gray_3",           "#98AFC7"},
+    {"slate_gray_4",           "#616D7E"},
+    {"spring_green",           "#4AA02C"},
+    {"spring_green_1",         "#5EFB6E"},
+    {"spring_green_2",         "#57E964"},
+    {"spring_green_3",         "#4CC552"},
+    {"spring_green_4",         "#347C2C"},
+    {"steel_blue",             "#4863A0"},
+    {"steel_blue_1",           "#5CB3FF"},
+    {"steel_blue_2",           "#56A5EC"},
+    {"steel_blue_3",           "#488AC7"},
+    {"steel_blue_4",           "#2B547E"},
+    {"thistle",                "#D2B9D3"},
+    {"thistle_1",              "#FCDFFF"},
+    {"thistle_2",              "#E9CFEC"},
+    {"thistle_3",              "#C6AEC7"},
+    {"thistle_4",              "#806D7E"},
+    {"turquoise",              "#00FFFF"},
+    {"turquoise_1",            "#43C6DB"},
+    {"turquoise_2",            "#52F3FF"},
+    {"turquoise_3",            "#4EE2EC"},
+    {"turquoise_4",            "#43BFC7"},
+    {"violet",                 "#8D38C9"},
+    {"violet_red",             "#F6358A"},
+    {"violet_red_1",           "#F6358A"},
+    {"violet_red_2",           "#E4317F"},
+    {"violet_red_3",           "#C12869"},
+    {"violet_red_4",           "#7D0541"},
+    {"white",                  "#FFFFFF"},
+    {"yellow",                 "#FFFF00"},
+    {"yellow_1",               "#FFFC17"},
+    {"yellow_green",           "#52D017"}
+};
+```
+
+### [Logging] Implement World GMSay Logging (#1505)
+
+Also work peeled from #1451
+
+This enables world GM say logging and relays all messages to all zoneservers.
+
+This was especially helpful during Shared Tasks work where we need / want to see real live communication of packets being sent back and forth between world and zone
+
+**Example**
+
+![image](https://user-images.githubusercontent.com/3319450/130721233-a63c792b-accc-4a32-ad8b-b1ba3aa4dfa7.png)
+
+This also adds the following rule which is enabled by default
+
+```text
+RULE_BOOL(Logging, WorldGMSayLogging, true, "Relay worldserver logging to zone processes via GM say output")
+```
+
+Of course operators will need to be mindful of not turning on excessive logging but should be fine performance wise under normal conditions
+
+## 7/27/2021
+
+**Akkadius** [Hotfix] SendIllusion revert to October  
+**Akkadius** [Repositories] Regenerate repositories with int64 support, reserved word support ([#1440](https://github.com/EQEmu/Server/pull/1440))  
+**Akkadius** [Repository Generator] Add int64/bigint support, add support for reserved words ([#1439](https://github.com/EQEmu/Server/pull/1439))  
+**Akkadius** [Repository Usage] Migrate NPC Scale Manager to use repositories ([#1441](https://github.com/EQEmu/Server/pull/1441))  
+**Dencelle** [Code] Addition of zone constants for hard coding ([#1443](https://github.com/EQEmu/Server/pull/1443))  
+**Dencelle** [Commands] Make #maxskills work on target. ([#1445](https://github.com/EQEmu/Server/pull/1445))  
+**E Spause** Add SetGMStatus to LUA, cleanup unused variable, cleanup naming of new function added to Client class, remove unneeded return on void function. ([#1471](https://github.com/EQEmu/Server/pull/1471))  
+**Gangsta** [Merchants] Fix issue where an item purchased with 1 charges actually is bought with 0 charges  
+**Gangsta** [Bugfix] Fixes guards assisting mobs against players ([#1448](https://github.com/EQEmu/Server/pull/1448))  
+**KayenEQ** [Spells] Projectiles Update ([#1468](https://github.com/EQEmu/Server/pull/1468))  
+**KayenEQ** [Feature] New SPAs pass 1 ([#1454](https://github.com/EQEmu/Server/pull/1454))  
+**KayenEQ** [Feature] New SPAs pass 2 ([#1459](https://github.com/EQEmu/Server/pull/1459))  
+**KimLS** Fix for compile issue when you either don't have openSSL or you're using a version not supported by httplib  
+**Kurt Gilpin** [Inventory] Remove Trader's Satchel ID from inventory.cpp ([#1423](https://github.com/EQEmu/Server/pull/1423))  
+**Michael Cook (mackal)** Add defines (commented) for further known SPAs ([#1446](https://github.com/EQEmu/Server/pull/1446))  
+**Michael Cook (mackal)** [Bug Fix] spell cast time cap issue introduced in [e5b9d72](https://github.com/EQEmu/Server/commit/e5b9d72b81e428aaac453281f127f1a4d83dd084) ([#1435](https://github.com/EQEmu/Server/pull/1435))  
+**Michael Cook (mackal)** [Spells Cleanup] Unify and add most hardcoded spell IDs ([#1438](https://github.com/EQEmu/Server/pull/1438))  
+**Natedog2012** Allow NPCs to aggro player pets with NPCAggro field set in database and new rule AggroPlayerPets set to true ([#1450](https://github.com/EQEmu/Server/pull/1450))  
+**splose** [Quest API] Add $client-&gt;SetGMStatus() ([#1465](https://github.com/EQEmu/Server/pull/1465))
+
+## 6/12/2021
+
+**Alex** [Bots] Add Bot scripting capabilities to the source. ([#1378](https://github.com/EQEmu/Server/pull/1378))  
+**Alex** [Bots] Remove hardcoded race-class combinations from bots. ([#1375](https://github.com/EQEmu/Server/pull/1375))  
+**Alex** [Bug Fix] Fix CMakeLists.txt so compile works. ([#1387](https://github.com/EQEmu/Server/pull/1387))  
+**Alex** [Commands] Add #findclass [search criteria] command. ([#1384](https://github.com/EQEmu/Server/pull/1384))  
+**Alex** [Commands] Add #viewzoneloot [item id] command. ([#1382](https://github.com/EQEmu/Server/pull/1382))  
+**Alex** [Pets] Unhardcode Beastlord pet values. ([#1379](https://github.com/EQEmu/Server/pull/1379))  
+**Alex** [Quest API] Add ChangeLastName() and ClearLastName() to Lua. ([#1386](https://github.com/EQEmu/Server/pull/1386))  
+**Alex** [Quest API] Add SetHideMe() to Perl/Lua. ([#1388](https://github.com/EQEmu/Server/pull/1388))  
+**Alex** [Quest API] Add getcleannpcnamebyid(npc_id) to Perl/Lua. ([#1383](https://github.com/EQEmu/Server/pull/1383))  
+**Alex** [Quest API] Add several methods to Perl/Lua API for LDoN stuff. ([#1356](https://github.com/EQEmu/Server/pull/1356))  
+**Alex** [Shared Bank] Add additional popup to shared bank warning message, as client-side filters can cause the message to be unseen. ([#1368](https://github.com/EQEmu/Server/pull/1368))  
+**Alex** [Spells] Adds a rule to allow right-click memorize from spell scrolls. ([#1377](https://github.com/EQEmu/Server/pull/1377))  
+**Dencelle** [Bug Fix] EntityList::AESpell fix for Pacify / Mez ([#1354](https://github.com/EQEmu/Server/pull/1354))  
+**Dencelle** [Bug Fix] Fix for charges not being sold correctly ([#1357](https://github.com/EQEmu/Server/pull/1357))  
+**Dencelle** [Bug Fix] NPC not breaking charm correctly ([#1363](https://github.com/EQEmu/Server/pull/1363))  
+**Kurt Gilpin** (HEAD -&gt; master, origin/master) Fix crash when casting with no target ([#1390](https://github.com/EQEmu/Server/pull/1390))  
+**Michael Cook (mackal)** Magic numbers bad ([#1373](https://github.com/EQEmu/Server/pull/1373))  
+**Michael Cook (mackal)** This skill bonus was suppose to only apply to monks with epics ([#1364](https://github.com/EQEmu/Server/pull/1364))  
+**Michael Cook (mackal)** [Bug Fix] EntityList::AESpell was off by one ([#1351](https://github.com/EQEmu/Server/pull/1351))  
+**Michael Cook (mackal)** [Fix] Fix Spell Cast Time reduction issues ([#1369](https://github.com/EQEmu/Server/pull/1369))  
+**Michael Cook (mackal)** [Quest API] Add Lua_Mob::GetShuffledHateList ([#1381](https://github.com/EQEmu/Server/pull/1381))  
+**Michael** [Rule] Allow Skill ups from items (Default: On) ([#1376](https://github.com/EQEmu/Server/pull/1376))  
+**Paul Coene** [GM Command] #list npcs Goto option now goes to higher Z if selected NPC is a boat. ([#1349](https://github.com/EQEmu/Server/pull/1349))  
+**RoTPvP** [PVP] Pvp guard assist code. (Guards will assist in PvP based on faction) ([#1367](https://github.com/EQEmu/Server/pull/1367))  
+**RoTPvP** [Spells] Added a pet check to Cazic Touch ([#1365](https://github.com/EQEmu/Server/pull/1365))  
+**TurmoilToad** [Docs] Create CODE_OF_CONDUCT.md ([#1360](https://github.com/EQEmu/Server/pull/1360))  
+**hg** [Dynamic Zones] Store min and max players on dz ([#1355](https://github.com/EQEmu/Server/pull/1355))  
+**hg** [Expeditions] Avoid expedition leader change if only member ([#1372](https://github.com/EQEmu/Server/pull/1372))  
+**hg** [Expeditions] Move member compass updates to dz ([#1371](https://github.com/EQEmu/Server/pull/1371))  
+**hg** [Expeditions] Store members on dynamic zone ([#1358](https://github.com/EQEmu/Server/pull/1358))  
+**hg** [Quest API] Add write overloads to lua packet quest api ([#1366](https://github.com/EQEmu/Server/pull/1366))  
+**hg** [Repository Generator] Fix repository generator on windows ([#1353](https://github.com/EQEmu/Server/pull/1353))  
+**regneq** [Time] strict spawn_events now take into account EQ minute. ([#1370](https://github.com/EQEmu/Server/pull/1370))  
+**splose** [Bug Fix] Allow GMs to chat when stunned ([#1380](https://github.com/EQEmu/Server/pull/1380))  
+**splose** [Rules] Add rule to allow you to cast invis on already invis'd players ([#1361](https://github.com/EQEmu/Server/pull/1361))
+
+## 5/10/2021
+
+This changelog entry encompasses the past 6 months of updates and PR's
+
+**Akkadius** Drone Build Pipeline ([#1144](https://github.com/EQEmu/Server/pull/1144))  
+**Akkadius** [DevTools] Improve DevTools Toggling Options ([#1161](https://github.com/EQEmu/Server/pull/1161))  
+**Akkadius** [Door Opening] Rule to let configure Animal Door Opening ([#1231](https://github.com/EQEmu/Server/pull/1231))  
+**Akkadius** [Repositories] Insert repository improvements ([#1236](https://github.com/EQEmu/Server/pull/1236))  
+**Akkadius** [Scheduler] Event scheduler implementation ([#1257](https://github.com/EQEmu/Server/pull/1257)) **Akkadius** Move data aliases after null checks for safety [skip ci]  
+**Akkadius** Revert "[BUG] Fix for Group Leader Disband Issue"  
+**Akkadius** Update repo with latest template [skip ci]  
+**Akkadius** [Hotfix] DB Manifest  
+**Akkadius** [Hotfix] Incorrect Perl usage method (docs)  
+**Akkadius** [Hotfix] Remove test branch fields from repo  
+**Akkadius** [Installer] Swap unstable powershell download for Perl LWP::Simple call  
+**Alex** [CLE] Reset iterator in IsAccountInGame() ([#1345](https://github.com/EQEmu/Server/pull/1345))  
+**Alex** Add HasDisciplineLearned() to Perl/Lua.  
+**Alex** Add ScaleNPC() to Perl and Lua. ([#1238](https://github.com/EQEmu/Server/pull/1238))  
+**Alex** Add SetRadiantCrystals() and SetEbonCrystals() to Perl/Lua. ([#1159](https://github.com/EQEmu/Server/pull/1159))  
+**Alex** Add character-specific zone-based experience modifiers. ([#1326](https://github.com/EQEmu/Server/pull/1326))  
+**Alex** Add new experience modifiers table to GetCharacterTables() and GetPlayerTables() in database_schema.h. ([#1338](https://github.com/EQEmu/Server/pull/1338))  
+**Alex** Add removeitem(item_id, quantity) to Perl/Lua. ([#1156](https://github.com/EQEmu/Server/pull/1156))  
+**Alex** Convert NPC Spell AI from int16 to uint16. ([#1262](https://github.com/EQEmu/Server/pull/1262))  
+**Alex** Fix Perl NPC GetAvoidanceRating() Perl Croak. ([#1333](https://github.com/EQEmu/Server/pull/1333))  
+**Alex** Fix SQL for NPC Spells. ([#1265](https://github.com/EQEmu/Server/pull/1265))  
+**Alex** [Bug Fix] Zone Heading for Binds, Summons, Teleports, and Zoning. ([#1328](https://github.com/EQEmu/Server/pull/1328))  
+**Alex** [Experience] Add exp mod to npc types to let a server op change the exp modifier ([#1252](https://github.com/EQEmu/Server/pull/1252))  
+**Alex** [Library] Update zlibng ([#1255](https://github.com/EQEmu/Server/pull/1255))  
+**Alex** [Quest API] Add HTML color tag method to Perl and Lua. ([#1324](https://github.com/EQEmu/Server/pull/1324))  
+**Alex** [Quest API] Add IsHorse() to Perl and Lua. ([#1264](https://github.com/EQEmu/Server/pull/1264))  
+**Alex** [Quest API] Add IsRaidTarget() to Perl and Lua ([#1347](https://github.com/EQEmu/Server/pull/1347))  
+**Alex** [Quest API] Add Mob-based data bucket methods to Perl/Lua. ([#1237](https://github.com/EQEmu/Server/pull/1237))  
+**Alex** [Quest API] Add new zone name methods to Perl and Lua. ([#1309](https://github.com/EQEmu/Server/pull/1309))  
+**Alex** [Quest API] Add secondstotime(duration) to Perl and Lua. ([#1281](https://github.com/EQEmu/Server/pull/1281))  
+**Alex** [Quest API] Convert Client GetLastName() method export to Mob export. ([#1331](https://github.com/EQEmu/Server/pull/1331))  
+**Alex** [Quest API] Resolves traindiscs and scribespells issues in Perl/Lua. ([#1249](https://github.com/EQEmu/Server/pull/1249))  
+**Alex** [Rules] Cleanup all unused rules. ([#1308](https://github.com/EQEmu/Server/pull/1308))  
+**Alex** quest::getspellname() and quest::getclassname() fixes/additions. ([#1158](https://github.com/EQEmu/Server/pull/1158))  
+**E Spause** Add safeguard for issue with mobs pathing to 0,0,0 on teleport nodes with values 0,0,0 ([#1140](https://github.com/EQEmu/Server/pull/1140))  
+**JeffyW** [Installer] $ENV support, formatting, and optimizations ([#1340](https://github.com/EQEmu/Server/pull/1340))  
+**KimLS** Fix for issue in movement manager where a drop aggro can happen and processing continues.  
+**Michael Cook (mackal)** Add include to PATH_SUFFIXES for Windows builds ([#1246](https://github.com/EQEmu/Server/pull/1246))  
+**Michael Cook (mackal)** Add string util search_deliminated_string ([#1260](https://github.com/EQEmu/Server/pull/1260))  
+**Michael Cook (mackal)** Feature/underworld ([#1146](https://github.com/EQEmu/Server/pull/1146))  
+**Michael Cook (mackal)** Fix NPC Scale Manager leaking ([#1254](https://github.com/EQEmu/Server/pull/1254))  
+**Michael Cook (mackal)** Fix some leaks of groups/raids ([#1242](https://github.com/EQEmu/Server/pull/1242))  
+**Michael Cook (mackal)** Fix va_list leaks in MakeAnyLenString/AppendAnyLenString ([#1240](https://github.com/EQEmu/Server/pull/1240))  
+**Michael Cook (mackal)** Hack to fix repulsable bard charms ([#1320](https://github.com/EQEmu/Server/pull/1320))  
+**Michael Cook (mackal)** LuaJIT calls it lua51.lib/dll on Windows ... ([#1247](https://github.com/EQEmu/Server/pull/1247))  
+**Michael Cook (mackal)** Provide more search paths for luajit ([#1216](https://github.com/EQEmu/Server/pull/1216))  
+**Michael Cook (mackal)** Switch scheduled hot zone check to search instead of split ([#1313](https://github.com/EQEmu/Server/pull/1313))  
+**Michael Cook (mackal)** [Bug Fix] Add Bounds Checking to OP_LFGCommand Comment Processing  
+**Michael Cook (mackal)** [Bug Fix] Fix use-after-free corruption with some DB calls ([#1335](https://github.com/EQEmu/Server/pull/1335))  
+**Michael Cook (mackal)** [Bug Fix] Misc Bard Song Fixes ([#1317](https://github.com/EQEmu/Server/pull/1317))  
+**Michael Cook (mackal)** [Cleanup] Nuke Make/AppendAnyLenString ([#1251](https://github.com/EQEmu/Server/pull/1251))  
+**Michael Cook (mackal)** [Cleanup] Only link Lua with zone ([#1288](https://github.com/EQEmu/Server/pull/1288))  
+**Michael Cook (mackal)** [Cleanup] use std::make_unique ([#1259](https://github.com/EQEmu/Server/pull/1259))  
+**Michael Cook (mackal)** [Fix] Clean up Filtered/MessageString functions ([#1311](https://github.com/EQEmu/Server/pull/1311))  
+**Michael Cook (mackal)** [Lua/Cmake] Prefer LuaJIT over normal Lua ([#1235](https://github.com/EQEmu/Server/pull/1235))  
+**Michael Cook (mackal)** [Rule] Add a rule to disable the Pet Resist buff ([#1337](https://github.com/EQEmu/Server/pull/1337))  
+**Michael Cook (mackal)** [Strings] Split String Optimizations ([#1325](https://github.com/EQEmu/Server/pull/1325))  
+**Michael Cook (mackal)** zlib-ng1.dll ends up in a different path ([#1268](https://github.com/EQEmu/Server/pull/1268))  
+**Paul Coene** #grid delete was deleting the grids everywhere ([#1346](https://github.com/EQEmu/Server/pull/1346))  
+**Paul Coene** Added RACE_BOAT_533 to IsBoat() ([#1154](https://github.com/EQEmu/Server/pull/1154))  
+**Paul Coene** Client tracks pet sit/stand - force new pets to stand rather than use client ([#1155](https://github.com/EQEmu/Server/pull/1155))  
+**Paul Coene** Fix calls to GetSafePoints to not pass null_ptr as zonename ([#1336](https://github.com/EQEmu/Server/pull/1336))  
+**Paul Coene** Prevent client update while on boat if boat turning ([#1343](https://github.com/EQEmu/Server/pull/1343))  
+**Paul Coene** Remove the extra erroneous message (DoT landing message) at mob death if mob dies of DoT. ([#1138](https://github.com/EQEmu/Server/pull/1138))  
+**Paul Coene** Remove unneeded calls to DoAnim() for spells/bardsong ([#1290](https://github.com/EQEmu/Server/pull/1290))  
+**Paul Coene** [Boats] Fix x/y offsets from client to reflect EQ x/y instead of boat heading… ([#1296](https://github.com/EQEmu/Server/pull/1296))  
+**Paul Coene** [Bug Fix] Add debugging and fix edge case where no target for aggro mob ([#1344](https://github.com/EQEmu/Server/pull/1344))  
+**Paul Coene** [Bug] Fix ignore_primary_assist. ([#1323](https://github.com/EQEmu/Server/pull/1323))  
+**Paul Coene** [Feature] Allow any spawn2 spawned mob to path while zone is idle if new flag is set. ([#1339](https://github.com/EQEmu/Server/pull/1339))  
+**Peter Rigby** [Fix] Moved assigning of AISpellVar variables before AI_Start() so that any values that override the rule values will not be ignored ([#1321](https://github.com/EQEmu/Server/pull/1321))  
+**RoTPvP** Added a check to stop Bard song for Mezz/Stun ([#1319](https://github.com/EQEmu/Server/pull/1319))  
+**Thalic** Minor ortographic corrections of ruletypes.h ([#1147](https://github.com/EQEmu/Server/pull/1147))  
+**Thalix** Minor ruletypes.h cleanup ([#1306](https://github.com/EQEmu/Server/pull/1306))  
+**Thalix** Update command.cpp ([#1289](https://github.com/EQEmu/Server/pull/1289))  
+**Thalix** [Crash] Bugfix for zone crash caused by #flymode -1 ([#1291](https://github.com/EQEmu/Server/pull/1291))  
+**TurmoilToad** Add category tags for Object methods. ([#1232](https://github.com/EQEmu/Server/pull/1232))  
+**TurmoilToad** Add category tags for corpse methods ([#1234](https://github.com/EQEmu/Server/pull/1234))  
+**TurmoilToad** Add category tags to new client methods. ([#1233](https://github.com/EQEmu/Server/pull/1233))  
+**TurmoilToad** Update perl_questitem.cpp ([#1227](https://github.com/EQEmu/Server/pull/1227))  
+**TurmoilToad** [Quest API] Perl Client Annotations ([#1224](https://github.com/EQEmu/Server/pull/1224))  
+**TurmoilToad** [Quest API] Perl Door Annotations ([#1241](https://github.com/EQEmu/Server/pull/1241))  
+**TurmoilToad** [Quest API] Perl Entity List Annotations ([#1243](https://github.com/EQEmu/Server/pull/1243))  
+**TurmoilToad** [Quest API] Perl Group Annotations ([#1261](https://github.com/EQEmu/Server/pull/1261))  
+**TurmoilToad** [Quest API] Perl Hate Entry Annotations ([#1244](https://github.com/EQEmu/Server/pull/1244))  
+**TurmoilToad** [Quest API] Perl Mob Annotations ([#1258](https://github.com/EQEmu/Server/pull/1258))  
+**TurmoilToad** [Quest API] Perl NPC Annotations ([#1245](https://github.com/EQEmu/Server/pull/1245))  
+**TurmoilToad** [Quest API] Perl Raid Annotations ([#1226](https://github.com/EQEmu/Server/pull/1226))  
+**hg** Add missing includes to fix windows compile ([#1314](https://github.com/EQEmu/Server/pull/1314))  
+**hg** Throttle auto expedition leader changes ([#1293](https://github.com/EQEmu/Server/pull/1293))  
+**hg** [Dynamic Zones] Rename dynamic zone structs ([#1327](https://github.com/EQEmu/Server/pull/1327))  
+**hg** [Expeditions] Cleanup client dz safe return methods ([#1300](https://github.com/EQEmu/Server/pull/1300))  
+**hg** [Expeditions] Create common dz abstract class ([#1312](https://github.com/EQEmu/Server/pull/1312))  
+**hg** [Expeditions] Decouple dz updates from expeditions ([#1303](https://github.com/EQEmu/Server/pull/1303))  
+**hg** [Expeditions] Let dz process its expired state ([#1310](https://github.com/EQEmu/Server/pull/1310))  
+**hg** [Expeditions] Refactor expedition caching ([#1315](https://github.com/EQEmu/Server/pull/1315))  
+**hg** [Expeditions] Refactor expedition requests ([#1301](https://github.com/EQEmu/Server/pull/1301))  
+**hg** [Expeditions] Store description and leader name on dz ([#1294](https://github.com/EQEmu/Server/pull/1294))  
+**hg** [Expeditions] Track DZ member status in world ([#1341](https://github.com/EQEmu/Server/pull/1341))  
+**hg** [Expeditions] [Quest API] Add expedition IsLocked to Quest API ([#1292](https://github.com/EQEmu/Server/pull/1292))  
+**neckkola** Added new Perl/LUA GetSpellIDByBookSlot ([#1151](https://github.com/EQEmu/Server/pull/1151))  
+**splose** [Rules] Add rule 'GM:MinStatusToBypassLockedServer' ([#1330](https://github.com/EQEmu/Server/pull/1330))  
+**splose** add quest::get_spell_level(uint16 spell_id, uint8 class_id) ([#1295](https://github.com/EQEmu/Server/pull/1295))  
+**splose** setting spawn2.version to -1 will now properly spawn mobs in all zone versions ([#1299](https://github.com/EQEmu/Server/pull/1299))
+
+## 1/25/2021
+
+**Kinglykrab**
+
+* Add quest::message(color, message) to Perl.
+* Add quest::whisper(message) to Perl.
+* Add $client-&gt;HasDisciplineLearned(spell_id) to Perl.
+* Add eq.message(color, message) to Lua.
+* Add eq.whisper(message) to Lua.
+* Add client:HasDisciplineLearned(spell_id) to Lua.
+* Add 4 new special attacks to Perl and Lua.
+  * IMMUNE_DAMAGE_CLIENT (47)
+    * Immune to all damage except NPC damage.
+  * IMMUNE_DAMAGE_NPC (48)
+    * Immune to all damage except Client damage.
+  * IMMUNE_AGGRO_CLIENT (49)
+    * Immune to aggro by a Client.
+  * IMMUNE_AGGRO_NPC (50)
+    * Immune to aggro by an NPC, clients must attack directly to gain aggro, allows pet only boss mechanics and stuff.
+
+## 1/3/2021
+
+#### Kinglykrab
+
+* Added $client-&gt;Fling() to Perl.
+* Added $client-&gt;SetEbonCrystals() to Perl.
+* Added $client-&gt;SetRadiantCrystals() to Perl.
+* Added client:GetTargetRingX() to Lua.
+* Added client:GetTargetRingY() to Lua.
+* Added client:GetTargetRingZ() to Lua.
+* Added client:Fling() to Lua.
+* Added client:SetEbonCrystals() to Lua.
+* Added client:SetRadiantCrystals() to Lua.
+

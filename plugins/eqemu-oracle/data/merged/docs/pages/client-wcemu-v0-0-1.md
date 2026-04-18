@@ -1,0 +1,800 @@
+# WCEmu v0.0.1
+
+## Changes from previous versions
+
+- This is an initial release so no changes from previous
+
+
+## Header
+
+Every file generated in wcemu format starts with the following header pattern:
+
+```c
+// wcemu v0.0.1
+// This file was created by <generator>
+```
+
+The most important line is the `wcemu v#.#.#` pattern, this should be the first line of the file so parsers can identify if it is compatible or not.
+
+## WORLDEF
+
+A world definition. This is a collection of properties that defines a world. These are typically found in .spk or .wld files.
+
+Referred to by: None
+
+WLD opcodes impacted: 0x01 (WorldDef)
+
+```c
+WORLDEF
+	NEWWORLD 0 // set to 1 when wld is version 0x00015500
+	ZONE 0
+	EQGVERSION? 0
+```
+
+## GLOBALAMBIENTLIGHTDEF
+
+A world definition. This being declared infers the wce file is a zone.
+
+Referred to by: None
+
+WLD opcodes impacted: None
+
+```c
+GLOBALAMBIENTLIGHTDEF
+	COLOR 0 0 0 0
+```
+
+- Tag: unique tag name for the global ambient light definition. Should keep it DEFAULT_AMBIENTLIGHT, it is a reserved word
+
+## INCLUDE
+
+After the header are all includes. Includes are references to files relative to the current one that should be loaded the moment the include declaration is stated.
+
+While it is possible to have includes inlined later in a file, at this time it is recommended to layout files with the expectation includes are after the header only.
+
+
+```c
+INCLUDE "PREHE0002.MDF"
+```
+
+- Includes should be all uppercase as per the WLDCOM format directive, even if the file pointed to is all lowercase.
+- TODO: Should we enforce a case sensitivity of files in an include? e.g. upper for INCLUDE param, and lower for file itself?
+
+## SIMPLESPRITEDEF
+
+```c
+SIMPLESPRITEDEF "TAG:str"
+	VARIATION :int
+	SKIPFRAMES? :tuple[int, NULL]
+	ANIMATED? :tuple[int, NULL]
+	SLEEP? :tuple[int, NULL]
+	CURRENTFRAME? :tuple[int, NULL]
+	NUMFRAMES :int
+		FRAME "file:str" "tag:str"
+```
+
+### FRAME
+
+Each frame has 2 attributes:
+	- the first is a quoted string with a file name, and optional [frame metadata](#frame-metadata) inside it
+	- the second is a quoted string with a tag used for BMINFO creation
+
+#### FRAME METADATA
+
+A frame with prefix metadata uses this pattern: `FRAME "%d, %d, %d, %s" "%s"`, e.g. `FRAME "1, 5, 0, SNOW1B.DDS" "SNOW1B"`
+or, a more complete example from twilight.wld:
+
+NUMFRAMES 8
+FRAME "TWIBASE1C.DDS" "TWIBASE1C"
+FRAME "TWIBASE1CPAL.BMP" "TWIBASE1C"
+FRAME "1, 5, 2, GRASS2E.DDS" "TWIBASE1C"
+FRAME "2, 5, 3, GRASS2D.DDS" "TWIBASE1C"
+FRAME "3, 5, 1, SAND02A.DDS" "TWIBASE1C"
+FRAME "4, 5, 0, GRASS2E.DDS" "TWIBASE1C"
+FRAME "5, 5, 0, GRASS2D.DDS" "TWIBASE1C"
+FRAME "6, 5, 0, SAND02A.DDS" "TWIBASE1C"
+
+With this example,
+- first frame is the texture applied to the mesh TWIBASE1C.DDS, and a tag name (TWIBASE1C) for bminfo
+- second first is a color palette (TWIBASE1CPAL.BMP), and a tag name (TWIBASE1C) for bminfo
+- third frame has 2 arguments
+	- frame 3's first quoted argument
+		- first metadata (1) refers to index to the color palette (typically second frame of a sprite def)
+		- second metadata (5) is a scale factor
+		- third metadata (2) is a mask for where the texture will show up
+		- fourth metadata (GRASS2E.DDS) is the file applied with above metadata
+	- Frame 3's second quoted argument is the tag name (TWIBASE1C) for bminfo
+
+- SIMPLESPRITEDEF: start of definition
+- ENDSIMPLESPRITEDEF: end of definition
+
+## MATERIALDEFINITION
+
+A material definition. This describes how a sprite should be rendered, it's brightness and other shader-related settings, and also creates a simple sprite instance based on a referred [SIMPLESPRITEDEF](#simplespritedef). These are typically found in .mdf files.
+
+Referred to by: [MATERIALPALETTE](#materialpalette)
+
+WLD opcodes impacted: 0x31 (MaterialDef), 0x07 (Sprite2D)
+
+```c
+MATERIALDEFINITION
+	TAG "FISHE0101_MDF"
+	RENDERMETHOD "USERDEFINED_2"
+	RGBPEN 178 178 178
+	BRIGHTNESS 0.0000000
+	SCALEDAMBIENT 0.7500000
+	SIMPLESPRITEINST
+		TAG "FISHE0101_SPRITE"
+		HEXFIFTYFLAG 0
+	ENDSIMPLESPRITEINST
+	PAIRS? 0 0.0
+	DOUBLESIDED 0
+```
+
+Pairs if not NULL cause flag 0x02 to be flipped on MaterialDef
+
+## MATERIALPALETTE
+
+A material palette. This is a collection of material definitions with a unique tag name. These are typically found in .spk or .wld files, and are the first entry in them.
+
+Referred to by: [DMSPRITEDEF2](#dmspritedef2)
+
+WLD opcodes impacted: 0x30 (MaterialPalette)
+
+```c
+MATERIALPALETTE
+	TAG "ALL_MP"
+	NUMMATERIALS 2
+	MATERIAL "ALLHE0103_MDF"
+	MATERIAL "ALLHE0102_MDF"
+ENDMATERIALPALETTE
+```
+
+- MATERIALPALETTE: start of definition
+- ENDMATERIALPALETTE: end of definition
+
+## POLYHEDRONDEF
+
+A polyhedron definition. This is a collection of vertices, faces, and other properties that define a 3D object. These are typically found in .spk or .wld files.
+
+Referred to by: [DMSPRITEDEF2](#dmspritedef2)
+
+WLD opcodes impacted: 0x17 (PolyhedronDef)
+
+```c
+POLYHEDRONDEFINITION
+	TAG	"prepe_POLYHDEF"
+	FLAGS 0 // we have no idea on these
+	BOUNDINGRADIUS 1.2431762e+002
+	SCALEFACTOR 1.0
+	NUMVERTICES 2
+	XYZ -5.9604645e-008 1.9073486e-005 -3.8146973e-006
+	XYZ -5.9604645e-008 5.0001717e-001 -2.4499998e+001
+	NUMFACES 2
+	VERTEXLIST 3 3 1 2
+	VERTEXLIST 3 4 1 3
+ENDPOLYHEDRONDEFINITION
+```
+
+- POLYHEDRONDEFINITION: start of definition. This is a 0x17 (PolyhedronDef) opcode
+- ENDPOLYHEDRONDEFINITION: end of definition
+
+
+## DMSPRITEINSTANCE (Never used)
+
+A 3D sprite instance. This is a collection of properties that defines an instance of a 3D sprite. These are typically found in .spk or .wld files.
+
+Referred to by: [??](#actordef)
+
+WLD opcodes impacted: 0x2D (DmSprite)
+
+```c
+DMSPRITEINSTANCE
+	TAG "PRE_DMSPRITEDEF"
+	DEFINITION "PRE_DMSPRITEDEF"
+	PARAM 0
+ENDDMSPRITEINSTANCE
+```
+
+- DMSPRITEINSTANCE: start of instance
+- ENDDMSPRITEINSTANCE: end of instance
+
+## DMSPRITEDEFINITION
+
+A 3d sprite definition. This is a collection of properties that define a 3D sprite. These are typically found in .spk or .wld files.
+
+Referred to by: [??](#actordef)
+
+WLD opcodes impacted: 0x35 (DmSpriteDef)
+
+```c
+DMSPRITEDEFINITION
+	TAG "PRE_DMSPRITEDEF"
+	FRAGMENT1 0
+	MATERIALPALETTE "PRE_MP"
+	FRAGMENT3 0
+	CENTER 0.0000000e+000 0.0000000e+000 0.0000000e+000
+	PARAMS1 0.0000000e+000 0.0000000e+000 0.0000000e+000
+	NUMVERTICES 1
+	XYZ 0.0000000e+000 0.0000000e+000 0.0000000e+000
+	NUMTEXCOORDS 1
+	UV 0.0000000e+000 0.0000000e+000
+	NUMNORMALS 1
+	XYZ 0.0000000e+000 0.0000000e+000 0.0000000e+000
+	NUMCOLORS 1
+	RGBA 255 255 255 255
+	SKINASSIGMENTGROUPS 3 0 1 2 3
+	DATA8 3 0 0 0
+	FACEMATERIALGROUPS 3 0 1 2 3
+	VERTEXMATERIALGROUPS 3 0 1 2 3
+	PARAMS2? 0.0000000e+000 0.0000000e+000 0.0000000e+000
+	PARAMS3? 0.0000000e+000 0.0000000e+000 0.0000000e+000 0.0000000e+000 0.0000000e+000 0.0000000e+000
+	HEXONEFLAG 0
+	HEXTWOFLAG 0
+	HEXFOURTOUSANDFLAG 0
+	HEXEIGHTTOUSANDFLAG 0
+	HEXTENTHOUSANDFLAG 0
+	HEXTWENTYTHOUSANDFLAG 0
+ENDDMSPRITEDEFINITION
+```
+
+
+## DMSPRITEDEF2
+
+A 3d sprite definition. This is a collection of properties that define a 3D sprite. These are typically found in .spk or .wld files.
+
+Referred to by: [??](#actordef)
+
+WLD opcodes impacted: 0x36 (DmSpriteDef2), 0x18 (Polyhedron)
+
+```c
+DMSPRITEDEF2
+	TAG "PREPE_DMSPRITEDEF"
+	CENTEROFFSET 6.9335580e-001 -1.2332956e+001 3.8766350e+001
+
+	NUMVERTICES 1
+	XYZ 0.0000000e+000 0.0000000e+000 0.0000000e+000
+
+	NUMUVS 1
+	UV 0.0000000e+000 0.0000000e+000
+
+	NUMVERTEXNORMALS 1
+	XYZ 0.0000000e+000 0.0000000e+000 0.0000000e+000
+
+	NUMVERTEXCOLORS 1
+	RGBA 255 255 255 255
+
+	SKINASSIGNMENTGROUPS 2 0 1 2 3
+
+	MATERIALPALETTE "PRE_MP"
+	DMTRACKINST "PRE_DMTRACK"
+
+	POLYHEDRON
+		DEFINITION	"prepe_POLYHDEF"
+	ENDPOLYHEDRON
+
+	NUMFACE2S 2
+	DMFACE2 // 0
+		PASSABLE 0
+		TRIANGLE 0 1 2
+	ENDDMFACE2 // 0
+	DMFACE2 // 1
+		PASSABLE 0
+		TRIANGLE 0 2 3
+	ENDDMFACE2 // 1
+
+	NUMMESHOPS 3
+	MESHOP 0 1 0.0000000e+000 0 1
+	MESHOP 0 1 0.0000000e+000 0 1
+	MESHOP 0 1 0.0000000e+000 0 1
+
+	FACEMATERIALGROUPS 2 0 1 2 3
+
+	VERTEXMATERIALGROUPS 2 0 1 2 3
+
+	BOUNDINGBOXMIN 0.0000000e+000 0.0000000e+000 0.0000000e+000
+	BOUNDINGBOXMAX 0.0000000e+000 0.0000000e+000 0.0000000e+000
+	BOUNDINGRADIUS 1.2431886e+002
+
+	FPSCALE 7
+	HEXONEFLAG 0
+	HEXTWOFLAG 0
+	HEXFOURTOUSANDFLAG 0
+	HEXEIGHTTOUSANDFLAG 0
+	HEXTENTHOUSANDFLAG 0
+	HEXTWENTYTHOUSANDFLAG 0
+ENDDMSPRITEDEF2
+```
+
+- DMSPRITEDEF2: start of definition. This is a 0x36 (DmSpriteDef2) opcode
+- ENDDMSPRITEDEF2: end of definition
+
+
+
+## TRACKDEFINITION
+
+A track definition. This is a collection of properties that defines animation tracks for a 3D sprite. These are typically found in .spk or .wld files.
+
+Note that when a track definition is declared, it is immediately followed by a [TRACKINSTANCE](#trackinstance), so the ASCII file is TRACKDEFINITION, TRACKINSTANCE, TRACKDEFINITION, TRACKINSTANCE, etc.
+
+Referred to by: [??](#actordef)
+
+WLD opcodes impacted: 0x12 (TrackDef)
+
+```c
+TRACKDEFINITION
+	TAG "PRE_TRACKDEF"
+	TAGINDEX 0
+	SPRITE "PRE_DMSPRITEDEF"
+	NUMFRAMES 1
+	FRAMETRANSFORM
+		XYZSCALE 1.0000000e+000
+		XYZ 1.0000000e+000 0.0000000e+000 0.0000000e+000
+		ROTSCALE? 0.0000000e+000
+		ROTABC? 0.0000000e+000 0.0000000e+000 0.0000000e+000
+		LEGACYROTATIONABCD? 0.0000000e+000 0.0000000e+000 0.0000000e+000 0.0000000e+000
+	ENDFRAMETRANSFORM
+ENDTRACKDEFINITION
+```
+
+- TRACKDEFINITION: start of definition
+- ENDMATERIALDEFINITION: end of definition
+
+## TRACKINSTANCE
+
+A track instance. This is a collection of properties that defines an instance of an animation track for a 3D sprite. These are typically found in .spk or .wld files.
+
+Referred to by: [??](#actordef)
+
+WLD opcodes impacted: 0x13 (TrackInstance)
+
+```c
+TRACKINSTANCE
+	TAG "PRE_TRACK"
+	TAGINDEX 0
+	SPRITE "PRE_DMSPRITEDEF"
+	DEFINITION "PRE_TRACKDEF"
+	DEFINITIONINDEX 0
+	INTERPOLATE 0 // deprecated
+	REVERSE 0 //deprecated
+	SLEEP? 0
+ENDTRACKINSTANCE
+```
+
+- TRACKINSTANCE: start of instance
+- ENDTRACKINSTANCE: end of instance
+
+
+## HIERARCHICALSPRITEDEFS
+
+A hierarchical sprite definition. This is a collection of properties that defines a hierarchical sprite. These are typically found in .spk or .wld files.
+
+Referred to by: [??](#actordef)
+
+WLD opcodes impacted: 0x10 (HierarchicalSpriteDef)
+
+```c
+HIERARCHICALSPRITEDEF
+	TAG "PRE_HS_DEF"
+	NUMDAGS 2
+	DAG  // 0
+		TAG	"PRE_DAG"
+		SPRITE ""
+		TRACK "PRE_TRACK"
+		SUBDAGLIST  1 2
+	ENDDAG // 0
+	DAG  // 1
+		TAG	"PREPE_DAG"
+		SPRITE	"PREPE_DMSPRITEDEF"
+		TRACK "PREPE_TRACK"
+		SUBDAGLIST  9 3 29 33 37 41 45 49 52 55
+	ENDDAG // 1
+
+	NUMATTACHEDSKINS 1
+	ATTACHEDSKIN
+		DMSPRITE "PREPE_DMSPRITEDEF"
+		LINKSKINUPDATESTODAGINDEX 2
+	ENDATTACHEDSKIN
+
+	POLYHEDRON
+		DEFINITION "prepe_POLYHDEF" // refer to polyhedron tag, or NO_COLLISION = 0, SPECIAL_COLLISION = 4294967293
+	ENDPOLYHEDRON
+
+	CENTEROFFSET? 0.0 0.0 0.0
+	BOUNDINGRADIUS? 1.4611023e+002
+	HEXONEFLAG 0 // found in both mob, zones
+	HEXTWOFLAG 0 // found in both mob, zones
+	HEXFOURTHOUSANDFLAG 0 // found in mobs
+	HEXEIGHTTHOUSANDFLAG 0 // found in zones
+	HEXTENTHOUSANDFLAG 0 // found in mobs
+	HEXTWENTYTHOUSANDFLAG 0 // found in zones
+ENDHIERARCHICALSPRITEDEF
+```
+
+- HIERARCHICALSPRITEDEF: start of definition
+- ENDHIERARCHICALSPRITEDEF: end of definition
+
+## AMBIENTLIGHT
+
+An ambient light definition. This is a collection of properties that defines an ambient light. These are typically found in .spk or .wld files.
+
+Referred to by: [??](#worlddefinition)
+
+WLD opcodes impacted: 0x1B (AmbientLight)
+
+```c
+AMBIENTLIGHT
+	TAG "DEFAULT_AMBIENTLIGHT"
+	LIGHT "DEFAULT_LIGHTDEF"
+	// LIGHTFLAGS 0
+	REGIONLIST 2 1 2
+ENDAMBIENTLIGHT
+```
+
+- AMBIENTLIGHT: start of definition
+- ENDAMBIENTLIGHT: end of definition
+
+
+
+## ACTORDEF
+
+An actor definition. This is a collection of properties that defines an actor. These are typically found in .spk or .wld files.
+
+Referred to by: [??](#worlddefinition)
+
+WLD opcodes impacted: 0x14 (ActorDef)
+
+```c
+ACTORDEF
+	ACTORTAG "BIX_ACTORDEF"
+	CALLBACK "SPRITECALLBACK"
+	// BOUNDSREF 0
+	CURRENTACTION 0
+	LOCATION? 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000
+	ACTIVEGEOMETRY? 0
+	NUMACTIONS 1
+	ACTION
+		// UNK1 0
+		NUMLEVELSOFDETAIL 1
+		LEVELOFDETAIL
+			SPRITE "BIX_2DSPRITE"
+			SPRITEINDEX 0
+			MINDISTANCE 0.000000
+		ENDLEVELOFDETAIL
+	ENDACTION
+	// UNK2 0
+ENDACTORDEF
+```
+
+- ACTORDEF: start of definition
+- ENDACTORDEF: end of definition
+
+## ACTORINST
+
+An actor instance. This is a collection of properties that defines an instance of an actor. These are typically found in .spk or .wld files.
+
+Referred to by: [??](#worlddefinition)
+
+WLD opcodes impacted: 0x15 (ActorInst)
+
+```c
+ACTORINST ""
+	DEFINITION "PLAYER_ACTORDEF"
+	CURRENTACTION? 0
+	LOCATION? 0.000000 0.000000 9.000000 0.000000 0.000000 0.000000
+	BOUNDINGRADIUS? 0.5000000
+	SCALEFACTOR? 0.5000000
+	SOUND? "PLAYER_SOUND"
+	ACTIVE? 1
+	SPRITEVOLUMEONLY? 1
+	DMRGBTRACK? "PLAYER_RGBTRACK"
+	SPHERE ""
+	SPHERERADIUS 0.000000
+	HEXTWOHUNDREDFLAG 0
+	USERDATA "?:"
+ENDACTORINST
+```
+
+- ACTORINST: start of instance
+- ENDACTORINST: end of instance
+
+## ZONE
+
+A zone. This is a collection of properties that defines a zone. These are typically found in .spk or .wld files.
+
+Referred to by: [??](#worlddefinition)
+
+WLD opcodes impacted: 0x29 (Zone)
+
+```c
+ZONE
+	TAG "TELEPORT_ZONE"
+	REGIONLIST 2 24 25
+	USERDATA "?"
+ENDZONE
+```
+
+- ZONE: start of zone
+- ENDZONE: end of zone
+
+## LIGHTDEFINITION
+
+A light definition. This is a collection of properties that defines a light. These are typically found in .spk or .wld files.
+
+Referred to by: [PointLight](#pointlight)
+
+WLD opcodes impacted: 0x1C (LightDef)
+
+```c
+
+LIGHTDEFINITION
+	TAG "L0_LDEF"
+	CURRENTFRAME 0
+	NUMFRAMES 1
+	LIGHTLEVELS 1.000000
+	SLEEP 200
+	SKIPFRAMES 1
+	COLOR  0.156863 0.156863 0.705882
+ENDLIGHTDEFINITION
+```
+
+- LIGHTDEFINITION: start of definition
+- ENDLIGHTDEFINITION: end of definition
+
+## POINTLIGHT
+
+A point light definition. This is a collection of properties that defines a point light. These are typically found in .spk or .wld files.
+
+Referred to by: [??](#worlddefinition)
+
+WLD opcodes impacted: 0x28 (PointLight)
+
+```c
+POINTLIGHT
+	TAG "L0"
+	LIGHT "L0_LDEF"
+	STATIC 0
+	STATICINFLUENCE 0
+	HASREGIONS 0
+	XYZ -49.443108 -7.105704 5.820261
+	RADIUSOFINFLUENCE 40.000000
+ENDPOINTLIGHT
+```
+
+- POINTLIGHT: start of definition
+- ENDPOINTLIGHT: end of definition
+
+## 3DSPRITEDEF
+
+A 3D sprite definition. This is a collection of properties that defines a 3D sprite. These are typically found in .spk or .wld files.
+
+Referred to by: [??](#worlddefinition)
+
+WLD opcodes impacted: 0x08 (Sprite3DDef)
+
+```c
+3DSPRITEDEF
+	TAG "CAMERA_DUMMY"
+	CENTEROFFSET? 0.000000 0.000000 0.000000
+	BOUNDINGRADIUS? 0.000000
+	SPHERELIST ""
+	NUMVERTICES 4
+	XYZ 0.000000 -1.000000 1.000000
+	XYZ 0.000000 1.000000 1.000000
+	XYZ 0.000000 1.000000 -1.000000
+	XYZ 0.000000 -1.000000 -1.000000
+	NUMBSPNODES 1
+	BSPNODE
+		VERTEXLIST 4 1 2 3 4
+		RENDERMETHOD "TRANSPARENT"
+		RENDERINFO
+			PEN? 16
+			BRIGHTNESS? 0.000000
+			SCALEDAMBIENT? 0.750000
+			SPRITE? ""
+			UVORIGIN? 0.000000 0.000000 0.000000
+			UAXIS? 0.000000 0.000000 0.000000
+			VAXIS? 0.000000 0.000000 0.000000
+			UVCOUNT 1
+			UV 0.000000 0.000000
+			TWOSIDED 0
+		ENDRENDERINFO
+		FRONTTREE 0
+		BACKTREE 0
+	ENDBSPNODE
+END3DSPRITEDEF
+```
+
+- 3DSPRITEDEF: start of definition
+- END3DSPRITEDEF: end of definition
+
+## WORLDTREE
+
+A world tree. This is a collection of properties that defines a world tree. These are typically found in .spk or .wld files.
+
+Referred to by: [??](#worlddefinition)
+
+WLD opcodes impacted: 0x21 (WorldTree)
+
+```c
+WORLDTREE
+	TAG "WORLD_TREE"
+    NUMWORLDNODES 2
+    WORLDNODE // 0
+        NORMALABCD -0.445420 -0.816603 -0.367097 -341.801483
+        WORLDREGIONTAG 0
+        FRONTTREE 2
+        BACKTREE 3
+		DISTANCE 0.000000
+    ENDWORLDNODE // 0
+    WORLDNODE // 1
+        NORMALABCD 0.000000 0.000000 1.000000 -237.000000
+        WORLDREGIONTAG 0
+        FRONTTREE 6
+        BACKTREE 4
+		DISTANCE 0.000000
+    ENDWORLDNODE // 1
+ENDWORLDTREE
+```
+
+- WORLDTREE: start of definition
+- ENDWORLDTREE: end of definition
+
+## REGION
+
+A region. This is a collection of properties that defines a region. These are typically found in .spk or .wld files.
+
+Referred to by: [??](#worlddefinition)
+
+WLD opcodes impacted: 0x22 (Region)
+
+```c
+REGION
+	REGIONTAG "R000148"
+	REVERBVOLUME 0.000000
+	REVERBOFFSET 0.000000
+	REGIONFOG 0
+	GOURAUD2 0
+	ENCODEDVISIBILITY 0
+	VISLISTBYTES 0 // if 1, vislist must be even
+	NUMREGIONVERTEX 1
+	XYZ 0.000000 0.000000 0.000000
+	NUMRENDERVERTICES 1
+	XYZ 0.000000 0.000000 0.000000
+	NUMWALLS 1
+	WALL
+		NORMALABCD 0.000000 0.000000 0.000000 0.000000
+		NUMVERTICES 1
+		XYZ 0.000000 0.000000 0.000000
+	ENDWALL
+	NUMOBSTACLES 1
+	OBSTACLE // 0
+		NORMALABCD 0.000000 0.000000 0.000000 0.000000
+		NUMVERTICES 1
+		XYZ 0.000000 0.000000 0.000000
+	ENDOBSTACLE // 0
+	NUMCUTTINGOBSTACLES 1
+	CUTTINGOBSTACLE
+		NORMALABCD 0.000000 0.000000 0.000000 0.000000
+		NUMVERTICES 1
+		XYZ 0.000000 0.000000 0.000000
+	ENDCUTTINGOBSTACLE
+
+	VISTREE
+		NUMVISNODE 1
+		VISNODE
+			NORMALABCD 0.000000 0.000000 0.000000 0.000000
+			VISLISTINDEX 1
+			FRONTTREE 0
+			BACKTREE 0
+		ENDVISNODE
+		NUMVISLIST 1
+		VISLIST // 0
+			RANGE 4 37632 57350 1 17312
+		ENDVISLIST // 0
+	ENDVISTREE
+	SPHERE -515.000000 -7.000000 32.310989 0.000000
+	USERDATA "?:"
+	SPRITE "R000148_DMSPRITEDEF2"
+ENDREGION
+```
+
+- REGION: start of definition
+- ENDREGION: end of definition
+
+## RGBDEFORMATIONTRACKDEF
+
+An RGB deformation track definition. This is a collection of properties that defines an RGB deformation track. These are typically found in .spk or .wld files.
+
+Referred to by: [??](#worlddefinition)
+
+WLD opcodes impacted: 0x1D (RgbDeformationTrackDef)
+
+```c
+RGBDEFORMATIONTRACKDEF
+	TAG "ENT1_DMT"
+	// NUMFRAMES 1 // if this isn't 1, let xack know
+	// DATA2 1 // if this isn't 1, let xack know
+	// NUMVERTICES 0 // if this isn't 0, let xack know
+	SLEEP 200
+	RGBDEFORMATIONFRAME
+		NUMRGBAS 2
+		RGBA 128 128 128 217
+		RGBA 255 255 255 255
+	ENDRGBDEFORMATIONFRAME
+ENDRGBDEFORMATIONTRACKDEF
+```
+
+- RGBDEFORMATIONTRACKDEF: start of definition
+- ENDRGBDEFORMATIONTRACKDEF: end of definition
+
+## PARTICLECLOUDDEF
+
+A particle cloud definition. This is a collection of properties that defines a particle cloud. These are typically found in .spk or .wld files.
+
+Referred to by: [??](#worlddefinition)
+
+WLD opcodes impacted: 0x0B (ParticleCloudDef)
+
+```c
+PARTICLECLOUDDEF
+	TAG "I_L301_PCD"
+	BLITSPRITEDEF
+		BLITTAG "I_L301_SPB"
+		SPRITE "I_L301_SPRITE"
+		UNKNOWN 0
+	ENDBLITSPRITEDEF
+	SETTINGONE 0
+	SETTINGTWO 0
+	MOVEMENT "NONE" // SPHERE, PLANE, STREAM, NONE
+	HIGHOPACITY 0
+	FOLLOWITEM 0
+	SIMULTANEOUSPARTICLES 1
+	UNKSIX 0
+	UNKSEVEN 0
+	UNKEIGHT 0
+	UNKNINE 0
+	UNKTEN 0
+	SPAWN
+		RADIUS 1.00000000
+		ANGLE 0.00000000
+		LIFESPAN 1
+		VELOCITY 1.00000000
+		NORMALXYZ 0.00000000 0.00000000 0.00000000
+		RATE 1
+		SCALE 1.00000000
+	ENDSPAWN
+	COLOR 255 255 255 255
+	HEXEIGHTYFLAG 0
+	HEXONEHUNDREDFLAG 0
+	HEXFOURHUNDREDFLAG 0
+	HEXFOURTHOUSANDFLAG
+	HEXEIGHTTHOUSANDFLAG 0
+	HEXTENTHOUSANDFLAG 0
+	HEXTWENTYTHOUSANDFLAG 0
+ENDPARTICLECLOUDDEF
+```
+
+## DMTRACKDEF2
+
+A DM track definition. This is a collection of properties that defines a DM track. These are typically found in .spk or .wld files.
+
+Referred to by: [??](#worlddefinition)
+
+WLD opcodes impacted: 0x2A (DmTrackDef2)
+
+```c
+
+DMTRACKDEF2 "OTTENT101_DMTRACKDEF"
+	SLEEP 100
+	PARAM2 0
+	FPSCALE 9
+	SIZE6 0
+	NUMFRAMES 2
+		NUMVERTICES 2
+			XYZ 5.25000000e+00 -1.58027344e+01 -3.47656250e-01
+			XYZ -6.47070312e+00 -1.58027344e+01 -3.47656250e-01
+		NUMVERTICES 2
+			XYZ 5.25000000e+00 -1.58027344e+01 -3.47656250e-01
+			XYZ -6.47070312e+00 -1.58027344e+01 -3.47656250e-01
+```

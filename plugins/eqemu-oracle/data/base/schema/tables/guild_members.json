@@ -1,0 +1,85 @@
+{
+  "category": "guilds",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "[Character Identifier](../../schema/characters/character_data.md)",
+      "name": "char_id"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "[Guild Identifier](guilds.md)",
+      "name": "guild_id"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Rank](../../../../server/player/guild-ranks)",
+      "name": "rank"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Tribute Enable: 0 = False, 1 = True",
+      "name": "tribute_enable"
+    },
+    {
+      "data_type": "int",
+      "description": "Total Tribute",
+      "name": "total_tribute"
+    },
+    {
+      "data_type": "int",
+      "description": "Last Tribute",
+      "name": "last_tribute"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Banked: 0 = False, 1 = True",
+      "name": "banker"
+    },
+    {
+      "data_type": "text",
+      "description": "Public Note",
+      "name": "public_note"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Alt: 0 = False, 1 = True",
+      "name": "alt"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "",
+      "name": "online"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/guilds/guild_members/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "guild_members",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "guild_members",
+  "path": "schema/guilds/guild_members",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "char_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    },
+    {
+      "local_key": "guild_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[guilds](../../schema/guilds/guilds.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/guilds/guild_members.md",
+  "table": "guild_members",
+  "title": "guild_members"
+}

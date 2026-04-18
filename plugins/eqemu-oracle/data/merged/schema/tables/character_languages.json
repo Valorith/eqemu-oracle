@@ -1,0 +1,57 @@
+{
+  "category": "characters",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "[Character Identifier](character_data.md)",
+      "name": "id"
+    },
+    {
+      "data_type": "smallint",
+      "description": "[Language Identifier](../../../../server/player/languages)",
+      "name": "lang_id"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Skill Level",
+      "name": "value"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/characters/character_languages/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "character_languages",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "character_languages",
+  "path": "schema/characters/character_languages",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "character_languages",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_languages.md",
+  "table": "character_languages",
+  "title": "character_languages"
+}

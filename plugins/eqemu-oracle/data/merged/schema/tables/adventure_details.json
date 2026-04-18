@@ -1,0 +1,117 @@
+{
+  "category": "adventures",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Entry Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Unique Adventure Identifier",
+      "name": "adventure_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Instance Identifier](../../schema/instances/instance_list.md)",
+      "name": "instance_id"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Count",
+      "name": "count"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Assassinate Count",
+      "name": "assassinate_count"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Status",
+      "name": "status"
+    },
+    {
+      "data_type": "int",
+      "description": "Time Created UNIX Timestamp",
+      "name": "time_created"
+    },
+    {
+      "data_type": "int",
+      "description": "Time Zoned UNIX Timestamp",
+      "name": "time_zoned"
+    },
+    {
+      "data_type": "int",
+      "description": "Time Completed UNIX Timestamp",
+      "name": "time_completed"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/adventures/adventure_details/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "adventure_details",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "adventure_details",
+  "path": "schema/adventures/adventure_details",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "adventure_details",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "id",
+      "remote_table": "[adventure_members](../../schema/adventures/adventure_members.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[adventure_template](../../schema/adventures/adventure_template.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "id",
+      "remote_table": "[adventure_template_entry](../../schema/adventures/adventure_template_entry.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "id",
+      "remote_table": "[adventure_template_entry_flavor](../../schema/adventures/adventure_template_entry_flavor.md)"
+    },
+    {
+      "local_key": "adventure_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[adventure_template](../../schema/adventures/adventure_template.md)"
+    },
+    {
+      "local_key": "instance_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[instance_list](../../schema/instances/instance_list.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/adventures/adventure_details.md",
+  "table": "adventure_details",
+  "title": "adventure_details"
+}

@@ -1,0 +1,87 @@
+{
+  "category": "client-files",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Database String Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "int",
+      "description": "Type",
+      "name": "type"
+    },
+    {
+      "data_type": "text",
+      "description": "Value",
+      "name": "value"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/client-files/db_str/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "db_str",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "db_str",
+  "path": "schema/client-files/db_str",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "db_str",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "id",
+      "relationship_type": "One-to-One",
+      "remote_key": "dbstring",
+      "remote_table": "[merc_templates](../../schema/mercenaries/merc_templates.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "One-to-One",
+      "remote_key": "dbstring",
+      "remote_table": "[merc_types](../../schema/mercenaries/merc_types.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "One-to-One",
+      "remote_key": "descnum",
+      "remote_table": "[spells_new](../../schema/spells/spells_new.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "One-to-One",
+      "remote_key": "effectdescnum",
+      "remote_table": "[spells_new](../../schema/spells/spells_new.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "One-to-One",
+      "remote_key": "effectdescnum2",
+      "remote_table": "[spells_new](../../schema/spells/spells_new.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "One-to-One",
+      "remote_key": "typedescnum",
+      "remote_table": "[spells_new](../../schema/spells/spells_new.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/client-files/db_str.md",
+  "table": "db_str",
+  "title": "db_str"
+}

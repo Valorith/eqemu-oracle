@@ -1,0 +1,138 @@
+{
+  "category": "merchants",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Merchant Identifier",
+      "name": "merchantid"
+    },
+    {
+      "data_type": "int",
+      "description": "Slot",
+      "name": "slot"
+    },
+    {
+      "data_type": "int",
+      "description": "[Item Identifier](../../schema/items/items.md)",
+      "name": "item"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Faction Required",
+      "name": "faction_required"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Level Required",
+      "name": "level_required"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Minimum Status](../../../../server/player/status-levels)",
+      "name": "min_status"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Maximum Status](../../../../server/player/status-levels)",
+      "name": "max_status"
+    },
+    {
+      "data_type": "smallint",
+      "description": "[Alternate Currency Cost](../../schema/alternate-currency/alternate_currency.md)",
+      "name": "alt_currency_cost"
+    },
+    {
+      "data_type": "int",
+      "description": "[Classes Required](../../../../server/player/class-list)",
+      "name": "classes_required"
+    },
+    {
+      "data_type": "int",
+      "description": "Probability: 0 = Never, 100 = Always",
+      "name": "probability"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Bucket Name",
+      "name": "bucket_name"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Bucket Value",
+      "name": "bucket_value"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Bucket Comparison Type](../../../../server/scripting/merchant-data-buckets)",
+      "name": "bucket_comparison"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Minimum Expansion](../../../../server/operation/expansion-list)",
+      "name": "min_expansion"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Maximum Expansion](../../../../server/operation/expansion-list)",
+      "name": "max_expansion"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Content Flags Required to be Enabled",
+      "name": "content_flags"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Content Flags Required to be Disabled",
+      "name": "content_flags_disabled"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/merchants/merchantlist/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "merchantlist",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "merchantlist",
+  "path": "schema/merchants/merchantlist",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "bucket_name",
+      "relationship_type": "One-to-One",
+      "remote_key": "key",
+      "remote_table": "[data_buckets](../../schema/data-storage/data_buckets.md)"
+    },
+    {
+      "local_key": "content_flags",
+      "relationship_type": "One-to-One",
+      "remote_key": "flag_name",
+      "remote_table": "[content_flags](../../schema/flagging/content_flags.md)"
+    },
+    {
+      "local_key": "content_flags_disabled",
+      "relationship_type": "One-to-One",
+      "remote_key": "flag_name",
+      "remote_table": "[content_flags](../../schema/flagging/content_flags.md)"
+    },
+    {
+      "local_key": "item",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[items](../../schema/items/items.md)"
+    },
+    {
+      "local_key": "merchant_id",
+      "relationship_type": "Has-Many",
+      "remote_key": "merchant_id",
+      "remote_table": "[npc_types](../../schema/npcs/npc_types.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/merchants/merchantlist.md",
+  "table": "merchantlist",
+  "title": "merchantlist"
+}

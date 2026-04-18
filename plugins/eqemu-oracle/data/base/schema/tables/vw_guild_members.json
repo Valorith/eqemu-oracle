@@ -1,0 +1,71 @@
+{
+  "category": "views",
+  "columns": [
+    {
+      "data_type": "varchar",
+      "description": "Mob Type: B = Bot, C = Client",
+      "name": "mob_type"
+    },
+    {
+      "data_type": "int",
+      "description": "[Character Identifier](../../schema/characters/character_data.md)",
+      "name": "char_id"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "[Guild Identifier](../../schema/guilds/guilds.md)",
+      "name": "guild_id"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Ranl",
+      "name": "rank"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Tribute Enable: 0 = False, 1 = True",
+      "name": "tribute_enable"
+    },
+    {
+      "data_type": "int",
+      "description": "Total Tribute",
+      "name": "total_tribute"
+    },
+    {
+      "data_type": "int",
+      "description": "Last Tribute",
+      "name": "last_tribute"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Banker: 0 = False, 1 = True",
+      "name": "banker"
+    },
+    {
+      "data_type": "mediumtext",
+      "description": "Public Note",
+      "name": "public_note"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Alt: 0 = False, 1 = True",
+      "name": "alt"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/views/vw_guild_members/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "vw_guild_members",
+    "Schema"
+  ],
+  "id": "vw_guild_members",
+  "path": "schema/views/vw_guild_members",
+  "related_docs": [],
+  "relationships": [],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/views/vw_guild_members.md",
+  "table": "vw_guild_members",
+  "title": "vw_guild_members"
+}

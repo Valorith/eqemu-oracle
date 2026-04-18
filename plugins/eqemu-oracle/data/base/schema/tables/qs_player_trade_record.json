@@ -1,0 +1,105 @@
+{
+  "category": "query-server",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Trade Identifier",
+      "name": "trade_id"
+    },
+    {
+      "data_type": "timestamp",
+      "description": "Time Timestamp",
+      "name": "time"
+    },
+    {
+      "data_type": "int",
+      "description": "[Character 1 Identifier](../../schema/characters/character_data.md)",
+      "name": "char1_id"
+    },
+    {
+      "data_type": "int",
+      "description": "Character 1 Platinum",
+      "name": "char1_pp"
+    },
+    {
+      "data_type": "int",
+      "description": "Character 1 Gold",
+      "name": "char1_gp"
+    },
+    {
+      "data_type": "int",
+      "description": "Character 1 Silver",
+      "name": "char1_sp"
+    },
+    {
+      "data_type": "int",
+      "description": "Character 1 Copper",
+      "name": "char1_cp"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "[Character 1 Item Identifier](../../schema/items/items.md)",
+      "name": "char1_items"
+    },
+    {
+      "data_type": "int",
+      "description": "[Character 2 Identifier](../../schema/characters/character_data.md)",
+      "name": "char2_id"
+    },
+    {
+      "data_type": "int",
+      "description": "Character 2 Platinum",
+      "name": "char2_pp"
+    },
+    {
+      "data_type": "int",
+      "description": "Character 2 Gold",
+      "name": "char2_gp"
+    },
+    {
+      "data_type": "int",
+      "description": "Character 2 Silver",
+      "name": "char2_sp"
+    },
+    {
+      "data_type": "int",
+      "description": "Character 2 Copper",
+      "name": "char2_cp"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "[Character 2 Item Identifier](../../schema/items/items.md)",
+      "name": "char2_items"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/query-server/qs_player_trade_record/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "qs_player_trade_record",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "qs_player_trade_record",
+  "path": "schema/query-server/qs_player_trade_record",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "char1_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    },
+    {
+      "local_key": "char2_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/query-server/qs_player_trade_record.md",
+  "table": "qs_player_trade_record",
+  "title": "qs_player_trade_record"
+}

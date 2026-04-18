@@ -1,0 +1,62 @@
+{
+  "category": "books",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Book Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Unique Book Identifier",
+      "name": "name"
+    },
+    {
+      "data_type": "text",
+      "description": "The text in the book. ` Represents line spaces, `` is two line spaces, ``` is three line spaces, etc. (13 lines per book page)",
+      "name": "txtfile"
+    },
+    {
+      "data_type": "int",
+      "description": "[Language](../../../../server/player/languages)",
+      "name": "language"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/books/books/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "books",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "books",
+  "path": "schema/books/books",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "books",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "book",
+      "remote_table": "[items](../../schema/items/items.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/books/books.md",
+  "table": "books",
+  "title": "books"
+}

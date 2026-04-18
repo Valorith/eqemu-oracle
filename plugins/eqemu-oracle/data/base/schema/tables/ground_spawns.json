@@ -1,0 +1,148 @@
+{
+  "category": "ground-spawns",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Ground Spawn Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Zone Identifier](../../../../server/zones/zone-list)",
+      "name": "zoneid"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Version: -1 For All",
+      "name": "version"
+    },
+    {
+      "data_type": "float",
+      "description": "Maximum X Coordinate",
+      "name": "max_x"
+    },
+    {
+      "data_type": "float",
+      "description": "Maximum Y Coordinate",
+      "name": "max_y"
+    },
+    {
+      "data_type": "float",
+      "description": "Maximum Z Coordinate",
+      "name": "max_z"
+    },
+    {
+      "data_type": "float",
+      "description": "Minimum X Coordinate",
+      "name": "min_x"
+    },
+    {
+      "data_type": "float",
+      "description": "Minimum Y Coordinate",
+      "name": "min_y"
+    },
+    {
+      "data_type": "float",
+      "description": "Heading Coordinate",
+      "name": "heading"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Name",
+      "name": "name"
+    },
+    {
+      "data_type": "int",
+      "description": "[Item Identifier](../../schema/items/items.md)",
+      "name": "item"
+    },
+    {
+      "data_type": "int",
+      "description": "Max Allowed",
+      "name": "max_allowed"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Comment",
+      "name": "comment"
+    },
+    {
+      "data_type": "int",
+      "description": "Respawn Timer in Seconds",
+      "name": "respawn_timer"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "",
+      "name": "fix_z"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Minimum Expansion](../../../../server/operation/expansion-list)",
+      "name": "min_expansion"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Maximum Expansion](../../../../server/operation/expansion-list)",
+      "name": "max_expansion"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Content Flags Required to be Enabled",
+      "name": "content_flags"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Content Flags Required to be Disabled",
+      "name": "content_flags_disabled"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/ground-spawns/ground_spawns/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "ground_spawns",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "ground_spawns",
+  "path": "schema/ground-spawns/ground_spawns",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "content_flags",
+      "relationship_type": "One-to-One",
+      "remote_key": "flag_name",
+      "remote_table": "[content_flags](../../schema/flagging/content_flags.md)"
+    },
+    {
+      "local_key": "content_flags_disabled",
+      "relationship_type": "One-to-One",
+      "remote_key": "flag_name",
+      "remote_table": "[content_flags](../../schema/flagging/content_flags.md)"
+    },
+    {
+      "local_key": "item",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[items](../../schema/items/items.md)"
+    },
+    {
+      "local_key": "version",
+      "relationship_type": "One-to-One",
+      "remote_key": "version",
+      "remote_table": "[zone](../../schema/zone/zone.md)"
+    },
+    {
+      "local_key": "zoneid",
+      "relationship_type": "One-to-One",
+      "remote_key": "zoneidnumber",
+      "remote_table": "[zone](../../schema/zone/zone.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/ground-spawns/ground_spawns.md",
+  "table": "ground_spawns",
+  "title": "ground_spawns"
+}

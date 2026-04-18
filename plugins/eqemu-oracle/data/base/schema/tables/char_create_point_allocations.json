@@ -1,0 +1,104 @@
+{
+  "category": "characters",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Allocation Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "int",
+      "description": "Base Strength",
+      "name": "base_str"
+    },
+    {
+      "data_type": "int",
+      "description": "Base Stamina",
+      "name": "base_sta"
+    },
+    {
+      "data_type": "int",
+      "description": "Base Dexterity",
+      "name": "base_dex"
+    },
+    {
+      "data_type": "int",
+      "description": "Base Agility",
+      "name": "base_agi"
+    },
+    {
+      "data_type": "int",
+      "description": "Base Intelligence",
+      "name": "base_int"
+    },
+    {
+      "data_type": "int",
+      "description": "Base Wisdom",
+      "name": "base_wis"
+    },
+    {
+      "data_type": "int",
+      "description": "Base Charisma",
+      "name": "base_cha"
+    },
+    {
+      "data_type": "int",
+      "description": "Allocated Strength",
+      "name": "alloc_str"
+    },
+    {
+      "data_type": "int",
+      "description": "Allocated Stamina",
+      "name": "alloc_sta"
+    },
+    {
+      "data_type": "int",
+      "description": "Allocated Dexterity",
+      "name": "alloc_dex"
+    },
+    {
+      "data_type": "int",
+      "description": "Allocated Agility",
+      "name": "alloc_agi"
+    },
+    {
+      "data_type": "int",
+      "description": "Allocated Intelligence",
+      "name": "alloc_int"
+    },
+    {
+      "data_type": "int",
+      "description": "Allocated Wisdom",
+      "name": "alloc_wis"
+    },
+    {
+      "data_type": "int",
+      "description": "Allocated Charisma",
+      "name": "alloc_cha"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/characters/char_create_point_allocations/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "char_create_point_allocations",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "char_create_point_allocations",
+  "path": "schema/characters/char_create_point_allocations",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "allocation_id",
+      "remote_table": "[char_create_combinations](../../schema/characters/char_create_combinations.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/char_create_point_allocations.md",
+  "table": "char_create_point_allocations",
+  "title": "char_create_point_allocations"
+}

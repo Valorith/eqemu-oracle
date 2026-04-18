@@ -1,0 +1,131 @@
+{
+  "category": "aas",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "[AA Identifier](aa_ability.md)",
+      "name": "id"
+    },
+    {
+      "data_type": "int",
+      "description": "Upper Hotkey SID",
+      "name": "upper_hotkey_sid"
+    },
+    {
+      "data_type": "int",
+      "description": "Lower Hotkey SID",
+      "name": "lower_hotkey_sid"
+    },
+    {
+      "data_type": "int",
+      "description": "Title SID",
+      "name": "title_sid"
+    },
+    {
+      "data_type": "int",
+      "description": "Description SID",
+      "name": "desc_sid"
+    },
+    {
+      "data_type": "int",
+      "description": "Cost in AA Points",
+      "name": "cost"
+    },
+    {
+      "data_type": "int",
+      "description": "Level Required",
+      "name": "level_req"
+    },
+    {
+      "data_type": "int",
+      "description": "[Spell Identifier](../../schema/spells/spells_new.md)",
+      "name": "spell"
+    },
+    {
+      "data_type": "int",
+      "description": "[Spell Type](../../../../server/spells/spell-types)",
+      "name": "spell_type"
+    },
+    {
+      "data_type": "int",
+      "description": "Recast Timer",
+      "name": "recast_time"
+    },
+    {
+      "data_type": "int",
+      "description": "[Expansion Identifier](../../../../server/operation/expansion-list)",
+      "name": "expansion"
+    },
+    {
+      "data_type": "int",
+      "description": "Previous Rank Identifier",
+      "name": "prev_id"
+    },
+    {
+      "data_type": "int",
+      "description": "Next Rank Identifier",
+      "name": "next_id"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/aas/aa_ranks/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "aa_ranks",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "aa_ranks",
+  "path": "schema/aas/aa_ranks",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "aa_ranks",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "id",
+      "relationship_type": "One-to-One",
+      "remote_key": "first_rank_id",
+      "remote_table": "[aa_ability](../../schema/aas/aa_ability.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "One-to-One",
+      "remote_key": "rank_id",
+      "remote_table": "[aa_rank_effects](../../schema/aas/aa_rank_effects.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "One-to-One",
+      "remote_key": "aa_id",
+      "remote_table": "[aa_rank_prereqs](../../schema/aas/aa_rank_prereqs.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "One-to-One",
+      "remote_key": "rank_id",
+      "remote_table": "[aa_rank_prereqs](../../schema/aas/aa_rank_prereqs.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "aa_id",
+      "remote_table": "[character_alternate_abilities](../../schema/characters/character_alternate_abilities.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/aas/aa_ranks.md",
+  "table": "aa_ranks",
+  "title": "aa_ranks"
+}

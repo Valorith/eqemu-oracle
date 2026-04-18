@@ -1,0 +1,84 @@
+{
+  "category": "adventures",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "[Character Identifier](../../schema/characters/character_data.md)",
+      "name": "player_id"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Deepest Guk Wins",
+      "name": "guk_wins"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Miragul's Menagerie Wins",
+      "name": "mir_wins"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Mistmoore Catacombs Wins",
+      "name": "mmc_wins"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Rujarkian Hills Wins",
+      "name": "ruj_wins"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Takish-Hiz Wins",
+      "name": "tak_wins"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Deepest Guk Losses",
+      "name": "guk_losses"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Miragul's Menagerie Losses",
+      "name": "mir_losses"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Mistmoore Catacombs Losses",
+      "name": "mmc_losses"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Rujarkian Hills Losses",
+      "name": "ruj_losses"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Takish-Hiz Losses",
+      "name": "tak_losses"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/adventures/adventure_stats/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "adventure_stats",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "adventure_stats",
+  "path": "schema/adventures/adventure_stats",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "player_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/adventures/adventure_stats.md",
+  "table": "adventure_stats",
+  "title": "adventure_stats"
+}

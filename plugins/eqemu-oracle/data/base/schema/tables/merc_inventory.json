@@ -1,0 +1,60 @@
+{
+  "category": "mercenaries",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Mercenary Inventory Identifier",
+      "name": "merc_inventory_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Mercenary Subtype Identifier](merc_subtypes.md)",
+      "name": "merc_subtype_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Item Identifier](../../schema/items/items.md)",
+      "name": "item_id"
+    },
+    {
+      "data_type": "int",
+      "description": "Minimum Level",
+      "name": "min_level"
+    },
+    {
+      "data_type": "int",
+      "description": "Maximum Level",
+      "name": "max_level"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/mercenaries/merc_inventory/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "merc_inventory",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "merc_inventory",
+  "path": "schema/mercenaries/merc_inventory",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "item_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[items](../../schema/items/items.md)"
+    },
+    {
+      "local_key": "merc_subtype_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "merc_subtype_id",
+      "remote_table": "[merc_subtypes](../../schema/mercenaries/merc_subtypes.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/mercenaries/merc_inventory.md",
+  "table": "merc_inventory",
+  "title": "merc_inventory"
+}

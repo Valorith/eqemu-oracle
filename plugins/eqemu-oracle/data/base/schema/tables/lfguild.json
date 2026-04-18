@@ -1,0 +1,74 @@
+{
+  "category": "characters",
+  "columns": [
+    {
+      "data_type": "tinyint",
+      "description": "Type",
+      "name": "type"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Name",
+      "name": "name"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Comment",
+      "name": "comment"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "From Level",
+      "name": "fromlevel"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "To Level",
+      "name": "tolevel"
+    },
+    {
+      "data_type": "int",
+      "description": "[Classes](../../../../server/player/class-list)",
+      "name": "classes"
+    },
+    {
+      "data_type": "int",
+      "description": "AA Count",
+      "name": "aacount"
+    },
+    {
+      "data_type": "int",
+      "description": "Time Zone",
+      "name": "timezone"
+    },
+    {
+      "data_type": "int",
+      "description": "Time Posted UNIX Timestamp",
+      "name": "timeposted"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/characters/lfguild/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "lfguild",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "lfguild",
+  "path": "schema/characters/lfguild",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "name",
+      "relationship_type": "One-to-One",
+      "remote_key": "name",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/lfguild.md",
+  "table": "lfguild",
+  "title": "lfguild"
+}

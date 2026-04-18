@@ -1,0 +1,69 @@
+{
+  "category": "bots",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Bot Spell Setting Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Bot Identifier](bot_data.md)",
+      "name": "bot_id"
+    },
+    {
+      "data_type": "smallint",
+      "description": "[Spell Identifier](../../schema/spells/spells_new.md)",
+      "name": "spell_id"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Priority",
+      "name": "priority"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Minimum Health Percentage",
+      "name": "min_hp"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Maximum Health Percentage",
+      "name": "max_hp"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Is Enabled: 0 = False, 1 = True",
+      "name": "is_enabled"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/bots/bot_spell_settings/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "bot_spell_settings",
+    "Schema"
+  ],
+  "id": "bot_spell_settings",
+  "path": "schema/bots/bot_spell_settings",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "bot_spell_settings",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/bots/bot_spell_settings.md",
+  "table": "bot_spell_settings",
+  "title": "bot_spell_settings"
+}

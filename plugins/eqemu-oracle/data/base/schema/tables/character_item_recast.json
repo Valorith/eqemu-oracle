@@ -1,0 +1,50 @@
+{
+  "category": "characters",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "[Character Identifier](character_data.md)",
+      "name": "id"
+    },
+    {
+      "data_type": "int",
+      "description": "Recast Type",
+      "name": "recast_type"
+    },
+    {
+      "data_type": "int",
+      "description": "Recast Timestamp",
+      "name": "timestamp"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/characters/character_item_recast/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "character_item_recast",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "character_item_recast",
+  "path": "schema/characters/character_item_recast",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    },
+    {
+      "local_key": "recast_type",
+      "relationship_type": "Has-Many",
+      "remote_key": "recasttype",
+      "remote_table": "[items](../../schema/items/items.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_item_recast.md",
+  "table": "character_item_recast",
+  "title": "character_item_recast"
+}

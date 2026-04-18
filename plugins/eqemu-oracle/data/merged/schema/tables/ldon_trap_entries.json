@@ -1,0 +1,52 @@
+{
+  "category": "traps",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique LDoN Trap Entry Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Trap Identifier](ldon_trap_templates.md)",
+      "name": "trap_id"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/traps/ldon_trap_entries/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "ldon_trap_entries",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "ldon_trap_entries",
+  "path": "schema/traps/ldon_trap_entries",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "ldon_trap_entries",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "trap_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[ldon_trap_templates](../../schema/traps/ldon_trap_templates.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/traps/ldon_trap_entries.md",
+  "table": "ldon_trap_entries",
+  "title": "ldon_trap_entries"
+}

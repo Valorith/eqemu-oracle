@@ -1,19 +1,87 @@
-# eqemu-oracle Plugin
+# EQEmu Oracle Plugin
 
-This directory contains the Codex plugin scaffold for `eqemu-oracle`.
+`eqemu-oracle` is a repo-local Codex plugin that serves deterministic EQEmu context through a built-in stdio MCP server.
 
-The generated manifest intentionally still contains `[TODO: ...]` placeholders. That keeps the scaffold aligned with the plugin creator workflow while giving us a stable place to start implementation.
+## Scope
 
-## Expected Responsibilities
+- Perl and Lua quest API lookup
+- EQEmu schema lookup
+- Official EQEmu documentation lookup
+- Shared and local extension overlays
+- Refresh and merge tooling for staged data
 
-- Provide Codex-facing metadata through `.codex-plugin/plugin.json`
-- Host local MCP wiring in `.mcp.json`
-- Host app wiring in `.app.json`
-- Store EQEmu-specific skills, scripts, hooks, and assets
+## Key Files And Folders
 
-## Immediate Follow-Up
+- `.codex-plugin/plugin.json`: plugin metadata and Codex interface settings
+- `.mcp.json`: MCP server wiring used by Codex
+- `scripts/eqemu_oracle.py`: CLI entrypoint for refresh, rebuild, and MCP serve
+- `scripts/eqemu_oracle/`: runtime package
+- `data/base/`: normalized upstream snapshots
+- `data/merged/`: effective records after overlay merge
+- `extensions/`: repo-tracked overlays
+- `local-extensions/`: machine-local overlays ignored by git
+- `tests/`: unit and smoke tests
 
-1. Replace manifest placeholders with real plugin metadata.
-2. Add the first skill under `skills/` for schema and scripting lookups.
-3. Add ingestion scripts under `scripts/` for docs and data refresh.
-4. Decide whether hooks are needed for local validation or cache refresh workflows.
+## CLI
+
+Run the local MCP server:
+
+```powershell
+python .\plugins\eqemu-oracle\scripts\eqemu_oracle.py mcp-serve
+```
+
+Refresh upstream snapshots and rebuild merged data:
+
+```powershell
+python .\plugins\eqemu-oracle\scripts\eqemu_oracle.py refresh --scope all --mode committed
+```
+
+Refresh into the local untracked overlay:
+
+```powershell
+python .\plugins\eqemu-oracle\scripts\eqemu_oracle.py refresh --scope all --mode overlay
+```
+
+Rebuild merged data from existing snapshots plus overlays:
+
+```powershell
+python .\plugins\eqemu-oracle\scripts\eqemu_oracle.py rebuild-extensions --scope all --mode committed
+```
+
+## Overlay Model
+
+Effective data is built from three layers:
+
+1. upstream base snapshot
+2. repo extension
+3. local extension
+
+Supported `mode` values on extension records:
+
+- `override`
+- `augment`
+- `disable`
+
+If an extension record reuses an existing id and no mode is set, it defaults to `override`. If it introduces a new id and no mode is set, it defaults to `augment`.
+
+## Domain Formats
+
+- Quest API extensions use a `records` array
+- Schema extensions use a `tables` array
+- Docs extensions use a `pages` array
+
+See:
+
+- `extensions/quest-api/README.md`
+- `extensions/schema/README.md`
+- `extensions/docs/README.md`
+
+## MCP Tools
+
+- `search_eqemu_context`
+- `get_quest_api_entry`
+- `get_db_table`
+- `get_doc_page`
+- `explain_eqemu_provenance`
+- `refresh_eqemu_oracle`
+- `rebuild_eqemu_extensions`

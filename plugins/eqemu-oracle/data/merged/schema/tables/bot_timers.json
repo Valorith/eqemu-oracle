@@ -1,0 +1,57 @@
+{
+  "category": "bots",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "[Unique Bot Identifier](bot_data.md)",
+      "name": "bot_id"
+    },
+    {
+      "data_type": "int",
+      "description": "Timer Identifier",
+      "name": "timer_id"
+    },
+    {
+      "data_type": "int",
+      "description": "Timer Expiration",
+      "name": "timer_value"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/bots/bot_timers/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "bot_timers",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "bot_timers",
+  "path": "schema/bots/bot_timers",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "bot_timers",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "bot_data",
+      "relationship_type": "One-to-One",
+      "remote_key": "bot_id",
+      "remote_table": "[bot_data](../../schema/bots/bot_data.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/bots/bot_timers.md",
+  "table": "bot_timers",
+  "title": "bot_timers"
+}

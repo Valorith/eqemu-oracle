@@ -1,0 +1,82 @@
+{
+  "category": "query-server",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Move Identifier",
+      "name": "move_id"
+    },
+    {
+      "data_type": "timestamp",
+      "description": "Time Timestamp",
+      "name": "time"
+    },
+    {
+      "data_type": "int",
+      "description": "[Character Identifier](../../schema/characters/character_data.md)",
+      "name": "char_id"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "[From Slot Identifier](../../../../server/inventory/inventory-slots)",
+      "name": "from_slot"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "[To Slot Identifier](../../../../server/inventory/inventory-slots)",
+      "name": "to_slot"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Stack Size",
+      "name": "stack_size"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "[Character Item Identifier](../../schema/items/items.md)",
+      "name": "char_items"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Post Action",
+      "name": "postaction"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/query-server/qs_player_move_record/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "qs_player_move_record",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "qs_player_move_record",
+  "path": "schema/query-server/qs_player_move_record",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "qs_player_move_record",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "char_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/query-server/qs_player_move_record.md",
+  "table": "qs_player_move_record",
+  "title": "qs_player_move_record"
+}

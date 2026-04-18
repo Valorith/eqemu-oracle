@@ -1,0 +1,176 @@
+{
+  "category": "npcs",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Type: 0 = Trash, 1 = Named, 2 = Raid",
+      "name": "type"
+    },
+    {
+      "data_type": "int",
+      "description": "Level",
+      "name": "level"
+    },
+    {
+      "data_type": "int",
+      "description": "Armor Class",
+      "name": "ac"
+    },
+    {
+      "data_type": "bigint",
+      "description": "Health",
+      "name": "hp"
+    },
+    {
+      "data_type": "int",
+      "description": "Accuracy",
+      "name": "accuracy"
+    },
+    {
+      "data_type": "int",
+      "description": "Slow Mitigation",
+      "name": "slow_mitigation"
+    },
+    {
+      "data_type": "int",
+      "description": "Attack",
+      "name": "attack"
+    },
+    {
+      "data_type": "int",
+      "description": "Strength",
+      "name": "strength"
+    },
+    {
+      "data_type": "int",
+      "description": "Stamina",
+      "name": "stamina"
+    },
+    {
+      "data_type": "int",
+      "description": "Dexterity",
+      "name": "dexterity"
+    },
+    {
+      "data_type": "int",
+      "description": "Agility",
+      "name": "agility"
+    },
+    {
+      "data_type": "int",
+      "description": "Intelligence",
+      "name": "intelligence"
+    },
+    {
+      "data_type": "int",
+      "description": "Wisdom",
+      "name": "wisdom"
+    },
+    {
+      "data_type": "int",
+      "description": "Charisma",
+      "name": "charisma"
+    },
+    {
+      "data_type": "int",
+      "description": "Magic Resistance",
+      "name": "magic_resist"
+    },
+    {
+      "data_type": "int",
+      "description": "Cold Resistance",
+      "name": "cold_resist"
+    },
+    {
+      "data_type": "int",
+      "description": "Fire Resistance",
+      "name": "fire_resist"
+    },
+    {
+      "data_type": "int",
+      "description": "Poison Resistance",
+      "name": "poison_resist"
+    },
+    {
+      "data_type": "int",
+      "description": "Disease Resistance",
+      "name": "disease_resist"
+    },
+    {
+      "data_type": "int",
+      "description": "Corruption Resistance",
+      "name": "corruption_resist"
+    },
+    {
+      "data_type": "int",
+      "description": "Physical Resistance",
+      "name": "physical_resist"
+    },
+    {
+      "data_type": "int",
+      "description": "Minimum Damage",
+      "name": "min_dmg"
+    },
+    {
+      "data_type": "int",
+      "description": "Maximum Damage",
+      "name": "max_dmg"
+    },
+    {
+      "data_type": "bigint",
+      "description": "Health Regeneration Rate",
+      "name": "hp_regen_rate"
+    },
+    {
+      "data_type": "bigint",
+      "description": "Health Regeneration Per Second",
+      "name": "hp_regen_per_second"
+    },
+    {
+      "data_type": "int",
+      "description": "Attack Delay: Delay between the attack arounds in 10ths of a second.",
+      "name": "attack_delay"
+    },
+    {
+      "data_type": "int",
+      "description": "Spell Scale: 50 = 50%, 100 = 100%, 150 = 150%",
+      "name": "spell_scale"
+    },
+    {
+      "data_type": "int",
+      "description": "Heal Scale: 50 = 50%, 100 = 100%, 150 = 150%",
+      "name": "heal_scale"
+    },
+    {
+      "data_type": "int",
+      "description": "Avoidance",
+      "name": "avoidance"
+    },
+    {
+      "data_type": "int",
+      "description": "Heroic Strikethrough",
+      "name": "heroic_strikethrough"
+    },
+    {
+      "data_type": "text",
+      "description": "Special Abilities",
+      "name": "special_abilities"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/npcs/npc_scale_global_base/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "npc_scale_global_base",
+    "Schema"
+  ],
+  "id": "npc_scale_global_base",
+  "path": "schema/npcs/npc_scale_global_base",
+  "related_docs": [],
+  "relationships": [],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/npcs/npc_scale_global_base.md",
+  "table": "npc_scale_global_base",
+  "title": "npc_scale_global_base"
+}

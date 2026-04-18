@@ -1,0 +1,62 @@
+{
+  "category": "admin",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Report Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Name",
+      "name": "name"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Reported",
+      "name": "reported"
+    },
+    {
+      "data_type": "text",
+      "description": "Reported Text",
+      "name": "reported_text"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/admin/reports/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "reports",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "reports",
+  "path": "schema/admin/reports",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "reports",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "name",
+      "relationship_type": "One-to-One",
+      "remote_key": "name",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/reports.md",
+  "table": "reports",
+  "title": "reports"
+}

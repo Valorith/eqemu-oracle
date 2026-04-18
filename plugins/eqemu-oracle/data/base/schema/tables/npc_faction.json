@@ -1,0 +1,55 @@
+{
+  "category": "npcs",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique NPC Faction Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "tinytext",
+      "description": "Name",
+      "name": "name"
+    },
+    {
+      "data_type": "int",
+      "description": "[Primary Faction Identifier](../../schema/factions/faction_list.md)",
+      "name": "primaryfaction"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Ignore Primary Assist: 0 = False, &gt;0 = True",
+      "name": "ignore_primary_assist"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/npcs/npc_faction/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "npc_faction",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "npc_faction",
+  "path": "schema/npcs/npc_faction",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "npc_faction_id",
+      "remote_table": "[npc_faction_entries](../../schema/npcs/npc_faction_entries.md)"
+    },
+    {
+      "local_key": "primaryfaction",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[faction_list](../../schema/factions/faction_list.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/npcs/npc_faction.md",
+  "table": "npc_faction",
+  "title": "npc_faction"
+}

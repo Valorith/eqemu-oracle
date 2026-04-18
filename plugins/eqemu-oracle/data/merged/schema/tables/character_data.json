@@ -1,0 +1,1103 @@
+{
+  "category": "characters",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Character Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Account Identifier](../../schema/account/account.md)",
+      "name": "account_id"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Name",
+      "name": "name"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Last Name",
+      "name": "last_name"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Title",
+      "name": "title"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Suffix",
+      "name": "suffix"
+    },
+    {
+      "data_type": "int",
+      "description": "[Zone Identifier](../../../../server/zones/zone-list)",
+      "name": "zone_id"
+    },
+    {
+      "data_type": "int",
+      "description": "Zone Instance Identifier",
+      "name": "zone_instance"
+    },
+    {
+      "data_type": "float",
+      "description": "Y Coordinate",
+      "name": "y"
+    },
+    {
+      "data_type": "float",
+      "description": "X Coordinate",
+      "name": "x"
+    },
+    {
+      "data_type": "float",
+      "description": "Z Coordinate",
+      "name": "z"
+    },
+    {
+      "data_type": "float",
+      "description": "Heading Coordinate",
+      "name": "heading"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Gender](../../../../server/npc/genders)",
+      "name": "gender"
+    },
+    {
+      "data_type": "smallint",
+      "description": "[Race](../../../../server/npc/race-list)",
+      "name": "race"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Class](../../../../server/player/class-list)",
+      "name": "class"
+    },
+    {
+      "data_type": "int",
+      "description": "Level",
+      "name": "level"
+    },
+    {
+      "data_type": "int",
+      "description": "[Deity](../../../../server/player/deity-list)",
+      "name": "deity"
+    },
+    {
+      "data_type": "int",
+      "description": "UNIX Timestamp of Birthday",
+      "name": "birthday"
+    },
+    {
+      "data_type": "int",
+      "description": "UNIX Timestamp of Last Login",
+      "name": "last_login"
+    },
+    {
+      "data_type": "int",
+      "description": "Time Played",
+      "name": "time_played"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Level 2",
+      "name": "level2"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Anon: 0 = False, 1 = Anonymous, 2 = Roleplaying",
+      "name": "anon"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "GM: 0 = False, 1 = True",
+      "name": "gm"
+    },
+    {
+      "data_type": "int",
+      "description": "Face",
+      "name": "face"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Hair Color",
+      "name": "hair_color"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Hair Style",
+      "name": "hair_style"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Beard",
+      "name": "beard"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Beard Color",
+      "name": "beard_color"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Eye Color 1",
+      "name": "eye_color_1"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Eye Color 2",
+      "name": "eye_color_2"
+    },
+    {
+      "data_type": "int",
+      "description": "Drakkin Heritage",
+      "name": "drakkin_heritage"
+    },
+    {
+      "data_type": "int",
+      "description": "Drakkin Tattoo",
+      "name": "drakkin_tattoo"
+    },
+    {
+      "data_type": "int",
+      "description": "Drakkin Details",
+      "name": "drakkin_details"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Ability Timer in Seconds",
+      "name": "ability_time_seconds"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Ability Number](../../schema/aas/aa_ability.md)",
+      "name": "ability_number"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Ability Timer in Minutes",
+      "name": "ability_time_minutes"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Ability Timer in Hours",
+      "name": "ability_time_hours"
+    },
+    {
+      "data_type": "int",
+      "description": "Experience",
+      "name": "exp"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Experience Enabled: 0 = False, 1 = True",
+      "name": "exp_enabled"
+    },
+    {
+      "data_type": "int",
+      "description": "AA Points Spent",
+      "name": "aa_points_spent"
+    },
+    {
+      "data_type": "int",
+      "description": "AA Experience",
+      "name": "aa_exp"
+    },
+    {
+      "data_type": "int",
+      "description": "AA Points",
+      "name": "aa_points"
+    },
+    {
+      "data_type": "int",
+      "description": "Group Leadership Experience",
+      "name": "group_leadership_exp"
+    },
+    {
+      "data_type": "int",
+      "description": "Raid Leadership Experience",
+      "name": "raid_leadership_exp"
+    },
+    {
+      "data_type": "int",
+      "description": "Group Leadership Points",
+      "name": "group_leadership_points"
+    },
+    {
+      "data_type": "int",
+      "description": "Raid Leadership Points",
+      "name": "raid_leadership_points"
+    },
+    {
+      "data_type": "int",
+      "description": "Points",
+      "name": "points"
+    },
+    {
+      "data_type": "int",
+      "description": "Health",
+      "name": "cur_hp"
+    },
+    {
+      "data_type": "int",
+      "description": "Mana",
+      "name": "mana"
+    },
+    {
+      "data_type": "int",
+      "description": "Endurance",
+      "name": "endurance"
+    },
+    {
+      "data_type": "int",
+      "description": "Intoxication",
+      "name": "intoxication"
+    },
+    {
+      "data_type": "int",
+      "description": "Strength",
+      "name": "str"
+    },
+    {
+      "data_type": "int",
+      "description": "Stamina",
+      "name": "sta"
+    },
+    {
+      "data_type": "int",
+      "description": "Charisma",
+      "name": "cha"
+    },
+    {
+      "data_type": "int",
+      "description": "Dexterity",
+      "name": "dex"
+    },
+    {
+      "data_type": "int",
+      "description": "Intelligence",
+      "name": "int"
+    },
+    {
+      "data_type": "int",
+      "description": "Agility",
+      "name": "agi"
+    },
+    {
+      "data_type": "int",
+      "description": "Wisdom",
+      "name": "wis"
+    },
+    {
+      "data_type": "int",
+      "description": "Zone Change Count",
+      "name": "zone_change_count"
+    },
+    {
+      "data_type": "int",
+      "description": "Toxicity",
+      "name": "toxicity"
+    },
+    {
+      "data_type": "int",
+      "description": "Hunger Level",
+      "name": "hunger_level"
+    },
+    {
+      "data_type": "int",
+      "description": "Thirst Level",
+      "name": "thirst_level"
+    },
+    {
+      "data_type": "int",
+      "description": "Ability Up",
+      "name": "ability_up"
+    },
+    {
+      "data_type": "int",
+      "description": "LDoN Points - [Deepest Guk](../../../../server/zones/ldon-themes)",
+      "name": "ldon_points_guk"
+    },
+    {
+      "data_type": "int",
+      "description": "LDoN Points - [Miragul's Menagerie](../../../../server/zones/ldon-themes)",
+      "name": "ldon_points_mir"
+    },
+    {
+      "data_type": "int",
+      "description": "LDoN Points - [Mistmoore Catacombs](../../../../server/zones/ldon-themes)",
+      "name": "ldon_points_mmc"
+    },
+    {
+      "data_type": "int",
+      "description": "LDoN Points - [Rujarkian Hills](../../../../server/zones/ldon-themes)",
+      "name": "ldon_points_ruj"
+    },
+    {
+      "data_type": "int",
+      "description": "LDoN Points - [Takish-Hiz](../../../../server/zones/ldon-themes)",
+      "name": "ldon_points_tak"
+    },
+    {
+      "data_type": "int",
+      "description": "LDoN Points Available",
+      "name": "ldon_points_available"
+    },
+    {
+      "data_type": "int",
+      "description": "Tribute Time Remaining",
+      "name": "tribute_time_remaining"
+    },
+    {
+      "data_type": "int",
+      "description": "Career Tribute Points",
+      "name": "career_tribute_points"
+    },
+    {
+      "data_type": "int",
+      "description": "Tribute Points",
+      "name": "tribute_points"
+    },
+    {
+      "data_type": "int",
+      "description": "Tribute Active: 0 = False, 1 = True",
+      "name": "tribute_active"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "PVP Status: 0 = False, 1 = True",
+      "name": "pvp_status"
+    },
+    {
+      "data_type": "int",
+      "description": "PVP Kills",
+      "name": "pvp_kills"
+    },
+    {
+      "data_type": "int",
+      "description": "PVP Deaths",
+      "name": "pvp_deaths"
+    },
+    {
+      "data_type": "int",
+      "description": "PVP Points",
+      "name": "pvp_current_points"
+    },
+    {
+      "data_type": "int",
+      "description": "Career PVP Points",
+      "name": "pvp_career_points"
+    },
+    {
+      "data_type": "int",
+      "description": "Best Kill Streak",
+      "name": "pvp_best_kill_streak"
+    },
+    {
+      "data_type": "int",
+      "description": "Worse Death Streak",
+      "name": "pvp_worst_death_streak"
+    },
+    {
+      "data_type": "int",
+      "description": "Current Kill Streak",
+      "name": "pvp_current_kill_streak"
+    },
+    {
+      "data_type": "int",
+      "description": "PVP Status: 0 = False, 1 = True",
+      "name": "pvp2"
+    },
+    {
+      "data_type": "int",
+      "description": "PVP Type",
+      "name": "pvp_type"
+    },
+    {
+      "data_type": "int",
+      "description": "Show Helm: 0 = False, 1 = True",
+      "name": "show_helm"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Group Auto Consent: 0 = False, 1 = True",
+      "name": "group_auto_consent"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Raid Auto Consent: 0 = False, 1 = True",
+      "name": "raid_auto_consent"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Guild Auto Consent: 0 = False, 1 = True",
+      "name": "guild_auto_consent"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Leadership Experience On : 0 = False, 1 = True",
+      "name": "leadership_exp_on"
+    },
+    {
+      "data_type": "int",
+      "description": "Rest Timer",
+      "name": "RestTimer"
+    },
+    {
+      "data_type": "int",
+      "description": "Air Remaining",
+      "name": "air_remaining"
+    },
+    {
+      "data_type": "int",
+      "description": "Autosplit Enabled: 0 = False, 1 = True",
+      "name": "autosplit_enabled"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Looking For Party: 0 = False, 1 = True",
+      "name": "lfp"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Looking For Guild: 0 = False, 1 = True",
+      "name": "lfg"
+    },
+    {
+      "data_type": "char",
+      "description": "Mail Key",
+      "name": "mailkey"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "XTargets",
+      "name": "xtargets"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "First Logon",
+      "name": "firstlogon"
+    },
+    {
+      "data_type": "int",
+      "description": "Experience AA Effects",
+      "name": "e_aa_effects"
+    },
+    {
+      "data_type": "int",
+      "description": "Experience Percentage to AA Points",
+      "name": "e_percent_to_aa"
+    },
+    {
+      "data_type": "int",
+      "description": "Expended AA Points Spent",
+      "name": "e_expended_aa_spent"
+    },
+    {
+      "data_type": "int",
+      "description": "AA Points Spent Old",
+      "name": "aa_points_spent_old"
+    },
+    {
+      "data_type": "int",
+      "description": "AA Points Old",
+      "name": "aa_points_old"
+    },
+    {
+      "data_type": "int",
+      "description": "Last Inventory Snapshot",
+      "name": "e_last_invsnapshot"
+    },
+    {
+      "data_type": "datetime",
+      "description": "Deleted At Unix Timestamp",
+      "name": "deleted_at"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/characters/character_data/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "character_data",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "character_data",
+  "path": "schema/characters/character_data",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "character_data",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "charid",
+      "remote_table": "[adventure_members](../../schema/adventures/adventure_members.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "player_id",
+      "remote_table": "[adventure_stats](../../schema/adventures/adventure_stats.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "char_id",
+      "remote_table": "[char_recipe_list](../../schema/characters/char_recipe_list.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "char_id",
+      "remote_table": "[character_pet_buffs](../../schema/characters/character_pet_buffs.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "char_id",
+      "remote_table": "[character_pet_info](../../schema/characters/character_pet_info.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "char_id",
+      "remote_table": "[character_pet_inventory](../../schema/characters/character_pet_inventory.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "char_id",
+      "remote_table": "[faction_values](../../schema/factions/faction_values.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "char_id",
+      "remote_table": "[guild_members](../../schema/views/vw_guild_members.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "char_id",
+      "remote_table": "[keyring](../../schema/characters/keyring.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "char_id",
+      "remote_table": "[player_titlesets](../../schema/characters/player_titlesets.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "charid",
+      "remote_table": "[buyer](../../schema/buyers/buyer.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "charid",
+      "remote_table": "[character_activities](../../schema/characters/character_activities.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "char_id",
+      "remote_table": "[character_alt_currency](../../schema/characters/character_alt_currency.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "id",
+      "remote_table": "[character_alternate_abilities](../../schema/characters/character_alternate_abilities.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "id",
+      "remote_table": "[character_auras](../../schema/characters/character_auras.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "id",
+      "remote_table": "[character_bandolier](../../schema/characters/character_bandolier.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "id",
+      "remote_table": "[character_bind](../../schema/characters/character_bind.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "character_id",
+      "remote_table": "[character_buffs](../../schema/characters/character_buffs.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "charid",
+      "remote_table": "[character_corpses](../../schema/characters/character_corpses.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "id",
+      "remote_table": "[character_currency](../../schema/characters/character_currency.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "id",
+      "remote_table": "[character_disciplines](../../schema/characters/character_disciplines.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "charid",
+      "remote_table": "[character_enabledtasks](../../schema/characters/character_enabledtasks.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "character_id",
+      "remote_table": "[character_exp_modifiers](../../schema/characters/character_exp_modifiers.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "character_id",
+      "remote_table": "[character_expedition_lockouts](../../schema/characters/character_expedition_lockouts.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "id",
+      "remote_table": "[character_inspect_messages](../../schema/characters/character_inspect_messages.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "character_id",
+      "remote_table": "[character_instance_safereturns](../../schema/characters/character_instance_safereturns.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "id",
+      "remote_table": "[character_item_recast](../../schema/characters/character_item_recast.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "id",
+      "remote_table": "[character_languages](../../schema/characters/character_languages.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "id",
+      "remote_table": "[character_leadership_abilities](../../schema/characters/character_leadership_abilities.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "id",
+      "remote_table": "[character_material](../../schema/characters/character_material.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "id",
+      "remote_table": "[character_memmed_spells](../../schema/characters/character_memmed_spells.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "id",
+      "remote_table": "[character_peqzone_flags](../../schema/characters/character_peqzone_flags.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "char_id",
+      "remote_table": "[character_pet_buffs](../../schema/characters/character_pet_buffs.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "char_id",
+      "remote_table": "[character_pet_info](../../schema/characters/character_pet_info.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "char_id",
+      "remote_table": "[character_pet_inventory](../../schema/characters/character_pet_inventory.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "id",
+      "remote_table": "[character_potionbelt](../../schema/characters/character_potionbelt.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "id",
+      "remote_table": "[character_skills](../../schema/characters/character_skills.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "id",
+      "remote_table": "[character_spells](../../schema/characters/character_spells.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "character_id",
+      "remote_table": "[character_task_timers](../../schema/characters/character_task_timers.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "charid",
+      "remote_table": "[character_tasks](../../schema/characters/character_tasks.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "character_id",
+      "remote_table": "[character_tribute](../../schema/characters/character_tribute.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "character_id",
+      "remote_table": "[completed_shared_task_members](../../schema/tasks/completed_shared_task_members.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "charid",
+      "remote_table": "[completed_tasks](../../schema/tasks/completed_tasks.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "character_id",
+      "remote_table": "[dynamic_zone_members](../../schema/dynamic-zones/dynamic_zone_members.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "char_id",
+      "remote_table": "[faction_values](../../schema/factions/faction_values.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "charid",
+      "remote_table": "[friends](../../schema/characters/friends.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "One-to-One",
+      "remote_key": "charid",
+      "remote_table": "[group_id](../../schema/groups/group_id.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "One-to-One",
+      "remote_key": "char_id",
+      "remote_table": "[guild_members](../../schema/views/vw_guild_members.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "One-to-One",
+      "remote_key": "leader",
+      "remote_table": "[guilds](../../schema/guilds/guilds.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "charid",
+      "remote_table": "[instance_list_player](../../schema/instances/instance_list_player.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "charid",
+      "remote_table": "[inventory](../../schema/mercenaries/merc_inventory.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "charid",
+      "remote_table": "[inventory_snapshots](../../schema/inventory/inventory_snapshots.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "char_id",
+      "remote_table": "[keyring](../../schema/characters/keyring.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "charid",
+      "remote_table": "[mail](../../schema/characters/mail.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "OwnerCharacterID",
+      "remote_table": "[mercs](../../schema/mercenaries/mercs.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "char_id",
+      "remote_table": "[player_titlesets](../../schema/characters/player_titlesets.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "char_id",
+      "remote_table": "[qs_merchant_transaction_record](../../schema/query-server/qs_merchant_transaction_record.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "char_id",
+      "remote_table": "[qs_player_aa_rate_hourly](../../schema/query-server/qs_player_aa_rate_hourly.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "char_id",
+      "remote_table": "[qs_player_delete_record](../../schema/query-server/qs_player_delete_record.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "char_id",
+      "remote_table": "[qs_player_events](../../schema/query-server/qs_player_events.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "char_id",
+      "remote_table": "[qs_player_handin_record](../../schema/query-server/qs_player_handin_record.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "char_id",
+      "remote_table": "[qs_player_move_record](../../schema/query-server/qs_player_move_record.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "char_id",
+      "remote_table": "[qs_player_npc_kill_record_entries](../../schema/query-server/qs_player_npc_kill_record_entries.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "from",
+      "remote_table": "[qs_player_speech](../../schema/query-server/qs_player_speech.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "to",
+      "remote_table": "[qs_player_speech](../../schema/query-server/qs_player_speech.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "char1_id",
+      "remote_table": "[qs_player_trade_record](../../schema/query-server/qs_player_trade_record.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "char2_id",
+      "remote_table": "[qs_player_trade_record](../../schema/query-server/qs_player_trade_record.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "from_id",
+      "remote_table": "[qs_player_trade_record_entries](../../schema/query-server/qs_player_trade_record_entries.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "to_id",
+      "remote_table": "[qs_player_trade_record_entries](../../schema/query-server/qs_player_trade_record_entries.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "charid",
+      "remote_table": "[quest_globals](../../schema/data-storage/quest_globals.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "One-to-One",
+      "remote_key": "charid",
+      "remote_table": "[raid_members](../../schema/raids/raid_members.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "One-to-One",
+      "remote_key": "character_id",
+      "remote_table": "[shared_task_members](../../schema/tasks/shared_task_members.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "char_id",
+      "remote_table": "[timers](../../schema/timers/timers.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "char_id",
+      "remote_table": "[titles](../../schema/titles/titles.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "char_id",
+      "remote_table": "[trader](../../schema/trader/trader.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "charID",
+      "remote_table": "[zone_flags](../../schema/zone/zone_flags.md)"
+    },
+    {
+      "local_key": "name",
+      "relationship_type": "Has-Many",
+      "remote_key": "charname",
+      "remote_table": "[character_corpses](../../schema/characters/character_corpses.md)"
+    },
+    {
+      "local_key": "name",
+      "relationship_type": "Has-Many",
+      "remote_key": "char_name",
+      "remote_table": "[discovered_items](../../schema/admin/discovered_items.md)"
+    },
+    {
+      "local_key": "name",
+      "relationship_type": "Has-Many",
+      "remote_key": "charname",
+      "remote_table": "[eventlog](../../schema/admin/eventlog.md)"
+    },
+    {
+      "local_key": "name",
+      "relationship_type": "Has-Many",
+      "remote_key": "assist",
+      "remote_table": "[group_leaders](../../schema/groups/group_leaders.md)"
+    },
+    {
+      "local_key": "name",
+      "relationship_type": "Has-Many",
+      "remote_key": "leadername",
+      "remote_table": "[group_leaders](../../schema/groups/group_leaders.md)"
+    },
+    {
+      "local_key": "name",
+      "relationship_type": "Has-Many",
+      "remote_key": "maintank",
+      "remote_table": "[group_leaders](../../schema/groups/group_leaders.md)"
+    },
+    {
+      "local_key": "name",
+      "relationship_type": "Has-Many",
+      "remote_key": "mentoree",
+      "remote_table": "[group_leaders](../../schema/groups/group_leaders.md)"
+    },
+    {
+      "local_key": "name",
+      "relationship_type": "Has-Many",
+      "remote_key": "puller",
+      "remote_table": "[group_leaders](../../schema/groups/group_leaders.md)"
+    },
+    {
+      "local_key": "name",
+      "relationship_type": "One-to-One",
+      "remote_key": "motd_setter",
+      "remote_table": "[guilds](../../schema/guilds/guilds.md)"
+    },
+    {
+      "local_key": "name",
+      "relationship_type": "One-to-One",
+      "remote_key": "name",
+      "remote_table": "[hackers](../../schema/admin/hackers.md)"
+    },
+    {
+      "local_key": "nane",
+      "relationship_type": "One-to-One",
+      "remote_key": "name",
+      "remote_table": "[lfguild](../../schema/characters/lfguild.md)"
+    },
+    {
+      "local_key": "name",
+      "relationship_type": "Has-Many",
+      "remote_key": "charname",
+      "remote_table": "[petitions](../../schema/admin/petitions.md)"
+    },
+    {
+      "local_key": "name",
+      "relationship_type": "One-to-One",
+      "remote_key": "name",
+      "remote_table": "[raid_members](../../schema/raids/raid_members.md)"
+    },
+    {
+      "local_key": "name",
+      "relationship_type": "Has-Many",
+      "remote_key": "name",
+      "remote_table": "[reports](../../schema/admin/reports.md)"
+    },
+    {
+      "local_key": "name",
+      "relationship_type": "Has-Many",
+      "remote_key": "buyer",
+      "remote_table": "[trader_audit](../../schema/trader/trader_audit.md)"
+    },
+    {
+      "local_key": "name",
+      "relationship_type": "Has-Many",
+      "remote_key": "seller",
+      "remote_table": "[trader_audit](../../schema/trader/trader_audit.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_data.md",
+  "table": "character_data",
+  "title": "character_data"
+}

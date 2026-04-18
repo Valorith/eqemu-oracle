@@ -1,0 +1,60 @@
+{
+  "category": "query-server",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Fight Identifier",
+      "name": "fight_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[NPC Type Identifier](../../schema/npcs/npc_types.md)",
+      "name": "npc_id"
+    },
+    {
+      "data_type": "int",
+      "description": "Type (2 - Raid, 1 - Group, 0 - Solo)",
+      "name": "type"
+    },
+    {
+      "data_type": "int",
+      "description": "[Zone Identifier](../../../../server/zones/zone-list)",
+      "name": "zone_id"
+    },
+    {
+      "data_type": "timestamp",
+      "description": "Time Timestamp",
+      "name": "time"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/query-server/qs_player_npc_kill_record/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "qs_player_npc_kill_record",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "qs_player_npc_kill_record",
+  "path": "schema/query-server/qs_player_npc_kill_record",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "npc_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[npc_types](../../schema/npcs/npc_types.md)"
+    },
+    {
+      "local_key": "zone_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "zoneidnumber",
+      "remote_table": "[zone](../../schema/zone/zone.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/query-server/qs_player_npc_kill_record.md",
+  "table": "qs_player_npc_kill_record",
+  "title": "qs_player_npc_kill_record"
+}

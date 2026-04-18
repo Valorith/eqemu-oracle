@@ -1,0 +1,60 @@
+{
+  "category": "mercenaries",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Mercenary Type Identifier",
+      "name": "merc_type_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Race Identifier](../../../../categories/npc/race-list)",
+      "name": "race_id"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Proficiency Identifier",
+      "name": "proficiency_id"
+    },
+    {
+      "data_type": "varchar",
+      "description": "[DBString Identifier](../../schema/client-files/db_str.md)",
+      "name": "dbstring"
+    },
+    {
+      "data_type": "int",
+      "description": "[Client Version](../../../../categories/player/client-version-bitmasks)",
+      "name": "clientversion"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/mercenaries/merc_types/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "merc_types",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "merc_types",
+  "path": "schema/mercenaries/merc_types",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "dbstring",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[db_str](../../schema/client-files/db_str.md)"
+    },
+    {
+      "local_key": "merc_type_id",
+      "relationship_type": "Has-Many",
+      "remote_key": "merc_type_id",
+      "remote_table": "[merc_templates](../../schema/mercenaries/merc_templates.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/mercenaries/merc_types.md",
+  "table": "merc_types",
+  "title": "merc_types"
+}

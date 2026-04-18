@@ -1,0 +1,50 @@
+{
+  "category": "characters",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Title Set Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Character Identifier](character_data.md)",
+      "name": "char_id"
+    },
+    {
+      "data_type": "int",
+      "description": "Title Set",
+      "name": "title_set"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/characters/player_titlesets/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "player_titlesets",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "player_titlesets",
+  "path": "schema/characters/player_titlesets",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "char_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    },
+    {
+      "local_key": "title_set",
+      "relationship_type": "Has-Many",
+      "remote_key": "title_set",
+      "remote_table": "[titles](../../schema/titles/titles.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/player_titlesets.md",
+  "table": "player_titlesets",
+  "title": "player_titlesets"
+}

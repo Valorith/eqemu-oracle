@@ -1,0 +1,59 @@
+{
+  "category": "client-files",
+  "columns": [
+    {
+      "data_type": "tinyint",
+      "description": "[Skill Identifier](../../../../server/player/skills)",
+      "name": "skillID"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Class](../../../../server/player/class-list)",
+      "name": "class"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Level",
+      "name": "level"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Cap",
+      "name": "cap"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Unknown",
+      "name": "class_"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/client-files/skill_caps/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "skill_caps",
+    "Schema"
+  ],
+  "id": "skill_caps",
+  "path": "schema/client-files/skill_caps",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "skill_caps",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/client-files/skill_caps.md",
+  "table": "skill_caps",
+  "title": "skill_caps"
+}

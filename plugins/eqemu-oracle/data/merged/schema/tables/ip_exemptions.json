@@ -1,0 +1,57 @@
+{
+  "category": "admin",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Exemption Identifier",
+      "name": "exemption_id"
+    },
+    {
+      "data_type": "varchar",
+      "description": "[Exemption IP Address](../../schema/account/account_ip.md)",
+      "name": "exemption_ip"
+    },
+    {
+      "data_type": "int",
+      "description": "Exemption Amount",
+      "name": "exemption_amount"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/admin/ip_exemptions/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "ip_exemptions",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "ip_exemptions",
+  "path": "schema/admin/ip_exemptions",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "ip_exemptions",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "exemption_ip",
+      "relationship_type": "Has-Many",
+      "remote_key": "ip",
+      "remote_table": "[account_ip](../../schema/account/account_ip.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/ip_exemptions.md",
+  "table": "ip_exemptions",
+  "title": "ip_exemptions"
+}

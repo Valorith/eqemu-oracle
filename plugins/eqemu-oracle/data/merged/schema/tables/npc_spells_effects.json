@@ -1,0 +1,57 @@
+{
+  "category": "npcs",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Spell Effects Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "tinytext",
+      "description": "Name",
+      "name": "name"
+    },
+    {
+      "data_type": "int",
+      "description": "Parent List",
+      "name": "parent_list"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/npcs/npc_spells_effects/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "npc_spells_effects",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "npc_spells_effects",
+  "path": "schema/npcs/npc_spells_effects",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "npc_spells_effects",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "npc_spells_effects_id",
+      "remote_table": "[npc_spells_effects_entries](../../schema/npcs/npc_spells_effects_entries.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/npcs/npc_spells_effects.md",
+  "table": "npc_spells_effects",
+  "title": "npc_spells_effects"
+}

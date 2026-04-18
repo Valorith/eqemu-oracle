@@ -1,0 +1,60 @@
+{
+  "category": "traps",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique LDoN Trap Template Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Trap Type](../../../../server/zones/trap-types)",
+      "name": "type"
+    },
+    {
+      "data_type": "smallint",
+      "description": "[Spell Identifier](../../schema/spells/spells_new.md)",
+      "name": "spell_id"
+    },
+    {
+      "data_type": "smallint",
+      "description": "[Skill](../../../../server/player/skills)",
+      "name": "skill"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Locked: 0 = False, 1 = True",
+      "name": "locked"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/traps/ldon_trap_templates/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "ldon_trap_templates",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "ldon_trap_templates",
+  "path": "schema/traps/ldon_trap_templates",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "trap_id",
+      "remote_table": "[ldon_trap_entries](../../schema/traps/ldon_trap_entries.md)"
+    },
+    {
+      "local_key": "spell_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[spells_new](../../schema/spells/spells_new.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/traps/ldon_trap_templates.md",
+  "table": "ldon_trap_templates",
+  "title": "ldon_trap_templates"
+}

@@ -1,0 +1,46 @@
+{
+  "category": "views",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "[Group Identifier](../../schema/groups/group_id.md)",
+      "name": "group_id"
+    },
+    {
+      "data_type": "char",
+      "description": "Mob Type",
+      "name": "mob_type"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Name",
+      "name": "name"
+    },
+    {
+      "data_type": "int",
+      "description": "Mob Identifier",
+      "name": "mob_id"
+    },
+    {
+      "data_type": "int",
+      "description": "Level",
+      "name": "level"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/views/vw_groups/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "vw_groups",
+    "Schema"
+  ],
+  "id": "vw_groups",
+  "path": "schema/views/vw_groups",
+  "related_docs": [],
+  "relationships": [],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/views/vw_groups.md",
+  "table": "vw_groups",
+  "title": "vw_groups"
+}

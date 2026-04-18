@@ -1,0 +1,80 @@
+{
+  "category": "groups",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "[Group Identifier](group_id.md)",
+      "name": "gid"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Leader Name",
+      "name": "leadername"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Mark NPC: 0 = False, 1 = True",
+      "name": "marknpc"
+    },
+    {
+      "data_type": "tinyblob",
+      "description": "Leadership AA",
+      "name": "leadershipaa"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Main Tank: 0 = False, 1 = True",
+      "name": "maintank"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Assist: 0 = False, 1 = True",
+      "name": "assist"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Puller: 0 = False, 1 = True",
+      "name": "puller"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Mentoree: 0 = False, 1 = True",
+      "name": "mentoree"
+    },
+    {
+      "data_type": "int",
+      "description": "Main Tank: 0 = None, 100 = Max",
+      "name": "mentor_percent"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/groups/group_leaders/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "group_leaders",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "group_leaders",
+  "path": "schema/groups/group_leaders",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "gid",
+      "relationship_type": "Has-Many",
+      "remote_key": "groupid",
+      "remote_table": "[group_id](../../schema/groups/group_id.md)"
+    },
+    {
+      "local_key": "leadername",
+      "relationship_type": "One-to-One",
+      "remote_key": "name",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/groups/group_leaders.md",
+  "table": "group_leaders",
+  "title": "group_leaders"
+}

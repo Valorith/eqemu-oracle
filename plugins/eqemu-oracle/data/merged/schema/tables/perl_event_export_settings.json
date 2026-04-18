@@ -1,0 +1,69 @@
+{
+  "category": "admin",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "[Unique Perl Event Identifier](https://eqemu.gitbook.io/quest-api/events)",
+      "name": "event_id"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Event Description",
+      "name": "event_description"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Export QGlobals: 0 = False, 1 = True",
+      "name": "export_qglobals"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Export Mob: 0 = False, 1 = True",
+      "name": "export_mob"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Export Zone: 0 = False, 1 = True",
+      "name": "export_zone"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Export Item: 0 = False, 1 = True",
+      "name": "export_item"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Export Event: 0 = False, 1 = True",
+      "name": "export_event"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/admin/perl_event_export_settings/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "perl_event_export_settings",
+    "Schema"
+  ],
+  "id": "perl_event_export_settings",
+  "path": "schema/admin/perl_event_export_settings",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "perl_event_export_settings",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/perl_event_export_settings.md",
+  "table": "perl_event_export_settings",
+  "title": "perl_event_export_settings"
+}

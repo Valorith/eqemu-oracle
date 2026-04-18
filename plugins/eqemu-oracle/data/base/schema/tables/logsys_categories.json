@@ -1,0 +1,64 @@
+{
+  "category": "admin",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Log Category Identifier",
+      "name": "log_category_id"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Log Category Description",
+      "name": "log_category_description"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Log to Console: 0 = False, 1 = True",
+      "name": "log_to_console"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Log to File: 0 = False, 1 = True",
+      "name": "log_to_file"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Log to GMSay: 0 = False, 1 = True",
+      "name": "log_to_gmsay"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Log To Discord: 0 = False, 1 = True",
+      "name": "log_to_discord"
+    },
+    {
+      "data_type": "int",
+      "description": "Unique Webhook Identifier",
+      "name": "discord_webhook_id"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/admin/logsys_categories/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "logsys_categories",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "logsys_categories",
+  "path": "schema/admin/logsys_categories",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "discord_webhook_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[discord_webhooks](../../schema/admin/discord_webhooks.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/logsys_categories.md",
+  "table": "logsys_categories",
+  "title": "logsys_categories"
+}

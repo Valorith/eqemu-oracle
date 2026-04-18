@@ -1,0 +1,72 @@
+{
+  "category": "expeditions",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Expedition Lockout Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Expedition Identifier](expeditions.md)",
+      "name": "expedition_id"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Event Name",
+      "name": "event_name"
+    },
+    {
+      "data_type": "datetime",
+      "description": "Expire Time",
+      "name": "expire_time"
+    },
+    {
+      "data_type": "int",
+      "description": "Duration in Seconds",
+      "name": "duration"
+    },
+    {
+      "data_type": "varchar",
+      "description": "From Expedition UUID",
+      "name": "from_expedition_uuid"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/expeditions/expedition_lockouts/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "expedition_lockouts",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "expedition_lockouts",
+  "path": "schema/expeditions/expedition_lockouts",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "expedition_lockouts",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "expedition_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[expeditions](../../schema/expeditions/expeditions.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/expeditions/expedition_lockouts.md",
+  "table": "expedition_lockouts",
+  "title": "expedition_lockouts"
+}

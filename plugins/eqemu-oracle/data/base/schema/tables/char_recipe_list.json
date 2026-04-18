@@ -1,0 +1,50 @@
+{
+  "category": "characters",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "[Character Identifier](character_data.md)",
+      "name": "char_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Recipe Identifier](../../schema/tradeskills/tradeskill_recipe.md)",
+      "name": "recipe_id"
+    },
+    {
+      "data_type": "int",
+      "description": "Made Count",
+      "name": "madecount"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/characters/char_recipe_list/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "char_recipe_list",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "char_recipe_list",
+  "path": "schema/characters/char_recipe_list",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "char_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    },
+    {
+      "local_key": "recipe_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[tradeskill_recipe](../../schema/tradeskills/tradeskill_recipe.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/char_recipe_list.md",
+  "table": "char_recipe_list",
+  "title": "char_recipe_list"
+}

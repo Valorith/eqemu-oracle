@@ -1,0 +1,185 @@
+{
+  "category": "traps",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Trap Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "varchar",
+      "description": "[Zone Short Name](../../../../server/zones/zone-list)",
+      "name": "zone"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Version: -1 For All",
+      "name": "version"
+    },
+    {
+      "data_type": "int",
+      "description": "X Coordinate",
+      "name": "x"
+    },
+    {
+      "data_type": "int",
+      "description": "Y Coordinate",
+      "name": "y"
+    },
+    {
+      "data_type": "int",
+      "description": "Z Coordinate",
+      "name": "z"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Chance: 0 = None, 100 = Always",
+      "name": "chance"
+    },
+    {
+      "data_type": "float",
+      "description": "Max Z Difference",
+      "name": "maxzdiff"
+    },
+    {
+      "data_type": "float",
+      "description": "Trap Radius",
+      "name": "radius"
+    },
+    {
+      "data_type": "int",
+      "description": "[Trap Type](../../../../server/zones/trap-types)",
+      "name": "effect"
+    },
+    {
+      "data_type": "int",
+      "description": "Effect Value: (Based on Trap Type) 0 = [Spell Identifier](../../schema/spells/spells_new.md), 1 = Radius, 2 = [NPC Type Identifier](../../schema/npcs/npc_types.md), 3 = [NPC Type Identifier](../../schema/npcs/npc_types.md), 4 = Minimum Damage",
+      "name": "effectvalue"
+    },
+    {
+      "data_type": "int",
+      "description": "Effect Value 2: (Based on Trap Type) 0 = Unused, 1 = (0 = Everything Will Aggro, 1 = Only KoS Will Agro), 2 = Number of NPCs, 3 = Number of NPCs, 4 = Maximum Damage",
+      "name": "effectvalue2"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Message",
+      "name": "message"
+    },
+    {
+      "data_type": "int",
+      "description": "[Skill Required](../../../../server/player/skills)",
+      "name": "skill"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Level",
+      "name": "level"
+    },
+    {
+      "data_type": "int",
+      "description": "Respawn Timer in Seconds",
+      "name": "respawn_time"
+    },
+    {
+      "data_type": "int",
+      "description": "Random Respawn Timer Variance in Seconds",
+      "name": "respawn_var"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Triggered Member",
+      "name": "triggered_number"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Group",
+      "name": "group"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Despawn When Triggered: 0 = False, 1 = True",
+      "name": "despawn_when_triggered"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Undetectable: 0 = False, 1= True",
+      "name": "undetectable"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Minimum Expansion](../../../../server/operation/expansion-list)",
+      "name": "min_expansion"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Maximum Expansion](../../../../server/operation/expansion-list)",
+      "name": "max_expansion"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Content Flags Required to be Enabled",
+      "name": "content_flags"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Content Flags Required to be Disabled",
+      "name": "content_flags_disabled"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/traps/traps/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "traps",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "traps",
+  "path": "schema/traps/traps",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "traps",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "content_flags",
+      "relationship_type": "One-to-One",
+      "remote_key": "flag_name",
+      "remote_table": "[content_flags](../../schema/flagging/content_flags.md)"
+    },
+    {
+      "local_key": "content_flags_disabled",
+      "relationship_type": "One-to-One",
+      "remote_key": "flag_name",
+      "remote_table": "[content_flags](../../schema/flagging/content_flags.md)"
+    },
+    {
+      "local_key": "version",
+      "relationship_type": "One-to-One",
+      "remote_key": "version",
+      "remote_table": "[zone](../../schema/zone/zone.md)"
+    },
+    {
+      "local_key": "zone",
+      "relationship_type": "One-to-One",
+      "remote_key": "short_name",
+      "remote_table": "[zone](../../schema/zone/zone.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/traps/traps.md",
+  "table": "traps",
+  "title": "traps"
+}

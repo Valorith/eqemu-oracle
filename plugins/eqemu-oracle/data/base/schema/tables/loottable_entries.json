@@ -1,0 +1,65 @@
+{
+  "category": "loot",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "[Loottable Identifier](loottable.md)",
+      "name": "loottable_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Lootdrop Identifier](lootdrop.md)",
+      "name": "lootdrop_id"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Multiplier",
+      "name": "multiplier"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Maximum Drops",
+      "name": "droplimit"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Minimum Drops",
+      "name": "mindrop"
+    },
+    {
+      "data_type": "float",
+      "description": "Probability: 0 = Never, 100 = Always",
+      "name": "probability"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/loot/loottable_entries/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "loottable_entries",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "loottable_entries",
+  "path": "schema/loot/loottable_entries",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "loottable_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[loottable](../../schema/loot/loottable.md)"
+    },
+    {
+      "local_key": "lootdrop_id",
+      "relationship_type": "Has-Many",
+      "remote_key": "lootdrop_id",
+      "remote_table": "[lootdrop_entries](../../schema/loot/lootdrop_entries.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/loot/loottable_entries.md",
+  "table": "loottable_entries",
+  "title": "loottable_entries"
+}

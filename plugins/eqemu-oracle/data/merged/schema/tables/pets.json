@@ -1,0 +1,99 @@
+{
+  "category": "pets",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Pet Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "varchar",
+      "description": "[NPC Type Name](../../schema/npcs/npc_types.md)",
+      "name": "type"
+    },
+    {
+      "data_type": "int",
+      "description": "Pet Power",
+      "name": "petpower"
+    },
+    {
+      "data_type": "int",
+      "description": "[NPC Type Identifier](../../schema/npcs/npc_types.md)",
+      "name": "npcID"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Temporary: 0 = False, 1 = True",
+      "name": "temp"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Pet Control: 0 = No Control, 1 = No Attack Control, 2 = Full Control",
+      "name": "petcontrol"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Pet Naming: 0 = Soandsos Pet, 1 = Soandsos Familiar, 2 = Soandsos Warder, 3 = Random Naming (i.e. Gobaner), 4 = Keeps name from npc_types table",
+      "name": "petnaming"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Monster Flag: 0 = False, 1 = True",
+      "name": "monsterflag"
+    },
+    {
+      "data_type": "int",
+      "description": "[Pet Equipment Set Identifier](../../schema/pets/pets_equipmentset.md)",
+      "name": "equipmentset"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/pets/pets/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "pets",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "pets",
+  "path": "schema/pets/pets",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "pets",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "npcID",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[npc_types](../../schema/npcs/npc_types.md)"
+    },
+    {
+      "local_key": "type",
+      "relationship_type": "One-to-One",
+      "remote_key": "name",
+      "remote_table": "[npc_types](../../schema/npcs/npc_types.md)"
+    },
+    {
+      "local_key": "equipmentset",
+      "relationship_type": "One-to-One",
+      "remote_key": "set_id",
+      "remote_table": "[pets_equipmentset](../../schema/pets/pets_equipmentset.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/pets/pets.md",
+  "table": "pets",
+  "title": "pets"
+}

@@ -1,0 +1,105 @@
+{
+  "category": "spawns",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Spawn Event Entry Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "varchar",
+      "description": "[Zone Short Name](../../../../server/zones/zone-list)",
+      "name": "zone"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "[Spawn Condition Identifier](spawn_conditions.md)",
+      "name": "cond_id"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Name",
+      "name": "name"
+    },
+    {
+      "data_type": "int",
+      "description": "Period",
+      "name": "period"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Next Minute",
+      "name": "next_minute"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Next Hour",
+      "name": "next_hour"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Next Day",
+      "name": "next_day"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Next Month",
+      "name": "next_month"
+    },
+    {
+      "data_type": "int",
+      "description": "Next Year",
+      "name": "next_year"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Enabled: 0 = False, 1 = True",
+      "name": "enabled"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Action Type](../../../../server/npc/spawns/action-types)",
+      "name": "action"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Argument: (Based on Action) 0 = Argument Value",
+      "name": "argument"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Strict Date Criteria: 0 = False, 1 = True",
+      "name": "strict"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/spawns/spawn_events/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "spawn_events",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "spawn_events",
+  "path": "schema/spawns/spawn_events",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "cond_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[spawn_conditions](../../schema/spawns/spawn_conditions.md)"
+    },
+    {
+      "local_key": "zone",
+      "relationship_type": "One-to-One",
+      "remote_key": "short_name",
+      "remote_table": "[zone](../../schema/zone/zone.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/spawns/spawn_events.md",
+  "table": "spawn_events",
+  "title": "spawn_events"
+}

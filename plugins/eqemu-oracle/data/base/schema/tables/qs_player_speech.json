@@ -1,0 +1,81 @@
+{
+  "category": "query-server",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Speech Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "varchar",
+      "description": "[From Character Identifier](../../schema/characters/character_data.md)",
+      "name": "from"
+    },
+    {
+      "data_type": "varchar",
+      "description": "[To Character Identifier](../../schema/characters/character_data.md)",
+      "name": "to"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Message",
+      "name": "message"
+    },
+    {
+      "data_type": "smallint",
+      "description": "[Minimum Status](../../../../server/player/status-levels)",
+      "name": "minstatus"
+    },
+    {
+      "data_type": "int",
+      "description": "[Guild Database Identifier](../../schema/guilds/guilds.md)",
+      "name": "guilddbid"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Type",
+      "name": "type"
+    },
+    {
+      "data_type": "timestamp",
+      "description": "Time Recorded Timestamp",
+      "name": "timerecorded"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/query-server/qs_player_speech/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "qs_player_speech",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "qs_player_speech",
+  "path": "schema/query-server/qs_player_speech",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "from",
+      "relationship_type": "One-to-One",
+      "remote_key": "name",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    },
+    {
+      "local_key": "to",
+      "relationship_type": "One-to-One",
+      "remote_key": "name",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    },
+    {
+      "local_key": "guilddbid",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[guilds](../../schema/guilds/guilds.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/query-server/qs_player_speech.md",
+  "table": "qs_player_speech",
+  "title": "qs_player_speech"
+}

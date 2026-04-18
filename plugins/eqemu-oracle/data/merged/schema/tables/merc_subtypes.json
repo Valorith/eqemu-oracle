@@ -1,0 +1,68 @@
+{
+  "category": "mercenaries",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Mercenary Subtype Identifier",
+      "name": "merc_subtype_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Class Identifier](../../../../server/player/class-list)",
+      "name": "class_id"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Tier Identifier",
+      "name": "tier_id"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Confidence Identifier",
+      "name": "confidence_id"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/mercenaries/merc_subtypes/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "merc_subtypes",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "merc_subtypes",
+  "path": "schema/mercenaries/merc_subtypes",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "merc_subtypes",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "merc_subtype_id",
+      "relationship_type": "Has-Many",
+      "remote_key": "merc_subtype_id",
+      "remote_table": "[merc_inventory](../../schema/mercenaries/merc_inventory.md)"
+    },
+    {
+      "local_key": "merc_subtype_id",
+      "relationship_type": "Has-Many",
+      "remote_key": "merc_subtype_id",
+      "remote_table": "[merc_templates](../../schema/mercenaries/merc_templates.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/mercenaries/merc_subtypes.md",
+  "table": "merc_subtypes",
+  "title": "merc_subtypes"
+}

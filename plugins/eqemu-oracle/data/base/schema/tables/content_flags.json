@@ -1,0 +1,247 @@
+{
+  "category": "flagging",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Flag Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Flag Name",
+      "name": "flag_name"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Enabled: 0 = False, 1 = True",
+      "name": "enabled"
+    },
+    {
+      "data_type": "text",
+      "description": "Notes",
+      "name": "notes"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/flagging/content_flags/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "content_flags",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "content_flags",
+  "path": "schema/flagging/content_flags",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "flag_name",
+      "relationship_type": "Has-Many",
+      "remote_key": "content_flags",
+      "remote_table": "[doors](../../schema/doors/doors.md)"
+    },
+    {
+      "local_key": "flag_name",
+      "relationship_type": "Has-Many",
+      "remote_key": "content_flags_disabled",
+      "remote_table": "[doors](../../schema/doors/doors.md)"
+    },
+    {
+      "local_key": "flag_name",
+      "relationship_type": "Has-Many",
+      "remote_key": "content_flags",
+      "remote_table": "[fishing](../../schema/tradeskills/fishing.md)"
+    },
+    {
+      "local_key": "flag_name",
+      "relationship_type": "Has-Many",
+      "remote_key": "content_flags_disabled",
+      "remote_table": "[fishing](../../schema/tradeskills/fishing.md)"
+    },
+    {
+      "local_key": "flag_name",
+      "relationship_type": "Has-Many",
+      "remote_key": "content_flags",
+      "remote_table": "[forage](../../schema/tradeskills/forage.md)"
+    },
+    {
+      "local_key": "flag_name",
+      "relationship_type": "Has-Many",
+      "remote_key": "content_flags_disabled",
+      "remote_table": "[forage](../../schema/tradeskills/forage.md)"
+    },
+    {
+      "local_key": "flag_name",
+      "relationship_type": "Has-Many",
+      "remote_key": "content_flags",
+      "remote_table": "[global_loot](../../schema/loot/global_loot.md)"
+    },
+    {
+      "local_key": "flag_name",
+      "relationship_type": "Has-Many",
+      "remote_key": "content_flags_disabled",
+      "remote_table": "[global_loot](../../schema/loot/global_loot.md)"
+    },
+    {
+      "local_key": "flag_name",
+      "relationship_type": "Has-Many",
+      "remote_key": "content_flags",
+      "remote_table": "[ground_spawns](../../schema/ground-spawns/ground_spawns.md)"
+    },
+    {
+      "local_key": "flag_name",
+      "relationship_type": "Has-Many",
+      "remote_key": "content_flags_disabled",
+      "remote_table": "[ground_spawns](../../schema/ground-spawns/ground_spawns.md)"
+    },
+    {
+      "local_key": "flag_name",
+      "relationship_type": "Has-Many",
+      "remote_key": "content_flags",
+      "remote_table": "[lootdrop](../../schema/loot/lootdrop.md)"
+    },
+    {
+      "local_key": "flag_name",
+      "relationship_type": "Has-Many",
+      "remote_key": "content_flags_disabled",
+      "remote_table": "[lootdrop](../../schema/loot/lootdrop.md)"
+    },
+    {
+      "local_key": "flag_name",
+      "relationship_type": "Has-Many",
+      "remote_key": "content_flags",
+      "remote_table": "[loottable](../../schema/loot/loottable.md)"
+    },
+    {
+      "local_key": "flag_name",
+      "relationship_type": "Has-Many",
+      "remote_key": "content_flags_disabled",
+      "remote_table": "[loottable](../../schema/loot/loottable.md)"
+    },
+    {
+      "local_key": "flag_name",
+      "relationship_type": "Has-Many",
+      "remote_key": "content_flags",
+      "remote_table": "[merchantlist](../../schema/merchants/merchantlist.md)"
+    },
+    {
+      "local_key": "flag_name",
+      "relationship_type": "Has-Many",
+      "remote_key": "content_flags_disabled",
+      "remote_table": "[merchantlist](../../schema/merchants/merchantlist.md)"
+    },
+    {
+      "local_key": "flag_name",
+      "relationship_type": "Has-Many",
+      "remote_key": "content_flags",
+      "remote_table": "[object](../../schema/objects/object.md)"
+    },
+    {
+      "local_key": "flag_name",
+      "relationship_type": "Has-Many",
+      "remote_key": "content_flags_disabled",
+      "remote_table": "[object](../../schema/objects/object.md)"
+    },
+    {
+      "local_key": "flag_name",
+      "relationship_type": "Has-Many",
+      "remote_key": "content_flags",
+      "remote_table": "[spawn2](../../schema/spawns/spawn2.md)"
+    },
+    {
+      "local_key": "flag_name",
+      "relationship_type": "Has-Many",
+      "remote_key": "content_flags_disabled",
+      "remote_table": "[spawn2](../../schema/spawns/spawn2.md)"
+    },
+    {
+      "local_key": "flag_name",
+      "relationship_type": "Has-Many",
+      "remote_key": "content_flags",
+      "remote_table": "[spawnentry](../../schema/spawns/spawnentry.md)"
+    },
+    {
+      "local_key": "flag_name",
+      "relationship_type": "Has-Many",
+      "remote_key": "content_flags_disabled",
+      "remote_table": "[spawnentry](../../schema/spawns/spawnentry.md)"
+    },
+    {
+      "local_key": "flag_name",
+      "relationship_type": "Has-Many",
+      "remote_key": "content_flags",
+      "remote_table": "[start_zones](../../schema/admin/start_zones.md)"
+    },
+    {
+      "local_key": "flag_name",
+      "relationship_type": "Has-Many",
+      "remote_key": "content_flags_disabled",
+      "remote_table": "[start_zones](../../schema/admin/start_zones.md)"
+    },
+    {
+      "local_key": "flag_name",
+      "relationship_type": "Has-Many",
+      "remote_key": "content_flags",
+      "remote_table": "[starting_items](../../schema/admin/starting_items.md)"
+    },
+    {
+      "local_key": "flag_name",
+      "relationship_type": "Has-Many",
+      "remote_key": "content_flags_disabled",
+      "remote_table": "[starting_items](../../schema/admin/starting_items.md)"
+    },
+    {
+      "local_key": "flag_name",
+      "relationship_type": "Has-Many",
+      "remote_key": "content_flags",
+      "remote_table": "[tradeskill_recipe](../../schema/tradeskills/tradeskill_recipe.md)"
+    },
+    {
+      "local_key": "flag_name",
+      "relationship_type": "Has-Many",
+      "remote_key": "content_flags_disabled",
+      "remote_table": "[tradeskill_recipe](../../schema/tradeskills/tradeskill_recipe.md)"
+    },
+    {
+      "local_key": "flag_name",
+      "relationship_type": "Has-Many",
+      "remote_key": "content_flags",
+      "remote_table": "[traps](../../schema/traps/traps.md)"
+    },
+    {
+      "local_key": "flag_name",
+      "relationship_type": "Has-Many",
+      "remote_key": "content_flags_disabled",
+      "remote_table": "[traps](../../schema/traps/traps.md)"
+    },
+    {
+      "local_key": "flag_name",
+      "relationship_type": "Has-Many",
+      "remote_key": "content_flags",
+      "remote_table": "[zone](../../schema/zone/zone.md)"
+    },
+    {
+      "local_key": "flag_name",
+      "relationship_type": "Has-Many",
+      "remote_key": "content_flags_disabled",
+      "remote_table": "[zone](../../schema/zone/zone.md)"
+    },
+    {
+      "local_key": "flag_name",
+      "relationship_type": "Has-Many",
+      "remote_key": "content_flags",
+      "remote_table": "[zone_points](../../schema/zone/zone_points.md)"
+    },
+    {
+      "local_key": "flag_name",
+      "relationship_type": "Has-Many",
+      "remote_key": "content_flags_disabled",
+      "remote_table": "[zone_points](../../schema/zone/zone_points.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/flagging/content_flags.md",
+  "table": "content_flags",
+  "title": "content_flags"
+}

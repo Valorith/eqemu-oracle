@@ -1,9 +1,8 @@
 # Skills
 
-Place plugin-specific skills here.
+This plugin ships with one umbrella skill and focused domain skills:
 
-Suggested first skill targets:
-
-- EQEmu quest scripting API lookup
-- Database schema lookup for content tables
-- Emulator documentation search and summarization
+- `eqemu-oracle`: route EQEmu questions to plugin data first
+- `eqemu-scripting-api`: quest API lookup
+- `eqemu-db-schema`: table and relationship lookup
+- `eqemu-docs`: official docs lookup

@@ -1,0 +1,137 @@
+{
+  "category": "objects",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "[Zone Identifier](../../../../server/zones/zone-list)",
+      "name": "zoneid"
+    },
+    {
+      "data_type": "int",
+      "description": "[Object Identifier](object.md)",
+      "name": "parentid"
+    },
+    {
+      "data_type": "int",
+      "description": "Bag Index",
+      "name": "bagidx"
+    },
+    {
+      "data_type": "int",
+      "description": "[Item Identifier](../../schema/items/items.md)",
+      "name": "itemid"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Charges",
+      "name": "charges"
+    },
+    {
+      "data_type": "datetime",
+      "description": "Drop Time",
+      "name": "droptime"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Augment Slot 1",
+      "name": "augslot1"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Augment Slot 2",
+      "name": "augslot2"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Augment Slot 3",
+      "name": "augslot3"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Augment Slot 4",
+      "name": "augslot4"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Augment Slot 5",
+      "name": "augslot5"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Augment Slot 6",
+      "name": "augslot6"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/objects/object_contents/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "object_contents",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "object_contents",
+  "path": "schema/objects/object_contents",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "augslot1",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[items](../../schema/items/items.md)"
+    },
+    {
+      "local_key": "augslot2",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[items](../../schema/items/items.md)"
+    },
+    {
+      "local_key": "augslot3",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[items](../../schema/items/items.md)"
+    },
+    {
+      "local_key": "augslot4",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[items](../../schema/items/items.md)"
+    },
+    {
+      "local_key": "augslot5",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[items](../../schema/items/items.md)"
+    },
+    {
+      "local_key": "augslot6",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[items](../../schema/items/items.md)"
+    },
+    {
+      "local_key": "itemid",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[items](../../schema/items/items.md)"
+    },
+    {
+      "local_key": "parentid",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[object](../../schema/objects/object.md)"
+    },
+    {
+      "local_key": "zoneid",
+      "relationship_type": "One-to-One",
+      "remote_key": "zoneidnumber",
+      "remote_table": "[zone](../../schema/zone/zone.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/objects/object_contents.md",
+  "table": "object_contents",
+  "title": "object_contents"
+}

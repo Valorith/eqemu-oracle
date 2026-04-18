@@ -1,0 +1,85 @@
+{
+  "category": "mercenaries",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Mercenary Armor Info Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Mercenary NPC Type Identifier](merc_npc_types.md)",
+      "name": "merc_npc_type_id"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Minimum Level",
+      "name": "minlevel"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Maximum Level",
+      "name": "maxlevel"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Texture](../../../../server/npc/textures)",
+      "name": "texture"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Helmet Texture](../../../../server/npc/textures)",
+      "name": "helmtexture"
+    },
+    {
+      "data_type": "int",
+      "description": "[Armor Tint Identifier](../../schema/npcs/npc_types_tint.md)",
+      "name": "armortint_id"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Armor Tint Red: 0 = None, 255 = Max",
+      "name": "armortint_red"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Armor Tint Green: 0 = None, 255 = Max",
+      "name": "armortint_green"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Armor Tint Blue: 0 = None, 255 = Max",
+      "name": "armortint_blue"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/mercenaries/merc_armorinfo/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "merc_armorinfo",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "merc_armorinfo",
+  "path": "schema/mercenaries/merc_armorinfo",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "armortint_id",
+      "relationship_type": "Has-Many",
+      "remote_key": "id",
+      "remote_table": "[npc_types_tint](../../schema/npcs/npc_types_tint.md)"
+    },
+    {
+      "local_key": "merc_npc_type_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "merc_npc_type_id",
+      "remote_table": "[merc_npc_types](../../schema/mercenaries/merc_npc_types.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/mercenaries/merc_armorinfo.md",
+  "table": "merc_armorinfo",
+  "title": "merc_armorinfo"
+}

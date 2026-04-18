@@ -1,0 +1,60 @@
+{
+  "category": "admin",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Claim Identifier",
+      "name": "claim_id"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Name",
+      "name": "name"
+    },
+    {
+      "data_type": "int",
+      "description": "[Item Identifier](../../schema/items/items.md)",
+      "name": "item_id"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Charges",
+      "name": "charges"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Reward Slot",
+      "name": "reward_slot"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/admin/veteran_reward_templates/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "veteran_reward_templates",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "veteran_reward_templates",
+  "path": "schema/admin/veteran_reward_templates",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "claim_id",
+      "relationship_type": "Has-Many",
+      "remote_key": "reward_id",
+      "remote_table": "[account_rewards](../../schema/account/account_rewards.md)"
+    },
+    {
+      "local_key": "item_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[items](../../schema/items/items.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/veteran_reward_templates.md",
+  "table": "veteran_reward_templates",
+  "title": "veteran_reward_templates"
+}

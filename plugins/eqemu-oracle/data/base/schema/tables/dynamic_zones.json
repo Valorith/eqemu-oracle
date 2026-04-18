@@ -1,0 +1,168 @@
+{
+  "category": "dynamic-zones",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Dynamic Zone Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Instance Identifier](../../schema/instances/instance_list.md)",
+      "name": "instance_id"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Type",
+      "name": "type"
+    },
+    {
+      "data_type": "varchar",
+      "description": "UUID",
+      "name": "uuid"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Name",
+      "name": "name"
+    },
+    {
+      "data_type": "int",
+      "description": "[Leader Character Identifier](../../schema/characters/character_data.md)",
+      "name": "leader_id"
+    },
+    {
+      "data_type": "int",
+      "description": "Minimum Players",
+      "name": "min_players"
+    },
+    {
+      "data_type": "int",
+      "description": "Maximum Players",
+      "name": "max_players"
+    },
+    {
+      "data_type": "int",
+      "description": "Dynamic Zone Switch Identifier](../../schema/doors/doors.md)",
+      "name": "dz_switch_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Compass Zone Identifier](../../../../server/zones/zone-list)",
+      "name": "compass_zone_id"
+    },
+    {
+      "data_type": "float",
+      "description": "Compass X Coordinate",
+      "name": "compass_x"
+    },
+    {
+      "data_type": "float",
+      "description": "Compass Y Coordinate",
+      "name": "compass_y"
+    },
+    {
+      "data_type": "float",
+      "description": "Compass Z Coordinate",
+      "name": "compass_z"
+    },
+    {
+      "data_type": "int",
+      "description": "[Safe Return Zone Identifier](../../../../server/zones/zone-list)",
+      "name": "safe_return_zone_id"
+    },
+    {
+      "data_type": "float",
+      "description": "Safe Return X Coordinate",
+      "name": "safe_return_x"
+    },
+    {
+      "data_type": "float",
+      "description": "Safe Return Y Coordinate",
+      "name": "safe_return_y"
+    },
+    {
+      "data_type": "float",
+      "description": "Safe Return Z Coordinate",
+      "name": "safe_return_z"
+    },
+    {
+      "data_type": "float",
+      "description": "Safe Return Heading Coordinate",
+      "name": "safe_return_heading"
+    },
+    {
+      "data_type": "float",
+      "description": "Zone In X Coordinate",
+      "name": "zone_in_x"
+    },
+    {
+      "data_type": "float",
+      "description": "Zone In Y Coordinate",
+      "name": "zone_in_y"
+    },
+    {
+      "data_type": "float",
+      "description": "Zone In Z Coordinate",
+      "name": "zone_in_z"
+    },
+    {
+      "data_type": "float",
+      "description": "Zone In Heading Coordinate",
+      "name": "zone_in_heading"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Has Zone In: 0 = False, 1 = True",
+      "name": "has_zone_in"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/dynamic-zones/dynamic_zones/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "dynamic_zones",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "dynamic_zones",
+  "path": "schema/dynamic-zones/dynamic_zones",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "compass_zone_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "zoneidnumber",
+      "remote_table": "[zone](../../schema/zone/zone.md)"
+    },
+    {
+      "local_key": "dz_switch_id",
+      "relationship_type": "Has-Many",
+      "remote_key": "dz_switch_id",
+      "remote_table": "[doors](../../schema/doors/doors.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "dynamic_zone_id",
+      "remote_table": "[dynamic_zone_members](../../schema/dynamic-zones/dynamic_zone_members.md)"
+    },
+    {
+      "local_key": "instance_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[instance_list](../../schema/instances/instance_list.md)"
+    },
+    {
+      "local_key": "safe_return_zone_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "zoneidnumber",
+      "remote_table": "[zone](../../schema/zone/zone.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/dynamic-zones/dynamic_zones.md",
+  "table": "dynamic_zones",
+  "title": "dynamic_zones"
+}

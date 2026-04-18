@@ -1,0 +1,180 @@
+{
+  "category": "npcs",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique NPC Type Tint Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "text",
+      "description": "Tint Set Name",
+      "name": "tint_set_name"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Red for Helmet: 0 = None, 255 = Max",
+      "name": "red1h"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Green for Helmet: 0 = None, 255 = Max",
+      "name": "grn1h"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Blue for Helmet: 0 = None, 255 = Max",
+      "name": "blu1h"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Red for Chest: 0 = None, 255 = Max",
+      "name": "red2c"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Green for Chest: 0 = None, 255 = Max",
+      "name": "grn2c"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Blue for Chest: 0 = None, 255 = Max",
+      "name": "blu2c"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Red for Arms: 0 = None, 255 = Max",
+      "name": "red3a"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Green for Arms: 0 = None, 255 = Max",
+      "name": "grn3a"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Blue for Arms: 0 = None, 255 = Max",
+      "name": "blu3a"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Red for Bracers: 0 = None, 255 = Max",
+      "name": "red4b"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Green for Bracers: 0 = None, 255 = Max",
+      "name": "grn4b"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Blue for Bracers: 0 = None, 255 = Max",
+      "name": "blu4b"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Red for Hands: 0 = None, 255 = Max",
+      "name": "red5g"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Green for Hands: 0 = None, 255 = Max",
+      "name": "grn5g"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Blue for Hands: 0 = None, 255 = Max",
+      "name": "blu5g"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Red for Legs: 0 = None, 255 = Max",
+      "name": "red6l"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Green for Legs: 0 = None, 255 = Max",
+      "name": "grn6l"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Blue for Legs: 0 = None, 255 = Max",
+      "name": "blu6l"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Red for Feet: 0 = None, 255 = Max",
+      "name": "red7f"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Green for Feet: 0 = None, 255 = Max",
+      "name": "grn7f"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Blue for Feet: 0 = None, 255 = Max",
+      "name": "blu7f"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Red for Unknown: 0 = None, 255 = Max",
+      "name": "red8x"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Green for Unknown: 0 = None, 255 = Max",
+      "name": "grn8x"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Blue for Unknown: 0 = None, 255 = Max",
+      "name": "blu8x"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Red for Unknown: 0 = None, 255 = Max",
+      "name": "red9x"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Green for Unknown: 0 = None, 255 = Max",
+      "name": "grn9x"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Blue for Unknown: 0 = None, 255 = Max",
+      "name": "blu9x"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/npcs/npc_types_tint/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "npc_types_tint",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "npc_types_tint",
+  "path": "schema/npcs/npc_types_tint",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "armortint_id",
+      "remote_table": "[merc_armorinfo](../../schema/mercenaries/merc_armorinfo.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "armortint_id",
+      "remote_table": "[npc_types](../../schema/npcs/npc_types.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/npcs/npc_types_tint.md",
+  "table": "npc_types_tint",
+  "title": "npc_types_tint"
+}

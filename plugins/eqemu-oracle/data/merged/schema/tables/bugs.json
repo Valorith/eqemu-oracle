@@ -1,0 +1,113 @@
+{
+  "category": "admin",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Bug Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "varchar",
+      "description": "[Zone Short Name](../../../../server/zones/zone-list)",
+      "name": "zone"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Player Name",
+      "name": "name"
+    },
+    {
+      "data_type": "varchar",
+      "description": "UI",
+      "name": "ui"
+    },
+    {
+      "data_type": "float",
+      "description": "X Coordinate",
+      "name": "x"
+    },
+    {
+      "data_type": "float",
+      "description": "Y Coordinate",
+      "name": "y"
+    },
+    {
+      "data_type": "float",
+      "description": "Z Coordinate",
+      "name": "z"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Type",
+      "name": "type"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Flag",
+      "name": "flag"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Target when reported",
+      "name": "target"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Bug reported",
+      "name": "bug"
+    },
+    {
+      "data_type": "date",
+      "description": "Date when reported",
+      "name": "date"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Account Status of Reporter]([../../../../server/player/status-levels](../../../../server/player/status-levels)",
+      "name": "status"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/admin/bugs/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "bugs",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "bugs",
+  "path": "schema/admin/bugs",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "bugs",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "zone",
+      "relationship_type": "One-to-One",
+      "remote_key": "short_name",
+      "remote_table": "[zone](../../schema/zone/zone.md)"
+    },
+    {
+      "local_key": "name",
+      "relationship_type": "One-to-One",
+      "remote_key": "name",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/bugs.md",
+  "table": "bugs",
+  "title": "bugs"
+}

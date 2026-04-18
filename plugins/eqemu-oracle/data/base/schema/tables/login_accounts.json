@@ -1,0 +1,80 @@
+{
+  "category": "loginserver",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Account Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "varchar",
+      "description": "[Account Name](../../schema/account/account.md)",
+      "name": "account_name"
+    },
+    {
+      "data_type": "text",
+      "description": "Account Password",
+      "name": "account_password"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Account Email",
+      "name": "account_email"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Source Loginserver",
+      "name": "source_loginserver"
+    },
+    {
+      "data_type": "varchar",
+      "description": "[Last IP Address](../../schema/account/account_ip.md)",
+      "name": "last_ip_address"
+    },
+    {
+      "data_type": "datetime",
+      "description": "Last Login Date",
+      "name": "last_login_date"
+    },
+    {
+      "data_type": "datetime",
+      "description": "Created At Date",
+      "name": "created_at"
+    },
+    {
+      "data_type": "datetime",
+      "description": "Updated At Date",
+      "name": "updated_at"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/loginserver/login_accounts/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "login_accounts",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "login_accounts",
+  "path": "schema/loginserver/login_accounts",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "account_name",
+      "relationship_type": "One-to-One",
+      "remote_key": "name",
+      "remote_table": "[account](../../schema/account/account.md)"
+    },
+    {
+      "local_key": "last_ip_address",
+      "relationship_type": "Has-Many",
+      "remote_key": "ip",
+      "remote_table": "[account_ip](../../schema/account/account_ip.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/loginserver/login_accounts.md",
+  "table": "login_accounts",
+  "title": "login_accounts"
+}

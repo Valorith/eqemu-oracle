@@ -1,0 +1,108 @@
+{
+  "category": "tradeskills",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Fishing Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Zone Identifier](../../../../server/zones/zone-list)",
+      "name": "zoneid"
+    },
+    {
+      "data_type": "int",
+      "description": "[Item Identifier](../../schema/items/items.md)",
+      "name": "Itemid"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Skill Level",
+      "name": "skill_level"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Chance: 0 = Never, 100 = Always",
+      "name": "chance"
+    },
+    {
+      "data_type": "int",
+      "description": "[NPC Type Identifier](../../schema/npcs/npc_types.md)",
+      "name": "npc_id"
+    },
+    {
+      "data_type": "int",
+      "description": "NPC Chance: 0 = Never, 100 = Always",
+      "name": "npc_chance"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Minimum Expansion](../../../../server/operation/expansion-list)",
+      "name": "min_expansion"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Maximum Expansion](../../../../server/operation/expansion-list)",
+      "name": "max_expansion"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Content Flags Required to be Enabled",
+      "name": "content_flags"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Content Flags Required to be Disabled",
+      "name": "content_flags_disabled"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/tradeskills/fishing/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "fishing",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "fishing",
+  "path": "schema/tradeskills/fishing",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "content_flags",
+      "relationship_type": "One-to-One",
+      "remote_key": "flag_name",
+      "remote_table": "[content_flags](../../schema/flagging/content_flags.md)"
+    },
+    {
+      "local_key": "content_flags_disabled",
+      "relationship_type": "One-to-One",
+      "remote_key": "flag_name",
+      "remote_table": "[content_flags](../../schema/flagging/content_flags.md)"
+    },
+    {
+      "local_key": "Itemid",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[items](../../schema/items/items.md)"
+    },
+    {
+      "local_key": "zoneid",
+      "relationship_type": "One-to-One",
+      "remote_key": "zoneidnumber",
+      "remote_table": "[zone](../../schema/zone/zone.md)"
+    },
+    {
+      "local_key": "npc_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[npc_types](../../schema/npcs/npc_types.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/tradeskills/fishing.md",
+  "table": "fishing",
+  "title": "fishing"
+}

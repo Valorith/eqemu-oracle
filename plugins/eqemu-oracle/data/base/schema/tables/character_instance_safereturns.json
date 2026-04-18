@@ -1,0 +1,92 @@
+{
+  "category": "characters",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Safe Return Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Character Identifier](character_data.md)",
+      "name": "character_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Instance Zone Identifier](../../../../server/zones/zone-list)",
+      "name": "instance_zone_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Instance Identifier](../../schema/instances/instance_list.md)",
+      "name": "instance_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Save Zone Identifier](../../../../server/zones/zone-list)",
+      "name": "safe_zone_id"
+    },
+    {
+      "data_type": "float",
+      "description": "Safe X Coordinate",
+      "name": "safe_x"
+    },
+    {
+      "data_type": "float",
+      "description": "Safe Y Coordinate",
+      "name": "safe_y"
+    },
+    {
+      "data_type": "float",
+      "description": "Safe Z Coordinate",
+      "name": "safe_z"
+    },
+    {
+      "data_type": "float",
+      "description": "Safe Heading Coordinate",
+      "name": "safe_heading"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/characters/character_instance_safereturns/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "character_instance_safereturns",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "character_instance_safereturns",
+  "path": "schema/characters/character_instance_safereturns",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "character_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    },
+    {
+      "local_key": "instance_zone_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "zoneidnumber",
+      "remote_table": "[zone](../../schema/zone/zone.md)"
+    },
+    {
+      "local_key": "instance_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[instance_list](../../schema/instances/instance_list.md)"
+    },
+    {
+      "local_key": "safe_zone_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "zoneidnumber",
+      "remote_table": "[zone](../../schema/zone/zone.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_instance_safereturns.md",
+  "table": "character_instance_safereturns",
+  "title": "character_instance_safereturns"
+}

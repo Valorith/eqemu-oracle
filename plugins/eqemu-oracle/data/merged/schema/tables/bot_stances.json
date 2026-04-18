@@ -1,0 +1,58 @@
+{
+  "category": "bots",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "[Bot Identifier](bot_data.md)",
+      "name": "bot_id"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Stance Identifier](../../../../server/bots/stance-types)",
+      "name": "stance_id"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/bots/bot_stances/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "bot_stances",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "bot_stances",
+  "path": "schema/bots/bot_stances",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "bot_stances",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "bot_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "bot_id",
+      "remote_table": "[bot_data](../../schema/bots/bot_data.md)"
+    },
+    {
+      "local_key": "stance_id",
+      "relationship_type": "Has-Many",
+      "remote_key": "stance_index",
+      "remote_table": "[bot_spell_casting_chances](../../schema/bots/bot_spell_casting_chances.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/bots/bot_stances.md",
+  "table": "bot_stances",
+  "title": "bot_stances"
+}

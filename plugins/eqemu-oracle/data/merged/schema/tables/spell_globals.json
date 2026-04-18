@@ -1,0 +1,68 @@
+{
+  "category": "spells",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "[Unique Spell Identifier](spells_new.md)",
+      "name": "spellid"
+    },
+    {
+      "data_type": "varchar",
+      "description": "[Spell Name](spells_new.md)",
+      "name": "spell_name"
+    },
+    {
+      "data_type": "varchar",
+      "description": "[Quest Global Name](../../schema/data-storage/quest_globals.md)",
+      "name": "qglobal"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Quest Global Value",
+      "name": "value"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/spells/spell_globals/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "spell_globals",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "spell_globals",
+  "path": "schema/spells/spell_globals",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "spell_globals",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "spellid",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[spells_new](../../schema/spells/spells_new.md)"
+    },
+    {
+      "local_key": "qglobal",
+      "relationship_type": "One-to-One",
+      "remote_key": "name",
+      "remote_table": "[quest_globals](../../schema/data-storage/quest_globals.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/spells/spell_globals.md",
+  "table": "spell_globals",
+  "title": "spell_globals"
+}

@@ -1,0 +1,145 @@
+{
+  "category": "loot",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Global Loot Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Description",
+      "name": "description"
+    },
+    {
+      "data_type": "int",
+      "description": "[Loottable Identifier](loottable.md)",
+      "name": "loottable_id"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Enabled: 0 = False, 1 = True",
+      "name": "enabled"
+    },
+    {
+      "data_type": "int",
+      "description": "Minimum Level",
+      "name": "min_level"
+    },
+    {
+      "data_type": "int",
+      "description": "Maximum Level",
+      "name": "max_level"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Rare: 0 = False, 1 = True",
+      "name": "rare"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Raid: 0 = False, 1 = True",
+      "name": "raid"
+    },
+    {
+      "data_type": "mediumtext",
+      "description": "[Race](../../../../server/npc/race-list), multiple races supported if",
+      "name": "race"
+    },
+    {
+      "data_type": "mediumtext",
+      "description": "[Class](../../../../server/player/class-list), multiple classes supported if",
+      "name": "class"
+    },
+    {
+      "data_type": "mediumtext",
+      "description": "[Body Type](../../../../server/npc/body-types), multiple body types supported if",
+      "name": "bodytype"
+    },
+    {
+      "data_type": "mediumtext",
+      "description": "[Zone Short Name](../../../../server/zones/zone-list),, multiple zones supported if",
+      "name": "zone"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Hot Zone: 0 = False, 1 = True",
+      "name": "hot_zone"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Minimum Expansion](../../../../server/operation/expansion-list)",
+      "name": "min_expansion"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Maximum Expansion](../../../../server/operation/expansion-list)",
+      "name": "max_expansion"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Content Flags Required to be Enabled",
+      "name": "content_flags"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Content Flags Required to be Disabled",
+      "name": "content_flags_disabled"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/loot/global_loot/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "global_loot",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "global_loot",
+  "path": "schema/loot/global_loot",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "global_loot",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "content_flags",
+      "relationship_type": "One-to-One",
+      "remote_key": "flag_name",
+      "remote_table": "[content_flags](../../schema/flagging/content_flags.md)"
+    },
+    {
+      "local_key": "content_flags_disabled",
+      "relationship_type": "One-to-One",
+      "remote_key": "flag_name",
+      "remote_table": "[content_flags](../../schema/flagging/content_flags.md)"
+    },
+    {
+      "local_key": "loottable_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[loottable](../../schema/loot/loottable.md)"
+    },
+    {
+      "local_key": "zone",
+      "relationship_type": "One-to-One",
+      "remote_key": "short_name",
+      "remote_table": "[zone](../../schema/zone/zone.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/loot/global_loot.md",
+  "table": "global_loot",
+  "title": "global_loot"
+}

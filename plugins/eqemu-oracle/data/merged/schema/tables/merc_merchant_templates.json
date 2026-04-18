@@ -1,0 +1,69 @@
+{
+  "category": "mercenaries",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Mercenary Merchant Template Identifier",
+      "name": "merc_merchant_template_id"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Name",
+      "name": "name"
+    },
+    {
+      "data_type": "varchar",
+      "description": "[Quest Global](../data-storage/quest_globals.md) (Deprecated)",
+      "name": "qglobal"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/mercenaries/merc_merchant_templates/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "merc_merchant_templates",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "merc_merchant_templates",
+  "path": "schema/mercenaries/merc_merchant_templates",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "merc_merchant_templates",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "merc_merchant_template_id",
+      "relationship_type": "Has-Many",
+      "remote_key": "merc_merchant_template_id",
+      "remote_table": "[merc_merchant_entries](../../schema/mercenaries/merc_merchant_entries.md)"
+    },
+    {
+      "local_key": "merc_merchant_template_id",
+      "relationship_type": "Has-Many",
+      "remote_key": "merc_merchant_template_id",
+      "remote_table": "[merc_merchant_template_entries](../../schema/mercenaries/merc_merchant_template_entries.md)"
+    },
+    {
+      "local_key": "qglobal",
+      "relationship_type": "Has-Many",
+      "remote_key": "name",
+      "remote_table": "[quest_globals](../../schema/data-storage/quest_globals.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/mercenaries/merc_merchant_templates.md",
+  "table": "merc_merchant_templates",
+  "title": "merc_merchant_templates"
+}

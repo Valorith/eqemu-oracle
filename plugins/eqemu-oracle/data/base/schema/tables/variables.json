@@ -1,0 +1,46 @@
+{
+  "category": "admin",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "",
+      "name": "id"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Variable Name",
+      "name": "varname"
+    },
+    {
+      "data_type": "text",
+      "description": "Value",
+      "name": "value"
+    },
+    {
+      "data_type": "text",
+      "description": "Information",
+      "name": "information"
+    },
+    {
+      "data_type": "timestamp",
+      "description": "Timestamp",
+      "name": "ts"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/admin/variables/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "variables",
+    "Schema"
+  ],
+  "id": "variables",
+  "path": "schema/admin/variables",
+  "related_docs": [],
+  "relationships": [],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/variables.md",
+  "table": "variables",
+  "title": "variables"
+}

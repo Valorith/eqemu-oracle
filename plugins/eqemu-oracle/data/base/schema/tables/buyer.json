@@ -1,0 +1,71 @@
+{
+  "category": "buyers",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "[Character Identifier](../../schema/characters/character_data.md)",
+      "name": "charid"
+    },
+    {
+      "data_type": "int",
+      "description": "Slot",
+      "name": "buyslot"
+    },
+    {
+      "data_type": "int",
+      "description": "[Item Identifier](../../schema/items/items.md)",
+      "name": "itemid"
+    },
+    {
+      "data_type": "varchar",
+      "description": "[Item Name](../../schema/items/items.md)",
+      "name": "itemname"
+    },
+    {
+      "data_type": "int",
+      "description": "Quantity",
+      "name": "quantity"
+    },
+    {
+      "data_type": "int",
+      "description": "Price",
+      "name": "price"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/buyers/buyer/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "buyer",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "buyer",
+  "path": "schema/buyers/buyer",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "charid",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    },
+    {
+      "local_key": "itemid",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[items](../../schema/items/items.md)"
+    },
+    {
+      "local_key": "itemname",
+      "relationship_type": "One-to-One",
+      "remote_key": "name",
+      "remote_table": "[items](../../schema/items/items.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/buyers/buyer.md",
+  "table": "buyer",
+  "title": "buyer"
+}

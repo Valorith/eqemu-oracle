@@ -1,0 +1,222 @@
+{
+  "category": "objects",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Object Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Zone Identifier](../../../../server/zones/zone-list)",
+      "name": "zoneid"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Version: -1 For All",
+      "name": "version"
+    },
+    {
+      "data_type": "float",
+      "description": "X Coordinate",
+      "name": "xpos"
+    },
+    {
+      "data_type": "float",
+      "description": "Y Coordinate",
+      "name": "ypos"
+    },
+    {
+      "data_type": "float",
+      "description": "Z Coordinate",
+      "name": "zpos"
+    },
+    {
+      "data_type": "float",
+      "description": "Heading Coordinate",
+      "name": "heading"
+    },
+    {
+      "data_type": "int",
+      "description": "[Item Identifier](../../schema/items/items.md)",
+      "name": "itemid"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Charges",
+      "name": "charges"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Object Name",
+      "name": "objectname"
+    },
+    {
+      "data_type": "int",
+      "description": "[Type](../../../../server/zones/object-types)",
+      "name": "type"
+    },
+    {
+      "data_type": "int",
+      "description": "Icon",
+      "name": "icon"
+    },
+    {
+      "data_type": "float",
+      "description": "",
+      "name": "size_percentage"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "unknown24"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "unknown20"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "unknown64"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "unknown68"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "unknown72"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "unknown76"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "unknown84"
+    },
+    {
+      "data_type": "float",
+      "description": "Size",
+      "name": "size"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "",
+      "name": "solid_type"
+    },
+    {
+      "data_type": "int",
+      "description": "",
+      "name": "incline"
+    },
+    {
+      "data_type": "float",
+      "description": "Tilt X",
+      "name": "tilt_x"
+    },
+    {
+      "data_type": "float",
+      "description": "Tilt Y",
+      "name": "tilt_y"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Display Name",
+      "name": "display_name"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Minimum Expansion](../../../../server/operation/expansion-list)",
+      "name": "min_expansion"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Maximum Expansion](../../../../server/operation/expansion-list)",
+      "name": "max_expansion"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Content Flags Required to be Enabled",
+      "name": "content_flags"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Content Flags Required to be Disabled",
+      "name": "content_flags_disabled"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/objects/object/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "object",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "object",
+  "path": "schema/objects/object",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "object",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "content_flags",
+      "relationship_type": "One-to-One",
+      "remote_key": "flag_name",
+      "remote_table": "[content_flags](../../schema/flagging/content_flags.md)"
+    },
+    {
+      "local_key": "content_flags_disabled",
+      "relationship_type": "One-to-One",
+      "remote_key": "flag_name",
+      "remote_table": "[content_flags](../../schema/flagging/content_flags.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "parentid",
+      "remote_table": "[object_contents](../../schema/objects/object_contents.md)"
+    },
+    {
+      "local_key": "itemid",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[items](../../schema/items/items.md)"
+    },
+    {
+      "local_key": "version",
+      "relationship_type": "One-to-One",
+      "remote_key": "version",
+      "remote_table": "[zone](../../schema/zone/zone.md)"
+    },
+    {
+      "local_key": "zoneid",
+      "relationship_type": "One-to-One",
+      "remote_key": "zoneidnumber",
+      "remote_table": "[zone](../../schema/zone/zone.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/objects/object.md",
+  "table": "object",
+  "title": "object"
+}

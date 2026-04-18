@@ -1,0 +1,207 @@
+{
+  "category": "admin",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Bug Report Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "varchar",
+      "description": "[Zone Short Name](../../../../server/zones/zone-list)",
+      "name": "zone"
+    },
+    {
+      "data_type": "int",
+      "description": "[Client Version Identifier](../../../../server/player/client-version-bitmasks)",
+      "name": "client_version_id"
+    },
+    {
+      "data_type": "varchar",
+      "description": "[Client Version Name](../../../../server/player/client-version-bitmasks)",
+      "name": "client_version_name"
+    },
+    {
+      "data_type": "int",
+      "description": "[Account Identifier](../../schema/account/account.md)",
+      "name": "account_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Character Identifier](../../schema/characters/character_data.md)",
+      "name": "character_id"
+    },
+    {
+      "data_type": "varchar",
+      "description": "[Character Name](../../schema/characters/character_data.md)",
+      "name": "character_name"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Reporter Spoof",
+      "name": "reporter_spoof"
+    },
+    {
+      "data_type": "int",
+      "description": "Category Identifier",
+      "name": "category_id"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Category Name",
+      "name": "category_name"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Reporter Name",
+      "name": "reporter_name"
+    },
+    {
+      "data_type": "varchar",
+      "description": "UI Path",
+      "name": "ui_path"
+    },
+    {
+      "data_type": "float",
+      "description": "Position X Coordinate",
+      "name": "pos_x"
+    },
+    {
+      "data_type": "float",
+      "description": "Position Y Coordinate",
+      "name": "pos_y"
+    },
+    {
+      "data_type": "float",
+      "description": "Position Z Coordinate",
+      "name": "pos_z"
+    },
+    {
+      "data_type": "int",
+      "description": "Heading Coordinate",
+      "name": "heading"
+    },
+    {
+      "data_type": "int",
+      "description": "Time Played in Seconds",
+      "name": "time_played"
+    },
+    {
+      "data_type": "int",
+      "description": "Target Identifier",
+      "name": "target_id"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Target Name",
+      "name": "target_name"
+    },
+    {
+      "data_type": "int",
+      "description": "Optional Info Mask: 0 = False, 1 = True",
+      "name": "optional_info_mask"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Can Duplicate: 0 = False, 1 = True",
+      "name": "_can_duplicate"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Crash Bug",
+      "name": "_crash_bug"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Target Info",
+      "name": "_target_info"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Character Flags",
+      "name": "_character_flags"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Unknown",
+      "name": "_unknown_value"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Bug Report",
+      "name": "bug_report"
+    },
+    {
+      "data_type": "varchar",
+      "description": "System Information",
+      "name": "system_info"
+    },
+    {
+      "data_type": "datetime",
+      "description": "Report Datetime",
+      "name": "report_datetime"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Bug Status",
+      "name": "bug_status"
+    },
+    {
+      "data_type": "datetime",
+      "description": "Last Review Datetime",
+      "name": "last_review"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Last Reviewer",
+      "name": "last_reviewer"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Reviewer Notes",
+      "name": "reviewer_notes"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/admin/bug_reports/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "bug_reports",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "bug_reports",
+  "path": "schema/admin/bug_reports",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "zone",
+      "relationship_type": "One-to-One",
+      "remote_key": "short_name",
+      "remote_table": "[zone](../../schema/zone/zone.md)"
+    },
+    {
+      "local_key": "account_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[account](../../schema/account/account.md)"
+    },
+    {
+      "local_key": "character_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    },
+    {
+      "local_key": "character_name",
+      "relationship_type": "One-to-One",
+      "remote_key": "name",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/bug_reports.md",
+  "table": "bug_reports",
+  "title": "bug_reports"
+}

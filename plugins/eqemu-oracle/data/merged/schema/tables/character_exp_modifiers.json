@@ -1,0 +1,73 @@
+{
+  "category": "characters",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "[Character Identifier](character_data.md)",
+      "name": "character_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Zone Identifier](../../../../server/zones/zone-list) (0 for Global)",
+      "name": "zone_id"
+    },
+    {
+      "data_type": "int",
+      "description": "Instance Version",
+      "name": "instance_version"
+    },
+    {
+      "data_type": "float",
+      "description": "AA Experience Modifier (.5 = 50%, 1 = 100%, 1.5 = 150%)",
+      "name": "aa_modifier"
+    },
+    {
+      "data_type": "float",
+      "description": "Experience Modifier (.5 = 50%, 1 = 100%, 1.5 = 150%)",
+      "name": "exp_modifier"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/characters/character_exp_modifiers/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "character_exp_modifiers",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "character_exp_modifiers",
+  "path": "schema/characters/character_exp_modifiers",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "character_exp_modifiers",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "character_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    },
+    {
+      "local_key": "zone_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "zoneidnumber",
+      "remote_table": "[zone](../../schema/zone/zone.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_exp_modifiers.md",
+  "table": "character_exp_modifiers",
+  "title": "character_exp_modifiers"
+}

@@ -17,6 +17,9 @@ build/
 dist/
 out/
 tmp/
+plugins/eqemu-oracle/cache/
+plugins/eqemu-oracle/local-extensions/*
+!plugins/eqemu-oracle/local-extensions/README.md
 
 # Local secrets
 .env

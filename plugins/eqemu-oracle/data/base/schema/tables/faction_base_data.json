@@ -1,0 +1,59 @@
+{
+  "category": "factions",
+  "columns": [
+    {
+      "data_type": "smallint",
+      "description": "[Client Faction Identifier](faction_list.md)",
+      "name": "client_faction_id"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Minimum Faction",
+      "name": "min"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Maximum Faction",
+      "name": "max"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Unknown",
+      "name": "unk_hero1"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Unknown",
+      "name": "unk_hero2"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Unknown",
+      "name": "unk_hero3"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/factions/faction_base_data/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "faction_base_data",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "faction_base_data",
+  "path": "schema/factions/faction_base_data",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "client_faction_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[faction_list](../../schema/factions/faction_list.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/factions/faction_base_data.md",
+  "table": "faction_base_data",
+  "title": "faction_base_data"
+}

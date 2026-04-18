@@ -1,0 +1,50 @@
+{
+  "category": "mercenaries",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Mercenary Merchant Entry Identifier",
+      "name": "merc_merchant_entry_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Mercenary Merchant Template Identifier](merc_merchant_templates.md)",
+      "name": "merc_merchant_template_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Merchant Identifier](../merchants/merchantlist.md)",
+      "name": "merchant_id"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/mercenaries/merc_merchant_entries/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "merc_merchant_entries",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "merc_merchant_entries",
+  "path": "schema/mercenaries/merc_merchant_entries",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "merc_merchant_template_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "merc_merchant_template_id",
+      "remote_table": "[merc_merchant_templates](../../schema/mercenaries/merc_merchant_templates.md)"
+    },
+    {
+      "local_key": "merchant_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[npc_types](../../schema/npcs/npc_types.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/mercenaries/merc_merchant_entries.md",
+  "table": "merc_merchant_entries",
+  "title": "merc_merchant_entries"
+}

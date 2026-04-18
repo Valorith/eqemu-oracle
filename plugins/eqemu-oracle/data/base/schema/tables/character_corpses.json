@@ -1,0 +1,308 @@
+{
+  "category": "characters",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Corpse Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Character Identifier](character_data.md)",
+      "name": "charid"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Character Name",
+      "name": "charname"
+    },
+    {
+      "data_type": "smallint",
+      "description": "[Zone Identifier](../../../../server/zones/zone-list)",
+      "name": "zone_id"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Instance Identifier",
+      "name": "instance_id"
+    },
+    {
+      "data_type": "float",
+      "description": "X Coordinate",
+      "name": "x"
+    },
+    {
+      "data_type": "float",
+      "description": "Y Coordinate",
+      "name": "y"
+    },
+    {
+      "data_type": "float",
+      "description": "Z Coordinate",
+      "name": "z"
+    },
+    {
+      "data_type": "float",
+      "description": "Heading Coordinate",
+      "name": "heading"
+    },
+    {
+      "data_type": "datetime",
+      "description": "Time of Death",
+      "name": "time_of_death"
+    },
+    {
+      "data_type": "int",
+      "description": "Guild Consent Identifier",
+      "name": "guild_consent_id"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Is Rezzed: 0 = False, 1 = True",
+      "name": "is_rezzed"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Is Buried: 0 = False, 1 = True",
+      "name": "is_buried"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Was At Graveyard: 0 = False, 1 = True",
+      "name": "was_at_graveyard"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Is Locked: 0 = False, 1 = True",
+      "name": "is_locked"
+    },
+    {
+      "data_type": "int",
+      "description": "Experience",
+      "name": "exp"
+    },
+    {
+      "data_type": "int",
+      "description": "Size",
+      "name": "size"
+    },
+    {
+      "data_type": "int",
+      "description": "Level",
+      "name": "level"
+    },
+    {
+      "data_type": "int",
+      "description": "[Race](../../../../server/npc/race-list)",
+      "name": "race"
+    },
+    {
+      "data_type": "int",
+      "description": "[Gender](../../../../server/npc/genders)",
+      "name": "gender"
+    },
+    {
+      "data_type": "int",
+      "description": "[Class](../../../../server/player/class-list)",
+      "name": "class"
+    },
+    {
+      "data_type": "int",
+      "description": "[Deity](../../../../server/player/deity-list)",
+      "name": "deity"
+    },
+    {
+      "data_type": "int",
+      "description": "[Texture](../../../../server/npc/textures)",
+      "name": "texture"
+    },
+    {
+      "data_type": "int",
+      "description": "[Helm Texture](../../../../server/npc/textures)",
+      "name": "helm_texture"
+    },
+    {
+      "data_type": "int",
+      "description": "Copper",
+      "name": "copper"
+    },
+    {
+      "data_type": "int",
+      "description": "Silver",
+      "name": "silver"
+    },
+    {
+      "data_type": "int",
+      "description": "Gold",
+      "name": "gold"
+    },
+    {
+      "data_type": "int",
+      "description": "Platinum",
+      "name": "platinum"
+    },
+    {
+      "data_type": "int",
+      "description": "Hair Color",
+      "name": "hair_color"
+    },
+    {
+      "data_type": "int",
+      "description": "Beard Color",
+      "name": "beard_color"
+    },
+    {
+      "data_type": "int",
+      "description": "Eye Color 1",
+      "name": "eye_color_1"
+    },
+    {
+      "data_type": "int",
+      "description": "Eye Color 2",
+      "name": "eye_color_2"
+    },
+    {
+      "data_type": "int",
+      "description": "Hair Style",
+      "name": "hair_style"
+    },
+    {
+      "data_type": "int",
+      "description": "Face",
+      "name": "face"
+    },
+    {
+      "data_type": "int",
+      "description": "Beard",
+      "name": "beard"
+    },
+    {
+      "data_type": "int",
+      "description": "Drakkin Heritage",
+      "name": "drakkin_heritage"
+    },
+    {
+      "data_type": "int",
+      "description": "Drakkin Tattoo",
+      "name": "drakkin_tattoo"
+    },
+    {
+      "data_type": "int",
+      "description": "Drakkin Details",
+      "name": "drakkin_details"
+    },
+    {
+      "data_type": "int",
+      "description": "Wear Change 1",
+      "name": "wc_1"
+    },
+    {
+      "data_type": "int",
+      "description": "Wear Change 2",
+      "name": "wc_2"
+    },
+    {
+      "data_type": "int",
+      "description": "Wear Change 3",
+      "name": "wc_3"
+    },
+    {
+      "data_type": "int",
+      "description": "Wear Change 4",
+      "name": "wc_4"
+    },
+    {
+      "data_type": "int",
+      "description": "Wear Change 5",
+      "name": "wc_5"
+    },
+    {
+      "data_type": "int",
+      "description": "Wear Change 6",
+      "name": "wc_6"
+    },
+    {
+      "data_type": "int",
+      "description": "Wear Change 7",
+      "name": "wc_7"
+    },
+    {
+      "data_type": "int",
+      "description": "Wear Change 8",
+      "name": "wc_8"
+    },
+    {
+      "data_type": "int",
+      "description": "Wear Change 9",
+      "name": "wc_9"
+    },
+    {
+      "data_type": "int",
+      "description": "",
+      "name": "rez_time"
+    },
+    {
+      "data_type": "int",
+      "description": "",
+      "name": "gm_exp"
+    },
+    {
+      "data_type": "int",
+      "description": "",
+      "name": "killed_by"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "",
+      "name": "rezzable"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/characters/character_corpses/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "character_corpses",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "character_corpses",
+  "path": "schema/characters/character_corpses",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "charid",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    },
+    {
+      "local_key": "charname",
+      "relationship_type": "One-to-One",
+      "remote_key": "name",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "corpse_id",
+      "remote_table": "[character_corpse_items](../../schema/characters/character_corpse_items.md)"
+    },
+    {
+      "local_key": "instance_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[instance_list](../../schema/instances/instance_list.md)"
+    },
+    {
+      "local_key": "zone_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "zoneidnumber",
+      "remote_table": "[zone](../../schema/zone/zone.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_corpses.md",
+  "table": "character_corpses",
+  "title": "character_corpses"
+}

@@ -1,0 +1,26 @@
+{
+  "category": "admin",
+  "columns": [
+    {
+      "data_type": "varchar",
+      "description": "Word",
+      "name": "word"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/admin/profanity_list/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "profanity_list",
+    "Schema"
+  ],
+  "id": "profanity_list",
+  "path": "schema/admin/profanity_list",
+  "related_docs": [],
+  "relationships": [],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/profanity_list.md",
+  "table": "profanity_list",
+  "title": "profanity_list"
+}

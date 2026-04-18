@@ -1,0 +1,134 @@
+{
+  "category": "bots",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Heal Rotation Identifier",
+      "name": "heal_rotation_index"
+    },
+    {
+      "data_type": "int",
+      "description": "[Bot Identifier](bot_data.md)",
+      "name": "bot_id"
+    },
+    {
+      "data_type": "int",
+      "description": "Interval",
+      "name": "interval"
+    },
+    {
+      "data_type": "int",
+      "description": "Fast Heals",
+      "name": "fast_heals"
+    },
+    {
+      "data_type": "int",
+      "description": "Adaptive Targeting",
+      "name": "adaptive_targeting"
+    },
+    {
+      "data_type": "int",
+      "description": "Casting Override",
+      "name": "casting_override"
+    },
+    {
+      "data_type": "float",
+      "description": "Safe Health Base",
+      "name": "safe_hp_base"
+    },
+    {
+      "data_type": "float",
+      "description": "Safe Health Cloth",
+      "name": "safe_hp_cloth"
+    },
+    {
+      "data_type": "float",
+      "description": "Safe Health Leather",
+      "name": "safe_hp_leather"
+    },
+    {
+      "data_type": "float",
+      "description": "Safe Health Chain",
+      "name": "safe_hp_chain"
+    },
+    {
+      "data_type": "float",
+      "description": "Safe Health Plate",
+      "name": "safe_hp_plate"
+    },
+    {
+      "data_type": "float",
+      "description": "Critical Health Base",
+      "name": "critical_hp_base"
+    },
+    {
+      "data_type": "float",
+      "description": "Critical Health Cloth",
+      "name": "critical_hp_cloth"
+    },
+    {
+      "data_type": "float",
+      "description": "Critical Health Leather",
+      "name": "critical_hp_leather"
+    },
+    {
+      "data_type": "float",
+      "description": "Critical Health Chain",
+      "name": "critical_hp_chain"
+    },
+    {
+      "data_type": "float",
+      "description": "Critical Health Plate",
+      "name": "critical_hp_plate"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/bots/bot_heal_rotations/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "bot_heal_rotations",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "bot_heal_rotations",
+  "path": "schema/bots/bot_heal_rotations",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "bot_heal_rotations",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "bot_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "bot_id",
+      "remote_table": "[bot_data](../../schema/bots/bot_data.md)"
+    },
+    {
+      "local_key": "heal_rotation_index",
+      "relationship_type": "Has-Many",
+      "remote_key": "heal_rotation_index",
+      "remote_table": "[bot_heal_rotation_members](../../schema/bots/bot_heal_rotation_members.md)"
+    },
+    {
+      "local_key": "heal_rotation_index",
+      "relationship_type": "Has-Many",
+      "remote_key": "heal_rotation_index",
+      "remote_table": "[bot_heal_rotation_targets](../../schema/bots/bot_heal_rotation_targets.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/bots/bot_heal_rotations.md",
+  "table": "bot_heal_rotations",
+  "title": "bot_heal_rotations"
+}

@@ -1,0 +1,84 @@
+{
+  "category": "characters",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "[Character Identifier](character_data.md)",
+      "name": "charid"
+    },
+    {
+      "data_type": "int",
+      "description": "[Task Identifier](../../schema/tasks/tasks.md)",
+      "name": "taskid"
+    },
+    {
+      "data_type": "int",
+      "description": "Slot",
+      "name": "slot"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Task Type](../../../../server/task-system-guide/task-types)",
+      "name": "type"
+    },
+    {
+      "data_type": "int",
+      "description": "Accepted Time UNIX Timestamp",
+      "name": "acceptedtime"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Was Rewarded: 0 = False, 1 = True",
+      "name": "was_rewarded"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/characters/character_tasks/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "character_tasks",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "character_tasks",
+  "path": "schema/characters/character_tasks",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "character_tasks",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "charid",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    },
+    {
+      "local_key": "taskid",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[tasks](../../schema/tasks/tasks.md)"
+    },
+    {
+      "local_key": "type",
+      "relationship_type": "One-to-One",
+      "remote_key": "type",
+      "remote_table": "[tasks](../../schema/tasks/tasks.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_tasks.md",
+  "table": "character_tasks",
+  "title": "character_tasks"
+}

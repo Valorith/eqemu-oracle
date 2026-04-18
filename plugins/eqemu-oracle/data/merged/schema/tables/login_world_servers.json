@@ -1,0 +1,104 @@
+{
+  "category": "loginserver",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique World Server Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Long Name",
+      "name": "long_name"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Short Name",
+      "name": "short_name"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Tag Description",
+      "name": "tag_description"
+    },
+    {
+      "data_type": "int",
+      "description": "List Type Identifier (1 Legends, 2 Preferred, 3 Standard)",
+      "name": "login_server_list_type_id"
+    },
+    {
+      "data_type": "datetime",
+      "description": "Last Login Date",
+      "name": "last_login_date"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Last IP Address",
+      "name": "last_ip_address"
+    },
+    {
+      "data_type": "int",
+      "description": "[Login Server Admin Identifier](login_server_admins.md)",
+      "name": "login_server_admin_id"
+    },
+    {
+      "data_type": "int",
+      "description": "Is Server Trusted: 0 = False, 1 = True",
+      "name": "is_server_trusted"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Note",
+      "name": "note"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/loginserver/login_world_servers/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "login_world_servers",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "login_world_servers",
+  "path": "schema/loginserver/login_world_servers",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "login_world_servers",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "last_ip_address",
+      "relationship_type": "Has-Many",
+      "remote_key": "ip",
+      "remote_table": "[account_ip](../../schema/account/account_ip.md)"
+    },
+    {
+      "local_key": "login_server_admin_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[login_server_admins](../../schema/loginserver/login_server_admins.md)"
+    },
+    {
+      "local_key": "login_server_list_type_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[login_server_list_types](../../schema/loginserver/login_server_list_types.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/loginserver/login_world_servers.md",
+  "table": "login_world_servers",
+  "title": "login_world_servers"
+}

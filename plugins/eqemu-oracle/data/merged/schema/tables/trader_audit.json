@@ -1,0 +1,89 @@
+{
+  "category": "trader",
+  "columns": [
+    {
+      "data_type": "datetime",
+      "description": "Time",
+      "name": "time"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Seller",
+      "name": "seller"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Buyer",
+      "name": "buyer"
+    },
+    {
+      "data_type": "varchar",
+      "description": "[Item Name](../../schema/items/items.md)",
+      "name": "itemname"
+    },
+    {
+      "data_type": "int",
+      "description": "Quantity",
+      "name": "quantity"
+    },
+    {
+      "data_type": "int",
+      "description": "Total Cost",
+      "name": "totalcost"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Transaction Type",
+      "name": "trantype"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/trader/trader_audit/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "trader_audit",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "trader_audit",
+  "path": "schema/trader/trader_audit",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "trader_audit",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "buyer",
+      "relationship_type": "One-to-One",
+      "remote_key": "name",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    },
+    {
+      "local_key": "itemname",
+      "relationship_type": "One-to-One",
+      "remote_key": "name",
+      "remote_table": "[items](../../schema/items/items.md)"
+    },
+    {
+      "local_key": "seller",
+      "relationship_type": "One-to-One",
+      "remote_key": "name",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/trader/trader_audit.md",
+  "table": "trader_audit",
+  "title": "trader_audit"
+}

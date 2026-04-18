@@ -1,0 +1,110 @@
+{
+  "category": "query-server",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Handin Identifier",
+      "name": "handin_id"
+    },
+    {
+      "data_type": "timestamp",
+      "description": "Time Timestamp",
+      "name": "time"
+    },
+    {
+      "data_type": "int",
+      "description": "[Quest Identifier](../../schema/tasks/tasks.md)",
+      "name": "quest_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Character Identifier](../../schema/characters/character_data.md)",
+      "name": "char_id"
+    },
+    {
+      "data_type": "int",
+      "description": "Character Platinum",
+      "name": "char_pp"
+    },
+    {
+      "data_type": "int",
+      "description": "Character Gold",
+      "name": "char_gp"
+    },
+    {
+      "data_type": "int",
+      "description": "Character Silver",
+      "name": "char_sp"
+    },
+    {
+      "data_type": "int",
+      "description": "Character Copper",
+      "name": "char_cp"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "[Character Items Identifier](../../schema/items/items.md)",
+      "name": "char_items"
+    },
+    {
+      "data_type": "int",
+      "description": "[NPC Type Identifier](../../schema/npcs/npc_types.md)",
+      "name": "npc_id"
+    },
+    {
+      "data_type": "int",
+      "description": "NPC Platinum",
+      "name": "npc_pp"
+    },
+    {
+      "data_type": "int",
+      "description": "NPC Gold",
+      "name": "npc_gp"
+    },
+    {
+      "data_type": "int",
+      "description": "NPC Silver",
+      "name": "npc_sp"
+    },
+    {
+      "data_type": "int",
+      "description": "NPC Copper",
+      "name": "npc_cp"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "[NPC Item Identifier](../../schema/items/items.md)",
+      "name": "npc_items"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/query-server/qs_player_handin_record/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "qs_player_handin_record",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "qs_player_handin_record",
+  "path": "schema/query-server/qs_player_handin_record",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "char_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    },
+    {
+      "local_key": "npc_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[npc_types](../../schema/npcs/npc_types.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/query-server/qs_player_handin_record.md",
+  "table": "qs_player_handin_record",
+  "title": "qs_player_handin_record"
+}

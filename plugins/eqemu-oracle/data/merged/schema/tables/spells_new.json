@@ -1,0 +1,1383 @@
+{
+  "category": "spells",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Spell Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Name",
+      "name": "name"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Player_1",
+      "name": "player_1"
+    },
+    {
+      "data_type": "varchar",
+      "description": "The zone you are teleporting to or the [NPC Name](../../schema/npcs/npc_types.md) you want to spawn.",
+      "name": "teleport_zone"
+    },
+    {
+      "data_type": "varchar",
+      "description": "The message sent to others when you cast the spell.",
+      "name": "you_cast"
+    },
+    {
+      "data_type": "varchar",
+      "description": "The message seen when someone around you casts the spell.",
+      "name": "other_casts"
+    },
+    {
+      "data_type": "varchar",
+      "description": "The message received when the spell is cast on you.",
+      "name": "cast_on_you"
+    },
+    {
+      "data_type": "varchar",
+      "description": "The message recieved when the spell is cast on another.",
+      "name": "cast_on_other"
+    },
+    {
+      "data_type": "varchar",
+      "description": "The message recieved when the spell fades.",
+      "name": "spell_fades"
+    },
+    {
+      "data_type": "int",
+      "description": "Range",
+      "name": "range"
+    },
+    {
+      "data_type": "int",
+      "description": "Area of Effect Range",
+      "name": "aoerange"
+    },
+    {
+      "data_type": "int",
+      "description": "Push Back",
+      "name": "pushback"
+    },
+    {
+      "data_type": "int",
+      "description": "Push Up",
+      "name": "pushup"
+    },
+    {
+      "data_type": "int",
+      "description": "Cast Time in Milliseconds",
+      "name": "cast_time"
+    },
+    {
+      "data_type": "int",
+      "description": "Recovery Time in Seconds",
+      "name": "recovery_time"
+    },
+    {
+      "data_type": "int",
+      "description": "Recast Time in Seconds",
+      "name": "recast_time"
+    },
+    {
+      "data_type": "int",
+      "description": "[Buff Duration Formula](../../../../server/spells/buff-duration-formulas)",
+      "name": "buffdurationformula"
+    },
+    {
+      "data_type": "int",
+      "description": "Buff Duration",
+      "name": "buffduration"
+    },
+    {
+      "data_type": "int",
+      "description": "Area of Effect Duration",
+      "name": "AEDuration"
+    },
+    {
+      "data_type": "int",
+      "description": "Mana Cost",
+      "name": "mana"
+    },
+    {
+      "data_type": "int",
+      "description": "Effect Base Value 1",
+      "name": "effect_base_value1"
+    },
+    {
+      "data_type": "int",
+      "description": "Effect Base Value 2",
+      "name": "effect_base_value2"
+    },
+    {
+      "data_type": "int",
+      "description": "Effect Base Value 3",
+      "name": "effect_base_value3"
+    },
+    {
+      "data_type": "int",
+      "description": "Effect Base Value 4",
+      "name": "effect_base_value4"
+    },
+    {
+      "data_type": "int",
+      "description": "Effect Base Value 5",
+      "name": "effect_base_value5"
+    },
+    {
+      "data_type": "int",
+      "description": "Effect Base Value 6",
+      "name": "effect_base_value6"
+    },
+    {
+      "data_type": "int",
+      "description": "Effect Base Value 7",
+      "name": "effect_base_value7"
+    },
+    {
+      "data_type": "int",
+      "description": "Effect Base Value 8",
+      "name": "effect_base_value8"
+    },
+    {
+      "data_type": "int",
+      "description": "Effect Base Value 9",
+      "name": "effect_base_value9"
+    },
+    {
+      "data_type": "int",
+      "description": "Effect Base Value 10",
+      "name": "effect_base_value10"
+    },
+    {
+      "data_type": "int",
+      "description": "Effect Base Value 11",
+      "name": "effect_base_value11"
+    },
+    {
+      "data_type": "int",
+      "description": "Effect Base Value 12",
+      "name": "effect_base_value12"
+    },
+    {
+      "data_type": "int",
+      "description": "Effect Limit Value 1",
+      "name": "effect_limit_value1"
+    },
+    {
+      "data_type": "int",
+      "description": "Effect Limit Value 2",
+      "name": "effect_limit_value2"
+    },
+    {
+      "data_type": "int",
+      "description": "Effect Limit Value 3",
+      "name": "effect_limit_value3"
+    },
+    {
+      "data_type": "int",
+      "description": "Effect Limit Value 4",
+      "name": "effect_limit_value4"
+    },
+    {
+      "data_type": "int",
+      "description": "Effect Limit Value 5",
+      "name": "effect_limit_value5"
+    },
+    {
+      "data_type": "int",
+      "description": "Effect Limit Value 6",
+      "name": "effect_limit_value6"
+    },
+    {
+      "data_type": "int",
+      "description": "Effect Limit Value 7",
+      "name": "effect_limit_value7"
+    },
+    {
+      "data_type": "int",
+      "description": "Effect Limit Value 8",
+      "name": "effect_limit_value8"
+    },
+    {
+      "data_type": "int",
+      "description": "Effect Limit Value 9",
+      "name": "effect_limit_value9"
+    },
+    {
+      "data_type": "int",
+      "description": "Effect Limit Value 10",
+      "name": "effect_limit_value10"
+    },
+    {
+      "data_type": "int",
+      "description": "Effect Limit Value 11",
+      "name": "effect_limit_value11"
+    },
+    {
+      "data_type": "int",
+      "description": "Effect Limit Value 12",
+      "name": "effect_limit_value12"
+    },
+    {
+      "data_type": "int",
+      "description": "Max 1",
+      "name": "max1"
+    },
+    {
+      "data_type": "int",
+      "description": "Max 2",
+      "name": "max2"
+    },
+    {
+      "data_type": "int",
+      "description": "Max 3",
+      "name": "max3"
+    },
+    {
+      "data_type": "int",
+      "description": "Max 4",
+      "name": "max4"
+    },
+    {
+      "data_type": "int",
+      "description": "Max 5",
+      "name": "max5"
+    },
+    {
+      "data_type": "int",
+      "description": "Max 6",
+      "name": "max6"
+    },
+    {
+      "data_type": "int",
+      "description": "Max 7",
+      "name": "max7"
+    },
+    {
+      "data_type": "int",
+      "description": "Max 8",
+      "name": "max8"
+    },
+    {
+      "data_type": "int",
+      "description": "Max 9",
+      "name": "max9"
+    },
+    {
+      "data_type": "int",
+      "description": "Max 10",
+      "name": "max10"
+    },
+    {
+      "data_type": "int",
+      "description": "Max 11",
+      "name": "max11"
+    },
+    {
+      "data_type": "int",
+      "description": "Max 12",
+      "name": "max12"
+    },
+    {
+      "data_type": "int",
+      "description": "Icon",
+      "name": "icon"
+    },
+    {
+      "data_type": "int",
+      "description": "Memmed Icon",
+      "name": "memicon"
+    },
+    {
+      "data_type": "int",
+      "description": "[Item Identifier](../../schema/items/items.md)",
+      "name": "components1"
+    },
+    {
+      "data_type": "int",
+      "description": "[Item Identifier](../../schema/items/items.md)",
+      "name": "components2"
+    },
+    {
+      "data_type": "int",
+      "description": "[Item Identifier](../../schema/items/items.md)",
+      "name": "components3"
+    },
+    {
+      "data_type": "int",
+      "description": "[Item Identifier](../../schema/items/items.md)",
+      "name": "components4"
+    },
+    {
+      "data_type": "int",
+      "description": "Component Count 1",
+      "name": "component_counts1"
+    },
+    {
+      "data_type": "int",
+      "description": "Component Count 2",
+      "name": "component_counts2"
+    },
+    {
+      "data_type": "int",
+      "description": "Component Count 3",
+      "name": "component_counts3"
+    },
+    {
+      "data_type": "int",
+      "description": "Component Count 4",
+      "name": "component_counts4"
+    },
+    {
+      "data_type": "int",
+      "description": "If it is a number between 1-4 it means component number 1-4 is a focus and not to expend it. If it is a valid item ID it means this item is a focus as well.",
+      "name": "NoexpendReagent1"
+    },
+    {
+      "data_type": "int",
+      "description": "If it is a number between 1-4 it means component number 1-4 is a focus and not to expend it. If it is a valid item ID it means this item is a focus as well.",
+      "name": "NoexpendReagent2"
+    },
+    {
+      "data_type": "int",
+      "description": "If it is a number between 1-4 it means component number 1-4 is a focus and not to expend it. If it is a valid item ID it means this item is a focus as well.",
+      "name": "NoexpendReagent3"
+    },
+    {
+      "data_type": "int",
+      "description": "If it is a number between 1-4 it means component number 1-4 is a focus and not to expend it. If it is a valid item ID it means this item is a focus as well.",
+      "name": "NoexpendReagent4"
+    },
+    {
+      "data_type": "int",
+      "description": "[Formula 1](../../../../server/spells/base-value-formulas)",
+      "name": "formula1"
+    },
+    {
+      "data_type": "int",
+      "description": "[Formula 2](../../../../server/spells/base-value-formulas)",
+      "name": "formula2"
+    },
+    {
+      "data_type": "int",
+      "description": "[Formula 3](../../../../server/spells/base-value-formulas)",
+      "name": "formula3"
+    },
+    {
+      "data_type": "int",
+      "description": "[Formula 4](../../../../server/spells/base-value-formulas)",
+      "name": "formula4"
+    },
+    {
+      "data_type": "int",
+      "description": "[Formula 5](../../../../server/spells/base-value-formulas)",
+      "name": "formula5"
+    },
+    {
+      "data_type": "int",
+      "description": "[Formula 6](../../../../server/spells/base-value-formulas)",
+      "name": "formula6"
+    },
+    {
+      "data_type": "int",
+      "description": "[Formula 7](../../../../server/spells/base-value-formulas)",
+      "name": "formula7"
+    },
+    {
+      "data_type": "int",
+      "description": "[Formula 8](../../../../server/spells/base-value-formulas)",
+      "name": "formula8"
+    },
+    {
+      "data_type": "int",
+      "description": "[Formula 9](../../../../server/spells/base-value-formulas)",
+      "name": "formula9"
+    },
+    {
+      "data_type": "int",
+      "description": "[Formula 10](../../../../server/spells/base-value-formulas)",
+      "name": "formula10"
+    },
+    {
+      "data_type": "int",
+      "description": "[Formula 11](../../../../server/spells/base-value-formulas)",
+      "name": "formula11"
+    },
+    {
+      "data_type": "int",
+      "description": "[Formula 12](../../../../server/spells/base-value-formulas)",
+      "name": "formula12"
+    },
+    {
+      "data_type": "int",
+      "description": "Light Type",
+      "name": "LightType"
+    },
+    {
+      "data_type": "int",
+      "description": "Good Effect: 0 = Detrimental, 1 = Beneficial, 2 = Beneficial Group Only",
+      "name": "goodEffect"
+    },
+    {
+      "data_type": "int",
+      "description": "Activated",
+      "name": "Activated"
+    },
+    {
+      "data_type": "int",
+      "description": "[Resist Type](../../../../server/spells/resist-types)",
+      "name": "resisttype"
+    },
+    {
+      "data_type": "int",
+      "description": "[Effect Identifier 1](../../../../server/spells/spell-effect-ids)",
+      "name": "effectid1"
+    },
+    {
+      "data_type": "int",
+      "description": "[Effect Identifier 2](../../../../server/spells/spell-effect-ids)",
+      "name": "effectid2"
+    },
+    {
+      "data_type": "int",
+      "description": "[Effect Identifier 3](../../../../server/spells/spell-effect-ids)",
+      "name": "effectid3"
+    },
+    {
+      "data_type": "int",
+      "description": "[Effect Identifier 4](../../../../server/spells/spell-effect-ids)",
+      "name": "effectid4"
+    },
+    {
+      "data_type": "int",
+      "description": "[Effect Identifier 5](../../../../server/spells/spell-effect-ids)",
+      "name": "effectid5"
+    },
+    {
+      "data_type": "int",
+      "description": "[Effect Identifier 6](../../../../server/spells/spell-effect-ids)",
+      "name": "effectid6"
+    },
+    {
+      "data_type": "int",
+      "description": "[Effect Identifier 7](../../../../server/spells/spell-effect-ids)",
+      "name": "effectid7"
+    },
+    {
+      "data_type": "int",
+      "description": "[Effect Identifier 8](../../../../server/spells/spell-effect-ids)",
+      "name": "effectid8"
+    },
+    {
+      "data_type": "int",
+      "description": "[Effect Identifier 9](../../../../server/spells/spell-effect-ids)",
+      "name": "effectid9"
+    },
+    {
+      "data_type": "int",
+      "description": "[Effect Identifier 10](../../../../server/spells/spell-effect-ids)",
+      "name": "effectid10"
+    },
+    {
+      "data_type": "int",
+      "description": "[Effect Identifier 11](../../../../server/spells/spell-effect-ids)",
+      "name": "effectid11"
+    },
+    {
+      "data_type": "int",
+      "description": "[Effect Identifier 12](../../../../server/spells/spell-effect-ids)",
+      "name": "effectid12"
+    },
+    {
+      "data_type": "int",
+      "description": "[Target Type](../../../../server/spells/target-types)",
+      "name": "targettype"
+    },
+    {
+      "data_type": "int",
+      "description": "Base Difficult Fizzle Adjustment",
+      "name": "basediff"
+    },
+    {
+      "data_type": "int",
+      "description": "[Skill Identifier](../../../../server/player/skills)",
+      "name": "skill"
+    },
+    {
+      "data_type": "int",
+      "description": "[Zone Type](../../../../server/zones/zone-types)",
+      "name": "zonetype"
+    },
+    {
+      "data_type": "int",
+      "description": "[Environment Type](../../../../server/spells/environment-types)",
+      "name": "EnvironmentType"
+    },
+    {
+      "data_type": "int",
+      "description": "[Time of Day Type](../../../../server/spells/time-of-day-types)",
+      "name": "TimeOfDay"
+    },
+    {
+      "data_type": "int",
+      "description": "Required Level for Warrior",
+      "name": "classes1"
+    },
+    {
+      "data_type": "int",
+      "description": "Required Level for Cleric",
+      "name": "classes2"
+    },
+    {
+      "data_type": "int",
+      "description": "Required Level for Paladin",
+      "name": "classes3"
+    },
+    {
+      "data_type": "int",
+      "description": "Required Level for Ranger",
+      "name": "classes4"
+    },
+    {
+      "data_type": "int",
+      "description": "Required Level for Shadow Knight",
+      "name": "classes5"
+    },
+    {
+      "data_type": "int",
+      "description": "Required Level for Druid",
+      "name": "classes6"
+    },
+    {
+      "data_type": "int",
+      "description": "Required Level for Monk",
+      "name": "classes7"
+    },
+    {
+      "data_type": "int",
+      "description": "Required Level for Bard",
+      "name": "classes8"
+    },
+    {
+      "data_type": "int",
+      "description": "Required Level for Rogue",
+      "name": "classes9"
+    },
+    {
+      "data_type": "int",
+      "description": "Required Level for Shaman",
+      "name": "classes10"
+    },
+    {
+      "data_type": "int",
+      "description": "Required Level for Necromancer",
+      "name": "classes11"
+    },
+    {
+      "data_type": "int",
+      "description": "Required Level for Wizard",
+      "name": "classes12"
+    },
+    {
+      "data_type": "int",
+      "description": "Required Level for Magician",
+      "name": "classes13"
+    },
+    {
+      "data_type": "int",
+      "description": "Required Level for Enchanter",
+      "name": "classes14"
+    },
+    {
+      "data_type": "int",
+      "description": "Required Level for Beastlord",
+      "name": "classes15"
+    },
+    {
+      "data_type": "int",
+      "description": "Required Level for Berserker",
+      "name": "classes16"
+    },
+    {
+      "data_type": "int",
+      "description": "Casting Animation",
+      "name": "CastingAnim"
+    },
+    {
+      "data_type": "int",
+      "description": "Target Animation",
+      "name": "TargetAnim"
+    },
+    {
+      "data_type": "int",
+      "description": "Travel Type (Unused)",
+      "name": "TravelType"
+    },
+    {
+      "data_type": "int",
+      "description": "Spell Affect Index",
+      "name": "SpellAffectIndex"
+    },
+    {
+      "data_type": "int",
+      "description": "Disallow Sit: 0 = False, 1 = True",
+      "name": "disallow_sit"
+    },
+    {
+      "data_type": "int",
+      "description": "[Deity List](../../../../server/player/deity-list)",
+      "name": "deities0"
+    },
+    {
+      "data_type": "int",
+      "description": "[Deity List](../../../../server/player/deity-list)",
+      "name": "deities1"
+    },
+    {
+      "data_type": "int",
+      "description": "[Deity List](../../../../server/player/deity-list)",
+      "name": "deities2"
+    },
+    {
+      "data_type": "int",
+      "description": "[Deity List](../../../../server/player/deity-list)",
+      "name": "deities3"
+    },
+    {
+      "data_type": "int",
+      "description": "[Deity List](../../../../server/player/deity-list)",
+      "name": "deities4"
+    },
+    {
+      "data_type": "int",
+      "description": "[Deity List](../../../../server/player/deity-list)",
+      "name": "deities5"
+    },
+    {
+      "data_type": "int",
+      "description": "[Deity List](../../../../server/player/deity-list)",
+      "name": "deities6"
+    },
+    {
+      "data_type": "int",
+      "description": "[Deity List](../../../../server/player/deity-list)",
+      "name": "deities7"
+    },
+    {
+      "data_type": "int",
+      "description": "[Deity List](../../../../server/player/deity-list)",
+      "name": "deities8"
+    },
+    {
+      "data_type": "int",
+      "description": "[Deity List](../../../../server/player/deity-list)",
+      "name": "deities9"
+    },
+    {
+      "data_type": "int",
+      "description": "[Deity List](../../../../server/player/deity-list)",
+      "name": "deities10"
+    },
+    {
+      "data_type": "int",
+      "description": "[Deity List](../../../../server/player/deity-list)",
+      "name": "deities11"
+    },
+    {
+      "data_type": "int",
+      "description": "[Deity List](../../../../server/player/deity-list)",
+      "name": "deities12"
+    },
+    {
+      "data_type": "int",
+      "description": "[Deity List](../../../../server/player/deity-list)",
+      "name": "deities13"
+    },
+    {
+      "data_type": "int",
+      "description": "[Deity List](../../../../server/player/deity-list)",
+      "name": "deities14"
+    },
+    {
+      "data_type": "int",
+      "description": "[Deity List](../../../../server/player/deity-list)",
+      "name": "deities15"
+    },
+    {
+      "data_type": "int",
+      "description": "[Deity List](../../../../server/player/deity-list)",
+      "name": "deities16"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "field142"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "field143"
+    },
+    {
+      "data_type": "int",
+      "description": "New Icon",
+      "name": "new_icon"
+    },
+    {
+      "data_type": "int",
+      "description": "Spell Animation",
+      "name": "spellanim"
+    },
+    {
+      "data_type": "int",
+      "description": "Uninterruptable: 0 = False, 1 = True",
+      "name": "uninterruptable"
+    },
+    {
+      "data_type": "int",
+      "description": "Resist Difference",
+      "name": "ResistDiff"
+    },
+    {
+      "data_type": "int",
+      "description": "Damage Over Time Stacking Exempt: 0 = False, 1 = True",
+      "name": "dot_stacking_exempt"
+    },
+    {
+      "data_type": "int",
+      "description": "Deleteable: 0 = False, 1 = True",
+      "name": "deleteable"
+    },
+    {
+      "data_type": "int",
+      "description": "[Recourse Spell Identifier](spells_new.md)",
+      "name": "RecourseLink"
+    },
+    {
+      "data_type": "int",
+      "description": "No Partial Resist: 0 = False, 1 = True",
+      "name": "no_partial_resist"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "field152"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "field153"
+    },
+    {
+      "data_type": "int",
+      "description": "Short Buff Box: 0 = False, 1 = True",
+      "name": "short_buff_box"
+    },
+    {
+      "data_type": "int",
+      "description": "[Description Number](../../schema/client-files/db_str.md)",
+      "name": "descnum"
+    },
+    {
+      "data_type": "int",
+      "description": "[Type Description Number](../../schema/client-files/db_str.md)",
+      "name": "typedescnum"
+    },
+    {
+      "data_type": "int",
+      "description": "[Effect Description Number](../../schema/client-files/db_str.md)",
+      "name": "effectdescnum"
+    },
+    {
+      "data_type": "int",
+      "description": "[Effect Description Number 2](../../schema/client-files/db_str.md)",
+      "name": "effectdescnum2"
+    },
+    {
+      "data_type": "int",
+      "description": "NPC No Line of Sight: 0 = False, 1 = True",
+      "name": "npc_no_los"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "field160"
+    },
+    {
+      "data_type": "int",
+      "description": "Reflectable: 0 = False, 1 = True",
+      "name": "reflectable"
+    },
+    {
+      "data_type": "int",
+      "description": "Bonus Hate",
+      "name": "bonushate"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "field163"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "field164"
+    },
+    {
+      "data_type": "int",
+      "description": "[LDoN Trap Identifier](../../schema/traps/traps.md)",
+      "name": "ldon_trap"
+    },
+    {
+      "data_type": "int",
+      "description": "Endurance Cost",
+      "name": "EndurCost"
+    },
+    {
+      "data_type": "int",
+      "description": "Endurance Timer",
+      "name": "EndurTimerIndex"
+    },
+    {
+      "data_type": "int",
+      "description": "Is Discipline: 0 = False, 1 = True",
+      "name": "IsDiscipline"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "field169"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "field170"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "field171"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "field172"
+    },
+    {
+      "data_type": "int",
+      "description": "Hate Added",
+      "name": "HateAdded"
+    },
+    {
+      "data_type": "int",
+      "description": "Endurance Upkeep",
+      "name": "EndurUpkeep"
+    },
+    {
+      "data_type": "int",
+      "description": "[Number of Hits Type](../../../../server/spells/numhit-types)",
+      "name": "numhitstype"
+    },
+    {
+      "data_type": "int",
+      "description": "Number of Hits",
+      "name": "numhits"
+    },
+    {
+      "data_type": "int",
+      "description": "PVP Resist Base",
+      "name": "pvpresistbase"
+    },
+    {
+      "data_type": "int",
+      "description": "PVP Resist Calc",
+      "name": "pvpresistcalc"
+    },
+    {
+      "data_type": "int",
+      "description": "PVP Resist Cap",
+      "name": "pvpresistcap"
+    },
+    {
+      "data_type": "int",
+      "description": "[Spell Category](../../../../server/spells/spell-groups)",
+      "name": "spell_category"
+    },
+    {
+      "data_type": "int",
+      "description": "PVP Duration",
+      "name": "pvp_duration"
+    },
+    {
+      "data_type": "int",
+      "description": "PVP Duration Cap",
+      "name": "pvp_duration_cap"
+    },
+    {
+      "data_type": "int",
+      "description": "PC/NPC Only Flag: 0 = Not Applicable, 1 = PCs and Mercs, 2 = NPCs",
+      "name": "pcnpc_only_flag"
+    },
+    {
+      "data_type": "int",
+      "description": "Cast Not Standing: 0 = False, 1 = True",
+      "name": "cast_not_standing"
+    },
+    {
+      "data_type": "int",
+      "description": "Can Mass Group Buff: 0 = False, 1 = True",
+      "name": "can_mgb"
+    },
+    {
+      "data_type": "int",
+      "description": "No Dispell: 0 = False, 1 = True",
+      "name": "nodispell"
+    },
+    {
+      "data_type": "int",
+      "description": "[NPC Spell Category Identifier](../../../../server/spells/npc-spell-categories)",
+      "name": "npc_category"
+    },
+    {
+      "data_type": "int",
+      "description": "NPC Usefulness",
+      "name": "npc_usefulness"
+    },
+    {
+      "data_type": "int",
+      "description": "Minimum Resistance",
+      "name": "MinResist"
+    },
+    {
+      "data_type": "int",
+      "description": "Maximum Resistance",
+      "name": "MaxResist"
+    },
+    {
+      "data_type": "int",
+      "description": "Viral Targets",
+      "name": "viral_targets"
+    },
+    {
+      "data_type": "int",
+      "description": "Viral Timer",
+      "name": "viral_timer"
+    },
+    {
+      "data_type": "int",
+      "description": "Nimbus Effect",
+      "name": "nimbuseffect"
+    },
+    {
+      "data_type": "int",
+      "description": "Cone Start Angle",
+      "name": "ConeStartAngle"
+    },
+    {
+      "data_type": "int",
+      "description": "Cone Stop Angle",
+      "name": "ConeStopAngle"
+    },
+    {
+      "data_type": "int",
+      "description": "Sneaking: 0 = False, 1 = True",
+      "name": "sneaking"
+    },
+    {
+      "data_type": "int",
+      "description": "Not Extendable: 0 = False, 1 = True",
+      "name": "not_extendable"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "field198"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "field199"
+    },
+    {
+      "data_type": "int",
+      "description": "Suspendable: 0 = False, 1 = True",
+      "name": "suspendable"
+    },
+    {
+      "data_type": "int",
+      "description": "Viral Range",
+      "name": "viral_range"
+    },
+    {
+      "data_type": "int",
+      "description": "Song Cap",
+      "name": "songcap"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "field203"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "field204"
+    },
+    {
+      "data_type": "int",
+      "description": "No Block: 0 = False, 1 = True",
+      "name": "no_block"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "field206"
+    },
+    {
+      "data_type": "int",
+      "description": "[Spell Group](../../../../server/spells/spell-groups)",
+      "name": "spellgroup"
+    },
+    {
+      "data_type": "int",
+      "description": "Rank",
+      "name": "rank"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "field209"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "field210"
+    },
+    {
+      "data_type": "int",
+      "description": "[Cast Restrictions](../../../../server/spells/spell-target-restrictions)",
+      "name": "CastRestriction"
+    },
+    {
+      "data_type": "int",
+      "description": "Allow Rest: 0 = False, 1 = True",
+      "name": "allowrest"
+    },
+    {
+      "data_type": "int",
+      "description": "In Combat: 0 = False, 1 = True",
+      "name": "InCombat"
+    },
+    {
+      "data_type": "int",
+      "description": "Out Of Combat: 0 = False, 1 = True",
+      "name": "OutofCombat"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "field215"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "field216"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "field217"
+    },
+    {
+      "data_type": "int",
+      "description": "Area of Effect Max Targets",
+      "name": "aemaxtargets"
+    },
+    {
+      "data_type": "int",
+      "description": "Max Targets",
+      "name": "maxtargets"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "field220"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "field221"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "field222"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "field223"
+    },
+    {
+      "data_type": "int",
+      "description": "Persist Death: 0 = False, 1 = True",
+      "name": "persistdeath"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "field225"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "field226"
+    },
+    {
+      "data_type": "float",
+      "description": "Minimum Distance",
+      "name": "min_dist"
+    },
+    {
+      "data_type": "float",
+      "description": "Minimum Distance Modifier",
+      "name": "min_dist_mod"
+    },
+    {
+      "data_type": "float",
+      "description": "Maximum Distance",
+      "name": "max_dist"
+    },
+    {
+      "data_type": "float",
+      "description": "Maximum Distance Modifier",
+      "name": "max_dist_mod"
+    },
+    {
+      "data_type": "int",
+      "description": "Minimum Range",
+      "name": "min_range"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "field232"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "field233"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "field234"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "field235"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "field236"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/spells/spells_new/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "spells_new",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "spells_new",
+  "path": "schema/spells/spells_new",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "spells_new",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "descnum",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[db_str](../../schema/client-files/db_str.md)"
+    },
+    {
+      "local_key": "effectdescnum",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[db_str](../../schema/client-files/db_str.md)"
+    },
+    {
+      "local_key": "effectdescnum2",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[db_str](../../schema/client-files/db_str.md)"
+    },
+    {
+      "local_key": "typedescnum",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[db_str](../../schema/client-files/db_str.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "One-to-One",
+      "remote_key": "spell_id",
+      "remote_table": "[auras](../../schema/spells/auras.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "spellid",
+      "remote_table": "[blocked_spells](../../schema/spells/blocked_spells.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "spell_id",
+      "remote_table": "[bot_pets](../../schema/bots/bot_pets.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "spell_id",
+      "remote_table": "[bot_pet_buffs](../../schema/bots/bot_pet_buffs.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "spellid",
+      "remote_table": "[bot_spells_entries](../../schema/bots/bot_spells_entries.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "spell_id",
+      "remote_table": "[character_auras](../../schema/characters/character_auras.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "spell_id",
+      "remote_table": "[character_buffs](../../schema/characters/character_buffs.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "disc_id",
+      "remote_table": "[character_disciplines](../../schema/characters/character_disciplines.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "spell_id",
+      "remote_table": "[character_pet_buffs](../../schema/characters/character_pet_buffs.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "spell_id",
+      "remote_table": "[character_pet_info](../../schema/characters/character_pet_info.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "spell_id",
+      "remote_table": "[character_spells](../../schema/characters/character_spells.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "spellid",
+      "remote_table": "[damageshieldtypes](../../schema/spells/damageshieldtypes.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "bardeffect",
+      "remote_table": "[items](../../schema/items/items.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "clickeffect",
+      "remote_table": "[items](../../schema/items/items.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "focuseffect",
+      "remote_table": "[items](../../schema/items/items.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "proceffect",
+      "remote_table": "[items](../../schema/items/items.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "scrolleffect",
+      "remote_table": "[items](../../schema/items/items.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "worneffect",
+      "remote_table": "[items](../../schema/items/items.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "spell_id",
+      "remote_table": "[ldon_trap_templates](../../schema/traps/ldon_trap_templates.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "spell_id",
+      "remote_table": "[merc_spell_list_entries](../../schema/mercenaries/merc_spell_list_entries.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "spellid",
+      "remote_table": "[npc_spells_entries](../../schema/npcs/npc_spells_entries.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "spellid",
+      "remote_table": "[spell_buckets](../../schema/spells/spell_buckets.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "spellid",
+      "remote_table": "[spell_globals](../../schema/spells/spell_globals.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/spells/spells_new.md",
+  "table": "spells_new",
+  "title": "spells_new"
+}

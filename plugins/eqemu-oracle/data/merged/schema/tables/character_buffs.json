@@ -1,0 +1,133 @@
+{
+  "category": "characters",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "[Character Identifier](../../schema/characters/character_data.md)",
+      "name": "character_id"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Buff Slot",
+      "name": "slot_id"
+    },
+    {
+      "data_type": "smallint",
+      "description": "[Buff Spell Identifier](../../schema/spells/spells_new.md)",
+      "name": "spell_id"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Caster Level",
+      "name": "caster_level"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Caster Name",
+      "name": "caster_name"
+    },
+    {
+      "data_type": "int",
+      "description": "Tics Remaining",
+      "name": "ticsremaining"
+    },
+    {
+      "data_type": "int",
+      "description": "Counters",
+      "name": "counters"
+    },
+    {
+      "data_type": "int",
+      "description": "Number of Hits",
+      "name": "numhits"
+    },
+    {
+      "data_type": "int",
+      "description": "Melee Rune",
+      "name": "melee_rune"
+    },
+    {
+      "data_type": "int",
+      "description": "Magic Rune",
+      "name": "magic_rune"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Persistent: 0 = False, 1 = True",
+      "name": "persistent"
+    },
+    {
+      "data_type": "int",
+      "description": "Damage Over Time Rune",
+      "name": "dot_rune"
+    },
+    {
+      "data_type": "int",
+      "description": "X Coordinate",
+      "name": "caston_x"
+    },
+    {
+      "data_type": "int",
+      "description": "Y Coordinate",
+      "name": "caston_y"
+    },
+    {
+      "data_type": "int",
+      "description": "Z Coordinate",
+      "name": "caston_z"
+    },
+    {
+      "data_type": "int",
+      "description": "Extra DI Chance",
+      "name": "ExtraDIChance"
+    },
+    {
+      "data_type": "int",
+      "description": "Instrument Modifier",
+      "name": "instrument_mod"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/characters/character_buffs/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "character_buffs",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "character_buffs",
+  "path": "schema/characters/character_buffs",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "character_buffs",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "character_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    },
+    {
+      "local_key": "spell_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[spells_new](../../schema/spells/spells_new.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_buffs.md",
+  "table": "character_buffs",
+  "title": "character_buffs"
+}

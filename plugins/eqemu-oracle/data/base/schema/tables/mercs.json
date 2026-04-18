@@ -1,0 +1,173 @@
+{
+  "category": "mercenaries",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Mercenary Identifier",
+      "name": "MercID"
+    },
+    {
+      "data_type": "int",
+      "description": "[Owner Character Identifier](../../schema/characters/character_data.md)",
+      "name": "OwnerCharacterID"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Slot",
+      "name": "Slot"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Name",
+      "name": "Name"
+    },
+    {
+      "data_type": "int",
+      "description": "[Template Identifier](merc_templates.md)",
+      "name": "TemplateID"
+    },
+    {
+      "data_type": "int",
+      "description": "Suspended Time UNIX Timestamp",
+      "name": "SuspendedTime"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Is Suspended: 0 = False, 1 = True",
+      "name": "IsSuspended"
+    },
+    {
+      "data_type": "int",
+      "description": "Timer Remaining in Seconds",
+      "name": "TimerRemaining"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Gender](../../../../server/npc/genders)",
+      "name": "Gender"
+    },
+    {
+      "data_type": "float",
+      "description": "Mercenary Size",
+      "name": "MercSize"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Stance Type Identifier](../../../../server/bots/stance-types)",
+      "name": "StanceID"
+    },
+    {
+      "data_type": "int",
+      "description": "Health",
+      "name": "HP"
+    },
+    {
+      "data_type": "int",
+      "description": "Mana",
+      "name": "Mana"
+    },
+    {
+      "data_type": "int",
+      "description": "Endurance",
+      "name": "Endurance"
+    },
+    {
+      "data_type": "int",
+      "description": "Face",
+      "name": "Face"
+    },
+    {
+      "data_type": "int",
+      "description": "Hair Style",
+      "name": "LuclinHairStyle"
+    },
+    {
+      "data_type": "int",
+      "description": "Hair Color",
+      "name": "LuclinHairColor"
+    },
+    {
+      "data_type": "int",
+      "description": "Eye Color 1",
+      "name": "LuclinEyeColor"
+    },
+    {
+      "data_type": "int",
+      "description": "Eye Color 2",
+      "name": "LuclinEyeColor2"
+    },
+    {
+      "data_type": "int",
+      "description": "Beard Color",
+      "name": "LuclinBeardColor"
+    },
+    {
+      "data_type": "int",
+      "description": "Beard",
+      "name": "LuclinBeard"
+    },
+    {
+      "data_type": "int",
+      "description": "Drakkin Heritage",
+      "name": "DrakkinHeritage"
+    },
+    {
+      "data_type": "int",
+      "description": "Drakkin Tattoo",
+      "name": "DrakkinTattoo"
+    },
+    {
+      "data_type": "int",
+      "description": "Drakkin Details",
+      "name": "DrakkinDetails"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/mercenaries/mercs/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "mercs",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "mercs",
+  "path": "schema/mercenaries/mercs",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "MercID",
+      "relationship_type": "Has-Many",
+      "remote_key": "MercId",
+      "remote_table": "[merc_buffs](../../schema/mercenaries/merc_buffs.md)"
+    },
+    {
+      "local_key": "OwnerCharacterID",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    },
+    {
+      "local_key": "StanceID",
+      "relationship_type": "Has-Many",
+      "remote_key": "stance_id",
+      "remote_table": "[merc_spell_list_entries](../../schema/mercenaries/merc_spell_list_entries.md)"
+    },
+    {
+      "local_key": "StanceID",
+      "relationship_type": "Has-Many",
+      "remote_key": "stance_id",
+      "remote_table": "[merc_stance_entries](../../schema/mercenaries/merc_stance_entries.md)"
+    },
+    {
+      "local_key": "TemplateID",
+      "relationship_type": "One-to-One",
+      "remote_key": "merc_template_id",
+      "remote_table": "[merc_templates](../../schema/mercenaries/merc_templates.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/mercenaries/mercs.md",
+  "table": "mercs",
+  "title": "mercs"
+}

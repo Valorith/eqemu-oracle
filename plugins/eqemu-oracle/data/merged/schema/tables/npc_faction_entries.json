@@ -1,0 +1,73 @@
+{
+  "category": "npcs",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "[NPC Faction Identifier](npc_faction.md)",
+      "name": "npc_faction_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Faction Identifier](../../schema/factions/faction_list.md)",
+      "name": "faction_id"
+    },
+    {
+      "data_type": "int",
+      "description": "Value",
+      "name": "value"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "NPC Value: -1 = Attack, 0 = Neutral, 1 = Assist",
+      "name": "npc_value"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Temeporary: 0 = Faction is permanent, player recieves a message, 1 = Faction is temporary, player does not recieve a message, 2 = Faction is temporary, player recieves a message, 3 = Faction is permanent, but player does not recieve a message.",
+      "name": "temp"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/npcs/npc_faction_entries/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "npc_faction_entries",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "npc_faction_entries",
+  "path": "schema/npcs/npc_faction_entries",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "npc_faction_entries",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "faction_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[faction_list](../../schema/factions/faction_list.md)"
+    },
+    {
+      "local_key": "npc_faction_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[npc_faction](../../schema/npcs/npc_faction.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/npcs/npc_faction_entries.md",
+  "table": "npc_faction_entries",
+  "title": "npc_faction_entries"
+}

@@ -1,0 +1,106 @@
+{
+  "category": "scheduler",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Scheduled Event Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Description",
+      "name": "description"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Event Type",
+      "name": "event_type"
+    },
+    {
+      "data_type": "text",
+      "description": "Event Data",
+      "name": "event_data"
+    },
+    {
+      "data_type": "int",
+      "description": "Minute Start",
+      "name": "minute_start"
+    },
+    {
+      "data_type": "int",
+      "description": "Hour Start",
+      "name": "hour_start"
+    },
+    {
+      "data_type": "int",
+      "description": "Day Start",
+      "name": "day_start"
+    },
+    {
+      "data_type": "int",
+      "description": "Month Start",
+      "name": "month_start"
+    },
+    {
+      "data_type": "int",
+      "description": "Year Start",
+      "name": "year_start"
+    },
+    {
+      "data_type": "int",
+      "description": "Minute End",
+      "name": "minute_end"
+    },
+    {
+      "data_type": "int",
+      "description": "Hour End",
+      "name": "hour_end"
+    },
+    {
+      "data_type": "int",
+      "description": "Day End",
+      "name": "day_end"
+    },
+    {
+      "data_type": "int",
+      "description": "Month End",
+      "name": "month_end"
+    },
+    {
+      "data_type": "int",
+      "description": "Year End",
+      "name": "year_end"
+    },
+    {
+      "data_type": "varchar",
+      "description": "CRON Expression",
+      "name": "cron_expression"
+    },
+    {
+      "data_type": "datetime",
+      "description": "Created At",
+      "name": "created_at"
+    },
+    {
+      "data_type": "datetime",
+      "description": "Deleted At",
+      "name": "deleted_at"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/scheduler/server_scheduled_events/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "server_scheduled_events",
+    "Schema"
+  ],
+  "id": "server_scheduled_events",
+  "path": "schema/scheduler/server_scheduled_events",
+  "related_docs": [],
+  "relationships": [],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/scheduler/server_scheduled_events.md",
+  "table": "server_scheduled_events",
+  "title": "server_scheduled_events"
+}

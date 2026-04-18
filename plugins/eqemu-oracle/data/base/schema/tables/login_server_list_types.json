@@ -1,0 +1,39 @@
+{
+  "category": "loginserver",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique List Type Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Description",
+      "name": "description"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/loginserver/login_server_list_types/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "login_server_list_types",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "login_server_list_types",
+  "path": "schema/loginserver/login_server_list_types",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "login_server_list_type_id",
+      "remote_table": "[login_world_servers](../../schema/loginserver/login_world_servers.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/loginserver/login_server_list_types.md",
+  "table": "login_server_list_types",
+  "title": "login_server_list_types"
+}

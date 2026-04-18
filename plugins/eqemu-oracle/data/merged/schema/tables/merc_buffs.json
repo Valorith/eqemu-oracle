@@ -1,0 +1,143 @@
+{
+  "category": "mercenaries",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Mercenary Buff Identifier",
+      "name": "MercBuffId"
+    },
+    {
+      "data_type": "int",
+      "description": "[Mercenary Identifier](mercs.md)",
+      "name": "MercId"
+    },
+    {
+      "data_type": "int",
+      "description": "[Spell Identifier](../../schema/spells/spells_new.md)",
+      "name": "SpellId"
+    },
+    {
+      "data_type": "int",
+      "description": "Caster Level",
+      "name": "CasterLevel"
+    },
+    {
+      "data_type": "int",
+      "description": "[Duration Formula](../../../../categories/spells/buff-duration-formulas)",
+      "name": "DurationFormula"
+    },
+    {
+      "data_type": "int",
+      "description": "Tics Remaining",
+      "name": "TicsRemaining"
+    },
+    {
+      "data_type": "int",
+      "description": "Poison Counters",
+      "name": "PoisonCounters"
+    },
+    {
+      "data_type": "int",
+      "description": "Disease Counters",
+      "name": "DiseaseCounters"
+    },
+    {
+      "data_type": "int",
+      "description": "Curse Counters",
+      "name": "CurseCounters"
+    },
+    {
+      "data_type": "int",
+      "description": "Corruption Counters",
+      "name": "CorruptionCounters"
+    },
+    {
+      "data_type": "int",
+      "description": "Hit Count",
+      "name": "HitCount"
+    },
+    {
+      "data_type": "int",
+      "description": "Melee Rune",
+      "name": "MeleeRune"
+    },
+    {
+      "data_type": "int",
+      "description": "Magic Rune",
+      "name": "MagicRune"
+    },
+    {
+      "data_type": "int",
+      "description": "Damage Over Time Rune",
+      "name": "dot_rune"
+    },
+    {
+      "data_type": "int",
+      "description": "Cast On X Coordinate",
+      "name": "caston_x"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Persistent: 0 = False, 1 = True",
+      "name": "Persistent"
+    },
+    {
+      "data_type": "int",
+      "description": "Cast On Y Coordinate",
+      "name": "caston_y"
+    },
+    {
+      "data_type": "int",
+      "description": "Cast On Z Coordinate",
+      "name": "caston_z"
+    },
+    {
+      "data_type": "int",
+      "description": "Extra DI Chance",
+      "name": "ExtraDIChance"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/mercenaries/merc_buffs/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "merc_buffs",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "merc_buffs",
+  "path": "schema/mercenaries/merc_buffs",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "merc_buffs",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "MercId",
+      "relationship_type": "One-to-One",
+      "remote_key": "MercID",
+      "remote_table": "merc"
+    },
+    {
+      "local_key": "SpellId",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[spells_new](../../schema/spells/spells_new.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/mercenaries/merc_buffs.md",
+  "table": "merc_buffs",
+  "title": "merc_buffs"
+}

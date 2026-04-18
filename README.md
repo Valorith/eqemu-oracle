@@ -1,24 +1,202 @@
 # EQEmu Oracle
 
-`EQEmu Oracle` is a Codex plugin workspace for EQEmu-focused development tools.
+`EQEmu Oracle` is a Codex plugin project that gives Codex deterministic access to core EQEmu reference material without relying on ad hoc web search.
 
-The goal is to expose EQEmu scripting references, database schema context, emulator documentation, and related helper workflows directly inside the Codex app.
+It stages three primary knowledge domains locally:
 
-## Current Layout
+- EQEmu quest scripting API for Perl and Lua
+- EQEmu MySQL schema
+- Official EQEmu documentation
 
-- `plugins/eqemu-oracle/`: repo-local Codex plugin scaffold
-- `.agents/plugins/marketplace.json`: local marketplace entry for loading the plugin in Codex
+It also supports extension overlays so you can add or override data that exists only in your own server fork, private tooling, or local documentation set.
 
-## Planned Plugin Scope
+## What This Plugin Does
 
-- Skill prompts for EQEmu scripting and content-authoring workflows
-- MCP-backed access to indexed emulator docs and schema context
-- App or script helpers for refreshing generated references
-- Plugin assets and interface metadata for Codex discovery
+The plugin runs a local stdio MCP server and serves EQEmu context from versioned snapshots stored in this repository.
 
-## Next Build Steps
+Normal lookups are deterministic:
 
-1. Replace the placeholder values in `plugins/eqemu-oracle/.codex-plugin/plugin.json`.
-2. Decide which sources will be indexed first: scripting API, database schema, or documentation.
-3. Add the first plugin skill and the first ingestion script.
-4. Define the `.mcp.json` server contract once the data source shape is settled.
+- committed upstream snapshots live in `plugins/eqemu-oracle/data/base/`
+- merged effective records live in `plugins/eqemu-oracle/data/merged/`
+- a local search index is built in `plugins/eqemu-oracle/cache/`
+
+Two overlay roots can change the effective data:
+
+- `plugins/eqemu-oracle/extensions/`: repo-tracked shared overlays
+- `plugins/eqemu-oracle/local-extensions/`: machine-local untracked overlays
+
+Effective merge precedence is:
+
+1. base upstream snapshot
+2. repo extension
+3. local extension
+
+That means a local extension can override both the upstream data and a repo-tracked extension without changing committed plugin data.
+
+## Current Upstream Sources
+
+- Quest API: [spire.eqemu.dev Quest API definitions](https://spire.eqemu.dev/quest-api-explorer)
+- Quest API provenance: [Valorith/spire](https://github.com/Valorith/spire)
+- Schema and docs source repo: [EQEmu/eqemu-docs-v2](https://github.com/EQEmu/eqemu-docs-v2)
+- Human-facing schema/docs site: [docs.eqemu.dev](https://docs.eqemu.dev/)
+
+## Repository Layout
+
+- `plugins/eqemu-oracle/`: the actual Codex plugin
+- `plugins/eqemu-oracle/.codex-plugin/plugin.json`: plugin metadata
+- `plugins/eqemu-oracle/.mcp.json`: local MCP server wiring
+- `plugins/eqemu-oracle/scripts/`: CLI and MCP runtime
+- `plugins/eqemu-oracle/data/`: committed staged datasets
+- `plugins/eqemu-oracle/extensions/`: shared overlay files
+- `plugins/eqemu-oracle/local-extensions/`: local-only overlay files
+- `plugins/eqemu-oracle/tests/`: unit and runtime smoke tests
+- `.github/workflows/refresh-plugin-data.yml`: scheduled/manual refresh automation
+- `.agents/plugins/marketplace.json`: local plugin marketplace entry for Codex
+
+## Getting Started
+
+1. Open the repo in Codex.
+2. Ensure Python is available on your machine.
+3. Load the local plugin from the marketplace entry in `.agents/plugins/marketplace.json`.
+4. The plugin MCP server is wired through `plugins/eqemu-oracle/.mcp.json` and starts through:
+
+```powershell
+python .\plugins\eqemu-oracle\scripts\eqemu_oracle.py mcp-serve
+```
+
+## Refreshing Upstream Data
+
+Use the local CLI to rebuild staged data from upstream sources.
+
+Refresh and rewrite the committed snapshots:
+
+```powershell
+python .\plugins\eqemu-oracle\scripts\eqemu_oracle.py refresh --scope all --mode committed
+```
+
+Refresh into a local untracked overlay without replacing committed data:
+
+```powershell
+python .\plugins\eqemu-oracle\scripts\eqemu_oracle.py refresh --scope all --mode overlay
+```
+
+Rebuild merged data after changing only extension files:
+
+```powershell
+python .\plugins\eqemu-oracle\scripts\eqemu_oracle.py rebuild-extensions --scope all --mode committed
+```
+
+Use `--mode overlay` with `rebuild-extensions` if you want the rebuild to target the local overlay instead of the committed merged snapshot.
+
+## Extension Overlays
+
+The extension system is the supported way to add EQEmu knowledge that does not exist in upstream EQEmu sources.
+
+Common use cases:
+
+- custom quest API methods or events from a private fork
+- custom database tables or columns on your local server
+- internal docs pages, aliases, or overrides for project-specific workflows
+
+### Where To Put Extensions
+
+- Shared with the repo: `plugins/eqemu-oracle/extensions/`
+- Only on your machine: `plugins/eqemu-oracle/local-extensions/`
+
+Both roots use the same format. Domain-specific readmes live here:
+
+- `plugins/eqemu-oracle/extensions/quest-api/README.md`
+- `plugins/eqemu-oracle/extensions/schema/README.md`
+- `plugins/eqemu-oracle/extensions/docs/README.md`
+
+### Merge Rules
+
+Each extension record must declare a stable `id` matching the target domain.
+
+Supported per-record `mode` values:
+
+- `override`: replace conflicting fields from the base record
+- `augment`: merge into the base record and append unique list values
+- `disable`: remove the record from the effective merged dataset
+
+If `mode` is omitted:
+
+- existing record id: defaults to `override`
+- new record id: defaults to `augment`
+
+Each merged record keeps provenance so the MCP layer can explain whether the effective result came from base data, a repo extension, or a local extension.
+
+### Extension Example
+
+Schema overlay that adds a custom local-only table:
+
+```json
+{
+  "tables": [
+    {
+      "id": "my_custom_table",
+      "table": "my_custom_table",
+      "title": "my_custom_table",
+      "category": "custom",
+      "columns": [
+        {
+          "name": "id",
+          "data_type": "int",
+          "description": "Primary key"
+        }
+      ],
+      "relationships": [],
+      "mode": "augment"
+    }
+  ]
+}
+```
+
+After adding the file, rebuild merged data:
+
+```powershell
+python .\plugins\eqemu-oracle\scripts\eqemu_oracle.py rebuild-extensions --scope schema --mode committed
+```
+
+## MCP Surface
+
+The plugin exposes deterministic lookup tools through its local MCP server:
+
+- `search_eqemu_context`
+- `get_quest_api_entry`
+- `get_db_table`
+- `get_doc_page`
+- `explain_eqemu_provenance`
+- `refresh_eqemu_oracle`
+- `rebuild_eqemu_extensions`
+
+It also exposes read resources for staged indexes and direct record navigation:
+
+- `eqemu://manifest`
+- `eqemu://indexes/quest-api`
+- `eqemu://indexes/schema`
+- `eqemu://indexes/docs`
+
+## Testing
+
+Run the current test suite with:
+
+```powershell
+python -m unittest discover -s .\plugins\eqemu-oracle\tests
+```
+
+Useful validation commands:
+
+```powershell
+python -m py_compile .\plugins\eqemu-oracle\scripts\eqemu_oracle.py .\plugins\eqemu-oracle\scripts\eqemu_oracle\*.py
+python .\plugins\eqemu-oracle\scripts\eqemu_oracle.py refresh --scope all --mode overlay
+```
+
+## Status
+
+The plugin is scaffolded and functional for local development:
+
+- staged upstream ingest is implemented
+- extension overlays are implemented
+- merged search and deterministic MCP lookup are implemented
+- refresh automation is wired through GitHub Actions

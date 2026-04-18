@@ -1,0 +1,61 @@
+{
+  "category": "grids",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Grid Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Zone Identifier](../../../../server/zones/zone-list)",
+      "name": "zoneid"
+    },
+    {
+      "data_type": "int",
+      "description": "[Wander Type](../../../../server/npc/spawns/wander-types)",
+      "name": "type"
+    },
+    {
+      "data_type": "int",
+      "description": "[Pause Type](../../../../server/npc/spawns/pause-types)",
+      "name": "type2"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/grids/grid/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "grid",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "grid",
+  "path": "schema/grids/grid",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "gridid",
+      "remote_table": "[grid_entries](../../schema/grids/grid_entries.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "pathgrid",
+      "remote_table": "[spawn2](../../schema/spawns/spawn2.md)"
+    },
+    {
+      "local_key": "zoneid",
+      "relationship_type": "One-to-One",
+      "remote_key": "zoneidnumber",
+      "remote_table": "[zone](../../schema/zone/zone.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/grids/grid.md",
+  "table": "grid",
+  "title": "grid"
+}

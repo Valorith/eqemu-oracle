@@ -1,0 +1,167 @@
+{
+  "category": "tasks",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "[Task Identifier](tasks.md)",
+      "name": "taskid"
+    },
+    {
+      "data_type": "int",
+      "description": "Activity Identifier: Starts at 0",
+      "name": "activityid"
+    },
+    {
+      "data_type": "int",
+      "description": "Required Activity Identifier",
+      "name": "req_activity_id"
+    },
+    {
+      "data_type": "int",
+      "description": "Step: 0 = Always Available, &gt;0 = Must Complete Previous",
+      "name": "step"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Activity Type](../../../../server/task-system-guide/task-activity-types)",
+      "name": "activitytype"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Target Name",
+      "name": "target_name"
+    },
+    {
+      "data_type": "int",
+      "description": "Goal Method: 0 = Single Value, 1 = List",
+      "name": "goalmethod"
+    },
+    {
+      "data_type": "int",
+      "description": "Goal Count",
+      "name": "goalcount"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Description Override",
+      "name": "description_override"
+    },
+    {
+      "data_type": "int",
+      "description": "Goal Identifier or [Goal List Identifier](goallists.md)",
+      "name": "goalid"
+    },
+    {
+      "data_type": "varchar",
+      "description": "[Item Identifier List](../../schema/items/items.md)",
+      "name": "item_list"
+    },
+    {
+      "data_type": "int",
+      "description": "[Dynamic Zone Switch ID](../../schema/doors/doors.md)",
+      "name": "dz_switch_id"
+    },
+    {
+      "data_type": "float",
+      "description": "Minimum X Coordinate",
+      "name": "min_x"
+    },
+    {
+      "data_type": "float",
+      "description": "Minimum Y Coordinate",
+      "name": "min_y"
+    },
+    {
+      "data_type": "float",
+      "description": "Minimum Z Coordinate",
+      "name": "min_z"
+    },
+    {
+      "data_type": "float",
+      "description": "Maximum X Coordinate",
+      "name": "max_x"
+    },
+    {
+      "data_type": "float",
+      "description": "Maximum Y Coordinate",
+      "name": "max_y"
+    },
+    {
+      "data_type": "float",
+      "description": "Maximum Z Coordinate",
+      "name": "max_z"
+    },
+    {
+      "data_type": "varchar",
+      "description": "[Skill Identifier List](../../../../server/player/skills)",
+      "name": "skill_list"
+    },
+    {
+      "data_type": "varchar",
+      "description": "[Spell Identifier List](../../schema/spells/spells_new.md)",
+      "name": "spell_list"
+    },
+    {
+      "data_type": "varchar",
+      "description": "[Zones List](../../../../server/zones/zone-list)",
+      "name": "zones"
+    },
+    {
+      "data_type": "int",
+      "description": "Zone Version",
+      "name": "zone_version"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Optional: 0 = False, 1 = True",
+      "name": "optional"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "",
+      "name": "list_group"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/tasks/task_activities/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "task_activities",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "task_activities",
+  "path": "schema/tasks/task_activities",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "delivertonpc",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[npc_types](../../schema/npcs/npc_types.md)"
+    },
+    {
+      "local_key": "goalid",
+      "relationship_type": "Has-Many",
+      "remote_key": "listid",
+      "remote_table": "[goallists](../../schema/tasks/goallists.md)"
+    },
+    {
+      "local_key": "taskid",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[tasks](../../schema/tasks/tasks.md)"
+    },
+    {
+      "local_key": "zones",
+      "relationship_type": "One-to-One",
+      "remote_key": "zoneidnumber",
+      "remote_table": "[zone](../../schema/zone/zone.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/tasks/task_activities.md",
+  "table": "task_activities",
+  "title": "task_activities"
+}

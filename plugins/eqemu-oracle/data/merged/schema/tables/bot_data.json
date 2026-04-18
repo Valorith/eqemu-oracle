@@ -1,0 +1,351 @@
+{
+  "category": "bots",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Bot Identifier",
+      "name": "bot_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Owner Character Identifier](../../schema/characters/character_data.md)",
+      "name": "owner_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Bot Spell List Identifier](../../../../categories/spells/bot-spell-list-ids)",
+      "name": "spells_id"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Name",
+      "name": "name"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Last Name",
+      "name": "last_name"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Title",
+      "name": "title"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Suffix",
+      "name": "suffix"
+    },
+    {
+      "data_type": "smallint",
+      "description": "[Zone Identifier](../../../../server/zones/zone-list)",
+      "name": "zone_id"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Gender](../../../../server/npc/genders)",
+      "name": "gender"
+    },
+    {
+      "data_type": "smallint",
+      "description": "[Race](../../../../categories/npc/race-list)",
+      "name": "race"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Class](../../../../server/player/class-list)",
+      "name": "class"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Level",
+      "name": "level"
+    },
+    {
+      "data_type": "int",
+      "description": "[Deity](../../../../categories/player/deity-list)",
+      "name": "deity"
+    },
+    {
+      "data_type": "int",
+      "description": "UNIX Timestamp of creation date",
+      "name": "creation_day"
+    },
+    {
+      "data_type": "int",
+      "description": "UNIX Timestamp of last spawn_conditions",
+      "name": "last_spawn"
+    },
+    {
+      "data_type": "int",
+      "description": "Time spawned",
+      "name": "time_spawned"
+    },
+    {
+      "data_type": "float",
+      "description": "Size",
+      "name": "size"
+    },
+    {
+      "data_type": "int",
+      "description": "Face",
+      "name": "face"
+    },
+    {
+      "data_type": "int",
+      "description": "Hair Color",
+      "name": "hair_color"
+    },
+    {
+      "data_type": "int",
+      "description": "Hair Style",
+      "name": "hair_style"
+    },
+    {
+      "data_type": "int",
+      "description": "Beard",
+      "name": "beard"
+    },
+    {
+      "data_type": "int",
+      "description": "Beard Color",
+      "name": "beard_color"
+    },
+    {
+      "data_type": "int",
+      "description": "Eye Color 1",
+      "name": "eye_color_1"
+    },
+    {
+      "data_type": "int",
+      "description": "Eye Color 2",
+      "name": "eye_color_2"
+    },
+    {
+      "data_type": "int",
+      "description": "Drakkin Heritage",
+      "name": "drakkin_heritage"
+    },
+    {
+      "data_type": "int",
+      "description": "Drakkin Tattoo",
+      "name": "drakkin_tattoo"
+    },
+    {
+      "data_type": "int",
+      "description": "Drakkin Details",
+      "name": "drakkin_details"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Armor Class",
+      "name": "ac"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Attack",
+      "name": "atk"
+    },
+    {
+      "data_type": "int",
+      "description": "Health",
+      "name": "hp"
+    },
+    {
+      "data_type": "int",
+      "description": "Mana",
+      "name": "mana"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Strength",
+      "name": "str"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Stamina",
+      "name": "sta"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Charisma",
+      "name": "cha"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Dexterity",
+      "name": "dex"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Intelligence",
+      "name": "int"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Agility",
+      "name": "agi"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Wisdom",
+      "name": "wis"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Fire Resistance",
+      "name": "fire"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Cold Resistance",
+      "name": "cold"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Magic Resistance",
+      "name": "magic"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Poison Resistance",
+      "name": "poison"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Disease Resistance",
+      "name": "disease"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Corruption Resistance",
+      "name": "corruption"
+    },
+    {
+      "data_type": "int",
+      "description": "Show Helm: 0 = False, 1= True",
+      "name": "show_helm"
+    },
+    {
+      "data_type": "int",
+      "description": "Follow Distance",
+      "name": "follow_distance"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Stop Melee Level",
+      "name": "stop_melee_level"
+    },
+    {
+      "data_type": "int",
+      "description": "[Expansion Bitmask](../../../../categories/operation/expansion-list)",
+      "name": "expansion_bitmask"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Enforce Spell Settings: 0 = False, 1 = True",
+      "name": "enforce_spell_settings"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Archery Setting: 0 = False, 1 = True",
+      "name": "archery_setting"
+    },
+    {
+      "data_type": "int",
+      "description": "Caster Range",
+      "name": "caster_range"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/bots/bot_data/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "bot_data",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "bot_data",
+  "path": "schema/bots/bot_data",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "bot_data",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "bot_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "bot_id",
+      "remote_table": "[bot_guild_members](../../schema/bots/bot_guild_members.md)"
+    },
+    {
+      "local_key": "bot_id",
+      "relationship_type": "Has-Many",
+      "remote_key": "bot_id",
+      "remote_table": "[bot_heal_rotation_members](../../schema/bots/bot_heal_rotation_members.md)"
+    },
+    {
+      "local_key": "bot_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "bot_id",
+      "remote_table": "[bot_inspect_messages](../../schema/bots/bot_inspect_messages.md)"
+    },
+    {
+      "local_key": "bot_id",
+      "relationship_type": "Has-Many",
+      "remote_key": "bot_id",
+      "remote_table": "[bot_inventories](../../schema/bots/bot_inventories.md)"
+    },
+    {
+      "local_key": "bot_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "bot_id",
+      "remote_table": "[bot_pets](../../schema/bots/bot_pets.md)"
+    },
+    {
+      "local_key": "bot_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "bot_id",
+      "remote_table": "[bot_stances](../../schema/bots/bot_stances.md)"
+    },
+    {
+      "local_key": "bot_id",
+      "relationship_type": "Has-Many",
+      "remote_key": "bot_id",
+      "remote_table": "[bot_timers](../../schema/bots/bot_timers.md)"
+    },
+    {
+      "local_key": "owner_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    },
+    {
+      "local_key": "spells_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[npc_spells](../../schema/npcs/npc_spells.md)"
+    },
+    {
+      "local_key": "zone_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "zoneidnumber",
+      "remote_table": "[zone](../../schema/zone/zone.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/bots/bot_data.md",
+  "table": "bot_data",
+  "title": "bot_data"
+}

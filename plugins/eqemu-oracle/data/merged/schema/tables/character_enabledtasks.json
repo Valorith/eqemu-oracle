@@ -1,0 +1,58 @@
+{
+  "category": "characters",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "[Character Identifier](character_data.md)",
+      "name": "charid"
+    },
+    {
+      "data_type": "int",
+      "description": "[Task Identifier](../../schema/tasks/tasks.md)",
+      "name": "taskid"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/characters/character_enabledtasks/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "character_enabledtasks",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "character_enabledtasks",
+  "path": "schema/characters/character_enabledtasks",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "character_enabledtasks",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "charid",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    },
+    {
+      "local_key": "taskid",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[tasks](../../schema/tasks/tasks.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_enabledtasks.md",
+  "table": "character_enabledtasks",
+  "title": "character_enabledtasks"
+}

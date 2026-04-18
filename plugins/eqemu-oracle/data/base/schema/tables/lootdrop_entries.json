@@ -1,0 +1,90 @@
+{
+  "category": "loot",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "[Lootdrop Identifier](lootdrop.md)",
+      "name": "lootdrop_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Item Identifier](../../schema/items/items.md)",
+      "name": "item_id"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Item Charges",
+      "name": "item_charges"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Equip Item: 0 = False, 1 = True",
+      "name": "equip_item"
+    },
+    {
+      "data_type": "float",
+      "description": "Chance: 0 = Never, 100 = Always",
+      "name": "chance"
+    },
+    {
+      "data_type": "float",
+      "description": "Disabled Chance: 0 = Never, 100 = Always",
+      "name": "disabled_chance"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Trivial Minimum Level",
+      "name": "trivial_min_level"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Trivial Maximum Level",
+      "name": "trivial_max_level"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Multiplier",
+      "name": "multiplier"
+    },
+    {
+      "data_type": "smallint",
+      "description": "NPC Minimum Level",
+      "name": "npc_min_level"
+    },
+    {
+      "data_type": "smallint",
+      "description": "NPC Maximum Level",
+      "name": "npc_max_level"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/loot/lootdrop_entries/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "lootdrop_entries",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "lootdrop_entries",
+  "path": "schema/loot/lootdrop_entries",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "item_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[items](../../schema/items/items.md)"
+    },
+    {
+      "local_key": "lootdrop_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[lootdrop](../../schema/loot/lootdrop.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/loot/lootdrop_entries.md",
+  "table": "lootdrop_entries",
+  "title": "lootdrop_entries"
+}

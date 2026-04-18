@@ -1,0 +1,75 @@
+{
+  "category": "characters",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Message Identifier",
+      "name": "msgid"
+    },
+    {
+      "data_type": "int",
+      "description": "[Character Identifier](character_data.md)",
+      "name": "charid"
+    },
+    {
+      "data_type": "int",
+      "description": "UNIX Timestamp",
+      "name": "timestamp"
+    },
+    {
+      "data_type": "varchar",
+      "description": "[From Character Name](character_data.md)",
+      "name": "from"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Subject",
+      "name": "subject"
+    },
+    {
+      "data_type": "text",
+      "description": "Body",
+      "name": "body"
+    },
+    {
+      "data_type": "text",
+      "description": "[To Character Name](character_data.md)",
+      "name": "to"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Status](../../../../server/player/status-levels)",
+      "name": "status"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/characters/mail/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "mail",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "mail",
+  "path": "schema/characters/mail",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "charid",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    },
+    {
+      "local_key": "from",
+      "relationship_type": "One-to-One",
+      "remote_key": "name",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/mail.md",
+  "table": "mail",
+  "title": "mail"
+}

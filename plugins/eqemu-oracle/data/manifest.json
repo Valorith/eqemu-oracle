@@ -1,0 +1,34 @@
+{
+  "active_root": "C:\\Users\\rgagn\\OneDrive\\Documents\\Github Projects\\EQEmu Oracle\\plugins\\eqemu-oracle\\data\\merged",
+  "counts": {
+    "docs": 377,
+    "quest-api": 10524,
+    "schema": 261
+  },
+  "extensions": {
+    "local_root": "C:\\Users\\rgagn\\OneDrive\\Documents\\Github Projects\\EQEmu Oracle\\plugins\\eqemu-oracle\\local-extensions",
+    "repo_root": "C:\\Users\\rgagn\\OneDrive\\Documents\\Github Projects\\EQEmu Oracle\\plugins\\eqemu-oracle\\extensions"
+  },
+  "freshness_state": "fresh",
+  "generated_at": "2026-04-18T16:18:28Z",
+  "snapshot_version": "20260418161828",
+  "sources": {
+    "docs": {
+      "fetched_at": "2026-04-18T16:08:49Z",
+      "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+      "source_repo": "https://github.com/EQEmu/eqemu-docs-v2"
+    },
+    "quest-api": {
+      "fetched_at": "2026-04-18T16:08:49Z",
+      "last_refreshed": "2026-04-17T23:20:19.622142544Z",
+      "source_ref": "d0b7fa6e651bd9a60c774f032563a50e338b1dc7",
+      "source_repo": "https://github.com/Valorith/spire",
+      "source_url": "https://spire.eqemu.dev/api/v1/quest-api/definitions"
+    },
+    "schema": {
+      "fetched_at": "2026-04-18T16:08:49Z",
+      "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+      "source_repo": "https://github.com/EQEmu/eqemu-docs-v2"
+    }
+  }
+}

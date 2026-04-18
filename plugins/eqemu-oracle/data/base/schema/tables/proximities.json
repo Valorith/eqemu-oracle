@@ -1,0 +1,69 @@
+{
+  "category": "npcs",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "[Zone Identifier](../../../../server/zones/zone-list)",
+      "name": "zoneid"
+    },
+    {
+      "data_type": "int",
+      "description": "[Explore Identifier](../../schema/tasks/goallists.md)",
+      "name": "exploreid"
+    },
+    {
+      "data_type": "float",
+      "description": "Minimum X Coordinate",
+      "name": "minx"
+    },
+    {
+      "data_type": "float",
+      "description": "Maximum X Coordinate",
+      "name": "maxx"
+    },
+    {
+      "data_type": "float",
+      "description": "Minimum Y Coordinate",
+      "name": "miny"
+    },
+    {
+      "data_type": "float",
+      "description": "Maximum Y Coordinate",
+      "name": "maxy"
+    },
+    {
+      "data_type": "float",
+      "description": "Minimum Z Coordinate",
+      "name": "minz"
+    },
+    {
+      "data_type": "float",
+      "description": "Maximum Z Coordinate",
+      "name": "maxz"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/npcs/proximities/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "proximities",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "proximities",
+  "path": "schema/npcs/proximities",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "zoneid",
+      "relationship_type": "One-to-One",
+      "remote_key": "zoneidnumber",
+      "remote_table": "[zone](../../schema/zone/zone.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/npcs/proximities.md",
+  "table": "proximities",
+  "title": "proximities"
+}

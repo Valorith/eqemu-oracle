@@ -1,0 +1,129 @@
+{
+  "category": "bots",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Bot Spell Casting Chance Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Spell Type Identifier](../../../../categories/spells/spell-types)",
+      "name": "spell_type_index"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Class Identifier](../../../../server/player/class-list)",
+      "name": "class_id"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Stance Type Identifier](../../../../categories/bots/stance-types)",
+      "name": "stance_index"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Negative Healer/Slower/Nuker/Doter Value",
+      "name": "nHSND_value"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Positive Healer Value",
+      "name": "pH_value"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Positive Slower Value",
+      "name": "pS_value"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Positive Healer/Slower Value",
+      "name": "pHS_value"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Positive Nuker Value",
+      "name": "pN_value"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Positive Healer/Nuker Value",
+      "name": "pHN_value"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Positive Slower/Nuker Value",
+      "name": "pSN_value"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Positive Healer/Slower/Nuker Value",
+      "name": "pHSN_value"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Positive Doter Value",
+      "name": "pD_value"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Positive Healer/Doter Value",
+      "name": "pHD_value"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Positive Slower/Doter Value",
+      "name": "pSD_value"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Positive Healer/Slower/Doter Value",
+      "name": "pHSD_value"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Positive Nuker/Doter Value",
+      "name": "pND_value"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Positive Healer/Nuker/Doter Value",
+      "name": "pHND_value"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Positive Slower/Nuker/Doter Value",
+      "name": "pSND_value"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Positive Healer/Slower/Nuker/Doter Value",
+      "name": "pHSND_value"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/bots/bot_spell_casting_chances/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "bot_spell_casting_chances",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "bot_spell_casting_chances",
+  "path": "schema/bots/bot_spell_casting_chances",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "spell_type_index",
+      "relationship_type": "Has-Many",
+      "remote_key": "type",
+      "remote_table": "[bot_spells_entries](../../schema/bots/bot_spells_entries.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/bots/bot_spell_casting_chances.md",
+  "table": "bot_spell_casting_chances",
+  "title": "bot_spell_casting_chances"
+}

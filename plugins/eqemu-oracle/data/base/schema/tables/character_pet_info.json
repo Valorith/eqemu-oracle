@@ -1,0 +1,80 @@
+{
+  "category": "characters",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "[Character Identifier](character_data.md)",
+      "name": "char_id"
+    },
+    {
+      "data_type": "int",
+      "description": "Pet",
+      "name": "pet"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Pet Name",
+      "name": "petname"
+    },
+    {
+      "data_type": "int",
+      "description": "Pet Power",
+      "name": "petpower"
+    },
+    {
+      "data_type": "int",
+      "description": "[Spell Identifier](../../schema/spells/spells_new.md)",
+      "name": "spell_id"
+    },
+    {
+      "data_type": "int",
+      "description": "Health",
+      "name": "hp"
+    },
+    {
+      "data_type": "int",
+      "description": "Mana",
+      "name": "mana"
+    },
+    {
+      "data_type": "float",
+      "description": "Size",
+      "name": "size"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Taunting: 0 = False, 1 = True",
+      "name": "taunting"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/characters/character_pet_info/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "character_pet_info",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "character_pet_info",
+  "path": "schema/characters/character_pet_info",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "char_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    },
+    {
+      "local_key": "spell_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[spells_new](../../schema/spells/spells_new.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_pet_info.md",
+  "table": "character_pet_info",
+  "title": "character_pet_info"
+}

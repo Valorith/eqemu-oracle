@@ -1,0 +1,11 @@
+{
+  "counts": {
+    "constants": 2732,
+    "events": 494,
+    "methods": 7298
+  },
+  "languages": [
+    "lua",
+    "perl"
+  ]
+}

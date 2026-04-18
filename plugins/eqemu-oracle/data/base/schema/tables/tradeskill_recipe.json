@@ -1,0 +1,121 @@
+{
+  "category": "tradeskills",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Tradeskill Recipe Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Recipe Name",
+      "name": "name"
+    },
+    {
+      "data_type": "smallint",
+      "description": "[Tradeskill](../../../../server/player/skills)",
+      "name": "tradeskill"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Skill Level Needed",
+      "name": "skillneeded"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Trivial Skill Level",
+      "name": "trivial"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "No Fail: 0 = False, 1 = True",
+      "name": "nofail"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Replace Container: 0 = False, 1 = True",
+      "name": "replace_container"
+    },
+    {
+      "data_type": "tinytext",
+      "description": "Notes",
+      "name": "notes"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Must Learn: 0 = False, 1 = True",
+      "name": "must_learn"
+    },
+    {
+      "data_type": "int",
+      "description": "",
+      "name": "learned_by_item_id"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Quest Controlled: 0 = False, 1 = True",
+      "name": "quest"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Enabled: 0 = False, 1 = True",
+      "name": "enabled"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Minimum Expansion](../../../../server/operation/expansion-list)",
+      "name": "min_expansion"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Maximum Expansion](../../../../server/operation/expansion-list)",
+      "name": "max_expansion"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Content Flags Required to be Enabled",
+      "name": "content_flags"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Content Flags Required to be Disabled",
+      "name": "content_flags_disabled"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/tradeskills/tradeskill_recipe/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "tradeskill_recipe",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "tradeskill_recipe",
+  "path": "schema/tradeskills/tradeskill_recipe",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "content_flags",
+      "relationship_type": "One-to-One",
+      "remote_key": "flag_name",
+      "remote_table": "[content_flags](../../schema/flagging/content_flags.md)"
+    },
+    {
+      "local_key": "content_flags_disabled",
+      "relationship_type": "One-to-One",
+      "remote_key": "flag_name",
+      "remote_table": "[content_flags](../../schema/flagging/content_flags.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "recipe_id",
+      "remote_table": "[tradeskill_recipe_entries](../../schema/tradeskills/tradeskill_recipe_entries.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/tradeskills/tradeskill_recipe.md",
+  "table": "tradeskill_recipe",
+  "title": "tradeskill_recipe"
+}

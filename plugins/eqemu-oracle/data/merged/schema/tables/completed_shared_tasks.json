@@ -1,0 +1,72 @@
+{
+  "category": "tasks",
+  "columns": [
+    {
+      "data_type": "bigint",
+      "description": "[Shared Task Identifier](shared_tasks.md)",
+      "name": "id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Shared Task Identifier](shared_tasks.md)",
+      "name": "task_id"
+    },
+    {
+      "data_type": "datetime",
+      "description": "Accepted Time",
+      "name": "accepted_time"
+    },
+    {
+      "data_type": "datetime",
+      "description": "Expire TIme",
+      "name": "expire_time"
+    },
+    {
+      "data_type": "datetime",
+      "description": "Completion TIme",
+      "name": "completion_time"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Is Locked: 0 = False, 1 = True",
+      "name": "is_locked"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/tasks/completed_shared_tasks/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "completed_shared_tasks",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "completed_shared_tasks",
+  "path": "schema/tasks/completed_shared_tasks",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "completed_shared_tasks",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "task_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[tasks](../../schema/tasks/tasks.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/tasks/completed_shared_tasks.md",
+  "table": "completed_shared_tasks",
+  "title": "completed_shared_tasks"
+}

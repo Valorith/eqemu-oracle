@@ -1,0 +1,70 @@
+{
+  "category": "data-storage",
+  "columns": [
+    {
+      "data_type": "bigint",
+      "description": "Unique Data Bucket Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Key",
+      "name": "key"
+    },
+    {
+      "data_type": "text",
+      "description": "Value",
+      "name": "value"
+    },
+    {
+      "data_type": "int",
+      "description": "Expiration UNIX Timestamp",
+      "name": "expires"
+    },
+    {
+      "data_type": "bigint",
+      "description": "",
+      "name": "character_id"
+    },
+    {
+      "data_type": "bigint",
+      "description": "",
+      "name": "npc_id"
+    },
+    {
+      "data_type": "bigint",
+      "description": "",
+      "name": "bot_id"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/data-storage/data_buckets/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "data_buckets",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "data_buckets",
+  "path": "schema/data-storage/data_buckets",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "key",
+      "relationship_type": "Has-Many",
+      "remote_key": "bucket_name",
+      "remote_table": "[merchantlist](../../schema/merchants/merchantlist.md)"
+    },
+    {
+      "local_key": "key",
+      "relationship_type": "Has-Many",
+      "remote_key": "key",
+      "remote_table": "[spell_buckets](../../schema/spells/spell_buckets.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/data-storage/data_buckets.md",
+  "table": "data_buckets",
+  "title": "data_buckets"
+}

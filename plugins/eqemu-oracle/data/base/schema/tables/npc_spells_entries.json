@@ -1,0 +1,95 @@
+{
+  "category": "npcs",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique NPC Spell Entry Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Unique NPC Spell Set Identifier](npc_spells.md)",
+      "name": "npc_spells_id"
+    },
+    {
+      "data_type": "smallint",
+      "description": "[Spell Identifier](../../schema/spells/spells_new.md)",
+      "name": "spellid"
+    },
+    {
+      "data_type": "int",
+      "description": "[Spell Type Bitmask](../../../../server/spells/spell-types)",
+      "name": "type"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Minimum Level",
+      "name": "minlevel"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Maximum Level",
+      "name": "maxlevel"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Mana Cost",
+      "name": "manacost"
+    },
+    {
+      "data_type": "int",
+      "description": "Recast Delay",
+      "name": "recast_delay"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Priority: 0 = Innate, 1 = Highest Priority, 5 = Lower Priority, 10 = Even Lower Priority",
+      "name": "priority"
+    },
+    {
+      "data_type": "int",
+      "description": "Resist Adjustment",
+      "name": "resist_adjust"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Minimum Health Percentage",
+      "name": "min_hp"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Maximum Health Percentage",
+      "name": "max_hp"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/npcs/npc_spells_entries/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "npc_spells_entries",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "npc_spells_entries",
+  "path": "schema/npcs/npc_spells_entries",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "npc_spells_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[npc_spells](../../schema/npcs/npc_spells.md)"
+    },
+    {
+      "local_key": "spellid",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[spells_new](../../schema/spells/spells_new.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/npcs/npc_spells_entries.md",
+  "table": "npc_spells_entries",
+  "title": "npc_spells_entries"
+}

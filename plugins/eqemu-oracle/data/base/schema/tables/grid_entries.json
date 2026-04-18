@@ -1,0 +1,80 @@
+{
+  "category": "grids",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "[Grid Identifier](grid.md)",
+      "name": "gridid"
+    },
+    {
+      "data_type": "int",
+      "description": "[Zone Identifier](../../../../server/zones/zone-list)",
+      "name": "zoneid"
+    },
+    {
+      "data_type": "int",
+      "description": "Waypoint Identifier",
+      "name": "number"
+    },
+    {
+      "data_type": "float",
+      "description": "X Coordinate",
+      "name": "x"
+    },
+    {
+      "data_type": "float",
+      "description": "Y Coordinate",
+      "name": "y"
+    },
+    {
+      "data_type": "float",
+      "description": "Z Coordinate",
+      "name": "z"
+    },
+    {
+      "data_type": "float",
+      "description": "Heading Coordinate",
+      "name": "heading"
+    },
+    {
+      "data_type": "int",
+      "description": "Pause in Seconds",
+      "name": "pause"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Center Point: 0 = False, 1 = True",
+      "name": "centerpoint"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/grids/grid_entries/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "grid_entries",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "grid_entries",
+  "path": "schema/grids/grid_entries",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "grid_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[grid](../../schema/grids/grid.md)"
+    },
+    {
+      "local_key": "zoneid",
+      "relationship_type": "One-to-One",
+      "remote_key": "zoneidnumber",
+      "remote_table": "[zone](../../schema/zone/zone.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/grids/grid_entries.md",
+  "table": "grid_entries",
+  "title": "grid_entries"
+}

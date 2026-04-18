@@ -1,0 +1,127 @@
+{
+  "category": "characters",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "[Character Identifier](character_data.md)",
+      "name": "id"
+    },
+    {
+      "data_type": "int",
+      "description": "Platinum",
+      "name": "platinum"
+    },
+    {
+      "data_type": "int",
+      "description": "Gold",
+      "name": "gold"
+    },
+    {
+      "data_type": "int",
+      "description": "Silver",
+      "name": "silver"
+    },
+    {
+      "data_type": "int",
+      "description": "Copper",
+      "name": "copper"
+    },
+    {
+      "data_type": "int",
+      "description": "Banked Platinum",
+      "name": "platinum_bank"
+    },
+    {
+      "data_type": "int",
+      "description": "Banked Gold",
+      "name": "gold_bank"
+    },
+    {
+      "data_type": "int",
+      "description": "Banked Silver",
+      "name": "silver_bank"
+    },
+    {
+      "data_type": "int",
+      "description": "Banked Copper",
+      "name": "copper_bank"
+    },
+    {
+      "data_type": "int",
+      "description": "Cursor Platinum",
+      "name": "platinum_cursor"
+    },
+    {
+      "data_type": "int",
+      "description": "Cursor Gold",
+      "name": "gold_cursor"
+    },
+    {
+      "data_type": "int",
+      "description": "Cursor Silver",
+      "name": "silver_cursor"
+    },
+    {
+      "data_type": "int",
+      "description": "Cursor Copper",
+      "name": "copper_cursor"
+    },
+    {
+      "data_type": "int",
+      "description": "Radiant Crystals",
+      "name": "radiant_crystals"
+    },
+    {
+      "data_type": "int",
+      "description": "Career Radiant Crystals",
+      "name": "career_radiant_crystals"
+    },
+    {
+      "data_type": "int",
+      "description": "Ebon Crystals",
+      "name": "ebon_crystals"
+    },
+    {
+      "data_type": "int",
+      "description": "Career Ebon Crystals",
+      "name": "career_ebon_crystals"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/characters/character_currency/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "character_currency",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "character_currency",
+  "path": "schema/characters/character_currency",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "character_currency",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_currency.md",
+  "table": "character_currency",
+  "title": "character_currency"
+}

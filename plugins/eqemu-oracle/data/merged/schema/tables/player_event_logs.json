@@ -1,0 +1,99 @@
+{
+  "category": "admin",
+  "columns": [
+    {
+      "data_type": "bigint",
+      "description": "Unique Player Event Log Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "bigint",
+      "description": "[Account Identifier](../../schema/account/account.md)",
+      "name": "account_id"
+    },
+    {
+      "data_type": "bigint",
+      "description": "[Character Identifier](../../schema/characters/character_data.md)",
+      "name": "character_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Zone Identifier](../../../../server/zones/zone-list)",
+      "name": "zone_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Instance Identifier](../../schema/instances/instance_list.md)",
+      "name": "instance_id"
+    },
+    {
+      "data_type": "float",
+      "description": "X Coordinate",
+      "name": "x"
+    },
+    {
+      "data_type": "float",
+      "description": "Y  Coordinate",
+      "name": "y"
+    },
+    {
+      "data_type": "float",
+      "description": "Z  Coordinate",
+      "name": "z"
+    },
+    {
+      "data_type": "float",
+      "description": "Heading Coordinate",
+      "name": "heading"
+    },
+    {
+      "data_type": "int",
+      "description": "[Event Type Identifier](../../schema/admin/player_event_log_settings.md)",
+      "name": "event_type_id"
+    },
+    {
+      "data_type": "varchar",
+      "description": "[Event Type Name](../../schema/admin/player_event_log_settings.md)",
+      "name": "event_type_name"
+    },
+    {
+      "data_type": "longtext",
+      "description": "Event Data JSON",
+      "name": "event_data"
+    },
+    {
+      "data_type": "datetime",
+      "description": "Created At",
+      "name": "created_at"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/admin/player_event_logs/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "player_event_logs",
+    "Schema"
+  ],
+  "id": "player_event_logs",
+  "path": "schema/admin/player_event_logs",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "player_event_logs",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/player_event_logs.md",
+  "table": "player_event_logs",
+  "title": "player_event_logs"
+}

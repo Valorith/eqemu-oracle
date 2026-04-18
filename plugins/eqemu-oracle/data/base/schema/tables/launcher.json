@@ -1,0 +1,39 @@
+{
+  "category": "zone",
+  "columns": [
+    {
+      "data_type": "varchar",
+      "description": "Name",
+      "name": "name"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Dynamics",
+      "name": "dynamics"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/zone/launcher/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "launcher",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "launcher",
+  "path": "schema/zone/launcher",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "name",
+      "relationship_type": "Has-Many",
+      "remote_key": "launcher",
+      "remote_table": "[launcher_zones](../../schema/zone/launcher_zones.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/zone/launcher.md",
+  "table": "launcher",
+  "title": "launcher"
+}

@@ -1,0 +1,140 @@
+{
+  "category": "admin",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "dib"
+    },
+    {
+      "data_type": "int",
+      "description": "Unique Petition Entry Identifier",
+      "name": "petid"
+    },
+    {
+      "data_type": "varchar",
+      "description": "[Character Name](../../schema/characters/character_data.md)",
+      "name": "charname"
+    },
+    {
+      "data_type": "varchar",
+      "description": "[Account Name](../../schema/account/account.md)",
+      "name": "accountname"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Last GM",
+      "name": "lastgm"
+    },
+    {
+      "data_type": "text",
+      "description": "Petition Text",
+      "name": "petitiontext"
+    },
+    {
+      "data_type": "text",
+      "description": "GM Text",
+      "name": "gmtext"
+    },
+    {
+      "data_type": "varchar",
+      "description": "[Zone Short Name](../../../../server/zones/zone-list)",
+      "name": "zone"
+    },
+    {
+      "data_type": "int",
+      "description": "Urgency",
+      "name": "urgency"
+    },
+    {
+      "data_type": "int",
+      "description": "[Character Class](../../../../server/player/class-list)",
+      "name": "charclass"
+    },
+    {
+      "data_type": "int",
+      "description": "[Character Race](../../../../server/npc/race-list)",
+      "name": "charrace"
+    },
+    {
+      "data_type": "int",
+      "description": "Character Level",
+      "name": "charlevel"
+    },
+    {
+      "data_type": "int",
+      "description": "Checkouts",
+      "name": "checkouts"
+    },
+    {
+      "data_type": "int",
+      "description": "Unavailables",
+      "name": "unavailables"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Is Checked Out: 0 = False, 1 = True",
+      "name": "ischeckedout"
+    },
+    {
+      "data_type": "bigint",
+      "description": "Sent Time UNIX Timestamp",
+      "name": "senttime"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/admin/petitions/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "petitions",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "petitions",
+  "path": "schema/admin/petitions",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "petitions",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "charname",
+      "relationship_type": "One-to-One",
+      "remote_key": "name",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    },
+    {
+      "local_key": "accountname",
+      "relationship_type": "One-to-One",
+      "remote_key": "name",
+      "remote_table": "[account](../../schema/account/account.md)"
+    },
+    {
+      "local_key": "lastgm",
+      "relationship_type": "One-to-One",
+      "remote_key": "name",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    },
+    {
+      "local_key": "zone",
+      "relationship_type": "One-to-One",
+      "remote_key": "zoneidnumber",
+      "remote_table": "[zone](../../schema/zone/zone.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/petitions.md",
+  "table": "petitions",
+  "title": "petitions"
+}

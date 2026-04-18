@@ -1,0 +1,71 @@
+{
+  "category": "admin",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Hacker Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "text",
+      "description": "[Account Identifier](../../schema/account/account.md)",
+      "name": "account"
+    },
+    {
+      "data_type": "text",
+      "description": "[Character Name](../../schema/characters/character_data.md)",
+      "name": "name"
+    },
+    {
+      "data_type": "text",
+      "description": "Hacked",
+      "name": "hacked"
+    },
+    {
+      "data_type": "text",
+      "description": "[Zone Short Name](../../../../server/zones/zone-list)",
+      "name": "zone"
+    },
+    {
+      "data_type": "timestamp",
+      "description": "Date Timestamp",
+      "name": "date"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/admin/hackers/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "hackers",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "hackers",
+  "path": "schema/admin/hackers",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "account",
+      "relationship_type": "One-to-One",
+      "remote_key": "name",
+      "remote_table": "[account](../../schema/account/account.md)"
+    },
+    {
+      "local_key": "name",
+      "relationship_type": "One-to-One",
+      "remote_key": "name",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    },
+    {
+      "local_key": "zone",
+      "relationship_type": "One-to-One",
+      "remote_key": "short_name",
+      "remote_table": "[zone](../../schema/zone/zone.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/hackers.md",
+  "table": "hackers",
+  "title": "hackers"
+}

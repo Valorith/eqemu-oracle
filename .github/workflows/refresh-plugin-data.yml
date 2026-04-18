@@ -1,0 +1,34 @@
+name: Refresh EQEmu Oracle Data
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 7 * * *"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Refresh committed data
+        run: python ./plugins/eqemu-oracle/scripts/eqemu_oracle.py refresh --scope all --mode committed
+
+      - name: Run tests
+        run: python -m unittest discover -s ./plugins/eqemu-oracle/tests
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "Refresh EQEmu Oracle data"
+          branch: "codex/refresh-eqemu-oracle-data"
+          title: "Refresh EQEmu Oracle data"
+          body: "Automated refresh of EQEmu Oracle upstream snapshots and merged data."

@@ -1,0 +1,69 @@
+{
+  "category": "mercenaries",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Mercenary Weapon Info Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Mercenary NPC Type Identifier](merc_npc_types.md)",
+      "name": "merc_npc_type_id"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Minimum Level",
+      "name": "minlevel"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Maximum Level",
+      "name": "maxlevel"
+    },
+    {
+      "data_type": "int",
+      "description": "Primary Weapon Texture",
+      "name": "d_melee_texture1"
+    },
+    {
+      "data_type": "int",
+      "description": "Secondary Weapon Texture",
+      "name": "d_melee_texture2"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Primary Melee Type](../../../../server/player/skills)",
+      "name": "prim_melee_type"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Secondary Melee Type](../../../../categories/player/skills)",
+      "name": "sec_melee_type"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/mercenaries/merc_weaponinfo/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "merc_weaponinfo",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "merc_weaponinfo",
+  "path": "schema/mercenaries/merc_weaponinfo",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "merc_npc_type_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "merc_npc_type_id",
+      "remote_table": "[merc_npc_types](../../schema/mercenaries/merc_npc_types.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/mercenaries/merc_weaponinfo.md",
+  "table": "merc_weaponinfo",
+  "title": "merc_weaponinfo"
+}

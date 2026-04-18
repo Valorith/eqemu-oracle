@@ -1,0 +1,50 @@
+{
+  "category": "bots",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Bot Pet Inventory Identifier",
+      "name": "pet_inventories_index"
+    },
+    {
+      "data_type": "int",
+      "description": "[Bot Pet Identifier](bot_pets.md)",
+      "name": "pets_index"
+    },
+    {
+      "data_type": "int",
+      "description": "[Item Identifier](../../schema/items/items.md)",
+      "name": "item_id"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/bots/bot_pet_inventories/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "bot_pet_inventories",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "bot_pet_inventories",
+  "path": "schema/bots/bot_pet_inventories",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "pets_index",
+      "relationship_type": "One-to-One",
+      "remote_key": "pets_index",
+      "remote_table": "[bot_pets](../../schema/bots/bot_pets.md)"
+    },
+    {
+      "local_key": "item_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[items](../../schema/items/items.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/bots/bot_pet_inventories.md",
+  "table": "bot_pet_inventories",
+  "title": "bot_pet_inventories"
+}

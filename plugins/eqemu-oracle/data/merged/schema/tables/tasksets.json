@@ -1,0 +1,52 @@
+{
+  "category": "tasks",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Task Set Entry Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Task Identifier](tasks.md)",
+      "name": "taskid"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/tasks/tasksets/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "tasksets",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "tasksets",
+  "path": "schema/tasks/tasksets",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "tasksets",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "taskid",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[tasks](../../schema/tasks/tasks.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/tasks/tasksets.md",
+  "table": "tasksets",
+  "title": "tasksets"
+}

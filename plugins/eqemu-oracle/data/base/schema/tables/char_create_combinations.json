@@ -1,0 +1,65 @@
+{
+  "category": "characters",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "[Allocation Identifier](char_create_point_allocations.md)",
+      "name": "allocation_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Race](../../../../server/npc/race-list)",
+      "name": "race"
+    },
+    {
+      "data_type": "int",
+      "description": "[Class](../../../../server/player/class-list)",
+      "name": "class"
+    },
+    {
+      "data_type": "int",
+      "description": "[Deity](../../../../server/player/deity-list)",
+      "name": "deity"
+    },
+    {
+      "data_type": "int",
+      "description": "[Start Zone Identifier](../../../../server/zones/zone-list)",
+      "name": "start_zone"
+    },
+    {
+      "data_type": "int",
+      "description": "[Expansions Required](../../../../server/operation/expansion-bitmasks)",
+      "name": "expansions_req"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/characters/char_create_combinations/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "char_create_combinations",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "char_create_combinations",
+  "path": "schema/characters/char_create_combinations",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "allocation_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[char_create_point_allocations](../../schema/characters/char_create_point_allocations.md)"
+    },
+    {
+      "local_key": "start_zone",
+      "relationship_type": "One-to-One",
+      "remote_key": "zoneidnumber",
+      "remote_table": "[zone](../../schema/zone/zone.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/char_create_combinations.md",
+  "table": "char_create_combinations",
+  "title": "char_create_combinations"
+}

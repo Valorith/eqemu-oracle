@@ -1,0 +1,128 @@
+{
+  "category": "spells",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Blocked Spells Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "[Spell Identifier](spells_new.md)",
+      "name": "spellid"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Blocked Spell Type](../../../../server/spells/blocked-spell-types)",
+      "name": "type"
+    },
+    {
+      "data_type": "int",
+      "description": "[Zone Identifier](../../../../server/zones/zone-list)",
+      "name": "zoneid"
+    },
+    {
+      "data_type": "float",
+      "description": "X Coordinate",
+      "name": "x"
+    },
+    {
+      "data_type": "float",
+      "description": "Y Coordinate",
+      "name": "y"
+    },
+    {
+      "data_type": "float",
+      "description": "Z Coordinate",
+      "name": "z"
+    },
+    {
+      "data_type": "float",
+      "description": "X Radius",
+      "name": "x_diff"
+    },
+    {
+      "data_type": "float",
+      "description": "Y Radius",
+      "name": "y_diff"
+    },
+    {
+      "data_type": "float",
+      "description": "Z Radius",
+      "name": "z_diff"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Message when blocked",
+      "name": "message"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Blocked spells description",
+      "name": "description"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "",
+      "name": "min_expansion"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "",
+      "name": "max_expansion"
+    },
+    {
+      "data_type": "varchar",
+      "description": "",
+      "name": "content_flags"
+    },
+    {
+      "data_type": "varchar",
+      "description": "",
+      "name": "content_flags_disabled"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/spells/blocked_spells/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "blocked_spells",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "blocked_spells",
+  "path": "schema/spells/blocked_spells",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "blocked_spells",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "spellid",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[spells_new](../../schema/spells/spells_new.md)"
+    },
+    {
+      "local_key": "zoneid",
+      "relationship_type": "One-to-One",
+      "remote_key": "zoneidnumber",
+      "remote_table": "[zone](../../schema/zone/zone.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/spells/blocked_spells.md",
+  "table": "blocked_spells",
+  "title": "blocked_spells"
+}

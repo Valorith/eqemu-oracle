@@ -1,0 +1,54 @@
+{
+  "category": "admin",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Webhook Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Webhook Name",
+      "name": "webhook_name"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Webhook URL",
+      "name": "webhook_url"
+    },
+    {
+      "data_type": "datetime",
+      "description": "Created At",
+      "name": "created_at"
+    },
+    {
+      "data_type": "datetime",
+      "description": "Deleted At",
+      "name": "deleted_at"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/admin/discord_webhooks/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "discord_webhooks",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "discord_webhooks",
+  "path": "schema/admin/discord_webhooks",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "discord_webhook_id",
+      "remote_table": "[logsys_categories](../../schema/admin/logsys_categories.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/discord_webhooks.md",
+  "table": "discord_webhooks",
+  "title": "discord_webhooks"
+}

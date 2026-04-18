@@ -1,0 +1,117 @@
+{
+  "category": "aas",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique AA Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "text",
+      "description": "Name",
+      "name": "name"
+    },
+    {
+      "data_type": "int",
+      "description": "[AA Category](../../../../server/aas/aa-categories)",
+      "name": "category"
+    },
+    {
+      "data_type": "int",
+      "description": "[Classes](../../../../server/player/class-list) Bitmasks",
+      "name": "classes"
+    },
+    {
+      "data_type": "int",
+      "description": "[Races](../../../../server/npc/race-list)",
+      "name": "races"
+    },
+    {
+      "data_type": "int",
+      "description": "Drakkin Heritage: 127 = All",
+      "name": "drakkin_heritage"
+    },
+    {
+      "data_type": "int",
+      "description": "[Deities](../../../../server/player/deity-list)",
+      "name": "deities"
+    },
+    {
+      "data_type": "int",
+      "description": "[Minimum Status](../../../../server/player/status-levels)",
+      "name": "status"
+    },
+    {
+      "data_type": "int",
+      "description": "[AA Type](../../../../server/aas/aa-types)",
+      "name": "type"
+    },
+    {
+      "data_type": "int",
+      "description": "Number of Charges",
+      "name": "charges"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Grant Only Flag: 0 = No, 1 = Yes",
+      "name": "grant_only"
+    },
+    {
+      "data_type": "int",
+      "description": "First Rank Identifier",
+      "name": "first_rank_id"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Enabled: 0 = No, 1 = Yes",
+      "name": "enabled"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Reset on Death: 0 = False, 1 = True",
+      "name": "reset_on_death"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "",
+      "name": "auto_grant_enabled"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/aas/aa_ability/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "aa_ability",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "aa_ability",
+  "path": "schema/aas/aa_ability",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "aa_ability",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "first_rank_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[aa_ranks](../../schema/aas/aa_ranks.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/aas/aa_ability.md",
+  "table": "aa_ability",
+  "title": "aa_ability"
+}

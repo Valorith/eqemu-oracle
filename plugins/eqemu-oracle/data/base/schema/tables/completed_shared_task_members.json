@@ -1,0 +1,50 @@
+{
+  "category": "tasks",
+  "columns": [
+    {
+      "data_type": "bigint",
+      "description": "[Shared Task Identifier](shared_tasks.md)",
+      "name": "shared_task_id"
+    },
+    {
+      "data_type": "bigint",
+      "description": "[Character Identifier](../../schema/characters/character_data.md)",
+      "name": "character_id"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Is Leader: 0 = False, 1 = True",
+      "name": "is_leader"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/tasks/completed_shared_task_members/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "completed_shared_task_members",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "completed_shared_task_members",
+  "path": "schema/tasks/completed_shared_task_members",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "character_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    },
+    {
+      "local_key": "shared_task_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[shared_tasks](../../schema/tasks/shared_tasks.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/tasks/completed_shared_task_members.md",
+  "table": "completed_shared_task_members",
+  "title": "completed_shared_task_members"
+}

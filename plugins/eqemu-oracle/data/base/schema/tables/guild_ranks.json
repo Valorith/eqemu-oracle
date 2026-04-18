@@ -1,0 +1,84 @@
+{
+  "category": "guilds",
+  "columns": [
+    {
+      "data_type": "mediumint",
+      "description": "[Guild Identifier](guilds.md)",
+      "name": "guild_id"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Rank Identifier",
+      "name": "rank"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Title",
+      "name": "title"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Can Hear: 0 = False, 1 = True",
+      "name": "can_hear"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Can Speak: 0 = False, 1 = True",
+      "name": "can_speak"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Can Invite: 0 = False, 1 = True",
+      "name": "can_invite"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Can Remove: 0 = False, 1 = True",
+      "name": "can_remove"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Can Promote: 0 = False, 1 = True",
+      "name": "can_promote"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Can Demote: 0 = False, 1 = True",
+      "name": "can_demote"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Can MOTD: 0 = False, 1 = True",
+      "name": "can_motd"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Can War Peace: 0 = False, 1 = True",
+      "name": "can_warpeace"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/guilds/guild_ranks/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "guild_ranks",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "guild_ranks",
+  "path": "schema/guilds/guild_ranks",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "guild_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[guilds](../../schema/guilds/guilds.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/guilds/guild_ranks.md",
+  "table": "guild_ranks",
+  "title": "guild_ranks"
+}

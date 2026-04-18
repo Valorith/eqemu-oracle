@@ -1,0 +1,785 @@
+{
+  "category": "npcs",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique NPC Type Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "text",
+      "description": "Name",
+      "name": "name"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Last Name",
+      "name": "lastname"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Level",
+      "name": "level"
+    },
+    {
+      "data_type": "smallint",
+      "description": "[Race](../../../../server/npc/race-list)",
+      "name": "race"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Class](../../../../server/player/class-list)",
+      "name": "class"
+    },
+    {
+      "data_type": "int",
+      "description": "[Body Type](../../../../server/npc/body-types)",
+      "name": "bodytype"
+    },
+    {
+      "data_type": "bigint",
+      "description": "Health",
+      "name": "hp"
+    },
+    {
+      "data_type": "bigint",
+      "description": "Mana",
+      "name": "mana"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Gender](../../../../server/npc/genders)",
+      "name": "gender"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Texture](../../../../server/npc/textures)",
+      "name": "texture"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Helmet Texture](../../../../server/npc/textures)",
+      "name": "helmtexture"
+    },
+    {
+      "data_type": "int",
+      "description": "Hero's Forge Model",
+      "name": "herosforgemodel"
+    },
+    {
+      "data_type": "float",
+      "description": "Size",
+      "name": "size"
+    },
+    {
+      "data_type": "bigint",
+      "description": "Health Regeneration",
+      "name": "hp_regen_rate"
+    },
+    {
+      "data_type": "bigint",
+      "description": "Health Regeneration Per Second",
+      "name": "hp_regen_per_second"
+    },
+    {
+      "data_type": "bigint",
+      "description": "Mana Regeneration",
+      "name": "mana_regen_rate"
+    },
+    {
+      "data_type": "int",
+      "description": "[Loottable Identifier](../../schema/loot/loottable.md)",
+      "name": "loottable_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Merchant Identifier](../../schema/merchants/merchantlist.md)",
+      "name": "merchant_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Alternate Currency Identifier](../../schema/alternate-currency/alternate_currency.md)",
+      "name": "alt_currency_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[NPC Spell Set Identifier](npc_spells.md)",
+      "name": "npc_spells_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[NPC Spell Effects Identifier](npc_spells_effects.md)",
+      "name": "npc_spells_effects_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[NPC Faction Identifier](../../schema/factions/faction_list.md)",
+      "name": "npc_faction_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Adventure Template Identifier](../../schema/adventures/adventure_template.md)",
+      "name": "adventure_template_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Trap Template Identifier](../../schema/traps/traps.md)",
+      "name": "trap_template"
+    },
+    {
+      "data_type": "int",
+      "description": "Minimum Damage",
+      "name": "mindmg"
+    },
+    {
+      "data_type": "int",
+      "description": "Maximum Damage",
+      "name": "maxdmg"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Attack Count",
+      "name": "attack_count"
+    },
+    {
+      "data_type": "varchar",
+      "description": "NPC Special Attacks (Deprecated)",
+      "name": "npcspecialattks"
+    },
+    {
+      "data_type": "text",
+      "description": "NPC Special Abilities",
+      "name": "special_abilities"
+    },
+    {
+      "data_type": "int",
+      "description": "Aggro Radius",
+      "name": "aggroradius"
+    },
+    {
+      "data_type": "int",
+      "description": "Assist Radius",
+      "name": "assistradius"
+    },
+    {
+      "data_type": "int",
+      "description": "Face",
+      "name": "face"
+    },
+    {
+      "data_type": "int",
+      "description": "Hair Style",
+      "name": "luclin_hairstyle"
+    },
+    {
+      "data_type": "int",
+      "description": "Hair Color",
+      "name": "luclin_haircolor"
+    },
+    {
+      "data_type": "int",
+      "description": "Eye Color 1",
+      "name": "luclin_eyecolor"
+    },
+    {
+      "data_type": "int",
+      "description": "Eye Color 2",
+      "name": "luclin_eyecolor2"
+    },
+    {
+      "data_type": "int",
+      "description": "Beard Color",
+      "name": "luclin_beardcolor"
+    },
+    {
+      "data_type": "int",
+      "description": "Beard",
+      "name": "luclin_beard"
+    },
+    {
+      "data_type": "int",
+      "description": "Drakkin Heritage",
+      "name": "drakkin_heritage"
+    },
+    {
+      "data_type": "int",
+      "description": "Drakkin Tattoo",
+      "name": "drakkin_tattoo"
+    },
+    {
+      "data_type": "int",
+      "description": "Drakkin Details",
+      "name": "drakkin_details"
+    },
+    {
+      "data_type": "int",
+      "description": "[Armor Tint Identifier](npc_types_tint.md)",
+      "name": "armortint_id"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Armor Tint Red: 0 = None, 255 = Max",
+      "name": "armortint_red"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Armor Tint Green: 0 = None, 255 = Max",
+      "name": "armortint_green"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Armor Tint Blue: 0 = None, 255 = Max",
+      "name": "armortint_blue"
+    },
+    {
+      "data_type": "int",
+      "description": "Primary Weapon Texture",
+      "name": "d_melee_texture1"
+    },
+    {
+      "data_type": "int",
+      "description": "Secondary Weapon Texture",
+      "name": "d_melee_texture2"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Ammo Texture",
+      "name": "ammo_idfile"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Primary Melee Type](../../../../server/player/skills)",
+      "name": "prim_melee_type"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Secondary Melee Type](../../../../server/player/skills)",
+      "name": "sec_melee_type"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Ranged Type](../../../../server/player/skills)",
+      "name": "ranged_type"
+    },
+    {
+      "data_type": "float",
+      "description": "Run Speed",
+      "name": "runspeed"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Magic Resistance",
+      "name": "MR"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Cold Resistance",
+      "name": "CR"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Disease Resistance",
+      "name": "DR"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Fire Resistance",
+      "name": "FR"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Poison Resistance",
+      "name": "PR"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Corruption Resistance",
+      "name": "Corrup"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Physical Resistance",
+      "name": "PhR"
+    },
+    {
+      "data_type": "smallint",
+      "description": "See Invisible: 0 = False, 1 = True",
+      "name": "see_invis"
+    },
+    {
+      "data_type": "smallint",
+      "description": "See Invisible vs. Undread: 0 = False, 1 = True",
+      "name": "see_invis_undead"
+    },
+    {
+      "data_type": "int",
+      "description": "Quest Globals: 0 = Disabled, 1 = Enabled (Deprecated)",
+      "name": "qglobal"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Armor Class",
+      "name": "AC"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "NPC Aggro: 0 = False, 1 = True",
+      "name": "npc_aggro"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Spawn Limit",
+      "name": "spawn_limit"
+    },
+    {
+      "data_type": "float",
+      "description": "Attack Speed: The lower the number, the faster the NPC hits. (Deprecated)",
+      "name": "attack_speed"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Attack Delay: Delay between the attack arounds in 10ths of a second.",
+      "name": "attack_delay"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Findable: 0 = False, 1 = True",
+      "name": "findable"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Strength",
+      "name": "STR"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Stamina",
+      "name": "STA"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Dexterity",
+      "name": "DEX"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Agility",
+      "name": "AGI"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Intelligence",
+      "name": "_INT"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Wisdom",
+      "name": "WIS"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Charisma",
+      "name": "CHA"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "See Hide: 0 = False, 1 = True",
+      "name": "see_hide"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "See Improved Hide: 0 = False, 1 = True",
+      "name": "see_improved_hide"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Trackable: 0 = False, 1 = True",
+      "name": "trackable"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Is Bot: 0 = False, 1 = True",
+      "name": "isbot"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Exclude: 0 = False, 1 = True",
+      "name": "exclude"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Attack",
+      "name": "ATK"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Accuracy",
+      "name": "Accuracy"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Avoidance",
+      "name": "Avoidance"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Slow Mitigation",
+      "name": "slow_mitigation"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Version",
+      "name": "version"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Maximum Level",
+      "name": "maxlevel"
+    },
+    {
+      "data_type": "int",
+      "description": "Scale Rate",
+      "name": "scalerate"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Private Corpse: 0 = False, 1 = True",
+      "name": "private_corpse"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Unique Spawn By Name: 0 = False, 1 = True",
+      "name": "unique_spawn_by_name"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Underwater: 0 = False, 1 = True",
+      "name": "underwater"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Is Quest: 0 = False, 1 = True",
+      "name": "isquest"
+    },
+    {
+      "data_type": "int",
+      "description": "[Emote Identifier](npc_emotes.md)",
+      "name": "emoteid"
+    },
+    {
+      "data_type": "float",
+      "description": "Spell Scale: 50 = 50%, 100 = 100%, 150 = 150%",
+      "name": "spellscale"
+    },
+    {
+      "data_type": "float",
+      "description": "Heal Scale: 50 = 50%, 100 = 100%, 150 = 150%",
+      "name": "healscale"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "No Target Hotkey: 0 = False, 1 = True",
+      "name": "no_target_hotkey"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Raid Target: 0 = False, 1 = True",
+      "name": "raid_target"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Arm Texture](../../../../server/npc/textures)",
+      "name": "armtexture"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Bracer Texture](../../../../server/npc/textures)",
+      "name": "bracertexture"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Hand Texture](../../../../server/npc/textures)",
+      "name": "handtexture"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Leg Texture](../../../../server/npc/textures)",
+      "name": "legtexture"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Feet Texture](../../../../server/npc/textures)",
+      "name": "feettexture"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Light",
+      "name": "light"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Walk Speed",
+      "name": "walkspeed"
+    },
+    {
+      "data_type": "int",
+      "description": "PEQ Identifier",
+      "name": "peqid"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Unique",
+      "name": "unique_"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Fixed",
+      "name": "fixed"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Ignore Despawn: 0 = False, 1 = True",
+      "name": "ignore_despawn"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Show Name: 0 = False, 1 = True",
+      "name": "show_name"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Untargetable: 0 = False, 1 = True",
+      "name": "untargetable"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Charmed Armor Class",
+      "name": "charm_ac"
+    },
+    {
+      "data_type": "int",
+      "description": "Charmed Minimum Damage",
+      "name": "charm_min_dmg"
+    },
+    {
+      "data_type": "int",
+      "description": "Charmed Maximum Damage",
+      "name": "charm_max_dmg"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Charmed Attack Delay",
+      "name": "charm_attack_delay"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Charmed Accuracy",
+      "name": "charm_accuracy_rating"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Charmed Avoidance",
+      "name": "charm_avoidance_rating"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Charmed Attack",
+      "name": "charm_atk"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Skip Global Loot: 0 = False, 1 = True",
+      "name": "skip_global_loot"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Rare Spawn: 0 = False, 1 = True",
+      "name": "rare_spawn"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Stuck Behavior",
+      "name": "stuck_behavior"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Model",
+      "name": "model"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Fly Mode](../../../../server/npc/fly-modes)",
+      "name": "flymode"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Aggro regardless of _int or level : 0 = False, 1 = True",
+      "name": "always_aggro"
+    },
+    {
+      "data_type": "int",
+      "description": "Experience Modifier (50 = 50%, 100 = 100%, 200 = 200%)",
+      "name": "exp_mod"
+    },
+    {
+      "data_type": "int",
+      "description": "Heroic Strikethrough",
+      "name": "heroic_strikethrough"
+    },
+    {
+      "data_type": "int",
+      "description": "Faction Amount",
+      "name": "faction_amount"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Keeps Sold Items: 0 = False, 1 = True",
+      "name": "keeps_sold_items"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/npcs/npc_types/",
+  "domain": "schema",
+  "extension_flags": {
+    "has_local_extension": false,
+    "has_repo_extension": false
+  },
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "npc_types",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "npc_types",
+  "path": "schema/npcs/npc_types",
+  "provenance": {
+    "contributors": [
+      {
+        "id": "npc_types",
+        "source": "base"
+      }
+    ],
+    "effective_source": "base"
+  },
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "adventure_template_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[adventure_template](../../schema/adventures/adventure_template.md)"
+    },
+    {
+      "local_key": "alt_currency_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[alternate_currency](../../schema/alternate-currency/alternate_currency.md)"
+    },
+    {
+      "local_key": "armortint_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[npc_types_tint](../../schema/npcs/npc_types_tint.md)"
+    },
+    {
+      "local_key": "emoteid",
+      "relationship_type": "Has-Many",
+      "remote_key": "emoteid",
+      "remote_table": "[npc_emotes](../../schema/npcs/npc_emotes.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "npc_id",
+      "remote_table": "[fishing](../../schema/tradeskills/fishing.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "npcid",
+      "remote_table": "[merchantlist_temp](../../schema/merchants/merchantlist_temp.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "One-to-One",
+      "remote_key": "npcID",
+      "remote_table": "[pets](../../schema/pets/pets.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "npc_id",
+      "remote_table": "[qs_player_handin_record](../../schema/query-server/qs_player_handin_record.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "npc_id",
+      "remote_table": "[qs_player_npc_kill_record](../../schema/query-server/qs_player_npc_kill_record.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "npcid",
+      "remote_table": "[quest_globals](../../schema/data-storage/quest_globals.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "npcID",
+      "remote_table": "[spawnentry](../../schema/spawns/spawnentry.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "delivertonpc",
+      "remote_table": "[task_activities](../../schema/tasks/task_activities.md)"
+    },
+    {
+      "local_key": "loottable_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[loottable](../../schema/loot/loottable.md)"
+    },
+    {
+      "local_key": "merchant_id",
+      "relationship_type": "Has-Many",
+      "remote_key": "merchantid",
+      "remote_table": "[merchantlist](../../schema/merchants/merchantlist.md)"
+    },
+    {
+      "local_key": "name",
+      "relationship_type": "One-to-One",
+      "remote_key": "filename",
+      "remote_table": "[horses](../../schema/horses/horses.md)"
+    },
+    {
+      "local_key": "npc_faction_id",
+      "relationship_type": "Has-Many",
+      "remote_key": "id",
+      "remote_table": "[npc_faction](../../schema/npcs/npc_faction.md)"
+    },
+    {
+      "local_key": "npc_spells_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[npc_spells](../../schema/npcs/npc_spells.md)"
+    },
+    {
+      "local_key": "npc_spells_effects_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[npc_spells_effects](../../schema/npcs/npc_spells_effects.md)"
+    },
+    {
+      "local_key": "trap_template",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[ldon_trap_templates](../../schema/traps/ldon_trap_templates.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/npcs/npc_types.md",
+  "table": "npc_types",
+  "title": "npc_types"
+}

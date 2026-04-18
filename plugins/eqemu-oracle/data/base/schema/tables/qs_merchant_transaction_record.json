@@ -1,0 +1,116 @@
+{
+  "category": "query-server",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Transaction Identifier",
+      "name": "transaction_id"
+    },
+    {
+      "data_type": "timestamp",
+      "description": "Timestamp",
+      "name": "time"
+    },
+    {
+      "data_type": "int",
+      "description": "[Zone Identifier](../../../../server/zones/zone-list)",
+      "name": "zone_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Merchant Identifier](../../schema/merchants/merchantlist.md)",
+      "name": "merchant_id"
+    },
+    {
+      "data_type": "int",
+      "description": "Merchant Platinum",
+      "name": "merchant_pp"
+    },
+    {
+      "data_type": "int",
+      "description": "Merchant Gold",
+      "name": "merchant_gp"
+    },
+    {
+      "data_type": "int",
+      "description": "Merchant Silver",
+      "name": "merchant_sp"
+    },
+    {
+      "data_type": "int",
+      "description": "Merchant Copper",
+      "name": "merchant_cp"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Merchant Items",
+      "name": "merchant_items"
+    },
+    {
+      "data_type": "int",
+      "description": "[Unique Character Identifier](../../schema/characters/character_data.md)",
+      "name": "char_id"
+    },
+    {
+      "data_type": "int",
+      "description": "Character Platinum",
+      "name": "char_pp"
+    },
+    {
+      "data_type": "int",
+      "description": "Character Gold",
+      "name": "char_gp"
+    },
+    {
+      "data_type": "int",
+      "description": "Character Silver",
+      "name": "char_sp"
+    },
+    {
+      "data_type": "int",
+      "description": "Character Copper",
+      "name": "char_cp"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Character Items",
+      "name": "char_items"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/query-server/qs_merchant_transaction_record/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "qs_merchant_transaction_record",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "qs_merchant_transaction_record",
+  "path": "schema/query-server/qs_merchant_transaction_record",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "char_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    },
+    {
+      "local_key": "merchant_id",
+      "relationship_type": "Has-Many",
+      "remote_key": "merchantid",
+      "remote_table": "[merchantlist](../../schema/merchants/merchantlist.md)"
+    },
+    {
+      "local_key": "zone_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "zoneidnumber",
+      "remote_table": "[zone](../../schema/zone/zone.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/query-server/qs_merchant_transaction_record.md",
+  "table": "qs_merchant_transaction_record",
+  "title": "qs_merchant_transaction_record"
+}

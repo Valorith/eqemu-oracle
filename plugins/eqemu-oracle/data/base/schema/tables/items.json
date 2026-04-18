@@ -1,0 +1,1856 @@
+{
+  "category": "items",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Item Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "smallint",
+      "description": "[Minimum Status](../../../../server/player/status-levels)",
+      "name": "minstatus"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Name",
+      "name": "Name"
+    },
+    {
+      "data_type": "int",
+      "description": "Agility: -128 to 127",
+      "name": "aagi"
+    },
+    {
+      "data_type": "int",
+      "description": "Armor Class",
+      "name": "ac"
+    },
+    {
+      "data_type": "int",
+      "description": "Accuracy",
+      "name": "accuracy"
+    },
+    {
+      "data_type": "int",
+      "description": "Charisma: -128 to 127",
+      "name": "acha"
+    },
+    {
+      "data_type": "int",
+      "description": "Dexterity: -128 to 127",
+      "name": "adex"
+    },
+    {
+      "data_type": "int",
+      "description": "Intelligence: -128 to 127",
+      "name": "aint"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Artifact: 0 = False, 1 = True",
+      "name": "artifactflag"
+    },
+    {
+      "data_type": "int",
+      "description": "Stamina: -128 to 127",
+      "name": "asta"
+    },
+    {
+      "data_type": "int",
+      "description": "Strenght: -128 to 127",
+      "name": "astr"
+    },
+    {
+      "data_type": "int",
+      "description": "Attack",
+      "name": "attack"
+    },
+    {
+      "data_type": "int",
+      "description": "[Augment Restriction](../../../../server/items/augment-restrictions)",
+      "name": "augrestrict"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Augment Slot 1 Type](../../../../server/items/augment-types)",
+      "name": "augslot1type"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Augment Slot 1 Visible: 0 = False, 1 = True",
+      "name": "augslot1visible"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Augment Slot 2 Type](../../../../server/items/augment-types)",
+      "name": "augslot2type"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Augment Slot 2 Visible: 0 = False, 1 = True",
+      "name": "augslot2visible"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Augment Slot 3 Type](../../../../server/items/augment-types)",
+      "name": "augslot3type"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Augment Slot 3 Visible: 0 = False, 1 = True",
+      "name": "augslot3visible"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Augment Slot 4 Type](../../../../server/items/augment-types)",
+      "name": "augslot4type"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Augment Slot 4 Visible: 0 = False, 1 = True",
+      "name": "augslot4visible"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Augment Slot 5 Type](../../../../server/items/augment-types)",
+      "name": "augslot5type"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Augment Slot 5 Visible: 0 = False, 1 = True",
+      "name": "augslot5visible"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Augment Slot 6 Type](../../../../server/items/augment-types)",
+      "name": "augslot6type"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Augment Slot 6 Visible: 0 = False, 1 = True",
+      "name": "augslot6visible"
+    },
+    {
+      "data_type": "int",
+      "description": "[Augment Type](../../../../server/items/augment-types)",
+      "name": "augtype"
+    },
+    {
+      "data_type": "int",
+      "description": "Avoidance",
+      "name": "avoidance"
+    },
+    {
+      "data_type": "int",
+      "description": "Wisdom: -128 to 127",
+      "name": "awis"
+    },
+    {
+      "data_type": "int",
+      "description": "[Bag Size](../../../../server/inventory/bag-sizes)",
+      "name": "bagsize"
+    },
+    {
+      "data_type": "int",
+      "description": "Bag Slots: 1 = Minimum, 10 = Maximum",
+      "name": "bagslots"
+    },
+    {
+      "data_type": "int",
+      "description": "[Bag Type](../../../../server/inventory/bag-types)",
+      "name": "bagtype"
+    },
+    {
+      "data_type": "int",
+      "description": "Bag Weight Reduction: 0 = 0%, 100 = 100%",
+      "name": "bagwr"
+    },
+    {
+      "data_type": "int",
+      "description": "Bane Damage Amount",
+      "name": "banedmgamt"
+    },
+    {
+      "data_type": "int",
+      "description": "Bane Damage Race Amount",
+      "name": "banedmgraceamt"
+    },
+    {
+      "data_type": "int",
+      "description": "[Bane Damage Body Type](../../../../server/npc/body-types)",
+      "name": "banedmgbody"
+    },
+    {
+      "data_type": "int",
+      "description": "[Bane Damage Race](../../../../server/npc/race-list)",
+      "name": "banedmgrace"
+    },
+    {
+      "data_type": "int",
+      "description": "[Bard Type](../../../../server/items/bard-types)",
+      "name": "bardtype"
+    },
+    {
+      "data_type": "int",
+      "description": "Bard Value",
+      "name": "bardvalue"
+    },
+    {
+      "data_type": "int",
+      "description": "[Book](../../schema/books/books.md)",
+      "name": "book"
+    },
+    {
+      "data_type": "int",
+      "description": "Cast Time in Seconds",
+      "name": "casttime"
+    },
+    {
+      "data_type": "int",
+      "description": "Cast Time in Seconds",
+      "name": "casttime_"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Charm File",
+      "name": "charmfile"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Charm File Identifier",
+      "name": "charmfileid"
+    },
+    {
+      "data_type": "int",
+      "description": "[Classes](../../../../server/player/class-list)",
+      "name": "classes"
+    },
+    {
+      "data_type": "int",
+      "description": "Color",
+      "name": "color"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Combat Effects",
+      "name": "combateffects"
+    },
+    {
+      "data_type": "int",
+      "description": "[Extra Damage Skill](../../../../server/player/skills)",
+      "name": "extradmgskill"
+    },
+    {
+      "data_type": "int",
+      "description": "Extra Damage Amount",
+      "name": "extradmgamt"
+    },
+    {
+      "data_type": "int",
+      "description": "Price in Copper",
+      "name": "price"
+    },
+    {
+      "data_type": "int",
+      "description": "Cold Resistance: -128 to 127",
+      "name": "cr"
+    },
+    {
+      "data_type": "int",
+      "description": "Damage",
+      "name": "damage"
+    },
+    {
+      "data_type": "int",
+      "description": "Damage Shield",
+      "name": "damageshield"
+    },
+    {
+      "data_type": "int",
+      "description": "[Deity](../../../../server/player/deity-list)",
+      "name": "deity"
+    },
+    {
+      "data_type": "int",
+      "description": "Delay",
+      "name": "delay"
+    },
+    {
+      "data_type": "int",
+      "description": "Augment Distiller Item Identifier",
+      "name": "augdistiller"
+    },
+    {
+      "data_type": "int",
+      "description": "Damage Over Time Shielding",
+      "name": "dotshielding"
+    },
+    {
+      "data_type": "int",
+      "description": "Disease Resistance: -128 to 127",
+      "name": "dr"
+    },
+    {
+      "data_type": "int",
+      "description": "[Click Type](../../../../server/items/click-types)",
+      "name": "clicktype"
+    },
+    {
+      "data_type": "int",
+      "description": "Click Level 2",
+      "name": "clicklevel2"
+    },
+    {
+      "data_type": "int",
+      "description": "[Elemental Damage Type](../../../../server/items/item-element-types)",
+      "name": "elemdmgtype"
+    },
+    {
+      "data_type": "int",
+      "description": "Elemental Damage Amount",
+      "name": "elemdmgamt"
+    },
+    {
+      "data_type": "int",
+      "description": "Endurance",
+      "name": "endur"
+    },
+    {
+      "data_type": "int",
+      "description": "Faction Amount 1",
+      "name": "factionamt1"
+    },
+    {
+      "data_type": "int",
+      "description": "Faction Amount 2",
+      "name": "factionamt2"
+    },
+    {
+      "data_type": "int",
+      "description": "Faction Amount 3",
+      "name": "factionamt3"
+    },
+    {
+      "data_type": "int",
+      "description": "Faction Amount 4",
+      "name": "factionamt4"
+    },
+    {
+      "data_type": "int",
+      "description": "Faction Modifier 1",
+      "name": "factionmod1"
+    },
+    {
+      "data_type": "int",
+      "description": "Faction Modifier 2",
+      "name": "factionmod2"
+    },
+    {
+      "data_type": "int",
+      "description": "Faction Modifier 3",
+      "name": "factionmod3"
+    },
+    {
+      "data_type": "int",
+      "description": "Faction Modifier 4",
+      "name": "factionmod4"
+    },
+    {
+      "data_type": "varchar",
+      "description": "File Name",
+      "name": "filename"
+    },
+    {
+      "data_type": "int",
+      "description": "[Focus Effect Identifier](../../schema/spells/spells_new.md)",
+      "name": "focuseffect"
+    },
+    {
+      "data_type": "int",
+      "description": "Fire Resistance: -128 to 127",
+      "name": "fr"
+    },
+    {
+      "data_type": "int",
+      "description": "Firiona Vie No Drop: 0 = False, 1 = True",
+      "name": "fvnodrop"
+    },
+    {
+      "data_type": "int",
+      "description": "Haste: 0 = 0%, 255 = 255%",
+      "name": "haste"
+    },
+    {
+      "data_type": "int",
+      "description": "Click Level",
+      "name": "clicklevel"
+    },
+    {
+      "data_type": "int",
+      "description": "Health",
+      "name": "hp"
+    },
+    {
+      "data_type": "int",
+      "description": "Health Regeneration",
+      "name": "regen"
+    },
+    {
+      "data_type": "int",
+      "description": "Icon",
+      "name": "icon"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Item Texture",
+      "name": "idfile"
+    },
+    {
+      "data_type": "int",
+      "description": "[Item Class](../../../../server/items/item-class)",
+      "name": "itemclass"
+    },
+    {
+      "data_type": "int",
+      "description": "[Item Type](../../../../server/items/item-types)",
+      "name": "itemtype"
+    },
+    {
+      "data_type": "int",
+      "description": "LDoN Price",
+      "name": "ldonprice"
+    },
+    {
+      "data_type": "int",
+      "description": "[LDoN Theme](../../../../server/zones/ldon-themes)",
+      "name": "ldontheme"
+    },
+    {
+      "data_type": "int",
+      "description": "LDoN Sold: 0 = False, 1 = True",
+      "name": "ldonsold"
+    },
+    {
+      "data_type": "int",
+      "description": "Light",
+      "name": "light"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Lore Description",
+      "name": "lore"
+    },
+    {
+      "data_type": "int",
+      "description": "[Lore Group](../../../../server/items/item-lore-groups)",
+      "name": "loregroup"
+    },
+    {
+      "data_type": "int",
+      "description": "Magic: 0 = False, 1 = True",
+      "name": "magic"
+    },
+    {
+      "data_type": "int",
+      "description": "Mana",
+      "name": "mana"
+    },
+    {
+      "data_type": "int",
+      "description": "Mana Regeneration",
+      "name": "manaregen"
+    },
+    {
+      "data_type": "int",
+      "description": "Endurance Regeneration",
+      "name": "enduranceregen"
+    },
+    {
+      "data_type": "int",
+      "description": "[Material](../../../../server/npc/textures)",
+      "name": "material"
+    },
+    {
+      "data_type": "int",
+      "description": "Hero's Forge Model",
+      "name": "herosforgemodel"
+    },
+    {
+      "data_type": "int",
+      "description": "Maximum Charges",
+      "name": "maxcharges"
+    },
+    {
+      "data_type": "int",
+      "description": "Magic Resistance: -128 to 127",
+      "name": "mr"
+    },
+    {
+      "data_type": "int",
+      "description": "No Drop: 0 = True, 1 = False",
+      "name": "nodrop"
+    },
+    {
+      "data_type": "int",
+      "description": "No Rent: 0 = True, 1 = False",
+      "name": "norent"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Pending Lore Flag: 0 = False, 1 = True",
+      "name": "pendingloreflag"
+    },
+    {
+      "data_type": "int",
+      "description": "Poison Resistance: -128 to 127",
+      "name": "pr"
+    },
+    {
+      "data_type": "int",
+      "description": "Proc Rate: 0 = 100%, 50 = 150%, 100 = 200%",
+      "name": "procrate"
+    },
+    {
+      "data_type": "int",
+      "description": "[Races](../../../../server/npc/race-list)",
+      "name": "races"
+    },
+    {
+      "data_type": "int",
+      "description": "Range: 0 to 255",
+      "name": "range"
+    },
+    {
+      "data_type": "int",
+      "description": "Recommended Level",
+      "name": "reclevel"
+    },
+    {
+      "data_type": "int",
+      "description": "Recommended Skill Level",
+      "name": "recskill"
+    },
+    {
+      "data_type": "int",
+      "description": "Required Level",
+      "name": "reqlevel"
+    },
+    {
+      "data_type": "float",
+      "description": "Sell Rate",
+      "name": "sellrate"
+    },
+    {
+      "data_type": "int",
+      "description": "Shielding: 5 = 5%, 20 = 20%, 50 = 50%",
+      "name": "shielding"
+    },
+    {
+      "data_type": "int",
+      "description": "Size",
+      "name": "size"
+    },
+    {
+      "data_type": "int",
+      "description": "[Skill Modifier Type](../../../../server/player/skills)",
+      "name": "skillmodtype"
+    },
+    {
+      "data_type": "int",
+      "description": "Skill Modifier Value",
+      "name": "skillmodvalue"
+    },
+    {
+      "data_type": "int",
+      "description": "[Slots](../../../../server/inventory/item-slots)",
+      "name": "slots"
+    },
+    {
+      "data_type": "int",
+      "description": "[Click Effect Identifier](../../schema/spells/spells_new.md)",
+      "name": "clickeffect"
+    },
+    {
+      "data_type": "int",
+      "description": "Spell Shielding",
+      "name": "spellshield"
+    },
+    {
+      "data_type": "int",
+      "description": "Strikethrough",
+      "name": "strikethrough"
+    },
+    {
+      "data_type": "int",
+      "description": "Stun Resist",
+      "name": "stunresist"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Unknown",
+      "name": "summonedflag"
+    },
+    {
+      "data_type": "int",
+      "description": "Tradeskill Item: 0 = False, 1= True",
+      "name": "tradeskills"
+    },
+    {
+      "data_type": "int",
+      "description": "Favor",
+      "name": "favor"
+    },
+    {
+      "data_type": "int",
+      "description": "Weight: 10 = 1.0, 25 = 2.5, 100 = 10.0",
+      "name": "weight"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "UNK012"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "UNK013"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "benefitflag"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "UNK054"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "UNK059"
+    },
+    {
+      "data_type": "int",
+      "description": "[Book Language](../../../../server/player/languages)",
+      "name": "booktype"
+    },
+    {
+      "data_type": "int",
+      "description": "Recast Delay in Seconds",
+      "name": "recastdelay"
+    },
+    {
+      "data_type": "int",
+      "description": "Recast Type: -1 = None, &gt;0 = Recast Type used across all items",
+      "name": "recasttype"
+    },
+    {
+      "data_type": "int",
+      "description": "Guild Favor",
+      "name": "guildfavor"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "UNK123"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "UNK124"
+    },
+    {
+      "data_type": "int",
+      "description": "Attuneable: 0 = False, 1 = True",
+      "name": "attuneable"
+    },
+    {
+      "data_type": "int",
+      "description": "No Pet: 0 = False, 1 = True",
+      "name": "nopet"
+    },
+    {
+      "data_type": "datetime",
+      "description": "Updated Datetime",
+      "name": "updated"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Comment",
+      "name": "comment"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "UNK127"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "pointtype"
+    },
+    {
+      "data_type": "int",
+      "description": "Potion Belt: 0 = False, 1 = True",
+      "name": "potionbelt"
+    },
+    {
+      "data_type": "int",
+      "description": "Potion Belt Slots",
+      "name": "potionbeltslots"
+    },
+    {
+      "data_type": "int",
+      "description": "Stack Size",
+      "name": "stacksize"
+    },
+    {
+      "data_type": "int",
+      "description": "No Transfer: 0 = False, 1 = True",
+      "name": "notransfer"
+    },
+    {
+      "data_type": "int",
+      "description": "Stackable: 0 = False, 1 = True",
+      "name": "stackable"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Unknown",
+      "name": "UNK134"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "UNK137"
+    },
+    {
+      "data_type": "int",
+      "description": "[Proc Effect Identifier](../../schema/spells/spells_new.md)",
+      "name": "proceffect"
+    },
+    {
+      "data_type": "int",
+      "description": "Proc Type: 0",
+      "name": "proctype"
+    },
+    {
+      "data_type": "int",
+      "description": "Proc Level 2",
+      "name": "proclevel2"
+    },
+    {
+      "data_type": "int",
+      "description": "Proc Level",
+      "name": "proclevel"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "UNK142"
+    },
+    {
+      "data_type": "int",
+      "description": "[Worn Effect Identifier](../../schema/spells/spells_new.md)",
+      "name": "worneffect"
+    },
+    {
+      "data_type": "int",
+      "description": "Worn Type: 2 = Worn",
+      "name": "worntype"
+    },
+    {
+      "data_type": "int",
+      "description": "Worn Level 2",
+      "name": "wornlevel2"
+    },
+    {
+      "data_type": "int",
+      "description": "Worn Level",
+      "name": "wornlevel"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "UNK147"
+    },
+    {
+      "data_type": "int",
+      "description": "Focus Type: 6 = Focus",
+      "name": "focustype"
+    },
+    {
+      "data_type": "int",
+      "description": "Focus Level 2",
+      "name": "focuslevel2"
+    },
+    {
+      "data_type": "int",
+      "description": "Focus Level",
+      "name": "focuslevel"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "UNK152"
+    },
+    {
+      "data_type": "int",
+      "description": "[Scroll Effect Identifier](../../schema/spells/spells_new.md)",
+      "name": "scrolleffect"
+    },
+    {
+      "data_type": "int",
+      "description": "Scroll Type: 7 = Scroll",
+      "name": "scrolltype"
+    },
+    {
+      "data_type": "int",
+      "description": "Scroll Level 2",
+      "name": "scrolllevel2"
+    },
+    {
+      "data_type": "int",
+      "description": "Scroll Level",
+      "name": "scrolllevel"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "UNK157"
+    },
+    {
+      "data_type": "datetime",
+      "description": "Serialized Datetime",
+      "name": "serialized"
+    },
+    {
+      "data_type": "datetime",
+      "description": "Verified Datetime",
+      "name": "verified"
+    },
+    {
+      "data_type": "text",
+      "description": "Serialization",
+      "name": "serialization"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Source",
+      "name": "source"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "UNK033"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Lore File",
+      "name": "lorefile"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "UNK014"
+    },
+    {
+      "data_type": "int",
+      "description": "Corruption Resistance: -128 to 127",
+      "name": "svcorruption"
+    },
+    {
+      "data_type": "int",
+      "description": "Skill Modifier Max",
+      "name": "skillmodmax"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "UNK060"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "augslot1unk2"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "augslot2unk2"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "augslot3unk2"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "augslot4unk2"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "augslot5unk2"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "augslot6unk2"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "UNK120"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "UNK121"
+    },
+    {
+      "data_type": "int",
+      "description": "Quest Item: 0 = False, 1 = True",
+      "name": "questitemflag"
+    },
+    {
+      "data_type": "text",
+      "description": "Unknown",
+      "name": "UNK132"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "clickunk5"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Unknown",
+      "name": "clickunk6"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "clickunk7"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "procunk1"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "procunk2"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "procunk3"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "procunk4"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Unknown",
+      "name": "procunk6"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "procunk7"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "wornunk1"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "wornunk2"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "wornunk3"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "wornunk4"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "wornunk5"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Unknown",
+      "name": "wornunk6"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "wornunk7"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "focusunk1"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "focusunk2"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "focusunk3"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "focusunk4"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "focusunk5"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Unknown",
+      "name": "focusunk6"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "focusunk7"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "scrollunk1"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "scrollunk2"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "scrollunk3"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "scrollunk4"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "scrollunk5"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Unknown",
+      "name": "scrollunk6"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "scrollunk7"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "UNK193"
+    },
+    {
+      "data_type": "int",
+      "description": "Purity",
+      "name": "purity"
+    },
+    {
+      "data_type": "int",
+      "description": "Evolving Item: 0 = False, 1 = True",
+      "name": "evoitem"
+    },
+    {
+      "data_type": "int",
+      "description": "[Evolving Identifier](items.md)",
+      "name": "evoid"
+    },
+    {
+      "data_type": "int",
+      "description": "Evolving Level",
+      "name": "evolvinglevel"
+    },
+    {
+      "data_type": "int",
+      "description": "Evolving Max",
+      "name": "evomax"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Click Name",
+      "name": "clickname"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Proc Name",
+      "name": "procname"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Worn Name",
+      "name": "wornname"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Focus Name",
+      "name": "focusname"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Scroll Name",
+      "name": "scrollname"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Damage Shield Mitigation",
+      "name": "dsmitigation"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Heroic Strength",
+      "name": "heroic_str"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Heroic Intelligence",
+      "name": "heroic_int"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Heroic Wisdom",
+      "name": "heroic_wis"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Heroic Agility",
+      "name": "heroic_agi"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Heroic Dexterity",
+      "name": "heroic_dex"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Heroic Stamina",
+      "name": "heroic_sta"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Heroic Charisma",
+      "name": "heroic_cha"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Heroic Poison Resistance",
+      "name": "heroic_pr"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Heroic Disease Resistance",
+      "name": "heroic_dr"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Heroic Fire Resistance",
+      "name": "heroic_fr"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Heroic Cold Resistance",
+      "name": "heroic_cr"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Heroic Magic Resistance",
+      "name": "heroic_mr"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Heroic Corruption Resistance",
+      "name": "heroic_svcorrup"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Heal Amount: 0 to 32767",
+      "name": "healamt"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Spell Damage: 0 to 32767",
+      "name": "spelldmg"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Clairvoyance",
+      "name": "clairvoyance"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Backstab Damage",
+      "name": "backstabdmg"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Created",
+      "name": "created"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Elite Material",
+      "name": "elitematerial"
+    },
+    {
+      "data_type": "smallint",
+      "description": "LDoN Sellback Rate",
+      "name": "ldonsellbackrate"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Script File Name",
+      "name": "scriptfileid"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Expendable Arrow: 0 = False, 1 = True",
+      "name": "expendablearrow"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Powersource Capacity",
+      "name": "powersourcecapacity"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "[Bard Effect Identifier](../../schema/spells/spells_new.md)",
+      "name": "bardeffect"
+    },
+    {
+      "data_type": "smallint",
+      "description": "[Bard Effect Type](../../../../server/items/bard-types)",
+      "name": "bardeffecttype"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Bard Level 2",
+      "name": "bardlevel2"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Bard Level",
+      "name": "bardlevel"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Unknown",
+      "name": "bardunk1"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Unknown",
+      "name": "bardunk2"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Unknown",
+      "name": "bardunk3"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Unknown",
+      "name": "bardunk4"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Unknown",
+      "name": "bardunk5"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Bard Name",
+      "name": "bardname"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Unknown",
+      "name": "bardunk7"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Unknown",
+      "name": "UNK214"
+    },
+    {
+      "data_type": "int",
+      "description": "Sub Type",
+      "name": "subtype"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "UNK220"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "UNK221"
+    },
+    {
+      "data_type": "int",
+      "description": "Heirloom: 0 = False, 1 = True",
+      "name": "heirloom"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "UNK223"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "UNK224"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "UNK225"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "UNK226"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "UNK227"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "UNK228"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "UNK229"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "UNK230"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "UNK231"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "UNK232"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "UNK233"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "UNK234"
+    },
+    {
+      "data_type": "int",
+      "description": "Placeable: 0 = False, 1 = True",
+      "name": "placeable"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "UNK236"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "UNK237"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "UNK238"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "UNK239"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "UNK240"
+    },
+    {
+      "data_type": "int",
+      "description": "Unknown",
+      "name": "UNK241"
+    },
+    {
+      "data_type": "int",
+      "description": "Epic Item: 0 = False, 1 = True",
+      "name": "epicitem"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/items/items/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "items",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "items",
+  "path": "schema/items/items",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "bardeffect",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[spells_new](../../schema/spells/spells_new.md)"
+    },
+    {
+      "local_key": "book",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[books](../../schema/books/books.md)"
+    },
+    {
+      "local_key": "clickeffect",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[spells_new](../../schema/spells/spells_new.md)"
+    },
+    {
+      "local_key": "focuseffect",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[spells_new](../../schema/spells/spells_new.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "item_id",
+      "remote_table": "[alternate_currency](../../schema/alternate-currency/alternate_currency.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "item_id",
+      "remote_table": "[bot_inventories](../../schema/bots/bot_inventories.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "augment_1",
+      "remote_table": "[bot_inventories](../../schema/bots/bot_inventories.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "augment_2",
+      "remote_table": "[bot_inventories](../../schema/bots/bot_inventories.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "augment_3",
+      "remote_table": "[bot_inventories](../../schema/bots/bot_inventories.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "augment_4",
+      "remote_table": "[bot_inventories](../../schema/bots/bot_inventories.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "augment_5",
+      "remote_table": "[bot_inventories](../../schema/bots/bot_inventories.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "augment_6",
+      "remote_table": "[bot_inventories](../../schema/bots/bot_inventories.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "item_id",
+      "remote_table": "[bot_pet_inventories](../../schema/bots/bot_pet_inventories.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "item_id",
+      "remote_table": "[character_bandolier](../../schema/characters/character_bandolier.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "item_id",
+      "remote_table": "[character_corpse_items](../../schema/characters/character_corpse_items.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "item_id",
+      "remote_table": "[character_pet_inventory](../../schema/characters/character_pet_inventory.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "item_id",
+      "remote_table": "[character_potionbelt](../../schema/characters/character_potionbelt.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "item_id",
+      "remote_table": "[discovered_items](../../schema/admin/discovered_items.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "keyitem",
+      "remote_table": "[doors](../../schema/doors/doors.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "Itemid",
+      "remote_table": "[fishing](../../schema/tradeskills/fishing.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "Itemid",
+      "remote_table": "[forage](../../schema/tradeskills/forage.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "item",
+      "remote_table": "[ground_spawns](../../schema/ground-spawns/ground_spawns.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "itemid",
+      "remote_table": "[inventory](../../schema/mercenaries/merc_inventory.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "it_itemid",
+      "remote_table": "[item_tick](../../schema/items/item_tick.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "item_id",
+      "remote_table": "[keyring](../../schema/characters/keyring.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "item_id",
+      "remote_table": "[lootdrop_entries](../../schema/loot/lootdrop_entries.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "item_id",
+      "remote_table": "[merc_inventory](../../schema/mercenaries/merc_inventory.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "item",
+      "remote_table": "[merchantlist](../../schema/merchants/merchantlist.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "itemid",
+      "remote_table": "[merchantlist_temp](../../schema/merchants/merchantlist_temp.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "itemid",
+      "remote_table": "[object](../../schema/objects/object.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "itemid",
+      "remote_table": "[object_contents](../../schema/objects/object_contents.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "item_id",
+      "remote_table": "[pets_equipmentset_entries](../../schema/pets/pets_equipmentset_entries.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "item_id",
+      "remote_table": "[qs_merchant_transaction_record_entries](../../schema/query-server/qs_merchant_transaction_record_entries.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "item_id",
+      "remote_table": "[qs_player_delete_record_entries](../../schema/query-server/qs_player_delete_record_entries.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "aug_1",
+      "remote_table": "[qs_player_delete_record_entries](../../schema/query-server/qs_player_delete_record_entries.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "aug_2",
+      "remote_table": "[qs_player_delete_record_entries](../../schema/query-server/qs_player_delete_record_entries.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "aug_3",
+      "remote_table": "[qs_player_delete_record_entries](../../schema/query-server/qs_player_delete_record_entries.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "aug_4",
+      "remote_table": "[qs_player_delete_record_entries](../../schema/query-server/qs_player_delete_record_entries.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "aug_5",
+      "remote_table": "[qs_player_delete_record_entries](../../schema/query-server/qs_player_delete_record_entries.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "item_id",
+      "remote_table": "[qs_player_handin_record_entries](../../schema/query-server/qs_player_handin_record_entries.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "aug_1",
+      "remote_table": "[qs_player_handin_record_entries](../../schema/query-server/qs_player_handin_record_entries.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "aug_2",
+      "remote_table": "[qs_player_handin_record_entries](../../schema/query-server/qs_player_handin_record_entries.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "aug_3",
+      "remote_table": "[qs_player_handin_record_entries](../../schema/query-server/qs_player_handin_record_entries.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "aug_4",
+      "remote_table": "[qs_player_handin_record_entries](../../schema/query-server/qs_player_handin_record_entries.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "aug_5",
+      "remote_table": "[qs_player_handin_record_entries](../../schema/query-server/qs_player_handin_record_entries.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "item_id",
+      "remote_table": "[qs_player_move_record_entries](../../schema/query-server/qs_player_move_record_entries.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "aug_1",
+      "remote_table": "[qs_player_move_record_entries](../../schema/query-server/qs_player_move_record_entries.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "aug_2",
+      "remote_table": "[qs_player_move_record_entries](../../schema/query-server/qs_player_move_record_entries.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "aug_3",
+      "remote_table": "[qs_player_move_record_entries](../../schema/query-server/qs_player_move_record_entries.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "aug_4",
+      "remote_table": "[qs_player_move_record_entries](../../schema/query-server/qs_player_move_record_entries.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "aug_5",
+      "remote_table": "[qs_player_move_record_entries](../../schema/query-server/qs_player_move_record_entries.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "item_id",
+      "remote_table": "[qs_player_trade_record_entries](../../schema/query-server/qs_player_trade_record_entries.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "aug_1",
+      "remote_table": "[qs_player_trade_record_entries](../../schema/query-server/qs_player_trade_record_entries.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "aug_2",
+      "remote_table": "[qs_player_trade_record_entries](../../schema/query-server/qs_player_trade_record_entries.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "aug_3",
+      "remote_table": "[qs_player_trade_record_entries](../../schema/query-server/qs_player_trade_record_entries.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "aug_4",
+      "remote_table": "[qs_player_trade_record_entries](../../schema/query-server/qs_player_trade_record_entries.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "aug_5",
+      "remote_table": "[qs_player_trade_record_entries](../../schema/query-server/qs_player_trade_record_entries.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "itemid",
+      "remote_table": "[starting_items](../../schema/admin/starting_items.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "item_id",
+      "remote_table": "[tool_gearup_armor_sets](../../schema/tools/tool_gearup_armor_sets.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "item_id",
+      "remote_table": "[trader](../../schema/trader/trader.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "item_id",
+      "remote_table": "[tradeskill_recipe_entries](../../schema/tradeskills/tradeskill_recipe_entries.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "item_id",
+      "remote_table": "[tribute_levels](../../schema/tributes/tribute_levels.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "item_id",
+      "remote_table": "[veteran_reward_templates](../../schema/admin/veteran_reward_templates.md)"
+    },
+    {
+      "local_key": "name",
+      "relationship_type": "Has-Many",
+      "remote_key": "itemname",
+      "remote_table": "[trader_audit](../../schema/trader/trader_audit.md)"
+    },
+    {
+      "local_key": "proceffect",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[spells_new](../../schema/spells/spells_new.md)"
+    },
+    {
+      "local_key": "recasttype",
+      "relationship_type": "Has-Many",
+      "remote_key": "recast_type",
+      "remote_table": "[character_item_recast](../../schema/characters/character_item_recast.md)"
+    },
+    {
+      "local_key": "scrolleffect",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[spells_new](../../schema/spells/spells_new.md)"
+    },
+    {
+      "local_key": "worneffect",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[spells_new](../../schema/spells/spells_new.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/items/items.md",
+  "table": "items",
+  "title": "items"
+}

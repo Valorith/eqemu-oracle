@@ -1,0 +1,91 @@
+{
+  "category": "admin",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Event Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "varchar",
+      "description": "[Account Name](../../schema/account/account.md)",
+      "name": "accountname"
+    },
+    {
+      "data_type": "int",
+      "description": "[Account Identifier](../../schema/account/account.md)",
+      "name": "accountid"
+    },
+    {
+      "data_type": "int",
+      "description": "[Status](../../../../server/player/status-levels)",
+      "name": "status"
+    },
+    {
+      "data_type": "varchar",
+      "description": "[Character Name](../../schema/characters/character_data.md)",
+      "name": "charname"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Target",
+      "name": "target"
+    },
+    {
+      "data_type": "timestamp",
+      "description": "TIme Timestamp",
+      "name": "time"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Description Type",
+      "name": "descriptiontype"
+    },
+    {
+      "data_type": "text",
+      "description": "Description",
+      "name": "description"
+    },
+    {
+      "data_type": "int",
+      "description": "Event Identifier",
+      "name": "event_nid"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/admin/eventlog/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "eventlog",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "eventlog",
+  "path": "schema/admin/eventlog",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "accountid",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[account](../../schema/account/account.md)"
+    },
+    {
+      "local_key": "accountname",
+      "relationship_type": "One-to-One",
+      "remote_key": "name",
+      "remote_table": "[account](../../schema/account/account.md)"
+    },
+    {
+      "local_key": "charname",
+      "relationship_type": "One-to-One",
+      "remote_key": "name",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/eventlog.md",
+  "table": "eventlog",
+  "title": "eventlog"
+}

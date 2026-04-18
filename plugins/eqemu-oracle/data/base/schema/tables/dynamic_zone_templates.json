@@ -1,0 +1,139 @@
+{
+  "category": "dynamic-zones",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Dynamic Zone Template Unique Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Dynamic Zone Template Zone Identifier](../../../../server/zones/zone-list)",
+      "name": "zone_id"
+    },
+    {
+      "data_type": "int",
+      "description": "Zone Version",
+      "name": "zone_version"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Dynamic Zone Template Name",
+      "name": "name"
+    },
+    {
+      "data_type": "int",
+      "description": "Minimum Players",
+      "name": "min_players"
+    },
+    {
+      "data_type": "int",
+      "description": "Maximum Players",
+      "name": "max_players"
+    },
+    {
+      "data_type": "int",
+      "description": "Duration in Seconds",
+      "name": "duration_seconds"
+    },
+    {
+      "data_type": "int",
+      "description": "[Dynamic Zone Switch Identifier](../../schema/doors/doors.md)",
+      "name": "dz_switch_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Compass Zone Identifier](../../../../server/zones/zone-list)",
+      "name": "compass_zone_id"
+    },
+    {
+      "data_type": "float",
+      "description": "Compass X Coordinate",
+      "name": "compass_x"
+    },
+    {
+      "data_type": "float",
+      "description": "Compass Y Coordinate",
+      "name": "compass_y"
+    },
+    {
+      "data_type": "float",
+      "description": "Compass Z Coordinatet",
+      "name": "compass_z"
+    },
+    {
+      "data_type": "int",
+      "description": "[Return Zone Identifier](../../../../server/zones/zone-list)",
+      "name": "return_zone_id"
+    },
+    {
+      "data_type": "float",
+      "description": "Return X Coordinate",
+      "name": "return_x"
+    },
+    {
+      "data_type": "float",
+      "description": "Return Y Coordinate",
+      "name": "return_y"
+    },
+    {
+      "data_type": "float",
+      "description": "Return Z Coordinate",
+      "name": "return_z"
+    },
+    {
+      "data_type": "float",
+      "description": "Return Heading Coordinate",
+      "name": "return_h"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Override Zone In: 0 = False, 1 = True",
+      "name": "override_zone_in"
+    },
+    {
+      "data_type": "float",
+      "description": "Zone In X Coordinate",
+      "name": "zone_in_x"
+    },
+    {
+      "data_type": "float",
+      "description": "Zone In Y Coordinate",
+      "name": "zone_in_y"
+    },
+    {
+      "data_type": "float",
+      "description": "Zone In Z Coordinate",
+      "name": "zone_in_z"
+    },
+    {
+      "data_type": "float",
+      "description": "Zone In Heading Coordinate",
+      "name": "zone_in_h"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/dynamic-zones/dynamic_zone_templates/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "dynamic_zone_templates",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "dynamic_zone_templates",
+  "path": "schema/dynamic-zones/dynamic_zone_templates",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "dz_template_id",
+      "remote_table": "[tasks](../../schema/tasks/tasks.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/dynamic-zones/dynamic_zone_templates.md",
+  "table": "dynamic_zone_templates",
+  "title": "dynamic_zone_templates"
+}

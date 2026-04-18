@@ -1,0 +1,170 @@
+{
+  "category": "npcs",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique NPC Spell Set Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "tinytext",
+      "description": "NPC Spell Set Name",
+      "name": "name"
+    },
+    {
+      "data_type": "int",
+      "description": "Inherit all the spells from this list, and merge them with our spells. Only one level of inheritance is allowed, so your parent's parent will not be included.",
+      "name": "parent_list"
+    },
+    {
+      "data_type": "smallint",
+      "description": "The combat proc that an NPC with this spell set will add to their list of procs. [Spell Identifier](../../schema/spells/spells_new.md)",
+      "name": "attack_proc"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Proc Chance: 0 = Never, 100 = Always",
+      "name": "proc_chance"
+    },
+    {
+      "data_type": "smallint",
+      "description": "The ranged proc that an NPC with this spell set will add to their list of procs.",
+      "name": "range_proc"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Ranged Proc Chance: 0 = Never, 100 = Always",
+      "name": "rproc_chance"
+    },
+    {
+      "data_type": "smallint",
+      "description": "The defensive proc that an NPC with this spell set will add to their list of procs.",
+      "name": "defensive_proc"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Defensive Proc Chance: 0 = Never, 100 = Always",
+      "name": "dproc_chance"
+    },
+    {
+      "data_type": "int",
+      "description": "Fail Recast",
+      "name": "fail_recast"
+    },
+    {
+      "data_type": "int",
+      "description": "Engaged No Spell Recast Minimum (Unused)",
+      "name": "engaged_no_sp_recast_min"
+    },
+    {
+      "data_type": "int",
+      "description": "Engaged No Spell Recast Maximum (Unused)",
+      "name": "engaged_no_sp_recast_max"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Engaged B Self Chance (Unused)",
+      "name": "engaged_b_self_chance"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Engaged B Other Chance (Unused)",
+      "name": "engaged_b_other_chance"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Engaged D Chance (Unused)",
+      "name": "engaged_d_chance"
+    },
+    {
+      "data_type": "int",
+      "description": "Pursue No Spell Recast Minimum (Unused)",
+      "name": "pursue_no_sp_recast_min"
+    },
+    {
+      "data_type": "int",
+      "description": "Pursue No Spell Recast Maximum (Unused)",
+      "name": "pursue_no_sp_recast_max"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Pursue D Chance (Unused)",
+      "name": "pursue_d_chance"
+    },
+    {
+      "data_type": "int",
+      "description": "Idle No Spell Recast Minimum (Unused)",
+      "name": "idle_no_sp_recast_min"
+    },
+    {
+      "data_type": "int",
+      "description": "Idle No Spell Recast Maximum (Unused)",
+      "name": "idle_no_sp_recast_max"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Idle B Chance (Unused)",
+      "name": "idle_b_chance"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/npcs/npc_spells/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "npc_spells",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "npc_spells",
+  "path": "schema/npcs/npc_spells",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "spells_id",
+      "remote_table": "[bot_data](../../schema/bots/bot_data.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "npc_spells_id",
+      "remote_table": "[bot_spells_entries](../../schema/bots/bot_spells_entries.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "Has-Many",
+      "remote_key": "npc_spells_id",
+      "remote_table": "[npc_spells_entries](../../schema/npcs/npc_spells_entries.md)"
+    },
+    {
+      "local_key": "parent_list",
+      "relationship_type": "Has-Many",
+      "remote_key": "spells_id",
+      "remote_table": "[bot_data](../../schema/bots/bot_data.md)"
+    },
+    {
+      "local_key": "parent_list",
+      "relationship_type": "Has-Many",
+      "remote_key": "npc_spells_id",
+      "remote_table": "[bot_spells_entries](../../schema/bots/bot_spells_entries.md)"
+    },
+    {
+      "local_key": "parent_list",
+      "relationship_type": "One-to-One",
+      "remote_key": "parent_list",
+      "remote_table": "[npc_spells](../../schema/npcs/npc_spells.md)"
+    },
+    {
+      "local_key": "parent_list",
+      "relationship_type": "Has-Many",
+      "remote_key": "npc_spells_id",
+      "remote_table": "[npc_spells_entries](../../schema/npcs/npc_spells_entries.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/npcs/npc_spells.md",
+  "table": "npc_spells",
+  "title": "npc_spells"
+}

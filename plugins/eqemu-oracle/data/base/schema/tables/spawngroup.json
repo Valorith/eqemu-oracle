@@ -1,0 +1,94 @@
+{
+  "category": "spawns",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Spawn Group Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Name",
+      "name": "name"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Spawn Limit",
+      "name": "spawn_limit"
+    },
+    {
+      "data_type": "float",
+      "description": "Distance",
+      "name": "dist"
+    },
+    {
+      "data_type": "float",
+      "description": "Max X Coordinate",
+      "name": "max_x"
+    },
+    {
+      "data_type": "float",
+      "description": "Min X Coordinate",
+      "name": "min_x"
+    },
+    {
+      "data_type": "float",
+      "description": "Max Y Coordinate",
+      "name": "max_y"
+    },
+    {
+      "data_type": "float",
+      "description": "Min Y Coordinate",
+      "name": "min_y"
+    },
+    {
+      "data_type": "int",
+      "description": "Roaming Delay",
+      "name": "delay"
+    },
+    {
+      "data_type": "int",
+      "description": "Minimum Delay",
+      "name": "mindelay"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Despawn Type](../../../../server/npc/spawns/npc-despawn-types)",
+      "name": "despawn"
+    },
+    {
+      "data_type": "int",
+      "description": "Despawn Timer in Seconds",
+      "name": "despawn_timer"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Waypoint Spawns: 0 = False, 1 = True",
+      "name": "wp_spawns"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/spawns/spawngroup/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "spawngroup",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "spawngroup",
+  "path": "schema/spawns/spawngroup",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "id",
+      "relationship_type": "One-to-One",
+      "remote_key": "spawngroupID",
+      "remote_table": "[spawn2](../../schema/spawns/spawn2.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/spawns/spawngroup.md",
+  "table": "spawngroup",
+  "title": "spawngroup"
+}

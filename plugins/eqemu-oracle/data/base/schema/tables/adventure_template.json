@@ -1,0 +1,218 @@
+{
+  "category": "adventures",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "[Adventure Identifier](adventure_details.md)",
+      "name": "id"
+    },
+    {
+      "data_type": "varchar",
+      "description": "[Zone Short Name](../../../../server/zones/zone-list)",
+      "name": "zone"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Zone Version",
+      "name": "zone_version"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Hard: 0 = False, 1 = True",
+      "name": "is_hard"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Raid: 0 = False, 1 = True",
+      "name": "is_raid"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Minimum Level",
+      "name": "min_level"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Maximum Level",
+      "name": "max_level"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Type",
+      "name": "type"
+    },
+    {
+      "data_type": "int",
+      "description": "Type Data",
+      "name": "type_data"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Type Count",
+      "name": "type_count"
+    },
+    {
+      "data_type": "float",
+      "description": "Assassination X Coordinate",
+      "name": "assa_x"
+    },
+    {
+      "data_type": "float",
+      "description": "Assassination Y Coordinate",
+      "name": "assa_y"
+    },
+    {
+      "data_type": "float",
+      "description": "Assassination Z Coordinate",
+      "name": "assa_z"
+    },
+    {
+      "data_type": "float",
+      "description": "Assassination Heading Coordinate",
+      "name": "assa_h"
+    },
+    {
+      "data_type": "varchar",
+      "description": "Text",
+      "name": "text"
+    },
+    {
+      "data_type": "int",
+      "description": "Duration",
+      "name": "duration"
+    },
+    {
+      "data_type": "int",
+      "description": "Zone In Duration",
+      "name": "zone_in_time"
+    },
+    {
+      "data_type": "smallint",
+      "description": "LDoN Points for Winning",
+      "name": "win_points"
+    },
+    {
+      "data_type": "smallint",
+      "description": "LDoN Points for Losing",
+      "name": "lose_points"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[LDoN Theme](../../../../server/zones/ldon-themes)",
+      "name": "theme"
+    },
+    {
+      "data_type": "smallint",
+      "description": "[Zone In Zone Identifier](../../../../server/zones/zone-list)",
+      "name": "zone_in_zone_id"
+    },
+    {
+      "data_type": "float",
+      "description": "Zone In X Coordinate",
+      "name": "zone_in_x"
+    },
+    {
+      "data_type": "float",
+      "description": "Zone In Y Coordinate",
+      "name": "zone_in_y"
+    },
+    {
+      "data_type": "smallint",
+      "description": "Zone In Object Identifier",
+      "name": "zone_in_object_id"
+    },
+    {
+      "data_type": "float",
+      "description": "Destination X Coordinate",
+      "name": "dest_x"
+    },
+    {
+      "data_type": "float",
+      "description": "Destination Y Coordinate",
+      "name": "dest_y"
+    },
+    {
+      "data_type": "float",
+      "description": "Destination Z Coordinate",
+      "name": "dest_z"
+    },
+    {
+      "data_type": "float",
+      "description": "Destination Heading Coordinate",
+      "name": "dest_h"
+    },
+    {
+      "data_type": "int",
+      "description": "[Zone Identifier](../../../../server/zones/zone-list)",
+      "name": "graveyard_zone_id"
+    },
+    {
+      "data_type": "float",
+      "description": "Graveyard X Coordinate",
+      "name": "graveyard_x"
+    },
+    {
+      "data_type": "float",
+      "description": "Graveyard Y Coordinate",
+      "name": "graveyard_y"
+    },
+    {
+      "data_type": "float",
+      "description": "Graveyard Z Coordinate",
+      "name": "graveyard_z"
+    },
+    {
+      "data_type": "float",
+      "description": "Graveyard Radius",
+      "name": "graveyard_radius"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/adventures/adventure_template/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "adventure_template",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "adventure_template",
+  "path": "schema/adventures/adventure_template",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "graveyard_zone_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "zoneidnumber",
+      "remote_table": "[zone](../../schema/zone/zone.md)"
+    },
+    {
+      "local_key": "id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[adventure_details](../../schema/adventures/adventure_details.md)"
+    },
+    {
+      "local_key": "zone",
+      "relationship_type": "One-to-One",
+      "remote_key": "short_name",
+      "remote_table": "[zone](../../schema/zone/zone.md)"
+    },
+    {
+      "local_key": "zone_in_zone_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "zoneidnumber",
+      "remote_table": "[zone](../../schema/zone/zone.md)"
+    },
+    {
+      "local_key": "zone_version",
+      "relationship_type": "One-to-One",
+      "remote_key": "version",
+      "remote_table": "[zone](../../schema/zone/zone.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/adventures/adventure_template.md",
+  "table": "adventure_template",
+  "title": "adventure_template"
+}

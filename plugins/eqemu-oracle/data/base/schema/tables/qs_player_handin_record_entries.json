@@ -1,0 +1,109 @@
+{
+  "category": "query-server",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Event Identifier",
+      "name": "event_id"
+    },
+    {
+      "data_type": "char",
+      "description": "Action Type",
+      "name": "action_type"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "[Character Slot Identifier](../../../../server/inventory/inventory-slots)",
+      "name": "char_slot"
+    },
+    {
+      "data_type": "int",
+      "description": "[Item Identifier](../../schema/items/items.md)",
+      "name": "item_id"
+    },
+    {
+      "data_type": "mediumint",
+      "description": "Charges",
+      "name": "charges"
+    },
+    {
+      "data_type": "int",
+      "description": "Augment Slot 1",
+      "name": "aug_1"
+    },
+    {
+      "data_type": "int",
+      "description": "Augment Slot 2",
+      "name": "aug_2"
+    },
+    {
+      "data_type": "int",
+      "description": "Augment Slot 3",
+      "name": "aug_3"
+    },
+    {
+      "data_type": "int",
+      "description": "Augment Slot 4",
+      "name": "aug_4"
+    },
+    {
+      "data_type": "int",
+      "description": "Augment Slot 5",
+      "name": "aug_5"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/query-server/qs_player_handin_record_entries/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "qs_player_handin_record_entries",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "qs_player_handin_record_entries",
+  "path": "schema/query-server/qs_player_handin_record_entries",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "aug_1",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[items](../../schema/items/items.md)"
+    },
+    {
+      "local_key": "aug_2",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[items](../../schema/items/items.md)"
+    },
+    {
+      "local_key": "aug_3",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[items](../../schema/items/items.md)"
+    },
+    {
+      "local_key": "aug_4",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[items](../../schema/items/items.md)"
+    },
+    {
+      "local_key": "aug_5",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[items](../../schema/items/items.md)"
+    },
+    {
+      "local_key": "item_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[items](../../schema/items/items.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/query-server/qs_player_handin_record_entries.md",
+  "table": "qs_player_handin_record_entries",
+  "title": "qs_player_handin_record_entries"
+}

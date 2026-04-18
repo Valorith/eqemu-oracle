@@ -1,0 +1,65 @@
+{
+  "category": "characters",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Task Timer Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Character Identifer](character_data.md)",
+      "name": "character_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Task Identifier](../../schema/tasks/tasks.md)",
+      "name": "task_id"
+    },
+    {
+      "data_type": "int",
+      "description": "Timer Type (0 = Replay, 1 = Request)",
+      "name": "timer_type"
+    },
+    {
+      "data_type": "int",
+      "description": "Group Timer",
+      "name": "timer_group"
+    },
+    {
+      "data_type": "datetime",
+      "description": "Expire Time",
+      "name": "expire_time"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/characters/character_task_timers/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "character_task_timers",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "character_task_timers",
+  "path": "schema/characters/character_task_timers",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "character_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+    },
+    {
+      "local_key": "task_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[tasks](../../schema/tasks/tasks.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_task_timers.md",
+  "table": "character_task_timers",
+  "title": "character_task_timers"
+}

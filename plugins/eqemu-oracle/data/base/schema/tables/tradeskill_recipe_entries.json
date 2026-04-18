@@ -1,0 +1,75 @@
+{
+  "category": "tradeskills",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Tradeskill Recipe Entry Identifier",
+      "name": "id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Unique Tradeskill Recipe Identifier](tradeskill_recipe.md)",
+      "name": "recipe_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Item Identifier](../../schema/items/items.md)",
+      "name": "item_id"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Success Count",
+      "name": "successcount"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Fail Count",
+      "name": "failcount"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Component Count",
+      "name": "componentcount"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Salvage Count",
+      "name": "salvagecount"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "Is Container: 0 = False, 1 = True",
+      "name": "iscontainer"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/tradeskills/tradeskill_recipe_entries/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "tradeskill_recipe_entries",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "tradeskill_recipe_entries",
+  "path": "schema/tradeskills/tradeskill_recipe_entries",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "item_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[items](../../schema/items/items.md)"
+    },
+    {
+      "local_key": "recipe_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[tradeskill_recipe](../../schema/tradeskills/tradeskill_recipe.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/tradeskills/tradeskill_recipe_entries.md",
+  "table": "tradeskill_recipe_entries",
+  "title": "tradeskill_recipe_entries"
+}

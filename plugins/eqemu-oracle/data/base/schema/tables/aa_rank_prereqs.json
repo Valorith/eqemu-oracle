@@ -1,0 +1,50 @@
+{
+  "category": "aas",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "[Rank Identifier](aa_ranks.md)",
+      "name": "rank_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[AA Identifier](aa_ability.md)",
+      "name": "aa_id"
+    },
+    {
+      "data_type": "int",
+      "description": "Cost in AA Points",
+      "name": "points"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/aas/aa_rank_prereqs/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "aa_rank_prereqs",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "aa_rank_prereqs",
+  "path": "schema/aas/aa_rank_prereqs",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "aa_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[aa_ranks](../../schema/aas/aa_ranks.md)"
+    },
+    {
+      "local_key": "rank_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[aa_ranks](../../schema/aas/aa_ranks.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/aas/aa_rank_prereqs.md",
+  "table": "aa_rank_prereqs",
+  "title": "aa_rank_prereqs"
+}

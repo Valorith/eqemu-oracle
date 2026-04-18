@@ -1,0 +1,31 @@
+{
+  "category": "bots",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "[Races Bitmask](../../../../categories/npc/race-list)",
+      "name": "race"
+    },
+    {
+      "data_type": "int",
+      "description": "[Classes Bitmask](../../../../server/player/class-list)",
+      "name": "classes"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/bots/bot_create_combinations/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "bot_create_combinations",
+    "Schema"
+  ],
+  "id": "bot_create_combinations",
+  "path": "schema/bots/bot_create_combinations",
+  "related_docs": [],
+  "relationships": [],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/bots/bot_create_combinations.md",
+  "table": "bot_create_combinations",
+  "title": "bot_create_combinations"
+}

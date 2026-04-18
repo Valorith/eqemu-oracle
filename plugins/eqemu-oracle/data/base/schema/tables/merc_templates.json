@@ -1,0 +1,100 @@
+{
+  "category": "mercenaries",
+  "columns": [
+    {
+      "data_type": "int",
+      "description": "Unique Mercenary Template Identifier",
+      "name": "merc_template_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Mercenary Type Identifier](merc_types.md)",
+      "name": "merc_type_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Mercenary Subtype Identifier](merc_subtypes.md)",
+      "name": "merc_subtype_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Mercenary NPC Type Identifier](merc_npc_types.md)",
+      "name": "merc_npc_type_id"
+    },
+    {
+      "data_type": "varchar",
+      "description": "[DBString Identifier](../../schema/client-files/db_str.md)",
+      "name": "dbstring"
+    },
+    {
+      "data_type": "tinyint",
+      "description": "[Name Type Identifier](merc_name_types.md)",
+      "name": "name_type_id"
+    },
+    {
+      "data_type": "int",
+      "description": "[Client Version](../../../../categories/player/client-version-bitmasks)",
+      "name": "clientversion"
+    }
+  ],
+  "docs_url": "https://docs.eqemu.dev/schema/mercenaries/merc_templates/",
+  "domain": "schema",
+  "fetched_at": "2026-04-18T16:08:49Z",
+  "headings": [
+    "merc_templates",
+    "Relationships",
+    "Schema"
+  ],
+  "id": "merc_templates",
+  "path": "schema/mercenaries/merc_templates",
+  "related_docs": [],
+  "relationships": [
+    {
+      "local_key": "dbstring",
+      "relationship_type": "One-to-One",
+      "remote_key": "id",
+      "remote_table": "[db_str](../../schema/client-files/db_str.md)"
+    },
+    {
+      "local_key": "merc_npc_type_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "merc_npc_type_id",
+      "remote_table": "[merc_npc_types](../../schema/mercenaries/merc_npc_types.md)"
+    },
+    {
+      "local_key": "merc_template_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "merc_merchant_template_entry_id",
+      "remote_table": "[merc_merchant_template_entries](../../schema/mercenaries/merc_merchant_template_entries.md)"
+    },
+    {
+      "local_key": "merc_template_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "merc_template_id",
+      "remote_table": "[merc_merchant_template_entries](../../schema/mercenaries/merc_merchant_template_entries.md)"
+    },
+    {
+      "local_key": "merc_template_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "TemplateID",
+      "remote_table": "[mercs](../../schema/mercenaries/mercs.md)"
+    },
+    {
+      "local_key": "merc_subtype_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "merc_subtype_id",
+      "remote_table": "[merc_subtypes](../../schema/mercenaries/merc_subtypes.md)"
+    },
+    {
+      "local_key": "name_type_id",
+      "relationship_type": "One-to-One",
+      "remote_key": "name_type_id",
+      "remote_table": "[merc_name_types](../../schema/mercenaries/merc_name_types.md)"
+    }
+  ],
+  "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+  "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
+  "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/mercenaries/merc_templates.md",
+  "table": "merc_templates",
+  "title": "merc_templates"
+}
