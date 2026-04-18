@@ -54,14 +54,14 @@ Important: open the repository root, not just `plugins/eqemu-oracle/`. The plugi
 
 For normal installation, download the latest release zip from [Releases](https://github.com/Valorith/eqemu-oracle/releases), then extract it anywhere convenient on your machine.
 
-The extracted folder will be named something like `eqemu-oracle-v0.2.1`.
+The extracted folder will be named something like `eqemu-oracle-vX.Y.Z`.
 
 If you want the live source checkout for development or contribution work, you can clone the repository instead.
 
 Examples:
 
-- Windows: `C:\Users\<you>\Documents\eqemu-oracle-v0.2.1`
-- macOS: `~/Code/eqemu-oracle-v0.2.1`
+- Windows: `C:\Users\<you>\Documents\eqemu-oracle-vX.Y.Z`
+- macOS: `~/Code/eqemu-oracle-vX.Y.Z`
 
 ### 2. Confirm Python
 
