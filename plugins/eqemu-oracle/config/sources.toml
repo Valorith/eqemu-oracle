@@ -1,6 +1,6 @@
 [quest_api]
 definitions_url = "https://spire.eqemu.dev/api/v1/quest-api/definitions"
-repo = "https://github.com/Valorith/spire"
+repo = "https://github.com/EQEmuTools/spire"
 branch = "master"
 
 [docs]

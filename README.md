@@ -45,7 +45,7 @@ That means a local extension can override both the upstream data and a repo-trac
 ## Current Upstream Sources
 
 - Quest API: [spire.eqemu.dev Quest API definitions](https://spire.eqemu.dev/quest-api-explorer)
-- Quest API provenance: [Valorith/spire](https://github.com/Valorith/spire)
+- Quest API provenance: [EQEmuTools/spire](https://github.com/EQEmuTools/spire)
 - Schema and docs source repo: [EQEmu/eqemu-docs-v2](https://github.com/EQEmu/eqemu-docs-v2)
 - Human-facing schema/docs site: [docs.eqemu.dev](https://docs.eqemu.dev/)
 
@@ -64,16 +64,90 @@ That means a local extension can override both the upstream data and a repo-trac
 
 ## Getting Started
 
-1. Open the repo in Codex.
-2. Ensure a Python 3 launcher is available on your machine.
-3. Load the local plugin from the marketplace entry in `.agents/plugins/marketplace.json`.
-4. The plugin MCP server is wired through `plugins/eqemu-oracle/.mcp.json` and starts through `plugins/eqemu-oracle/scripts/eqemu_oracle_launcher.cmd`, a cross-platform launcher that selects the right Python entrypoint for macOS and Windows Codex installs.
+The plugin is wired with repo-relative paths, so users should keep the repository contents together and open the repository root in Codex.
+
+### Before You Start
+
+- Download or clone this repository anywhere on your machine.
+- Do not move only `plugins/eqemu-oracle/` somewhere else unless you also update the relative paths in `.agents/plugins/marketplace.json`.
+- Open the repository root in Codex, not just the plugin subfolder.
+- Ensure Python 3 is installed and available from a terminal.
+
+Quick verification commands:
+
+```sh
+python3 --version
+```
+
+On Windows, either of these is acceptable:
+
+```powershell
+py -3 --version
+python --version
+```
+
+### Windows Setup
+
+1. Download or clone this repository to any folder you want, for example `C:\Users\<you>\Documents\EQEmu Oracle`.
+2. Open the repository root in Codex.
+3. Open a terminal in Codex and verify Python with `py -3 --version`.
+4. If `py -3` is not available, try `python --version`.
+5. In Codex, load the local plugin from `.agents/plugins/marketplace.json`.
+6. Install or enable the `eqemu-oracle` plugin from that local marketplace entry.
+7. Ask Codex to use `EQEmu Oracle` for a schema, docs, or quest API lookup.
+
+### macOS Setup
+
+1. Download or clone this repository to any folder you want, for example `~/Code/eqemu-oracle`.
+2. Open the repository root in Codex.
+3. Open a terminal in Codex and verify Python with `python3 --version`.
+4. In Codex, load the local plugin from `.agents/plugins/marketplace.json`.
+5. Install or enable the `eqemu-oracle` plugin from that local marketplace entry.
+6. Ask Codex to use `EQEmu Oracle` for a schema, docs, or quest API lookup.
+
+### How Codex Starts The Plugin
+
+After the plugin is installed from the local marketplace entry, Codex starts the MCP server automatically through `plugins/eqemu-oracle/.mcp.json`.
+
+The server is launched through `plugins/eqemu-oracle/scripts/eqemu_oracle_launcher.cmd`. Despite the `.cmd` name, this file is a cross-platform launcher:
+
+- on macOS/Linux it runs as a shell script and uses `python3`
+- on Windows it prefers `py -3` and falls back to `python`
+
+Users normally do not need to start `mcp-serve` manually unless they are debugging the plugin.
+
+### Manual Runtime Check
+
+If you want to confirm the runtime works before or after installing the plugin, run:
 
 ```sh
 <python-launcher> plugins/eqemu-oracle/scripts/eqemu_oracle.py mcp-serve
 ```
 
 `<python-launcher>` means `python3` on macOS/Linux and `py -3` (or `python`) on Windows. Python 3.11+ is the cleanest path on both Windows and macOS, but the checked-in `sources.toml` format also works on older Python 3 runtimes without extra parser dependencies.
+
+### Verify The Plugin Is Working
+
+After installation, test with a prompt that should clearly invoke the plugin, for example:
+
+- `Use EQEmu Oracle to explain quest::say`
+- `Use EQEmu Oracle to find the schema for npc_types`
+- `Use EQEmu Oracle to find the docs page for Perl quest events`
+
+The success signal is that Codex can answer with EQEmu-specific results from this plugin without asking you to browse the web or guess from generic knowledge.
+
+### Troubleshooting
+
+- Plugin does not appear in Codex:
+  Open the repository root in Codex and load `.agents/plugins/marketplace.json`. The marketplace entry uses `./plugins/eqemu-oracle`, so opening the wrong folder breaks discovery.
+- Python is not found on Windows:
+  Install Python 3 and make sure either `py -3` or `python` works in a new terminal.
+- Python is not found on macOS:
+  Install Python 3 and make sure `python3` works in a new terminal.
+- The plugin installs but does not answer:
+  Run `<python-launcher> plugins/eqemu-oracle/scripts/eqemu_oracle.py mcp-serve` manually to confirm the runtime starts without errors.
+- A user downloaded only part of the repo:
+  The plugin relies on repo-relative files such as `.agents/plugins/marketplace.json`, `plugins/eqemu-oracle/.mcp.json`, and staged data under `plugins/eqemu-oracle/data/`.
 
 If you need to point the plugin at a fork, branch, or private mirror, copy `plugins/eqemu-oracle/config/sources.toml` to `plugins/eqemu-oracle/config/sources.local.toml` and override only the values you need.
 

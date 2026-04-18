@@ -25,6 +25,23 @@
 - `config/sources.local.toml`: optional local override, ignored by git
 - `tests/`: unit and smoke tests
 
+## Installation
+
+For first-time setup in Codex, start with the repository root README:
+
+- `../../README.md`
+
+That document covers:
+
+- Windows setup
+- macOS setup
+- Python verification
+- loading the local marketplace entry
+- verifying that Codex can see and use the plugin
+- basic troubleshooting
+
+This plugin README focuses on the runtime, data layout, and CLI after installation.
+
 ## CLI
 
 Run the local MCP server:

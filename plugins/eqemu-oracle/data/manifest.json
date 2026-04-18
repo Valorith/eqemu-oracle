@@ -15,8 +15,9 @@
     "repo_root": "C:\\Users\\rgagn\\OneDrive\\Documents\\Github Projects\\EQEmu Oracle\\plugins\\eqemu-oracle\\extensions"
   },
   "freshness_state": "fresh",
-  "generated_at": "2026-04-18T18:55:01Z",
-  "snapshot_version": "20260418185501",
+  "generated_at": "2026-04-18T21:20:32Z",
+  "merge_scope": "quest-api",
+  "snapshot_version": "20260418212032",
   "sources": {
     "docs": {
       "fetched_at": "2026-04-18T17:54:31Z",
@@ -24,10 +25,11 @@
       "source_repo": "https://github.com/EQEmu/eqemu-docs-v2"
     },
     "quest-api": {
-      "fetched_at": "2026-04-18T17:54:31Z",
+      "fetched_at": "2026-04-18T21:20:31Z",
       "last_refreshed": "2026-04-17T23:20:19.622142544Z",
-      "source_ref": "d0b7fa6e651bd9a60c774f032563a50e338b1dc7",
-      "source_repo": "https://github.com/Valorith/spire",
+      "source_branch": "master",
+      "source_ref": "839ef4932382d3729eedf5c9da57cc72c8faf907",
+      "source_repo": "https://github.com/EQEmuTools/spire",
       "source_url": "https://spire.eqemu.dev/api/v1/quest-api/definitions"
     },
     "schema": {
