@@ -1,0 +1,85 @@
+name: Create Release Bundle
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Read plugin version
+        id: version
+        shell: bash
+        run: |
+          VERSION="$(python - <<'PY'
+          import json
+          from pathlib import Path
+
+          plugin_json = Path("plugins/eqemu-oracle/.codex-plugin/plugin.json")
+          data = json.loads(plugin_json.read_text(encoding="utf-8"))
+          print(data["version"])
+          PY
+          )"
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+          echo "tag=v${VERSION}" >> "$GITHUB_OUTPUT"
+          echo "archive_name=eqemu-oracle-v${VERSION}.zip" >> "$GITHUB_OUTPUT"
+          echo "bundle_root=eqemu-oracle-v${VERSION}" >> "$GITHUB_OUTPUT"
+
+      - name: Fail if release tag already exists
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          if gh release view "${{ steps.version.outputs.tag }}" >/dev/null 2>&1; then
+            echo "Release ${{ steps.version.outputs.tag }} already exists. Bump plugins/eqemu-oracle/.codex-plugin/plugin.json before triggering this workflow again."
+            exit 1
+          fi
+
+      - name: Build release zip
+        env:
+          ARCHIVE_NAME: ${{ steps.version.outputs.archive_name }}
+          BUNDLE_ROOT: ${{ steps.version.outputs.bundle_root }}
+        shell: bash
+        run: |
+          mkdir -p dist
+          python - <<'PY'
+          import os
+          from pathlib import Path
+          from zipfile import ZIP_DEFLATED, ZipFile
+
+          repo_root = Path(os.environ["GITHUB_WORKSPACE"]).resolve()
+          archive_path = repo_root / "dist" / os.environ["ARCHIVE_NAME"]
+          bundle_root = os.environ["BUNDLE_ROOT"]
+          skipped_roots = {".git", "dist"}
+
+          with ZipFile(archive_path, "w", compression=ZIP_DEFLATED) as archive:
+              for path in sorted(repo_root.rglob("*")):
+                  if path.is_dir():
+                      continue
+                  rel_path = path.relative_to(repo_root)
+                  if rel_path.parts and rel_path.parts[0] in skipped_roots:
+                      continue
+                  archive.write(path, Path(bundle_root, *rel_path.parts).as_posix())
+
+          print(f"Created {archive_path}")
+          PY
+
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          gh release create "${{ steps.version.outputs.tag }}" \
+            "dist/${{ steps.version.outputs.archive_name }}" \
+            --title "EQEmu Oracle v${{ steps.version.outputs.version }}" \
+            --notes "Release bundle for EQEmu Oracle v${{ steps.version.outputs.version }}."
