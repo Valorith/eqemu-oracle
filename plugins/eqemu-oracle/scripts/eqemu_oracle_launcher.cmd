@@ -1,3 +1,4 @@
+:; exec python3 "$(dirname "$0")/eqemu_oracle.py" "$@"
 @echo off
 setlocal
 set "SCRIPT_DIR=%~dp0"

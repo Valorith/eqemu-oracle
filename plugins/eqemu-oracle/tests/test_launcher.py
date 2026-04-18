@@ -2,15 +2,21 @@ from __future__ import annotations
 
 import json
 import subprocess
+import sys
 import unittest
 from pathlib import Path
 
 
 class LauncherTest(unittest.TestCase):
-    def test_launcher_help_works_on_current_platform(self) -> None:
+    def _launcher_command(self, *args: str) -> list[str]:
         launcher = Path(__file__).resolve().parents[1] / "scripts" / "eqemu_oracle_launcher.cmd"
+        if sys.platform == "win32":
+            return [str(launcher), *args]
+        return ["sh", str(launcher), *args]
+
+    def test_launcher_help_works_on_current_platform(self) -> None:
         completed = subprocess.run(
-            [str(launcher), "--help"],
+            self._launcher_command("--help"),
             check=True,
             capture_output=True,
             text=True,
@@ -20,9 +26,8 @@ class LauncherTest(unittest.TestCase):
         self.assertEqual(completed.stderr, "")
 
     def test_launcher_mcp_serve_returns_clean_initialize_response(self) -> None:
-        launcher = Path(__file__).resolve().parents[1] / "scripts" / "eqemu_oracle_launcher.cmd"
         proc = subprocess.Popen(
-            [str(launcher), "mcp-serve"],
+            self._launcher_command("mcp-serve"),
             stdin=subprocess.PIPE,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
@@ -59,6 +64,7 @@ class LauncherTest(unittest.TestCase):
         self.assertEqual(payload["result"]["serverInfo"]["name"], "eqemu-oracle")
 
         proc.stdin.close()
+        proc.stdin = None
         stdout_tail, stderr = proc.communicate(timeout=5)
         self.assertEqual(stdout_tail, b"")
         self.assertEqual(stderr.decode("utf-8"), "")
