@@ -33,6 +33,7 @@ For first-time setup in Codex, start with the repository root README:
 
 That document covers:
 
+- downloading and extracting the release zip
 - Windows setup
 - macOS setup
 - Python verification

@@ -39,9 +39,9 @@ Once installed, the plugin can help Codex:
 
 If you only care about getting it running, follow these steps:
 
-1. Download or clone this repository to your computer.
+1. Download the latest release zip from [Releases](https://github.com/Valorith/eqemu-oracle/releases) and extract it on your computer.
 2. Install Python 3 if you do not already have it.
-3. Open the repository root in Codex.
+3. Open the extracted release folder in Codex.
 4. In Codex, load the local plugin marketplace from `.agents/plugins/marketplace.json`.
 5. Install or enable the `EQEmu Oracle` plugin from that marketplace entry.
 6. Ask Codex an EQEmu question.
@@ -52,12 +52,16 @@ Important: open the repository root, not just `plugins/eqemu-oracle/`. The plugi
 
 ### 1. Get The Repository
 
-Put the full repository anywhere convenient on your machine.
+For normal installation, download the latest release zip from [Releases](https://github.com/Valorith/eqemu-oracle/releases), then extract it anywhere convenient on your machine.
+
+The extracted folder will be named something like `eqemu-oracle-v0.1.4`.
+
+If you want the live source checkout for development or contribution work, you can clone the repository instead.
 
 Examples:
 
-- Windows: `C:\Users\<you>\Documents\EQEmu Oracle`
-- macOS: `~/Code/eqemu-oracle`
+- Windows: `C:\Users\<you>\Documents\eqemu-oracle-v0.1.4`
+- macOS: `~/Code/eqemu-oracle-v0.1.4`
 
 ### 2. Confirm Python
 
