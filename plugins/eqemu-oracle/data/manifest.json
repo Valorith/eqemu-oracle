@@ -1,5 +1,5 @@
 {
-  "active_root": "C:\\Users\\rgagn\\OneDrive\\Documents\\Github Projects\\EQEmu Oracle\\plugins\\eqemu-oracle\\data\\merged",
+  "active_root": "/home/runner/work/eqemu-oracle/eqemu-oracle/plugins/eqemu-oracle/data/merged",
   "counts": {
     "docs": 377,
     "docs-sections": 4741,
@@ -11,21 +11,22 @@
     "stale_schema_candidates": []
   },
   "extensions": {
-    "local_root": "C:\\Users\\rgagn\\OneDrive\\Documents\\Github Projects\\EQEmu Oracle\\plugins\\eqemu-oracle\\local-extensions",
-    "repo_root": "C:\\Users\\rgagn\\OneDrive\\Documents\\Github Projects\\EQEmu Oracle\\plugins\\eqemu-oracle\\extensions"
+    "local_root": "/home/runner/work/eqemu-oracle/eqemu-oracle/plugins/eqemu-oracle/local-extensions",
+    "repo_root": "/home/runner/work/eqemu-oracle/eqemu-oracle/plugins/eqemu-oracle/extensions"
   },
   "freshness_state": "fresh",
-  "generated_at": "2026-04-18T21:20:32Z",
-  "merge_scope": "quest-api",
-  "snapshot_version": "20260418212032",
+  "generated_at": "2026-04-18T22:05:14Z",
+  "merge_scope": "all",
+  "snapshot_version": "20260418220514",
   "sources": {
     "docs": {
-      "fetched_at": "2026-04-18T17:54:31Z",
+      "fetched_at": "2026-04-18T22:05:08Z",
+      "source_branch": "main",
       "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
       "source_repo": "https://github.com/EQEmu/eqemu-docs-v2"
     },
     "quest-api": {
-      "fetched_at": "2026-04-18T21:20:31Z",
+      "fetched_at": "2026-04-18T22:05:08Z",
       "last_refreshed": "2026-04-17T23:20:19.622142544Z",
       "source_branch": "master",
       "source_ref": "839ef4932382d3729eedf5c9da57cc72c8faf907",
@@ -33,7 +34,8 @@
       "source_url": "https://spire.eqemu.dev/api/v1/quest-api/definitions"
     },
     "schema": {
-      "fetched_at": "2026-04-18T17:54:31Z",
+      "fetched_at": "2026-04-18T22:05:08Z",
+      "source_branch": "main",
       "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
       "source_repo": "https://github.com/EQEmu/eqemu-docs-v2"
     }
