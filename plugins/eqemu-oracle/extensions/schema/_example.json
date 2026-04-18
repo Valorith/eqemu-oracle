@@ -1,15 +1,51 @@
 {
   "tables": [
     {
-      "id": "my_custom_table",
-      "table": "my_custom_table",
-      "title": "my_custom_table",
+      "id": "custom_npc_scaling",
+      "table": "custom_npc_scaling",
+      "title": "custom_npc_scaling",
       "category": "custom",
       "columns": [
         {
-          "name": "id",
+          "name": "npc_type_id",
           "data_type": "int",
-          "description": "Primary key."
+          "description": "Links to npc_types.id."
+        },
+        {
+          "name": "hp_scale",
+          "data_type": "float",
+          "description": "Multiplier applied to base HP."
+        },
+        {
+          "name": "damage_scale",
+          "data_type": "float",
+          "description": "Multiplier applied to base melee damage."
+        }
+      ],
+      "relationships": [
+        {
+          "relationship_type": "many-to-one",
+          "local_key": "npc_type_id",
+          "remote_table": "npc_types",
+          "remote_key": "id"
+        }
+      ],
+      "search_aliases": [
+        "npc scaling",
+        "custom npc stats"
+      ],
+      "mode": "augment"
+    },
+    {
+      "id": "tasks_allowed_classes",
+      "table": "tasks",
+      "title": "tasks",
+      "category": "custom",
+      "columns": [
+        {
+          "name": "allowed_classes",
+          "data_type": "int(10) unsigned",
+          "description": "Fork-only column used to restrict a task to specific class bitmasks."
         }
       ],
       "relationships": [],

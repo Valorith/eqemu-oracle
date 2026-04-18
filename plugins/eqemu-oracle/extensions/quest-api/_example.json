@@ -1,21 +1,51 @@
 {
   "records": [
     {
-      "id": "perl:method:quest:my-custom-method:example",
+      "id": "perl:method:mob:getraiddifficulty:example-local001",
       "language": "perl",
       "kind": "method",
-      "container": "quest",
-      "name": "MyCustomMethod",
-      "signature": "MyCustomMethod()",
+      "container": "Mob",
+      "name": "GetRaidDifficulty",
+      "signature": "GetRaidDifficulty()",
       "params": [],
-      "return_type": "void",
+      "return_type": "int",
       "categories": [
         "Custom"
       ],
       "search_aliases": [
-        "custom method"
+        "raid difficulty",
+        "custom raid api"
       ],
-      "related_docs": [],
+      "related_docs": [
+        "quest-api/methods/mob"
+      ],
+      "mode": "augment"
+    },
+    {
+      "id": "perl:event:npc:event-custom-alert:example-local002",
+      "language": "perl",
+      "kind": "event",
+      "container": "NPC",
+      "name": "EVENT_CUSTOM_ALERT",
+      "signature": "EVENT_CUSTOM_ALERT()",
+      "params": [],
+      "details": {
+        "entity_type": "NPC",
+        "event_identifier": "EVENT_CUSTOM_ALERT",
+        "event_name": "EVENT_CUSTOM_ALERT",
+        "event_vars": [
+          "alert_id",
+          "alert_level",
+          "source_name"
+        ]
+      },
+      "search_aliases": [
+        "custom alert",
+        "alert event"
+      ],
+      "related_docs": [
+        "quest-api/events/perl-npc"
+      ],
       "mode": "augment"
     }
   ]

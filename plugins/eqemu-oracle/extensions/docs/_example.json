@@ -1,18 +1,45 @@
 {
   "pages": [
     {
-      "id": "custom/example-page",
-      "path": "custom/example-page",
-      "slug": "custom-example-page",
-      "title": "Example Page",
-      "summary": "Custom docs content.",
-      "markdown": "# Example Page\n\nCustom docs content.",
-      "aliases": [],
+      "id": "custom/content-pipeline",
+      "path": "custom/content-pipeline",
+      "slug": "custom-content-pipeline",
+      "title": "Custom Content Pipeline",
+      "summary": "Internal notes for loading fork-specific SQL and quest assets.",
+      "markdown": "# Custom Content Pipeline\n\n## Import Order\n\n1. Load base data.\n2. Apply custom SQL patches.\n3. Rebuild shared memory.\n\n## Quest Notes\n\nUse local quest API extensions for fork-only methods and events.\n\n## Schema Notes\n\nDocument any custom columns added to stock tables so Oracle can surface them during schema lookups.",
+      "aliases": [
+        "private-content-pipeline",
+        "custom-pipeline"
+      ],
       "tags": [
-        "custom"
+        "custom",
+        "internal",
+        "pipeline"
       ],
       "search_aliases": [
-        "example page"
+        "content pipeline",
+        "custom pipeline"
+      ],
+      "mode": "augment"
+    },
+    {
+      "id": "custom/quest-conventions",
+      "path": "custom/quest-conventions",
+      "slug": "custom-quest-conventions",
+      "title": "Quest Conventions",
+      "summary": "Team conventions for writing custom Perl and Lua quest scripts.",
+      "markdown": "# Quest Conventions\n\n## Perl\n\nUse `quest::debug` in starter handlers when introducing a new custom event.\n\n## Lua\n\nUse `eq.debug` in starter handlers and keep the first argument descriptive.\n\n## Extensions\n\nIf a method or event only exists in your fork, add it as a quest API extension before relying on it in prompts.",
+      "aliases": [
+        "quest-style-guide"
+      ],
+      "tags": [
+        "custom",
+        "quests",
+        "conventions"
+      ],
+      "search_aliases": [
+        "quest conventions",
+        "quest style"
       ],
       "mode": "augment"
     }

@@ -40,4 +40,10 @@ Each domain uses a different top-level array:
 
 The reserved filename `_example.json` is ignored by the loader and can be used as a safe template in any extension folder.
 
+Current starter templates:
+
+- `extensions/quest-api/_example.json`
+- `extensions/schema/_example.json`
+- `extensions/docs/_example.json`
+
 See the domain-specific readmes in each folder for concrete examples.
