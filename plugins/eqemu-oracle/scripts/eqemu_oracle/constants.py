@@ -1,10 +1,12 @@
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
 
 PLUGIN_ROOT = Path(__file__).resolve().parents[2]
 REPO_ROOT = PLUGIN_ROOT.parents[1]
+PLUGIN_METADATA_PATH = PLUGIN_ROOT / ".codex-plugin" / "plugin.json"
 CONFIG_ROOT = PLUGIN_ROOT / "config"
 SOURCES_CONFIG_PATH = CONFIG_ROOT / "sources.toml"
 LOCAL_SOURCES_CONFIG_PATH = CONFIG_ROOT / "sources.local.toml"
@@ -17,10 +19,23 @@ MAINTENANCE_LOCK_ROOT = CACHE_ROOT / "maintenance.lock"
 EXTENSIONS_ROOT = PLUGIN_ROOT / "extensions"
 LOCAL_EXTENSIONS_ROOT = PLUGIN_ROOT / "local-extensions"
 SEARCH_DB_PATH = CACHE_ROOT / "search.sqlite3"
-PLUGIN_VERSION = "0.1.3"
 SERVER_NAME = "eqemu-oracle"
 DOMAIN_CHOICES = ("quest-api", "schema", "docs")
 SCOPE_CHOICES = ("all", *DOMAIN_CHOICES)
 MODE_CHOICES = ("committed", "overlay")
 QUEST_LANGUAGE_CHOICES = ("perl", "lua")
 QUEST_KIND_CHOICES = ("method", "event", "constant")
+
+
+def _load_plugin_version() -> str:
+    try:
+        metadata = json.loads(PLUGIN_METADATA_PATH.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return "0.0.0"
+    version = metadata.get("version")
+    if not isinstance(version, str) or not version.strip():
+        return "0.0.0"
+    return version
+
+
+PLUGIN_VERSION = _load_plugin_version()

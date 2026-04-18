@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import unittest
 from pathlib import Path
 import sys
@@ -193,6 +194,26 @@ class McpServerValidationTest(unittest.TestCase):
         assert response is not None
         self.assertEqual(response["error"]["code"], -32000)
         self.assertIn("integer >= 1", response["error"]["message"])
+
+    def test_initialize_reports_plugin_manifest_version(self) -> None:
+        plugin_manifest_path = Path(__file__).resolve().parents[1] / ".codex-plugin" / "plugin.json"
+        plugin_manifest = json.loads(plugin_manifest_path.read_text(encoding="utf-8"))
+
+        with patch("eqemu_oracle.mcp.DataStore", return_value=self._stub_store()):
+            server = McpServer()
+
+        response = server.handle(
+            {
+                "jsonrpc": "2.0",
+                "id": 7,
+                "method": "initialize",
+                "params": {"protocolVersion": "2024-11-05", "capabilities": {}, "clientInfo": {"name": "test", "version": "0"}},
+            }
+        )
+
+        self.assertIsNotNone(response)
+        assert response is not None
+        self.assertEqual(response["result"]["serverInfo"]["version"], plugin_manifest["version"])
 
 
 if __name__ == "__main__":

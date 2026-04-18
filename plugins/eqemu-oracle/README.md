@@ -115,11 +115,13 @@ See:
 
 - `search_eqemu_context`
 - `get_quest_api_entry`
+- `summarize_quest_api_topic`
 - `get_db_table`
 - `get_doc_page`
 - `explain_eqemu_provenance`
 - `refresh_eqemu_oracle`
 - `rebuild_eqemu_extensions`
+- `prune_stale_schema_extensions`
 - `update_eqemu_oracle_plugin`
 
 Getter and search tools also attach `presentation.markdown` and `copy_blocks` so Codex can answer users with a consistent polished format while still keeping the raw structured record available to agents. Quest API events are rendered in a Spire-style copyable code format.
