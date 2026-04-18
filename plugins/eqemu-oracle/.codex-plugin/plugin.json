@@ -1,6 +1,6 @@
 {
   "name": "eqemu-oracle",
-  "version": "0.1.0",
+  "version": "0.1.3",
   "description": "Deterministic EQEmu scripting, schema, and documentation context for Codex.",
   "author": {
     "name": "Valorith",
@@ -41,7 +41,7 @@
       "Use EQEmu Oracle to locate the official EQEmu documentation page for this topic"
     ],
     "brandColor": "#5A7D2B",
-    "composerIcon": "./assets/eqemu-oracle-icon.svg",
+    "composerIcon": "./assets/eqemu-oracle-logo.png",
     "logo": "./assets/eqemu-oracle-logo.png",
     "screenshots": []
   }
