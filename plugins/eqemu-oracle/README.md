@@ -21,39 +21,49 @@
 - `data/merged/`: effective records after overlay merge
 - `extensions/`: repo-tracked overlays
 - `local-extensions/`: machine-local overlays ignored by git
+- `config/sources.toml`: tracked source defaults
+- `config/sources.local.toml`: optional local override, ignored by git
 - `tests/`: unit and smoke tests
 
 ## CLI
 
 Run the local MCP server:
 
-```powershell
-python .\plugins\eqemu-oracle\scripts\eqemu_oracle.py mcp-serve
+```sh
+python plugins/eqemu-oracle/scripts/eqemu_oracle.py mcp-serve
 ```
 
 Refresh upstream snapshots and rebuild merged data:
 
-```powershell
-python .\plugins\eqemu-oracle\scripts\eqemu_oracle.py refresh --scope all --mode committed
+```sh
+python plugins/eqemu-oracle/scripts/eqemu_oracle.py refresh --scope all --mode committed
 ```
 
 Refresh into the local untracked overlay:
 
-```powershell
-python .\plugins\eqemu-oracle\scripts\eqemu_oracle.py refresh --scope all --mode overlay
+```sh
+python plugins/eqemu-oracle/scripts/eqemu_oracle.py refresh --scope all --mode overlay
 ```
 
 Rebuild merged data from existing snapshots plus overlays:
 
-```powershell
-python .\plugins\eqemu-oracle\scripts\eqemu_oracle.py rebuild-extensions --scope all --mode committed
+```sh
+python plugins/eqemu-oracle/scripts/eqemu_oracle.py rebuild-extensions --scope all --mode committed
 ```
 
 Update the plugin from its Git remote and rebuild committed merged data:
 
-```powershell
-python .\plugins\eqemu-oracle\scripts\eqemu_oracle.py update-plugin
+```sh
+python plugins/eqemu-oracle/scripts/eqemu_oracle.py update-plugin
 ```
+
+Return to your previous branch after updating from a different branch:
+
+```sh
+python plugins/eqemu-oracle/scripts/eqemu_oracle.py update-plugin --branch my-branch --restore-branch
+```
+
+Use Python 3.11+ on Windows or macOS when possible. If you need to run on Python 3.10 or earlier, install `tomli` so `config/sources.toml` can still be parsed.
 
 ## Overlay Model
 
@@ -95,3 +105,4 @@ See:
 - `update_eqemu_oracle_plugin`
 
 Getter and search tools also attach `presentation.markdown` and `copy_blocks` so Codex can answer users with a consistent polished format while still keeping the raw structured record available to agents. Quest API events are rendered in a Spire-style copyable code format.
+`search_eqemu_context` also accepts `prefer_fresh: true` to break ranking ties toward newer staged records.

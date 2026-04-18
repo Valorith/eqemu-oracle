@@ -19,6 +19,7 @@ class McpServerValidationTest(unittest.TestCase):
             data_root=Path("C:/merged"),
             search=lambda *args, **kwargs: {},
             get_quest_entry=lambda *args, **kwargs: {},
+            get_quest_entry_by_id=lambda *args, **kwargs: {"id": "perl:method:mob:say:test", "name": "Say"},
             summarize_quest_topic=lambda *args, **kwargs: {},
             get_table=lambda *args, **kwargs: {"table": "aa_ability", "presentation": {"markdown": "schema markdown"}},
             get_doc_page=lambda *args, **kwargs: {},
@@ -94,24 +95,104 @@ class McpServerValidationTest(unittest.TestCase):
             server = McpServer()
         prune_result = {"apply": True, "candidate_count": 1, "removed_count": 1, "stale_candidates": [], "removed_entries": [], "files": []}
 
-        with patch("eqemu_oracle.mcp.prune_stale_schema_extensions", return_value=prune_result) as prune_mock:
-            with patch("eqemu_oracle.mcp.write_merged_dataset") as rebuild_mock:
-                with patch("eqemu_oracle.mcp.DataStore", return_value=server.store):
-                    with patch.object(server, "_schema_extension_advisories", return_value={"stale_schema_candidate_count": 0, "stale_schema_candidates": []}):
-                        response = server.handle(
-                            {
-                                "jsonrpc": "2.0",
-                                "id": 3,
-                                "method": "tools/call",
-                                "params": {"name": "prune_stale_schema_extensions", "arguments": {"apply": True}},
-                            }
-                        )
+        with patch("eqemu_oracle.mcp.prune_schema_extensions_dataset", return_value=(prune_result, {"merge_scope": "schema"})) as prune_mock:
+            with patch("eqemu_oracle.mcp.DataStore", return_value=server.store):
+                with patch.object(server, "_schema_extension_advisories", return_value={"stale_schema_candidate_count": 0, "stale_schema_candidates": []}):
+                    response = server.handle(
+                        {
+                            "jsonrpc": "2.0",
+                            "id": 3,
+                            "method": "tools/call",
+                            "params": {"name": "prune_stale_schema_extensions", "arguments": {"apply": True}},
+                        }
+                    )
 
         self.assertIsNotNone(response)
         assert response is not None
-        prune_mock.assert_called_once()
-        rebuild_mock.assert_called_once()
+        prune_mock.assert_called_once_with(apply=True, mode="committed")
         self.assertEqual(response["result"]["structuredContent"]["removed_count"], 1)
+
+    def test_rebuild_extensions_tool_forwards_scope(self) -> None:
+        with patch("eqemu_oracle.mcp.DataStore", return_value=self._stub_store()):
+            server = McpServer()
+
+        with patch("eqemu_oracle.mcp.rebuild_extensions_dataset", return_value={"merge_scope": "docs"}) as rebuild_mock:
+            with patch("eqemu_oracle.mcp.DataStore", return_value=server.store):
+                with patch.object(server, "_schema_extension_advisories", return_value={"stale_schema_candidate_count": 0, "stale_schema_candidates": []}):
+                    response = server.handle(
+                        {
+                            "jsonrpc": "2.0",
+                            "id": 4,
+                            "method": "tools/call",
+                            "params": {"name": "rebuild_eqemu_extensions", "arguments": {"scope": "docs"}},
+                        }
+                    )
+
+        self.assertIsNotNone(response)
+        assert response is not None
+        rebuild_mock.assert_called_once_with(scope="docs", mode="committed")
+        self.assertEqual(response["result"]["structuredContent"]["merge_scope"], "docs")
+
+    def test_refresh_tool_uses_shared_operation(self) -> None:
+        with patch("eqemu_oracle.mcp.DataStore", return_value=self._stub_store()):
+            server = McpServer()
+
+        with patch("eqemu_oracle.mcp.refresh_dataset", return_value={"merge_scope": "schema"}) as refresh_mock:
+            with patch("eqemu_oracle.mcp.DataStore", return_value=server.store):
+                with patch.object(server, "_schema_extension_advisories", return_value={"stale_schema_candidate_count": 0, "stale_schema_candidates": []}):
+                    response = server.handle(
+                        {
+                            "jsonrpc": "2.0",
+                            "id": 4,
+                            "method": "tools/call",
+                            "params": {"name": "refresh_eqemu_oracle", "arguments": {"scope": "schema", "mode": "committed"}},
+                        }
+                    )
+
+        self.assertIsNotNone(response)
+        assert response is not None
+        refresh_mock.assert_called_once_with(scope="schema", mode="committed")
+        self.assertEqual(response["result"]["structuredContent"]["merge_scope"], "schema")
+
+    def test_quest_api_resource_returns_entry_payload(self) -> None:
+        with patch("eqemu_oracle.mcp.DataStore", return_value=self._stub_store()):
+            server = McpServer()
+
+        with patch.object(server, "_preflight_extensions") as preflight:
+            response = server.handle(
+                {
+                    "jsonrpc": "2.0",
+                    "id": 5,
+                    "method": "resources/read",
+                    "params": {"uri": "eqemu://quest-api/perl:method:mob:say:test"},
+                }
+            )
+
+        self.assertIsNotNone(response)
+        assert response is not None
+        self.assertEqual(preflight.call_count, 1)
+        text = response["result"]["contents"][0]["text"]
+        self.assertIn('"id": "perl:method:mob:say:test"', text)
+        self.assertIn('"name": "Say"', text)
+        self.assertNotIn('"domain": "quest-api"', text)
+
+    def test_invalid_search_limit_returns_error(self) -> None:
+        with patch("eqemu_oracle.mcp.DataStore", return_value=self._stub_store()):
+            server = McpServer()
+
+        response = server.handle(
+            {
+                "jsonrpc": "2.0",
+                "id": 6,
+                "method": "tools/call",
+                "params": {"name": "search_eqemu_context", "arguments": {"query": "say", "limit": 0}},
+            }
+        )
+
+        self.assertIsNotNone(response)
+        assert response is not None
+        self.assertEqual(response["error"]["code"], -32000)
+        self.assertIn("integer >= 1", response["error"]["message"])
 
 
 if __name__ == "__main__":

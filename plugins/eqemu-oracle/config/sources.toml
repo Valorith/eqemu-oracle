@@ -1,0 +1,9 @@
+[quest_api]
+definitions_url = "https://spire.eqemu.dev/api/v1/quest-api/definitions"
+repo = "https://github.com/Valorith/spire"
+branch = "master"
+
+[docs]
+repo = "https://github.com/EQEmu/eqemu-docs-v2"
+branch = "main"
+site_base_url = "https://docs.eqemu.dev"

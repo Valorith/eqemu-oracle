@@ -2,7 +2,9 @@ from __future__ import annotations
 
 import json
 import sqlite3
+import shutil
 import time
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -299,6 +301,8 @@ def _build_doc_sections(page: dict[str, Any], markdown: str) -> list[dict[str, A
                 "docs_url": f"{page.get('docs_url', page.get('path', ''))}#{section['anchor']}",
                 "source_url": page.get("source_url"),
                 "source_ref": page.get("source_ref"),
+                "fetched_at": page.get("fetched_at"),
+                "source_refreshed_at": page.get("source_refreshed_at"),
                 "search_aliases": sorted(
                     {
                         *page.get("aliases", []),
@@ -389,70 +393,173 @@ def _compose_search_text(record: dict[str, Any], domain: str, root: Path) -> tup
     return title, body, uri, "page", record.get("id")
 
 
-def write_merged_dataset(base_root: Path, target_root: Path) -> dict[str, Any]:
+def _merged_domain_is_present(target_root: Path, domain: str) -> bool:
+    required = {
+        "quest-api": [
+            target_root / "quest-api" / "records.json",
+            target_root / "quest-api" / "index.json",
+        ],
+        "schema": [
+            target_root / "schema" / "index.json",
+        ],
+        "docs": [
+            target_root / "docs" / "pages.json",
+            target_root / "docs" / "sections.json",
+        ],
+    }[domain]
+    return all(path.exists() for path in required)
+
+
+def _effective_merge_scope(target_root: Path, scope: str) -> str:
+    if scope == "all":
+        return scope
+    missing_domains = [domain for domain in ("quest-api", "schema", "docs") if domain != scope and not _merged_domain_is_present(target_root, domain)]
+    return "all" if missing_domains else scope
+
+
+def _reset_domain_root(path: Path) -> None:
+    if path.exists():
+        shutil.rmtree(path)
+    ensure_dir(path)
+
+
+def _parse_iso8601_timestamp(value: Any) -> int:
+    if not isinstance(value, str) or not value.strip():
+        return 0
+    candidate = value.strip()
+    if candidate.endswith("Z"):
+        candidate = candidate[:-1] + "+00:00"
+    try:
+        parsed = datetime.fromisoformat(candidate)
+    except ValueError:
+        return 0
+    if parsed.tzinfo is None:
+        parsed = parsed.replace(tzinfo=timezone.utc)
+    return int(parsed.timestamp())
+
+
+def _record_freshness(record: dict[str, Any]) -> int:
+    return max(
+        _parse_iso8601_timestamp(record.get("source_refreshed_at")),
+        _parse_iso8601_timestamp(record.get("fetched_at")),
+    )
+
+
+def _search_cache_needs_rebuild(exc: sqlite3.OperationalError) -> bool:
+    message = str(exc).lower()
+    return "freshness_ts" in message
+
+
+def _search_identity(data_root: Path) -> dict[str, str]:
+    identity = {
+        "active_root": str(data_root),
+        "snapshot_version": "",
+        "generated_at": "",
+    }
+    manifest_path = data_root.parent / "manifest.json"
+    if manifest_path.exists():
+        manifest = load_json(manifest_path)
+        identity["snapshot_version"] = str(manifest.get("snapshot_version", ""))
+        identity["generated_at"] = str(manifest.get("generated_at", ""))
+    return identity
+
+
+def _write_search_identity(conn: sqlite3.Connection, data_root: Path) -> None:
+    conn.execute("CREATE TABLE search_meta (key TEXT PRIMARY KEY, value TEXT)")
+    for key, value in _search_identity(data_root).items():
+        conn.execute("INSERT INTO search_meta VALUES (?, ?)", (key, value))
+
+
+def _search_cache_matches(data_root: Path, db_path: Path) -> bool:
+    if not db_path.exists():
+        return False
+    conn = sqlite3.connect(db_path)
+    try:
+        rows = conn.execute("SELECT key, value FROM search_meta").fetchall()
+    except sqlite3.OperationalError:
+        return False
+    finally:
+        conn.close()
+    actual = {str(key): str(value) for key, value in rows}
+    return actual == _search_identity(data_root)
+
+
+def write_merged_dataset(base_root: Path, target_root: Path, *, scope: str = "all") -> dict[str, Any]:
     ensure_dir(target_root)
     ensure_dir(CACHE_ROOT)
     validate_extension_overlays(base_root)
+    scope = _effective_merge_scope(target_root, scope)
     stale_schema_extensions = find_stale_schema_extensions(base_root)
-    quest_records = merge_records(
-        load_quest_base(base_root),
-        load_domain_extensions(EXTENSIONS_ROOT, "quest-api"),
-        load_domain_extensions(LOCAL_EXTENSIONS_ROOT, "quest-api"),
-    )
-    schema_records = merge_records(
-        load_schema_base(base_root),
-        load_domain_extensions(EXTENSIONS_ROOT, "schema"),
-        load_domain_extensions(LOCAL_EXTENSIONS_ROOT, "schema"),
-    )
-    docs_records = merge_records(
-        load_docs_base(base_root),
-        load_domain_extensions(EXTENSIONS_ROOT, "docs"),
-        load_domain_extensions(LOCAL_EXTENSIONS_ROOT, "docs"),
-    )
-
-    quest_root = target_root / "quest-api"
-    ensure_dir(quest_root)
-    dump_json(quest_root / "records.json", quest_records)
-    dump_json(
-        quest_root / "index.json",
-        {
-            "counts": {
-                "methods": sum(1 for item in quest_records if item.get("kind") == "method"),
-                "events": sum(1 for item in quest_records if item.get("kind") == "event"),
-                "constants": sum(1 for item in quest_records if item.get("kind") == "constant"),
+    if scope in ("all", "quest-api"):
+        quest_records = merge_records(
+            load_quest_base(base_root),
+            load_domain_extensions(EXTENSIONS_ROOT, "quest-api"),
+            load_domain_extensions(LOCAL_EXTENSIONS_ROOT, "quest-api"),
+        )
+        quest_root = target_root / "quest-api"
+        _reset_domain_root(quest_root)
+        dump_json(quest_root / "records.json", quest_records)
+        dump_json(
+            quest_root / "index.json",
+            {
+                "counts": {
+                    "methods": sum(1 for item in quest_records if item.get("kind") == "method"),
+                    "events": sum(1 for item in quest_records if item.get("kind") == "event"),
+                    "constants": sum(1 for item in quest_records if item.get("kind") == "constant"),
+                },
+                "languages": sorted({item.get("language") for item in quest_records}),
             },
-            "languages": sorted({item.get("language") for item in quest_records}),
-        },
-    )
+        )
+    else:
+        quest_records = load_json(target_root / "quest-api" / "records.json")
 
-    schema_root = target_root / "schema"
-    ensure_dir(schema_root / "tables")
-    for table in schema_records:
-        dump_json(schema_root / "tables" / f"{table['table']}.json", table)
-    dump_json(schema_root / "index.json", schema_records)
+    if scope in ("all", "schema"):
+        schema_records = merge_records(
+            load_schema_base(base_root),
+            load_domain_extensions(EXTENSIONS_ROOT, "schema"),
+            load_domain_extensions(LOCAL_EXTENSIONS_ROOT, "schema"),
+        )
+        schema_root = target_root / "schema"
+        _reset_domain_root(schema_root)
+        ensure_dir(schema_root / "tables")
+        for table in schema_records:
+            dump_json(schema_root / "tables" / f"{table['table']}.json", table)
+        dump_json(schema_root / "index.json", schema_records)
+    else:
+        schema_records = load_json(target_root / "schema" / "index.json")
 
-    docs_root = target_root / "docs"
-    ensure_dir(docs_root / "pages")
-    base_docs_root = base_root / "docs" / "pages"
-    docs_sections: list[dict[str, Any]] = []
-    for page in docs_records:
-        md_path = docs_root / "pages" / f"{page['slug']}.md"
-        ensure_dir(md_path.parent)
-        if page.get("markdown") is not None:
-            md_path.write_text(page["markdown"], encoding="utf-8")
-            markdown = page["markdown"]
-        else:
-            source_page = base_docs_root / f"{page['slug']}.md"
-            if source_page.exists():
-                markdown = source_page.read_text(encoding="utf-8")
-                md_path.write_text(markdown, encoding="utf-8")
+    if scope in ("all", "docs"):
+        docs_records = merge_records(
+            load_docs_base(base_root),
+            load_domain_extensions(EXTENSIONS_ROOT, "docs"),
+            load_domain_extensions(LOCAL_EXTENSIONS_ROOT, "docs"),
+        )
+        docs_root = target_root / "docs"
+        _reset_domain_root(docs_root)
+        ensure_dir(docs_root / "pages")
+        base_docs_root = base_root / "docs" / "pages"
+        docs_sections: list[dict[str, Any]] = []
+        for page in docs_records:
+            md_path = docs_root / "pages" / f"{page['slug']}.md"
+            ensure_dir(md_path.parent)
+            if page.get("markdown") is not None:
+                md_path.write_text(page["markdown"], encoding="utf-8")
+                markdown = page["markdown"]
             else:
-                markdown = page.get("summary", page["title"])
-                md_path.write_text(markdown, encoding="utf-8")
-        page["section_count"] = len(markdown_sections(markdown))
-        docs_sections.extend(_build_doc_sections(page, markdown))
-    dump_json(docs_root / "pages.json", docs_records)
-    dump_json(docs_root / "sections.json", docs_sections)
+                source_page = base_docs_root / f"{page['slug']}.md"
+                if source_page.exists():
+                    markdown = source_page.read_text(encoding="utf-8")
+                    md_path.write_text(markdown, encoding="utf-8")
+                else:
+                    markdown = page.get("summary", page["title"])
+                    md_path.write_text(markdown, encoding="utf-8")
+            page["section_count"] = len(markdown_sections(markdown))
+            docs_sections.extend(_build_doc_sections(page, markdown))
+        dump_json(docs_root / "pages.json", docs_records)
+        dump_json(docs_root / "sections.json", docs_sections)
+    else:
+        docs_records = load_json(target_root / "docs" / "pages.json")
+        docs_sections = load_json(target_root / "docs" / "sections.json")
 
     manifest = {
         "generated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
@@ -465,6 +572,7 @@ def write_merged_dataset(base_root: Path, target_root: Path) -> dict[str, Any]:
             "docs-sections": len(docs_sections),
         },
         "freshness_state": "fresh",
+        "merge_scope": scope,
         "sources": _load_domain_meta(base_root),
         "extensions": {
             "repo_root": str(EXTENSIONS_ROOT),
@@ -487,8 +595,9 @@ def build_search_index(data_root: Path, db_path: Path) -> None:
     conn = sqlite3.connect(db_path)
     try:
         conn.execute(
-            "CREATE TABLE search_records (domain TEXT, record_id TEXT PRIMARY KEY, title TEXT, body TEXT, uri TEXT, entity_type TEXT, parent_id TEXT)"
+            "CREATE TABLE search_records (domain TEXT, record_id TEXT PRIMARY KEY, title TEXT, body TEXT, uri TEXT, entity_type TEXT, parent_id TEXT, freshness_ts INTEGER)"
         )
+        _write_search_identity(conn, data_root)
         try:
             conn.execute("CREATE VIRTUAL TABLE search_fts USING fts5(record_id, title, body, domain, tokenize='porter')")
             has_fts = True
@@ -500,33 +609,37 @@ def build_search_index(data_root: Path, db_path: Path) -> None:
         docs_sections = load_docs_sections(data_root)
         for record in quest_records:
             title, body, uri, entity_type, parent_id = _compose_search_text(record, "quest-api", data_root)
+            freshness_ts = _record_freshness(record)
             conn.execute(
-                "INSERT INTO search_records VALUES (?, ?, ?, ?, ?, ?, ?)",
-                ("quest-api", record["id"], title, body, uri, entity_type, parent_id),
+                "INSERT INTO search_records VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                ("quest-api", record["id"], title, body, uri, entity_type, parent_id, freshness_ts),
             )
             if has_fts:
                 conn.execute("INSERT INTO search_fts VALUES (?, ?, ?, ?)", (record["id"], title, body, "quest-api"))
         for record in schema_records:
             title, body, uri, entity_type, parent_id = _compose_search_text(record, "schema", data_root)
+            freshness_ts = _record_freshness(record)
             conn.execute(
-                "INSERT INTO search_records VALUES (?, ?, ?, ?, ?, ?, ?)",
-                ("schema", record["id"], title, body, uri, entity_type, parent_id),
+                "INSERT INTO search_records VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                ("schema", record["id"], title, body, uri, entity_type, parent_id, freshness_ts),
             )
             if has_fts:
                 conn.execute("INSERT INTO search_fts VALUES (?, ?, ?, ?)", (record["id"], title, body, "schema"))
         for record in docs_records:
             title, body, uri, entity_type, parent_id = _compose_search_text(record, "docs", data_root)
+            freshness_ts = _record_freshness(record)
             conn.execute(
-                "INSERT INTO search_records VALUES (?, ?, ?, ?, ?, ?, ?)",
-                ("docs", record["id"], title, body, uri, entity_type, parent_id),
+                "INSERT INTO search_records VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                ("docs", record["id"], title, body, uri, entity_type, parent_id, freshness_ts),
             )
             if has_fts:
                 conn.execute("INSERT INTO search_fts VALUES (?, ?, ?, ?)", (record["id"], title, body, "docs"))
         for record in docs_sections:
             title, body, uri, entity_type, parent_id = _compose_search_text(record, "docs", data_root)
+            freshness_ts = _record_freshness(record)
             conn.execute(
-                "INSERT INTO search_records VALUES (?, ?, ?, ?, ?, ?, ?)",
-                ("docs", record["id"], title, body, uri, entity_type, parent_id),
+                "INSERT INTO search_records VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                ("docs", record["id"], title, body, uri, entity_type, parent_id, freshness_ts),
             )
             if has_fts:
                 conn.execute("INSERT INTO search_fts VALUES (?, ?, ?, ?)", (record["id"], title, body, "docs"))
@@ -623,6 +736,14 @@ class DataStore:
                 return full_page
         return None
 
+    def _present_quest_entry(self, item: dict[str, Any]) -> dict[str, Any]:
+        full_item = dict(item)
+        docs_page = None
+        if full_item.get("related_docs"):
+            docs_page = self._raw_doc_page(full_item["related_docs"][0])
+        full_item["presentation"] = present_quest_entry(full_item, docs_page)
+        return full_item
+
     def get_quest_entry(self, language: str, kind: str, name: str, group_or_type: str | None = None) -> dict[str, Any] | None:
         for item in self.quest_records:
             if (
@@ -631,12 +752,13 @@ class DataStore:
                 and item.get("name", "").lower() == name.lower()
                 and (not group_or_type or item.get("container", "").lower() == group_or_type.lower())
             ):
-                full_item = dict(item)
-                docs_page = None
-                if full_item.get("related_docs"):
-                    docs_page = self._raw_doc_page(full_item["related_docs"][0])
-                full_item["presentation"] = present_quest_entry(full_item, docs_page)
-                return full_item
+                return self._present_quest_entry(item)
+        return None
+
+    def get_quest_entry_by_id(self, record_id: str) -> dict[str, Any] | None:
+        for item in self.quest_records:
+            if item.get("id") == record_id:
+                return self._present_quest_entry(item)
         return None
 
     def get_table(self, table_name: str) -> dict[str, Any] | None:
@@ -798,26 +920,43 @@ class DataStore:
         term_groups = _search_term_groups(query)
         fts_query = _build_fts_query(query)
         if include_extensions:
-            if not SEARCH_DB_PATH.exists():
+            if not _search_cache_matches(self.data_root, SEARCH_DB_PATH):
                 build_search_index(self.data_root, SEARCH_DB_PATH)
-            conn = sqlite3.connect(SEARCH_DB_PATH)
-            rows: list[tuple[str, str, str, str, str, str, str | None, float | None]] = []
+            rows: list[tuple[str, str, str, str, str, str, str | None, float | None, int]] = []
             search_limit = max(limit * 25, 250)
-            try:
-                sql = (
-                    "SELECT r.domain, r.record_id, r.title, r.body, r.uri, r.entity_type, r.parent_id, bm25(search_fts) "
-                    "FROM search_fts f JOIN search_records r ON f.record_id = r.record_id "
-                    f"WHERE search_fts MATCH ? AND r.domain IN ({','.join('?' for _ in domains)}) LIMIT ?"
-                )
-                rows = conn.execute(sql, [fts_query, *domains, search_limit]).fetchall()
-            except sqlite3.OperationalError:
-                sql = (
-                    f"SELECT domain, record_id, title, body, uri, entity_type, parent_id, NULL FROM search_records "
-                    f"WHERE domain IN ({','.join('?' for _ in domains)}) LIMIT ?"
-                )
-                rows = conn.execute(sql, [*domains, search_limit * 4]).fetchall()
-            finally:
-                conn.close()
+            retried_with_rebuild = False
+            while True:
+                conn = sqlite3.connect(SEARCH_DB_PATH)
+                try:
+                    sql = (
+                        "SELECT r.domain, r.record_id, r.title, r.body, r.uri, r.entity_type, r.parent_id, bm25(search_fts), r.freshness_ts "
+                        "FROM search_fts f JOIN search_records r ON f.record_id = r.record_id "
+                        f"WHERE search_fts MATCH ? AND r.domain IN ({','.join('?' for _ in domains)}) LIMIT ?"
+                    )
+                    rows = conn.execute(sql, [fts_query, *domains, search_limit]).fetchall()
+                    break
+                except sqlite3.OperationalError as exc:
+                    if _search_cache_needs_rebuild(exc) and not retried_with_rebuild:
+                        retried_with_rebuild = True
+                        conn.close()
+                        build_search_index(self.data_root, SEARCH_DB_PATH)
+                        continue
+                    sql = (
+                        f"SELECT domain, record_id, title, body, uri, entity_type, parent_id, NULL, freshness_ts FROM search_records "
+                        f"WHERE domain IN ({','.join('?' for _ in domains)}) LIMIT ?"
+                    )
+                    try:
+                        rows = conn.execute(sql, [*domains, search_limit * 4]).fetchall()
+                        break
+                    except sqlite3.OperationalError as fallback_exc:
+                        if _search_cache_needs_rebuild(fallback_exc) and not retried_with_rebuild:
+                            retried_with_rebuild = True
+                            conn.close()
+                            build_search_index(self.data_root, SEARCH_DB_PATH)
+                            continue
+                        raise
+                finally:
+                    conn.close()
         else:
             rows = []
             records_by_domain = {
@@ -830,16 +969,16 @@ class DataStore:
                     title, body, uri, entity_type, parent_id = _compose_search_text(record, domain, self.base_root)
                     haystack = f"{title} {body}".lower()
                     if _matches_term_groups(haystack, term_groups):
-                        rows.append((domain, record["id"], title, body, uri, entity_type, parent_id, None))
+                        rows.append((domain, record["id"], title, body, uri, entity_type, parent_id, None, _record_freshness(record)))
                 if domain == "docs":
                     for section in load_docs_sections(self.base_root):
                         title, body, uri, entity_type, parent_id = _compose_search_text(section, domain, self.base_root)
                         haystack = f"{title} {body}".lower()
                         if _matches_term_groups(haystack, term_groups):
-                            rows.append((domain, section["id"], title, body, uri, entity_type, parent_id, None))
+                            rows.append((domain, section["id"], title, body, uri, entity_type, parent_id, None, _record_freshness(section)))
         filtered_rows = []
         for row in rows:
-            domain, record_id, title, body, uri, entity_type, parent_id, raw_rank = row
+            domain, record_id, title, body, uri, entity_type, parent_id, raw_rank, freshness_ts = row
             if not _matches_term_groups(f"{title} {body}", term_groups):
                 continue
             if domain == "quest-api" and not self._language_matches(record_id, language):
@@ -848,6 +987,7 @@ class DataStore:
         filtered_rows.sort(
             key=lambda row: (
                 -_boost_search_hit(query, row[2], row[1], row[5], row[4]),
+                -(row[8] if prefer_fresh else 0),
                 row[7] if row[7] is not None else 0.0,
                 row[2],
             )
@@ -862,8 +1002,9 @@ class DataStore:
                 "uri": uri,
                 "entity_type": entity_type,
                 "parent_id": parent_id,
+                "freshness_ts": freshness_ts,
             }
-            for domain, record_id, title, body, uri, entity_type, parent_id, _raw_rank in rows
+            for domain, record_id, title, body, uri, entity_type, parent_id, _raw_rank, freshness_ts in rows
         ]
         result = {
             "query": query,

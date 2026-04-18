@@ -5,10 +5,20 @@ import json
 import sys
 from typing import Any
 
-from .constants import EXTENSIONS_ROOT, LOCAL_EXTENSIONS_ROOT, OVERLAY_ROOT, PLUGIN_VERSION, SERVER_NAME
-from .dataset import DataStore, base_data_root, find_stale_schema_extensions, prune_stale_schema_extensions, validate_extension_overlays, write_merged_dataset
+from .constants import (
+    DOMAIN_CHOICES,
+    EXTENSIONS_ROOT,
+    LOCAL_EXTENSIONS_ROOT,
+    MODE_CHOICES,
+    PLUGIN_VERSION,
+    QUEST_KIND_CHOICES,
+    QUEST_LANGUAGE_CHOICES,
+    SCOPE_CHOICES,
+    SERVER_NAME,
+)
+from .dataset import DataStore, base_data_root, find_stale_schema_extensions, validate_extension_overlays
 from .extensions import ExtensionValidationError, extension_inputs_fingerprint
-from .ingest import write_base_dataset
+from .operations import prune_schema_extensions_dataset, rebuild_extensions_dataset, refresh_dataset
 from .updater import update_plugin_repo
 
 
@@ -137,9 +147,9 @@ class McpServer:
                     "type": "object",
                     "properties": {
                         "query": {"type": "string"},
-                        "domains": {"type": "array", "items": {"type": "string"}},
-                        "language": {"type": "string"},
-                        "limit": {"type": "integer"},
+                        "domains": {"type": "array", "items": {"type": "string", "enum": list(DOMAIN_CHOICES)}},
+                        "language": {"type": "string", "enum": list(QUEST_LANGUAGE_CHOICES)},
+                        "limit": {"type": "integer", "minimum": 1},
                         "include_extensions": {"type": "boolean"},
                         "prefer_fresh": {"type": "boolean"}
                     },
@@ -152,8 +162,8 @@ class McpServer:
                 "inputSchema": {
                     "type": "object",
                     "properties": {
-                        "language": {"type": "string"},
-                        "kind": {"type": "string"},
+                        "language": {"type": "string", "enum": list(QUEST_LANGUAGE_CHOICES)},
+                        "kind": {"type": "string", "enum": list(QUEST_KIND_CHOICES)},
                         "name": {"type": "string"},
                         "group_or_type": {"type": "string"}
                     },
@@ -167,8 +177,8 @@ class McpServer:
                     "type": "object",
                     "properties": {
                         "query": {"type": "string"},
-                        "language": {"type": "string"},
-                        "limit": {"type": "integer"}
+                        "language": {"type": "string", "enum": list(QUEST_LANGUAGE_CHOICES)},
+                        "limit": {"type": "integer", "minimum": 1}
                     },
                     "required": ["query"]
                 }
@@ -197,7 +207,7 @@ class McpServer:
                 "inputSchema": {
                     "type": "object",
                     "properties": {
-                        "domain": {"type": "string"},
+                        "domain": {"type": "string", "enum": list(DOMAIN_CHOICES)},
                         "id": {"type": "string"}
                     },
                     "required": ["domain", "id"]
@@ -209,8 +219,8 @@ class McpServer:
                 "inputSchema": {
                     "type": "object",
                     "properties": {
-                        "scope": {"type": "string"},
-                        "mode": {"type": "string"}
+                        "scope": {"type": "string", "enum": list(SCOPE_CHOICES)},
+                        "mode": {"type": "string", "enum": list(MODE_CHOICES)}
                     }
                 }
             },
@@ -219,7 +229,7 @@ class McpServer:
                 "description": "Rebuild merged data and the search cache from existing base data plus extensions.",
                 "inputSchema": {
                     "type": "object",
-                    "properties": {"scope": {"type": "string"}}
+                    "properties": {"scope": {"type": "string", "enum": list(SCOPE_CHOICES)}, "mode": {"type": "string", "enum": list(MODE_CHOICES)}}
                 }
             },
             {
@@ -241,7 +251,8 @@ class McpServer:
                         "remote": {"type": "string"},
                         "branch": {"type": "string"},
                         "allow_dirty": {"type": "boolean"},
-                        "skip_rebuild": {"type": "boolean"}
+                        "skip_rebuild": {"type": "boolean"},
+                        "restore_branch": {"type": "boolean"}
                     }
                 }
             }
@@ -273,53 +284,64 @@ class McpServer:
         }:
             self._preflight_extensions()
         if name == "search_eqemu_context":
+            domains = self._enum_list(arguments, "domains", DOMAIN_CHOICES)
             result = self.store.search(
                 arguments["query"],
-                arguments.get("domains"),
-                int(arguments.get("limit", 10)),
-                bool(arguments.get("include_extensions", True)),
-                arguments.get("language"),
-                bool(arguments.get("prefer_fresh", False)),
+                domains,
+                self._int_arg(arguments, "limit", 10, minimum=1),
+                self._bool_arg(arguments, "include_extensions", True),
+                self._enum_arg(arguments, "language", QUEST_LANGUAGE_CHOICES, default=None, allow_none=True),
+                self._bool_arg(arguments, "prefer_fresh", False),
             )
         elif name == "get_quest_api_entry":
-            result = self.store.get_quest_entry(arguments["language"], arguments["kind"], arguments["name"], arguments.get("group_or_type"))
+            result = self.store.get_quest_entry(
+                self._enum_arg(arguments, "language", QUEST_LANGUAGE_CHOICES),
+                self._enum_arg(arguments, "kind", QUEST_KIND_CHOICES),
+                arguments["name"],
+                arguments.get("group_or_type"),
+            )
         elif name == "summarize_quest_api_topic":
-            result = self.store.summarize_quest_topic(arguments["query"], arguments.get("language", "perl"), int(arguments.get("limit", 16)))
+            result = self.store.summarize_quest_topic(
+                arguments["query"],
+                self._enum_arg(arguments, "language", QUEST_LANGUAGE_CHOICES, default="perl"),
+                self._int_arg(arguments, "limit", 16, minimum=1),
+            )
         elif name == "get_db_table":
             result = self.store.get_table(arguments["table_name"])
         elif name == "get_doc_page":
             result = self.store.get_doc_page(arguments["path_or_slug"])
         elif name == "explain_eqemu_provenance":
-            result = self.store.explain_provenance(arguments["domain"], arguments["id"])
+            result = self.store.explain_provenance(self._enum_arg(arguments, "domain", DOMAIN_CHOICES), arguments["id"])
         elif name == "refresh_eqemu_oracle":
-            scope = arguments.get("scope", "all")
-            mode = arguments.get("mode", "overlay")
-            if mode == "committed":
-                from .constants import BASE_ROOT, MERGED_ROOT
-
-                write_base_dataset(BASE_ROOT, scope=scope)
-                result = write_merged_dataset(BASE_ROOT, MERGED_ROOT)
-            else:
-                write_base_dataset(OVERLAY_ROOT / "base", scope=scope)
-                result = write_merged_dataset(OVERLAY_ROOT / "base", OVERLAY_ROOT / "merged")
+            result = refresh_dataset(
+                scope=self._enum_arg(arguments, "scope", SCOPE_CHOICES, default="all"),
+                mode=self._enum_arg(arguments, "mode", MODE_CHOICES, default="overlay"),
+            )
             self.store = DataStore()
             self._reset_extension_validation()
         elif name == "rebuild_eqemu_extensions":
-            result = write_merged_dataset(self.store.base_root, self.store.data_root)
+            result = rebuild_extensions_dataset(
+                scope=self._enum_arg(arguments, "scope", SCOPE_CHOICES, default="all"),
+                mode=self._enum_arg(arguments, "mode", MODE_CHOICES, default="overlay" if "overlay" in str(self.store.data_root) else "committed"),
+            )
             self.store = DataStore()
             self._reset_extension_validation()
         elif name == "prune_stale_schema_extensions":
-            result = prune_stale_schema_extensions(self.store.base_root, apply=bool(arguments.get("apply", False)))
-            if arguments.get("apply", False) and result.get("removed_count"):
-                write_merged_dataset(self.store.base_root, self.store.data_root)
+            apply = self._bool_arg(arguments, "apply", False)
+            result, _manifest = prune_schema_extensions_dataset(
+                apply=apply,
+                mode="overlay" if "overlay" in str(self.store.data_root) else "committed",
+            )
+            if apply and result.get("removed_count"):
                 self.store = DataStore()
             self._reset_extension_validation()
         elif name == "update_eqemu_oracle_plugin":
             result = update_plugin_repo(
-                remote=arguments.get("remote", "origin"),
+                remote=str(arguments.get("remote", "origin")),
                 branch=arguments.get("branch"),
-                allow_dirty=bool(arguments.get("allow_dirty", False)),
-                skip_rebuild=bool(arguments.get("skip_rebuild", False)),
+                allow_dirty=self._bool_arg(arguments, "allow_dirty", False),
+                skip_rebuild=self._bool_arg(arguments, "skip_rebuild", False),
+                restore_branch=self._bool_arg(arguments, "restore_branch", False),
             )
             self.store = DataStore()
             self._reset_extension_validation()
@@ -344,6 +366,42 @@ class McpServer:
             "isError": result is None,
         }
 
+    def _enum_arg(
+        self,
+        arguments: dict[str, Any],
+        name: str,
+        allowed: tuple[str, ...],
+        *,
+        default: str | None = None,
+        allow_none: bool = False,
+    ) -> str | None:
+        value = arguments.get(name, default)
+        if value is None and allow_none:
+            return None
+        if not isinstance(value, str) or value not in allowed:
+            raise ValueError(f"Invalid `{name}` value '{value}'. Expected one of: {', '.join(allowed)}")
+        return value
+
+    def _enum_list(self, arguments: dict[str, Any], name: str, allowed: tuple[str, ...]) -> list[str] | None:
+        value = arguments.get(name)
+        if value is None:
+            return None
+        if not isinstance(value, list) or any(not isinstance(item, str) or item not in allowed for item in value):
+            raise ValueError(f"Invalid `{name}` values. Expected a list drawn from: {', '.join(allowed)}")
+        return value
+
+    def _bool_arg(self, arguments: dict[str, Any], name: str, default: bool) -> bool:
+        value = arguments.get(name, default)
+        if not isinstance(value, bool):
+            raise ValueError(f"Invalid `{name}` value '{value}'. Expected a boolean.")
+        return value
+
+    def _int_arg(self, arguments: dict[str, Any], name: str, default: int, *, minimum: int) -> int:
+        value = arguments.get(name, default)
+        if not isinstance(value, int) or value < minimum:
+            raise ValueError(f"Invalid `{name}` value '{value}'. Expected an integer >= {minimum}.")
+        return value
+
     def _read_resource(self, uri: str) -> dict[str, Any]:
         self._preflight_extensions()
         if uri == "eqemu://manifest":
@@ -355,7 +413,7 @@ class McpServer:
         elif uri == "eqemu://indexes/docs":
             payload = self.store.docs_index()
         elif uri.startswith("eqemu://quest-api/"):
-            payload = self.store.explain_provenance("quest-api", uri.removeprefix("eqemu://quest-api/"))
+            payload = self.store.get_quest_entry_by_id(uri.removeprefix("eqemu://quest-api/"))
         elif uri.startswith("eqemu://schema/table/"):
             payload = self.store.get_table(uri.removeprefix("eqemu://schema/table/"))
         elif uri.startswith("eqemu://docs/page/"):

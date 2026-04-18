@@ -10,6 +10,11 @@ It stages three primary knowledge domains locally:
 
 It also supports extension overlays so you can add or override data that exists only in your own server fork, private tooling, or local documentation set.
 
+Remote source locations are now configurable through:
+
+- `plugins/eqemu-oracle/config/sources.toml`: tracked defaults
+- `plugins/eqemu-oracle/config/sources.local.toml`: optional local override, ignored by git
+
 ## What This Plugin Does
 
 The plugin runs a local stdio MCP server and serves EQEmu context from versioned snapshots stored in this repository.
@@ -59,11 +64,15 @@ That means a local extension can override both the upstream data and a repo-trac
 1. Open the repo in Codex.
 2. Ensure Python is available on your machine.
 3. Load the local plugin from the marketplace entry in `.agents/plugins/marketplace.json`.
-4. The plugin MCP server is wired through `plugins/eqemu-oracle/.mcp.json` and starts through:
+4. The plugin MCP server is wired through `plugins/eqemu-oracle/.mcp.json` and starts through a shell-neutral command:
 
-```powershell
-python .\plugins\eqemu-oracle\scripts\eqemu_oracle.py mcp-serve
+```sh
+python plugins/eqemu-oracle/scripts/eqemu_oracle.py mcp-serve
 ```
+
+Python 3.11+ is the cleanest path on both Windows and macOS. On Python 3.10 and earlier, install `tomli` so the source config loader can parse `sources.toml`.
+
+If you need to point the plugin at a fork, branch, or private mirror, copy `plugins/eqemu-oracle/config/sources.toml` to `plugins/eqemu-oracle/config/sources.local.toml` and override only the values you need.
 
 ## Refreshing Upstream Data
 
@@ -71,28 +80,35 @@ Use the local CLI to rebuild staged data from upstream sources.
 
 Refresh and rewrite the committed snapshots:
 
-```powershell
-python .\plugins\eqemu-oracle\scripts\eqemu_oracle.py refresh --scope all --mode committed
+```sh
+python plugins/eqemu-oracle/scripts/eqemu_oracle.py refresh --scope all --mode committed
 ```
 
 Refresh into a local untracked overlay without replacing committed data:
 
-```powershell
-python .\plugins\eqemu-oracle\scripts\eqemu_oracle.py refresh --scope all --mode overlay
+```sh
+python plugins/eqemu-oracle/scripts/eqemu_oracle.py refresh --scope all --mode overlay
 ```
 
 Rebuild merged data after changing only extension files:
 
-```powershell
-python .\plugins\eqemu-oracle\scripts\eqemu_oracle.py rebuild-extensions --scope all --mode committed
+```sh
+python plugins/eqemu-oracle/scripts/eqemu_oracle.py rebuild-extensions --scope all --mode committed
 ```
 
 Use `--mode overlay` with `rebuild-extensions` if you want the rebuild to target the local overlay instead of the committed merged snapshot.
+`--scope schema`, `--scope docs`, and `--scope quest-api` now rebuild only that merged domain while preserving the others.
 
 Update the plugin code from its Git remote and rebuild the committed merged dataset:
 
-```powershell
-python .\plugins\eqemu-oracle\scripts\eqemu_oracle.py update-plugin
+```sh
+python plugins/eqemu-oracle/scripts/eqemu_oracle.py update-plugin
+```
+
+If you want to temporarily switch to another branch for the update and then return to your current branch afterward:
+
+```sh
+python plugins/eqemu-oracle/scripts/eqemu_oracle.py update-plugin --branch my-branch --restore-branch
 ```
 
 ## Extension Overlays
@@ -161,8 +177,8 @@ Schema overlay that adds a custom local-only table:
 
 After adding the file, rebuild merged data:
 
-```powershell
-python .\plugins\eqemu-oracle\scripts\eqemu_oracle.py rebuild-extensions --scope schema --mode committed
+```sh
+python plugins/eqemu-oracle/scripts/eqemu_oracle.py rebuild-extensions --scope schema --mode committed
 ```
 
 ## MCP Surface
@@ -185,6 +201,8 @@ Lookup tools now also include a presentation layer for user-facing answers:
 - docs pages return a consistent page summary template
 - search results return a compact, repeatable result list template
 
+Search also accepts `prefer_fresh: true` to break ranking ties in favor of newer staged records when timestamp metadata is available.
+
 It also exposes read resources for staged indexes and direct record navigation:
 
 - `eqemu://manifest`
@@ -196,15 +214,15 @@ It also exposes read resources for staged indexes and direct record navigation:
 
 Run the current test suite with:
 
-```powershell
-python -m unittest discover -s .\plugins\eqemu-oracle\tests
+```sh
+python -m unittest discover -s plugins/eqemu-oracle/tests
 ```
 
 Useful validation commands:
 
-```powershell
-python -m py_compile .\plugins\eqemu-oracle\scripts\eqemu_oracle.py .\plugins\eqemu-oracle\scripts\eqemu_oracle\*.py
-python .\plugins\eqemu-oracle\scripts\eqemu_oracle.py refresh --scope all --mode overlay
+```sh
+python -m compileall plugins/eqemu-oracle/scripts
+python plugins/eqemu-oracle/scripts/eqemu_oracle.py refresh --scope all --mode overlay
 ```
 
 ## Status

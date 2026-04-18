@@ -18,6 +18,7 @@ dist/
 out/
 tmp/
 plugins/eqemu-oracle/cache/
+plugins/eqemu-oracle/config/sources.local.toml
 plugins/eqemu-oracle/local-extensions/*
 !plugins/eqemu-oracle/local-extensions/README.md
 !plugins/eqemu-oracle/local-extensions/docs/
