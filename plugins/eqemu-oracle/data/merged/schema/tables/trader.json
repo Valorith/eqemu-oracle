@@ -48,7 +48,7 @@
   "provenance": {
     "contributors": [
       {
-        "file": "C:\\Users\\rgagn\\OneDrive\\Documents\\Github Projects\\EQEmu Oracle\\plugins\\eqemu-oracle\\extensions\\schema\\schema_extension.json",
+        "file": "/home/runner/work/eqemu-oracle/eqemu-oracle/plugins/eqemu-oracle/extensions/schema/schema_extension.json",
         "mode": "augment",
         "source": "repo_extension"
       }
