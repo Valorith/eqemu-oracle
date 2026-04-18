@@ -1,3 +1,6 @@
+<img width="779" height="912" alt="image" src="https://github.com/user-attachments/assets/3fb7197b-bbb3-45a5-acf3-1ac0a50043e5" />
+
+
 # EQEmu Oracle
 
 `EQEmu Oracle` is a Codex plugin project that gives Codex deterministic access to core EQEmu reference material without relying on ad hoc web search.
