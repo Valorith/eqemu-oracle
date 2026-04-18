@@ -42,7 +42,7 @@
     ],
     "brandColor": "#5A7D2B",
     "composerIcon": "./assets/eqemu-oracle-icon.svg",
-    "logo": "./assets/eqemu-oracle-logo.svg",
+    "logo": "./assets/eqemu-oracle-logo.png",
     "screenshots": []
   }
 }
