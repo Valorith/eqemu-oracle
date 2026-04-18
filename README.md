@@ -1,6 +1,7 @@
 <img width="779" height="912" alt="EQEmu Oracle logo" src="https://github.com/user-attachments/assets/3fb7197b-bbb3-45a5-acf3-1ac0a50043e5" />
 
 <p align="center">
+
   <a href="https://github.com/Valorith/eqemu-oracle/actions/workflows/refresh-plugin-data.yml"><img src="https://github.com/Valorith/eqemu-oracle/actions/workflows/refresh-plugin-data.yml/badge.svg" alt="Refresh Data"></a>
   <a href="https://github.com/Valorith/eqemu-oracle/actions/workflows/create-release.yml"><img src="https://github.com/Valorith/eqemu-oracle/actions/workflows/create-release.yml/badge.svg" alt="Create Release"></a>
   <a href="https://github.com/Valorith/eqemu-oracle/graphs/contributors"><img src="https://img.shields.io/github/contributors/Valorith/eqemu-oracle" alt="Contributors"></a>
