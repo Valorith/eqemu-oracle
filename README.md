@@ -1,5 +1,16 @@
 <img width="779" height="912" alt="EQEmu Oracle logo" src="https://github.com/user-attachments/assets/3fb7197b-bbb3-45a5-acf3-1ac0a50043e5" />
 
+<p align="center">
+  <a href="https://github.com/Valorith/eqemu-oracle/actions/workflows/refresh-plugin-data.yml"><img src="https://github.com/Valorith/eqemu-oracle/actions/workflows/refresh-plugin-data.yml/badge.svg" alt="Refresh Data"></a>
+  <a href="https://github.com/Valorith/eqemu-oracle/actions/workflows/create-release.yml"><img src="https://github.com/Valorith/eqemu-oracle/actions/workflows/create-release.yml/badge.svg" alt="Create Release"></a>
+  <a href="https://github.com/Valorith/eqemu-oracle/graphs/contributors"><img src="https://img.shields.io/github/contributors/Valorith/eqemu-oracle" alt="Contributors"></a>
+  <a href="https://github.com/Valorith/eqemu-oracle/releases"><img src="https://img.shields.io/github/v/release/Valorith/eqemu-oracle" alt="Latest Release"></a>
+  <a href="https://github.com/Valorith/eqemu-oracle/releases"><img src="https://img.shields.io/github/release-date/Valorith/eqemu-oracle" alt="Release Date"></a>
+  <a href="https://github.com/Valorith/eqemu-oracle/pulls?q=is%3Apr+is%3Aclosed"><img src="https://img.shields.io/github/issues-pr-closed/Valorith/eqemu-oracle" alt="Closed Pull Requests"></a>
+  <a href="https://github.com/Valorith/eqemu-oracle/commits/main"><img src="https://img.shields.io/github/last-commit/Valorith/eqemu-oracle" alt="Last Commit"></a>
+  <a href="https://github.com/Valorith/eqemu-oracle"><img src="https://img.shields.io/badge/Codex-Plugin-5A7D2B" alt="Codex Plugin"></a>
+</p>
+
 # EQEmu Oracle
 
 `EQEmu Oracle` is a Codex plugin that helps you ask EQEmu questions in plain language and get grounded answers from local EQEmu reference data.
