@@ -3,10 +3,12 @@ from __future__ import annotations
 import os
 import shutil
 import stat
+import time
+from contextlib import contextmanager
 from pathlib import Path
 from typing import Any
 
-from .constants import BASE_ROOT, MERGED_ROOT, MODE_CHOICES, OVERLAY_ROOT, SCOPE_CHOICES
+from .constants import BASE_ROOT, CACHE_ROOT, MAINTENANCE_LOCK_ROOT, MERGED_ROOT, MODE_CHOICES, OVERLAY_ROOT, SCOPE_CHOICES
 from .dataset import prune_stale_schema_extensions, write_merged_dataset
 from .ingest import write_base_dataset
 
@@ -38,6 +40,26 @@ def _remove_domain_trees(base_root: Path, merged_root: Path, scope: str) -> None
             _remove_tree(path)
 
 
+@contextmanager
+def maintenance_lock(timeout_seconds: float = 30.0):
+    ensure_root = CACHE_ROOT
+    ensure_root.mkdir(parents=True, exist_ok=True)
+    deadline = time.monotonic() + timeout_seconds
+    while True:
+        try:
+            MAINTENANCE_LOCK_ROOT.mkdir()
+            break
+        except FileExistsError:
+            if time.monotonic() >= deadline:
+                raise RuntimeError("Timed out waiting for another EQEmu Oracle maintenance operation to finish.")
+            time.sleep(0.1)
+    try:
+        yield
+    finally:
+        if MAINTENANCE_LOCK_ROOT.exists():
+            _remove_tree(MAINTENANCE_LOCK_ROOT)
+
+
 def _roots_for_mode(mode: str) -> tuple[Path, Path]:
     if mode not in MODE_CHOICES:
         raise ValueError(f"Unsupported mode '{mode}'. Expected one of: {', '.join(MODE_CHOICES)}")
@@ -49,25 +71,28 @@ def _roots_for_mode(mode: str) -> tuple[Path, Path]:
 def refresh_dataset(*, scope: str, mode: str) -> dict[str, Any]:
     if scope not in SCOPE_CHOICES:
         raise ValueError(f"Unsupported scope '{scope}'. Expected one of: {', '.join(SCOPE_CHOICES)}")
-    target_base, target_merged = _roots_for_mode(mode)
-    _remove_domain_trees(target_base, target_merged, scope)
-    if mode == "committed" and scope == "all" and OVERLAY_ROOT.exists():
-        _remove_tree(OVERLAY_ROOT)
-    write_base_dataset(target_base, scope=scope)
-    return write_merged_dataset(target_base, target_merged, scope=scope)
+    with maintenance_lock():
+        target_base, target_merged = _roots_for_mode(mode)
+        _remove_domain_trees(target_base, target_merged, scope)
+        if mode == "committed" and scope == "all" and OVERLAY_ROOT.exists():
+            _remove_tree(OVERLAY_ROOT)
+        write_base_dataset(target_base, scope=scope)
+        return write_merged_dataset(target_base, target_merged, scope=scope)
 
 
 def rebuild_extensions_dataset(*, scope: str, mode: str) -> dict[str, Any]:
     if scope not in SCOPE_CHOICES:
         raise ValueError(f"Unsupported scope '{scope}'. Expected one of: {', '.join(SCOPE_CHOICES)}")
-    target_base, target_merged = _roots_for_mode(mode)
-    return write_merged_dataset(target_base, target_merged, scope=scope)
+    with maintenance_lock():
+        target_base, target_merged = _roots_for_mode(mode)
+        return write_merged_dataset(target_base, target_merged, scope=scope)
 
 
 def prune_schema_extensions_dataset(*, apply: bool, mode: str) -> tuple[dict[str, Any], dict[str, Any] | None]:
-    target_base, target_merged = _roots_for_mode(mode)
-    result = prune_stale_schema_extensions(target_base, apply=apply)
-    manifest = None
-    if apply and result.get("removed_count"):
-        manifest = write_merged_dataset(target_base, target_merged, scope="schema")
-    return result, manifest
+    with maintenance_lock():
+        target_base, target_merged = _roots_for_mode(mode)
+        result = prune_stale_schema_extensions(target_base, apply=apply)
+        manifest = None
+        if apply and result.get("removed_count"):
+            manifest = write_merged_dataset(target_base, target_merged, scope="schema")
+        return result, manifest

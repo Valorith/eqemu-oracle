@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import errno
 import sqlite3
 import shutil
 import time
@@ -8,7 +9,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from .constants import BASE_ROOT, CACHE_ROOT, EXTENSIONS_ROOT, LOCAL_EXTENSIONS_ROOT, MERGED_ROOT, OVERLAY_ROOT, SEARCH_DB_PATH
+from .constants import BASE_ROOT, CACHE_ROOT, EXTENSIONS_ROOT, LOCAL_EXTENSIONS_ROOT, MAINTENANCE_LOCK_ROOT, MERGED_ROOT, OVERLAY_ROOT, SEARCH_DB_PATH
 from .extensions import ExtensionValidationError, load_domain_extensions, merge_records
 from .presentation import QUEST_TOPIC_STOPWORDS, add_presentation, add_search_presentation, present_quest_entry, present_quest_topic_summary
 from .utils import deep_merge, dump_json, ensure_dir, excerpt, load_json, markdown_sections, split_identifier_words
@@ -419,7 +420,14 @@ def _effective_merge_scope(target_root: Path, scope: str) -> str:
 
 def _reset_domain_root(path: Path) -> None:
     if path.exists():
-        shutil.rmtree(path)
+        for attempt in range(5):
+            try:
+                shutil.rmtree(path)
+                break
+            except OSError as exc:
+                if exc.errno not in {errno.ENOTEMPTY, 66} or attempt == 4:
+                    raise
+                time.sleep(0.1 * (attempt + 1))
     ensure_dir(path)
 
 
@@ -482,6 +490,14 @@ def _search_cache_matches(data_root: Path, db_path: Path) -> bool:
         conn.close()
     actual = {str(key): str(value) for key, value in rows}
     return actual == _search_identity(data_root)
+
+
+def _wait_for_maintenance_idle(timeout_seconds: float = 30.0) -> None:
+    deadline = time.monotonic() + timeout_seconds
+    while MAINTENANCE_LOCK_ROOT.exists():
+        if time.monotonic() >= deadline:
+            raise RuntimeError("Timed out waiting for an EQEmu Oracle maintenance operation to finish.")
+        time.sleep(0.1)
 
 
 def write_merged_dataset(base_root: Path, target_root: Path, *, scope: str = "all") -> dict[str, Any]:
@@ -704,6 +720,7 @@ def _boost_search_hit(query: str, title: str, record_id: str, entity_type: str, 
 
 class DataStore:
     def __init__(self) -> None:
+        _wait_for_maintenance_idle()
         self.data_root = current_data_root()
         self.base_root = base_data_root()
         self.manifest_path = _current_manifest_path()

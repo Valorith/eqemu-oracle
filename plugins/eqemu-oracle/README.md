@@ -63,7 +63,7 @@ Return to your previous branch after updating from a different branch:
 <python-launcher> plugins/eqemu-oracle/scripts/eqemu_oracle.py update-plugin --branch my-branch --restore-branch
 ```
 
-`<python-launcher>` means `python3` on macOS/Linux and `py -3` (or `python`) on Windows. `.mcp.json` intentionally keeps `python` as the Codex startup command because that remains the safest Windows default. Python 3.11+ is still preferred, but the checked-in `sources.toml` format also works on older Python 3 versions without installing extra parser dependencies.
+`<python-launcher>` means `python3` on macOS/Linux and `py -3` (or `python`) on Windows. Codex itself starts the plugin through `scripts/eqemu_oracle_launcher.cmd`, which bridges that difference for the MCP server startup path. Python 3.11+ is still preferred, but the checked-in `sources.toml` format also works on older Python 3 versions without installing extra parser dependencies.
 
 ## Overlay Model
 

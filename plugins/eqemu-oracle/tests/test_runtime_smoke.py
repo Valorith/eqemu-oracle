@@ -1,15 +1,41 @@
 from __future__ import annotations
 
+import tempfile
 import unittest
 from pathlib import Path
 import sys
+import threading
+import time
+from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 
-from eqemu_oracle.dataset import DataStore  # noqa: E402
+from eqemu_oracle.dataset import DataStore, _wait_for_maintenance_idle  # noqa: E402
 
 
 class RuntimeSmokeTest(unittest.TestCase):
+    def test_wait_for_maintenance_idle_blocks_until_lock_released(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            lock_root = Path(temp_dir) / "maintenance.lock"
+            lock_root.mkdir()
+            released = threading.Event()
+
+            def releaser() -> None:
+                time.sleep(0.1)
+                lock_root.rmdir()
+                released.set()
+
+            thread = threading.Thread(target=releaser)
+            thread.start()
+            start = time.monotonic()
+            with patch("eqemu_oracle.dataset.MAINTENANCE_LOCK_ROOT", lock_root):
+                _wait_for_maintenance_idle(timeout_seconds=1.0)
+            elapsed = time.monotonic() - start
+            thread.join(timeout=1.0)
+
+        self.assertTrue(released.is_set())
+        self.assertGreaterEqual(elapsed, 0.09)
+
     def test_committed_dataset_smoke(self) -> None:
         store = DataStore()
         table = store.get_table("aa_ability")

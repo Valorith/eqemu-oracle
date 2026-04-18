@@ -64,7 +64,7 @@ That means a local extension can override both the upstream data and a repo-trac
 1. Open the repo in Codex.
 2. Ensure a Python 3 launcher is available on your machine.
 3. Load the local plugin from the marketplace entry in `.agents/plugins/marketplace.json`.
-4. The plugin MCP server is wired through `plugins/eqemu-oracle/.mcp.json` and intentionally starts through `python`, which remains the safest default for Windows Codex installs.
+4. The plugin MCP server is wired through `plugins/eqemu-oracle/.mcp.json` and starts through `plugins/eqemu-oracle/scripts/eqemu_oracle_launcher.cmd`, a cross-platform launcher that selects the right Python entrypoint for macOS and Windows Codex installs.
 
 ```sh
 <python-launcher> plugins/eqemu-oracle/scripts/eqemu_oracle.py mcp-serve

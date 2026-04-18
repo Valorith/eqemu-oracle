@@ -7,6 +7,7 @@ from typing import Any
 
 from .constants import BASE_ROOT, MERGED_ROOT, REPO_ROOT
 from .dataset import write_merged_dataset
+from .operations import maintenance_lock
 
 
 def _run_command(args: list[str], cwd: Path) -> str:
@@ -45,9 +46,10 @@ def _checkout_branch(repo_root: Path, *, remote: str, branch: str) -> None:
 
 
 def rebuild_committed_dataset() -> dict[str, Any]:
-    if MERGED_ROOT.exists():
-        shutil.rmtree(MERGED_ROOT)
-    return write_merged_dataset(BASE_ROOT, MERGED_ROOT)
+    with maintenance_lock():
+        if MERGED_ROOT.exists():
+            shutil.rmtree(MERGED_ROOT)
+        return write_merged_dataset(BASE_ROOT, MERGED_ROOT)
 
 
 def update_plugin_repo(

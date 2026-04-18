@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import tempfile
+import threading
+import time
 import unittest
 from pathlib import Path
 from unittest.mock import patch
@@ -65,6 +67,39 @@ class OperationsTest(unittest.TestCase):
         write_merged_dataset.assert_called_once_with(base_root, merged_root, scope="schema")
         self.assertEqual(result["removed_count"], 1)
         self.assertEqual(manifest["merge_scope"], "schema")
+
+    def test_maintenance_lock_serializes_callers(self) -> None:
+        entered: list[str] = []
+        released = threading.Event()
+        first_ready = threading.Event()
+        second_finished = threading.Event()
+
+        def first_worker() -> None:
+            with operations.maintenance_lock(timeout_seconds=1.0):
+                entered.append("first")
+                first_ready.set()
+                released.wait(timeout=1.0)
+
+        def second_worker() -> None:
+            with operations.maintenance_lock(timeout_seconds=1.0):
+                entered.append("second")
+            second_finished.set()
+
+        thread = threading.Thread(target=first_worker)
+        thread.start()
+        self.assertTrue(first_ready.wait(timeout=1.0))
+
+        second_thread = threading.Thread(target=second_worker)
+        second_thread.start()
+        time.sleep(0.1)
+        self.assertEqual(entered, ["first"])
+
+        released.set()
+        thread.join(timeout=1.0)
+        second_thread.join(timeout=1.0)
+
+        self.assertTrue(second_finished.is_set())
+        self.assertEqual(entered, ["first", "second"])
 
 
 if __name__ == "__main__":
