@@ -11,15 +11,32 @@ from eqemu_oracle.config import SourceConfigError, load_source_config  # noqa: E
 
 
 class SourceConfigTest(unittest.TestCase):
-    def test_load_source_config_requires_toml_parser_when_file_exists(self) -> None:
+    def test_load_source_config_uses_builtin_fallback_parser_when_tomllib_is_unavailable(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
             default_path = root / "sources.toml"
-            default_path.write_text("[quest_api]\ndefinitions_url = 'https://spire.example/api'\nrepo = 'https://github.com/example/spire'\nbranch = 'main'\n", encoding="utf-8")
+            default_path.write_text(
+                "\n".join(
+                    [
+                        "[quest_api]",
+                        "definitions_url = 'https://spire.example/api'",
+                        "repo = 'https://github.com/example/spire'",
+                        "branch = 'main'",
+                        "",
+                        "[docs]",
+                        "repo = 'https://github.com/example/docs'",
+                        "branch = 'main'",
+                        "site_base_url = 'https://docs.example'",
+                    ]
+                ),
+                encoding="utf-8",
+            )
 
             with unittest.mock.patch("eqemu_oracle.config._tomllib", None):
-                with self.assertRaises(SourceConfigError):
-                    load_source_config(default_path, root / "missing.local.toml")
+                config = load_source_config(default_path, root / "missing.local.toml")
+
+        self.assertEqual(config["quest_api"]["branch"], "main")
+        self.assertEqual(config["docs"]["archive_url"], "https://github.com/example/docs/archive/refs/heads/main.zip")
 
     def test_load_source_config_applies_local_override_and_derives_github_endpoints(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:

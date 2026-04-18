@@ -191,6 +191,7 @@ def parse_schema_markdown(
     source_ref: str,
     fetched_at: str,
 ) -> dict[str, Any]:
+    normalized_relative_path = relative_path.replace("\\", "/")
     title = heading_title(markdown, Path(relative_path).stem)
     lines = markdown.splitlines()
     relationships_lines: list[str] = []
@@ -228,7 +229,7 @@ def parse_schema_markdown(
         }
         for row in relationship_rows
     ]
-    path_without_suffix = relative_path[:-3].replace("\\", "/")
+    path_without_suffix = normalized_relative_path[:-3]
     site_path = path_without_suffix.removeprefix("docs/")
     docs_url = docs_config["site_base_url"] + "/" + site_path.rstrip("/") + "/"
     table_tokens = split_identifier_words(table_name)
@@ -255,7 +256,7 @@ def parse_schema_markdown(
         "relationships": relationships,
         "headings": markdown_headings(markdown),
         "docs_url": docs_url,
-        "source_url": f"{docs_config['source_file_base']}/{relative_path.replace('\\', '/')}",
+        "source_url": f"{docs_config['source_file_base']}/{normalized_relative_path}",
         "source_repo": docs_config["repo"],
         "source_branch": docs_config["branch"],
         "source_ref": source_ref,
@@ -272,7 +273,8 @@ def parse_doc_markdown(
     source_ref: str,
     fetched_at: str,
 ) -> tuple[dict[str, Any], str]:
-    path_without_suffix = relative_path[:-3].replace("\\", "/")
+    normalized_relative_path = relative_path.replace("\\", "/")
+    path_without_suffix = normalized_relative_path[:-3]
     site_path = path_without_suffix.removeprefix("docs/")
     docs_url = docs_config["site_base_url"] + "/" + site_path.rstrip("/") + "/"
     page = {
@@ -285,7 +287,7 @@ def parse_doc_markdown(
         "links": markdown_links(markdown),
         "summary": excerpt(markdown),
         "docs_url": docs_url,
-        "source_url": f"{docs_config['source_file_base']}/{relative_path.replace('\\', '/')}",
+        "source_url": f"{docs_config['source_file_base']}/{normalized_relative_path}",
         "source_repo": docs_config["repo"],
         "source_branch": docs_config["branch"],
         "source_ref": source_ref,

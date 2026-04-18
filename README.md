@@ -62,15 +62,15 @@ That means a local extension can override both the upstream data and a repo-trac
 ## Getting Started
 
 1. Open the repo in Codex.
-2. Ensure Python is available on your machine.
+2. Ensure a Python 3 launcher is available on your machine.
 3. Load the local plugin from the marketplace entry in `.agents/plugins/marketplace.json`.
-4. The plugin MCP server is wired through `plugins/eqemu-oracle/.mcp.json` and starts through a shell-neutral command:
+4. The plugin MCP server is wired through `plugins/eqemu-oracle/.mcp.json` and intentionally starts through `python`, which remains the safest default for Windows Codex installs.
 
 ```sh
-python plugins/eqemu-oracle/scripts/eqemu_oracle.py mcp-serve
+<python-launcher> plugins/eqemu-oracle/scripts/eqemu_oracle.py mcp-serve
 ```
 
-Python 3.11+ is the cleanest path on both Windows and macOS. On Python 3.10 and earlier, install `tomli` so the source config loader can parse `sources.toml`.
+`<python-launcher>` means `python3` on macOS/Linux and `py -3` (or `python`) on Windows. Python 3.11+ is the cleanest path on both Windows and macOS, but the checked-in `sources.toml` format also works on older Python 3 runtimes without extra parser dependencies.
 
 If you need to point the plugin at a fork, branch, or private mirror, copy `plugins/eqemu-oracle/config/sources.toml` to `plugins/eqemu-oracle/config/sources.local.toml` and override only the values you need.
 
@@ -81,19 +81,19 @@ Use the local CLI to rebuild staged data from upstream sources.
 Refresh and rewrite the committed snapshots:
 
 ```sh
-python plugins/eqemu-oracle/scripts/eqemu_oracle.py refresh --scope all --mode committed
+<python-launcher> plugins/eqemu-oracle/scripts/eqemu_oracle.py refresh --scope all --mode committed
 ```
 
 Refresh into a local untracked overlay without replacing committed data:
 
 ```sh
-python plugins/eqemu-oracle/scripts/eqemu_oracle.py refresh --scope all --mode overlay
+<python-launcher> plugins/eqemu-oracle/scripts/eqemu_oracle.py refresh --scope all --mode overlay
 ```
 
 Rebuild merged data after changing only extension files:
 
 ```sh
-python plugins/eqemu-oracle/scripts/eqemu_oracle.py rebuild-extensions --scope all --mode committed
+<python-launcher> plugins/eqemu-oracle/scripts/eqemu_oracle.py rebuild-extensions --scope all --mode committed
 ```
 
 Use `--mode overlay` with `rebuild-extensions` if you want the rebuild to target the local overlay instead of the committed merged snapshot.
@@ -102,13 +102,13 @@ Use `--mode overlay` with `rebuild-extensions` if you want the rebuild to target
 Update the plugin code from its Git remote and rebuild the committed merged dataset:
 
 ```sh
-python plugins/eqemu-oracle/scripts/eqemu_oracle.py update-plugin
+<python-launcher> plugins/eqemu-oracle/scripts/eqemu_oracle.py update-plugin
 ```
 
 If you want to temporarily switch to another branch for the update and then return to your current branch afterward:
 
 ```sh
-python plugins/eqemu-oracle/scripts/eqemu_oracle.py update-plugin --branch my-branch --restore-branch
+<python-launcher> plugins/eqemu-oracle/scripts/eqemu_oracle.py update-plugin --branch my-branch --restore-branch
 ```
 
 ## Extension Overlays
@@ -178,7 +178,7 @@ Schema overlay that adds a custom local-only table:
 After adding the file, rebuild merged data:
 
 ```sh
-python plugins/eqemu-oracle/scripts/eqemu_oracle.py rebuild-extensions --scope schema --mode committed
+<python-launcher> plugins/eqemu-oracle/scripts/eqemu_oracle.py rebuild-extensions --scope schema --mode committed
 ```
 
 ## MCP Surface
@@ -215,14 +215,14 @@ It also exposes read resources for staged indexes and direct record navigation:
 Run the current test suite with:
 
 ```sh
-python -m unittest discover -s plugins/eqemu-oracle/tests
+<python-launcher> -m unittest discover -s plugins/eqemu-oracle/tests
 ```
 
 Useful validation commands:
 
 ```sh
-python -m compileall plugins/eqemu-oracle/scripts
-python plugins/eqemu-oracle/scripts/eqemu_oracle.py refresh --scope all --mode overlay
+<python-launcher> -m compileall plugins/eqemu-oracle/scripts
+<python-launcher> plugins/eqemu-oracle/scripts/eqemu_oracle.py refresh --scope all --mode overlay
 ```
 
 ## Status

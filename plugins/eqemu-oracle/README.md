@@ -30,40 +30,40 @@
 Run the local MCP server:
 
 ```sh
-python plugins/eqemu-oracle/scripts/eqemu_oracle.py mcp-serve
+<python-launcher> plugins/eqemu-oracle/scripts/eqemu_oracle.py mcp-serve
 ```
 
 Refresh upstream snapshots and rebuild merged data:
 
 ```sh
-python plugins/eqemu-oracle/scripts/eqemu_oracle.py refresh --scope all --mode committed
+<python-launcher> plugins/eqemu-oracle/scripts/eqemu_oracle.py refresh --scope all --mode committed
 ```
 
 Refresh into the local untracked overlay:
 
 ```sh
-python plugins/eqemu-oracle/scripts/eqemu_oracle.py refresh --scope all --mode overlay
+<python-launcher> plugins/eqemu-oracle/scripts/eqemu_oracle.py refresh --scope all --mode overlay
 ```
 
 Rebuild merged data from existing snapshots plus overlays:
 
 ```sh
-python plugins/eqemu-oracle/scripts/eqemu_oracle.py rebuild-extensions --scope all --mode committed
+<python-launcher> plugins/eqemu-oracle/scripts/eqemu_oracle.py rebuild-extensions --scope all --mode committed
 ```
 
 Update the plugin from its Git remote and rebuild committed merged data:
 
 ```sh
-python plugins/eqemu-oracle/scripts/eqemu_oracle.py update-plugin
+<python-launcher> plugins/eqemu-oracle/scripts/eqemu_oracle.py update-plugin
 ```
 
 Return to your previous branch after updating from a different branch:
 
 ```sh
-python plugins/eqemu-oracle/scripts/eqemu_oracle.py update-plugin --branch my-branch --restore-branch
+<python-launcher> plugins/eqemu-oracle/scripts/eqemu_oracle.py update-plugin --branch my-branch --restore-branch
 ```
 
-Use Python 3.11+ on Windows or macOS when possible. If you need to run on Python 3.10 or earlier, install `tomli` so `config/sources.toml` can still be parsed.
+`<python-launcher>` means `python3` on macOS/Linux and `py -3` (or `python`) on Windows. `.mcp.json` intentionally keeps `python` as the Codex startup command because that remains the safest Windows default. Python 3.11+ is still preferred, but the checked-in `sources.toml` format also works on older Python 3 versions without installing extra parser dependencies.
 
 ## Overlay Model
 

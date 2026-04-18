@@ -21,12 +21,74 @@ class SourceConfigError(ValueError):
     pass
 
 
+def _strip_inline_comment(value: str) -> str:
+    in_single = False
+    in_double = False
+    escaped = False
+    for index, char in enumerate(value):
+        if char == "\\" and (in_single or in_double):
+            escaped = not escaped
+            continue
+        if char == "'" and not in_double and not escaped:
+            in_single = not in_single
+        elif char == '"' and not in_single and not escaped:
+            in_double = not in_double
+        elif char == "#" and not in_single and not in_double:
+            return value[:index].rstrip()
+        escaped = False
+    return value.rstrip()
+
+
+def _parse_basic_toml_value(raw_value: str, *, line_number: int) -> Any:
+    value = _strip_inline_comment(raw_value).strip()
+    if not value:
+        raise SourceConfigError(f"Invalid TOML value on line {line_number}")
+    if len(value) >= 2 and value[0] == value[-1] and value[0] in {'"', "'"}:
+        return value[1:-1]
+    lowered = value.lower()
+    if lowered == "true":
+        return True
+    if lowered == "false":
+        return False
+    if re.fullmatch(r"[+-]?\d+", value):
+        return int(value)
+    if re.fullmatch(r"[+-]?\d+\.\d+", value):
+        return float(value)
+    return value
+
+
+def _parse_basic_toml(text: str) -> dict[str, Any]:
+    result: dict[str, Any] = {}
+    current: dict[str, Any] = result
+    for line_number, raw_line in enumerate(text.splitlines(), start=1):
+        line = raw_line.strip()
+        if not line or line.startswith("#"):
+            continue
+        if line.startswith("[") and line.endswith("]"):
+            section = line[1:-1].strip()
+            if not section:
+                raise SourceConfigError(f"Invalid TOML section header on line {line_number}")
+            current = result.setdefault(section, {})
+            if not isinstance(current, dict):
+                raise SourceConfigError(f"Invalid TOML section reuse on line {line_number}")
+            continue
+        key, separator, raw_value = line.partition("=")
+        if not separator:
+            raise SourceConfigError(f"Invalid TOML entry on line {line_number}")
+        normalized_key = key.strip()
+        if not normalized_key:
+            raise SourceConfigError(f"Invalid TOML key on line {line_number}")
+        current[normalized_key] = _parse_basic_toml_value(raw_value, line_number=line_number)
+    return result
+
+
 def _load_toml(path: Path) -> dict[str, Any]:
     if not path.exists():
         return {}
-    if _tomllib is None:
-        raise SourceConfigError("TOML parsing requires Python 3.11+ or the `tomli` package on Python 3.10 and earlier")
-    return _tomllib.loads(path.read_text(encoding="utf-8"))
+    text = path.read_text(encoding="utf-8")
+    if _tomllib is not None:
+        return _tomllib.loads(text)
+    return _parse_basic_toml(text)
 
 
 def _merge_dicts(base: dict[str, Any], overlay: dict[str, Any]) -> dict[str, Any]:
