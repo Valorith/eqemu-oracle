@@ -108,7 +108,7 @@ class SearchBehaviorTest(unittest.TestCase):
                         with patch("eqemu_oracle.dataset.SEARCH_DB_PATH", search_db):
                             manifest = write_merged_dataset(base_root, target_root, scope="quest-api")
 
-            self.assertEqual(manifest["merge_scope"], "quest-api")
+            self.assertEqual(manifest["merge_scope"], "all")
             quest_records = load_json(target_root / "quest-api" / "records.json")
             schema_records = load_json(target_root / "schema" / "index.json")
             docs_records = load_json(target_root / "docs" / "pages.json")

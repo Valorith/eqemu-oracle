@@ -438,6 +438,12 @@ def _effective_merge_scope(target_root: Path, scope: str) -> str:
     return "all" if missing_domains else scope
 
 
+def _manifest_merge_scope(target_root: Path, scope: str) -> str:
+    if all(_merged_domain_is_present(target_root, domain) for domain in ("quest-api", "schema", "docs")):
+        return "all"
+    return scope
+
+
 def _reset_domain_root(path: Path) -> None:
     if path.exists():
         for attempt in range(5):
@@ -612,7 +618,7 @@ def write_merged_dataset(base_root: Path, target_root: Path, *, scope: str = "al
             "docs-sections": len(docs_sections),
         },
         "freshness_state": "fresh",
-        "merge_scope": scope,
+        "merge_scope": _manifest_merge_scope(target_root, scope),
         "sources": _load_domain_meta(base_root),
         "extension_health": {
             "stale_schema_candidate_count": len(stale_schema_extensions),
