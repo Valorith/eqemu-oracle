@@ -56,6 +56,8 @@ If you only care about getting it running, follow these steps:
    ```
 
    On macOS, `install.sh` is meant to be run from Terminal. If you double-click it in Finder, macOS may open it in a text editor instead of executing it. For a double-clickable macOS launcher, use `install.command`.
+   <img width="717" height="163" alt="image" src="https://github.com/user-attachments/assets/d60ea500-8b48-4c0f-a0c4-3e4befc73033" />
+
 
 5. If Codex was already open, restart it once.
 6. Go to the Plugins window within codex.
