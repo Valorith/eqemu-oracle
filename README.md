@@ -59,77 +59,22 @@ If you only care about getting it running, follow these steps:
    <img width="717" height="163" alt="image" src="https://github.com/user-attachments/assets/d60ea500-8b48-4c0f-a0c4-3e4befc73033" />
 
 
-5. If Codex was already open, restart it once.
-6. Go to the Plugins window within codex.
+4. If Codex was already open, restart it once.
+5. Go to the Plugins window within codex.
    <img width="418" height="175" alt="image" src="https://github.com/user-attachments/assets/eb7f0658-587e-4500-b7c0-617c6280cf5d" />
 
-7. Enable the `EQEmu Oracle` plugin.
+6. Enable the `EQEmu Oracle` plugin.
    <img width="814" height="277" alt="image" src="https://github.com/user-attachments/assets/b5c198cf-a593-44e2-a0a9-4081b0ace53b" />
 
-8. Ask Codex an EQEmu question from any project thread while invoking the plugin with `@EQEmu Oracle`.
+7. Ask Codex an EQEmu question from any project thread while invoking the plugin with `@EQEmu Oracle`.
    <img width="747" height="439" alt="image" src="https://github.com/user-attachments/assets/23aa3e1e-8966-4ea9-82c5-3fc5cfa3aeb0" />
    
    <img width="756" height="133" alt="image" src="https://github.com/user-attachments/assets/78ac79e9-c8fe-4f48-abe4-c31dcd4118d3" />
 
 
-## Setup
+## Development
 
-### 1. Get The Repository
-
-For normal installation, download the latest release zip from [Releases](https://github.com/Valorith/eqemu-oracle/releases), then extract it anywhere convenient on your machine.
-
-The extracted folder will be named something like `eqemu-oracle-vX.Y.Z`.
-
-If you want the live source checkout for development or contribution work, you can clone the repository instead.
-
-Examples:
-
-- <img src="assets/windows.svg" alt="Windows" width="18" /> Windows: `C:\Users\<you>\Documents\eqemu-oracle-vX.Y.Z`
-- <img src="assets/apple_dark.svg" alt="macOS" width="16" /> macOS: `~/Code/eqemu-oracle-vX.Y.Z`
-
-### 2. Confirm Python
-
-You only need a working Python 3 install.
-
-<img src="assets/windows.svg" alt="Windows" width="18" /> Windows:
-
-```powershell
-py -3 --version
-```
-
-If that does not work, try:
-
-```powershell
-python --version
-```
-
-<img src="assets/apple_dark.svg" alt="macOS" width="16" /> macOS:
-
-```sh
-python3 --version
-```
-
-### 3. Run The Install Script
-
-Run the install script from the repository root or extracted release folder.
-
-<img src="assets/windows.svg" alt="Windows" width="18" /> Windows:
-
-```powershell
-.\install.cmd
-```
-
-<img src="assets/apple_dark.svg" alt="macOS" width="16" /> macOS/Linux:
-
-```sh
-./install.sh
-```
-
-On macOS, run that from Terminal. If you want a Finder-friendly launcher, double-click `install.command` instead.
-
-This is the normal setup path. It installs or refreshes the global Codex copy of the plugin so it can be used from other project threads.
-
-If you are developing the plugin from a local checkout and want your latest changes to be available globally, rerun the same install script after you edit the plugin files.
+If you are developing the plugin from a local checkout and want your latest changes to be available globally, rerun the install script after you edit the plugin files.
 
 If you specifically need the lower-level Python entrypoint, use:
 
@@ -145,19 +90,9 @@ py -3 plugins/eqemu-oracle/scripts/eqemu_oracle.py install
 python3 plugins/eqemu-oracle/scripts/eqemu_oracle.py install
 ```
 
-The install script also preserves local overrides in `local-extensions/` and `config/sources.local.toml` when refreshing an existing install.
+The install script preserves local overrides in `local-extensions/` and `config/sources.local.toml` when refreshing an existing install.
 
-### 4. Enable The Plugin In Codex
-
-After the installer finishes:
-
-1. Open any project in Codex.
-2. Open the Plugins UI and check whether `EQEmu Oracle` is already listed and enabled.
-3. If Codex was already open during install, restart Codex once so the refreshed plugin state is picked up.
-
-After that, Codex should be able to use `EQEmu Oracle` from any project thread.
-
-### 5. Repo-Local Development Mode
+### Repo-Local Development Mode
 
 For development on this repository itself, open the top-level repository folder in Codex.
 
