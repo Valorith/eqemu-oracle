@@ -42,6 +42,7 @@ If you only care about getting it running, follow these steps:
 1. Download the latest release zip from [Releases](https://github.com/Valorith/eqemu-oracle/releases) and extract it on your computer.
 2. Install Python 3 if you do not already have it.
 3. Run the install script from the extracted release folder.
+   
    Windows:
 
    ```powershell
@@ -54,14 +55,15 @@ If you only care about getting it running, follow these steps:
    ./install.sh
    ```
 
-4. If Codex was already open, restart it once.
-5. Open any project thread in Codex and check whether `EQEmu Oracle` appears in the Plugins UI.
-   <img width="364" height="211" alt="image" src="https://github.com/user-attachments/assets/e23c6853-db44-46a4-9f5b-9b432ca1e9e6" />
-   <img width="774" height="267" alt="image" src="https://github.com/user-attachments/assets/5f3bcc21-9301-4d29-8f8f-92b39b85d146" />
-6. Install or enable `EQEmu Oracle` if Codex has not already done so.
-7. Ask Codex an EQEmu question from any project thread.
+5. If Codex was already open, restart it once.
+6. Go to the Plugins window within codex.
+   <img width="418" height="175" alt="image" src="https://github.com/user-attachments/assets/eb7f0658-587e-4500-b7c0-617c6280cf5d" />
 
-For almost all users, the install script is the only setup step that matters.
+7. Enable the `EQEmu Oracle` plugin.
+   <img width="814" height="277" alt="image" src="https://github.com/user-attachments/assets/b5c198cf-a593-44e2-a0a9-4081b0ace53b" />
+
+8. Ask Codex an EQEmu question from any project thread while invoking the plugin with `@EQEmu Oracle`.
+
 
 ## Setup
 
