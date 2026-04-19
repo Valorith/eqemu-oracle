@@ -41,7 +41,7 @@ If you only care about getting it running, follow these steps:
 
 1. Download the latest release zip from [Releases](https://github.com/Valorith/eqemu-oracle/releases) and extract it on your computer.
 2. Install Python 3 if you do not already have it.
-3. Run the installer from the extracted release folder.
+3. Run the install script from the extracted release folder.
    Windows:
 
    ```powershell
@@ -54,13 +54,14 @@ If you only care about getting it running, follow these steps:
    ./install.sh
    ```
 
-4. Open any project thread in Codex and check whether `EQEmu Oracle` appears in the Plugins UI.
+4. If Codex was already open, restart it once.
+5. Open any project thread in Codex and check whether `EQEmu Oracle` appears in the Plugins UI.
    <img width="364" height="211" alt="image" src="https://github.com/user-attachments/assets/e23c6853-db44-46a4-9f5b-9b432ca1e9e6" />
    <img width="774" height="267" alt="image" src="https://github.com/user-attachments/assets/5f3bcc21-9301-4d29-8f8f-92b39b85d146" />
-5. Install or enable `EQEmu Oracle` if Codex has not already done so.
-6. Ask Codex an EQEmu question from any project thread.
+6. Install or enable `EQEmu Oracle` if Codex has not already done so.
+7. Ask Codex an EQEmu question from any project thread.
 
-The installer registers the plugin directly into Codex Desktop's global plugin catalog under `~/.codex/.tmp/plugins` when that catalog is present. If Codex has not created that catalog yet, the installer falls back to the older `~/plugins` plus `~/.agents/plugins/marketplace.json` layout.
+For almost all users, the install script is the only setup step that matters.
 
 ## Setup
 
@@ -99,9 +100,9 @@ macOS:
 python3 --version
 ```
 
-### 3. Install The Plugin Globally
+### 3. Run The Install Script
 
-Run the installer from the repository root.
+Run the install script from the repository root or extracted release folder.
 
 Windows:
 
@@ -115,7 +116,11 @@ macOS/Linux:
 ./install.sh
 ```
 
-If you prefer to run the Python entrypoint directly, use:
+This is the normal setup path. It installs or refreshes the global Codex copy of the plugin so it can be used from other project threads.
+
+If you are developing the plugin from a local checkout and want your latest changes to be available globally, rerun the same install script after you edit the plugin files.
+
+If you specifically need the lower-level Python entrypoint, use:
 
 Windows:
 
@@ -129,14 +134,7 @@ macOS/Linux:
 python3 plugins/eqemu-oracle/scripts/eqemu_oracle.py install
 ```
 
-This install path is the default setup flow. It:
-
-1. installs the plugin into Codex Desktop's global plugin catalog under `~/.codex/.tmp/plugins` when available
-2. falls back to `~/plugins/eqemu-oracle` plus `~/.agents/plugins/marketplace.json` only if the desktop catalog is unavailable
-3. seeds Codex's installed plugin cache under `~/.codex/plugins/cache/...` and enables the plugin in `~/.codex/config.toml` when Codex is present
-4. rebuilds the copied search data so it no longer points back at this repository checkout
-
-If you already have a home-local install, rerun the same command to refresh it. Local overrides in `local-extensions/` and `config/sources.local.toml` are preserved.
+The install script also preserves local overrides in `local-extensions/` and `config/sources.local.toml` when refreshing an existing install.
 
 ### 4. Enable The Plugin In Codex
 
@@ -144,7 +142,7 @@ After the installer finishes:
 
 1. Open any project in Codex.
 2. Open the Plugins UI and check whether `EQEmu Oracle` is already listed and enabled.
-3. If Codex was already open during install, restart Codex once so the refreshed catalog is picked up.
+3. If Codex was already open during install, restart Codex once so the refreshed plugin state is picked up.
 
 After that, Codex should be able to use `EQEmu Oracle` from any project thread.
 
@@ -215,21 +213,19 @@ That means answers are based on the staged data in this repository instead of lo
 
 ### The Plugin Does Not Show Up In Codex
 
-First, run the global installer from the repository root if you have not done that yet:
+First, run the install script from the repository root:
 
 ```powershell
 .\install.cmd
 ```
 
-On Codex Desktop, that registers the plugin into the app's global catalog at `~/.codex/.tmp/plugins`.
-
 Then:
 
-1. Check whether `EQEmu Oracle` already appears.
-2. If Codex was already open during install, restart Codex and reopen the Plugins UI.
-3. Install or enable `EQEmu Oracle`.
+1. Restart Codex if it was already open.
+2. Check whether `EQEmu Oracle` appears in the Plugins UI.
+3. Install or enable `EQEmu Oracle` if needed.
 
-If Codex still does not show the plugin after a restart, rerun the installer. The fallback `~/.agents/plugins/marketplace.json` path is only for older local-plugin flows and should not be relied on as the main desktop setup path.
+If Codex still does not show the plugin after a restart, rerun the install script.
 
 ### Python Is Not Found
 
@@ -255,7 +251,7 @@ If the command starts cleanly, the runtime is available and Codex should be able
 
 ### You Downloaded Only The Plugin Folder
 
-Download or clone the full repository instead. The installer and release layout expect the full repository root, not just `plugins/eqemu-oracle/`.
+Download or clone the full repository instead. The install script expects the full repository root, not just `plugins/eqemu-oracle/`.
 
 ## Optional: Add Your Own Server Knowledge
 
