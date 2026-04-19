@@ -9,12 +9,13 @@
   <a href="https://github.com/Valorith/eqemu-oracle/releases"><img src="https://img.shields.io/github/release-date/Valorith/eqemu-oracle" alt="Release Date"></a>
   <a href="https://github.com/Valorith/eqemu-oracle/pulls?q=is%3Apr+is%3Aclosed"><img src="https://img.shields.io/github/issues-pr-closed/Valorith/eqemu-oracle" alt="Closed Pull Requests"></a>
   <a href="https://github.com/Valorith/eqemu-oracle/commits/main"><img src="https://img.shields.io/github/last-commit/Valorith/eqemu-oracle" alt="Last Commit"></a>
+  <img src="assets/codex_dark_badge.svg" alt="Codex" width="22">
   <a href="https://github.com/Valorith/eqemu-oracle"><img src="https://img.shields.io/badge/Codex-Plugin-5A7D2B" alt="Codex Plugin"></a>
 </p>
 
 # EQEmu Oracle
 
-`EQEmu Oracle` is a Codex plugin that helps you ask EQEmu questions in plain language and get grounded answers from local EQEmu reference data.
+`EQEmu Oracle` is a <img src="assets/codex_dark_badge.svg" alt="Codex" width="16" /> Codex plugin that helps you ask EQEmu questions in plain language and get grounded answers from local EQEmu reference data.
 
 It is built for people who want fast help with EQEmu scripting, database tables, and documentation without digging through multiple sites or relying on generic AI guesses.
 
@@ -22,7 +23,7 @@ This plugin is specifically designed to work with the OpenAI ChatGPT Codex App: 
 
 ## What It Helps With
 
-Once installed, the plugin can help Codex:
+Once installed, the plugin can help <img src="assets/codex_dark_badge.svg" alt="Codex" width="16" /> Codex:
 
 - explain Perl and Lua quest API methods, events, and constants
 - look up EQEmu database tables, columns, and relationships
@@ -33,7 +34,7 @@ Once installed, the plugin can help Codex:
 ## Why Use It
 
 - Local and predictable: answers come from staged EQEmu data in this repository
-- Better than ad hoc search: Codex can pull from a purpose-built EQEmu source instead of guessing
+- Better than ad hoc search: <img src="assets/codex_dark_badge.svg" alt="Codex" width="16" /> Codex can pull from a purpose-built EQEmu source instead of guessing
 - Friendly workflow: ask normal questions instead of memorizing where the information lives
 - Expandable: you can add your own schema, docs, or quest API overlays for private server changes
 
@@ -61,14 +62,14 @@ If you only care about getting it running, follow these steps:
    <img width="717" height="163" alt="image" src="https://github.com/user-attachments/assets/d60ea500-8b48-4c0f-a0c4-3e4befc73033" />
 
 
-4. If Codex was already open, restart it once.
-5. Go to the Plugins window within codex.
+4. If <img src="assets/codex_dark_badge.svg" alt="Codex" width="16" /> Codex was already open, restart it once.
+5. Go to the Plugins window within <img src="assets/codex_dark_badge.svg" alt="Codex" width="16" /> Codex.
    <img width="418" height="175" alt="image" src="https://github.com/user-attachments/assets/eb7f0658-587e-4500-b7c0-617c6280cf5d" />
 
 6. Enable the `EQEmu Oracle` plugin.
    <img width="814" height="277" alt="image" src="https://github.com/user-attachments/assets/b5c198cf-a593-44e2-a0a9-4081b0ace53b" />
 
-7. Ask Codex an EQEmu question from any project thread while invoking the plugin with `@EQEmu Oracle`.
+7. Ask <img src="assets/codex_dark_badge.svg" alt="Codex" width="16" /> Codex an EQEmu question from any project thread while invoking the plugin with `@EQEmu Oracle`.
    <img width="747" height="439" alt="image" src="https://github.com/user-attachments/assets/23aa3e1e-8966-4ea9-82c5-3fc5cfa3aeb0" />
    
    <img width="756" height="133" alt="image" src="https://github.com/user-attachments/assets/78ac79e9-c8fe-4f48-abe4-c31dcd4118d3" />
@@ -96,11 +97,11 @@ The install script preserves local overrides in `local-extensions/` and `config/
 
 ### Repo-Local Development Mode
 
-For development on this repository itself, open the top-level repository folder in Codex.
+For development on this repository itself, open the top-level repository folder in <img src="assets/codex_dark_badge.svg" alt="Codex" width="16" /> Codex.
 
 Do not open only `plugins/eqemu-oracle/`. The repo-local marketplace and MCP wiring expect the full repository layout to stay intact.
 
-When this repository is opened as a Codex project, the repo-local plugin should still appear in that project's Plugins UI without any separate marketplace import step.
+When this repository is opened as a <img src="assets/codex_dark_badge.svg" alt="Codex" width="16" /> Codex project, the repo-local plugin should still appear in that project's Plugins UI without any separate marketplace import step.
 
 ## First Use
 
@@ -111,7 +112,7 @@ Once the plugin is installed, try prompts like these:
 - `Use EQEmu Oracle to find the docs page for Perl quest events`
 - `Use EQEmu Oracle to compare spell data tables related to NPC casting`
 
-You do not need to manually start the plugin in normal use. Codex handles that through the included MCP configuration.
+You do not need to manually start the plugin in normal use. <img src="assets/codex_dark_badge.svg" alt="Codex" width="16" /> Codex handles that through the included MCP configuration.
 
 ## What You Can Ask
 
@@ -139,7 +140,7 @@ Examples:
 
 ### Documentation Lookup
 
-Ask Codex to find official docs and summarize them.
+Ask <img src="assets/codex_dark_badge.svg" alt="Codex" width="16" /> Codex to find official docs and summarize them.
 
 Examples:
 
@@ -149,7 +150,7 @@ Examples:
 
 ## How It Works
 
-At a high level, the plugin gives Codex a local EQEmu reference source made from:
+At a high level, the plugin gives <img src="assets/codex_dark_badge.svg" alt="Codex" width="16" /> Codex a local EQEmu reference source made from:
 
 - quest scripting API data
 - EQEmu schema data
@@ -159,7 +160,7 @@ That means answers are based on the staged data in this repository instead of lo
 
 ## Troubleshooting
 
-### The Plugin Does Not Show Up In Codex
+### The Plugin Does Not Show Up In <img src="assets/codex_dark_badge.svg" alt="Codex" width="16" /> Codex
 
 First, run the install script from the repository root:
 
@@ -169,17 +170,17 @@ First, run the install script from the repository root:
 
 Then:
 
-1. Restart Codex if it was already open.
+1. Restart <img src="assets/codex_dark_badge.svg" alt="Codex" width="16" /> Codex if it was already open.
 2. Check whether `EQEmu Oracle` appears in the Plugins UI.
 3. Install or enable `EQEmu Oracle` if needed.
 
-If Codex still does not show the plugin after a restart, rerun the install script.
+If <img src="assets/codex_dark_badge.svg" alt="Codex" width="16" /> Codex still does not show the plugin after a restart, rerun the install script.
 
 ### Python Is Not Found
 
 Install Python 3, then reopen the terminal and re-run the version check.
 
-### Codex Sees The Plugin But It Does Not Answer
+### <img src="assets/codex_dark_badge.svg" alt="Codex" width="16" /> Codex Sees The Plugin But It Does Not Answer
 
 Run this manual check from the repository root:
 
@@ -195,7 +196,7 @@ py -3 plugins/eqemu-oracle/scripts/eqemu_oracle.py mcp-serve
 python3 plugins/eqemu-oracle/scripts/eqemu_oracle.py mcp-serve
 ```
 
-If the command starts cleanly, the runtime is available and Codex should be able to use it.
+If the command starts cleanly, the runtime is available and <img src="assets/codex_dark_badge.svg" alt="Codex" width="16" /> Codex should be able to use it.
 
 ### You Downloaded Only The Plugin Folder
 
@@ -226,7 +227,7 @@ The local file is meant for personal overrides.
 
 If you want to know where things live:
 
-- `.agents/plugins/marketplace.json`: local marketplace entry for Codex
+- `.agents/plugins/marketplace.json`: local marketplace entry for <img src="assets/codex_dark_badge.svg" alt="Codex" width="16" /> Codex
 - `plugins/eqemu-oracle/`: the actual plugin
 - `plugins/eqemu-oracle/.codex-plugin/plugin.json`: plugin metadata
 - `plugins/eqemu-oracle/.mcp.json`: local MCP server wiring
@@ -237,4 +238,4 @@ If you want to know where things live:
 
 ## In One Sentence
 
-If you use Codex for EQEmu work, `EQEmu Oracle` gives it a clean, local source for scripting help, schema lookup, and documentation answers.
+If you use <img src="assets/codex_dark_badge.svg" alt="Codex" width="16" /> Codex for EQEmu work, `EQEmu Oracle` gives it a clean, local source for scripting help, schema lookup, and documentation answers.
