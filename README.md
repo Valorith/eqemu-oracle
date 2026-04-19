@@ -44,6 +44,8 @@ If you only care about getting it running, follow these steps:
 3. Open the extracted release folder in Codex.
 4. In Codex, load the local plugin marketplace from `.agents/plugins/marketplace.json`.
 5. Install or enable the `EQEmu Oracle` plugin from that marketplace entry.
+   <img width="774" height="267" alt="image" src="https://github.com/user-attachments/assets/5f3bcc21-9301-4d29-8f8f-92b39b85d146" />
+
 6. Ask Codex an EQEmu question.
 
 Important: open the repository root, not just `plugins/eqemu-oracle/`. The plugin uses repo-relative paths and will not load correctly if only part of the repo is opened.
