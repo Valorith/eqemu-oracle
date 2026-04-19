@@ -44,11 +44,13 @@ If you only care about getting it running, follow these steps:
 3. Open the extracted release folder in Codex.
    <img width="364" height="211" alt="image" src="https://github.com/user-attachments/assets/e23c6853-db44-46a4-9f5b-9b432ca1e9e6" />
 
-4. In Codex, load the local plugin marketplace from `.agents/plugins/marketplace.json`.
-5. Install or enable the `EQEmu Oracle` plugin from that marketplace entry.
+4. Open the Plugins UI in Codex and check whether `EQEmu Oracle` already appears.
+5. If it already appears, install or enable it there.
+6. If it does not appear, use the Plugins UI option to load or import a local marketplace file, then select `.agents/plugins/marketplace.json` from the repository root.
+7. Install or enable the `EQEmu Oracle` plugin from that marketplace entry.
    <img width="774" height="267" alt="image" src="https://github.com/user-attachments/assets/5f3bcc21-9301-4d29-8f8f-92b39b85d146" />
 
-6. Ask Codex an EQEmu question.
+8. Ask Codex an EQEmu question.
 
 Important: open the repository root, not just `plugins/eqemu-oracle/`. The plugin uses repo-relative paths and will not load correctly if only part of the repo is opened.
 
@@ -99,9 +101,12 @@ Do not open only the plugin subfolder. The marketplace entry and MCP wiring expe
 
 In Codex:
 
-1. Load `.agents/plugins/marketplace.json`
-2. Find `EQEmu Oracle`
-3. Install or enable it
+1. Open the Plugins UI and check whether `EQEmu Oracle` is already listed.
+2. If it is already listed, install or enable it and skip the marketplace step.
+3. If it is not listed, use the Plugins UI option to load or import a local marketplace file.
+4. Select `.agents/plugins/marketplace.json` from the repository root.
+5. Find `EQEmu Oracle`.
+6. Install or enable it.
 
 After that, Codex should start the local plugin automatically when needed.
 
@@ -164,7 +169,14 @@ That means answers are based on the staged data in this repository instead of lo
 
 ### The Plugin Does Not Show Up In Codex
 
-Make sure you opened the repository root and loaded `.agents/plugins/marketplace.json`.
+Make sure you opened the repository root first.
+
+Then open the Plugins UI in Codex:
+
+1. Check whether `EQEmu Oracle` already appears.
+2. If it does not, use the Plugins UI option to load or import a local marketplace file.
+3. Select `.agents/plugins/marketplace.json` from this repository root.
+4. Install or enable `EQEmu Oracle` from that marketplace entry.
 
 ### Python Is Not Found
 
