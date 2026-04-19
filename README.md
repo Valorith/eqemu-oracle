@@ -42,6 +42,8 @@ If you only care about getting it running, follow these steps:
 1. Download the latest release zip from [Releases](https://github.com/Valorith/eqemu-oracle/releases) and extract it on your computer.
 2. Install Python 3 if you do not already have it.
 3. Open the extracted release folder in Codex.
+   <img width="364" height="211" alt="image" src="https://github.com/user-attachments/assets/e23c6853-db44-46a4-9f5b-9b432ca1e9e6" />
+
 4. In Codex, load the local plugin marketplace from `.agents/plugins/marketplace.json`.
 5. Install or enable the `EQEmu Oracle` plugin from that marketplace entry.
    <img width="774" height="267" alt="image" src="https://github.com/user-attachments/assets/5f3bcc21-9301-4d29-8f8f-92b39b85d146" />
