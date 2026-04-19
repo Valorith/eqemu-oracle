@@ -6,7 +6,7 @@ import sys
 
 from .constants import CACHE_ROOT, MODE_CHOICES, SCOPE_CHOICES
 from .extensions import ExtensionValidationError
-from .installer import install_home_local_plugin
+from .installer import install_global_plugin
 from .mcp import serve_mcp
 from .operations import prune_schema_extensions_dataset, rebuild_extensions_dataset, refresh_dataset
 from .updater import update_plugin_repo
@@ -61,8 +61,8 @@ def update_plugin(args: argparse.Namespace) -> int:
     return 0
 
 
-def install_home_local(args: argparse.Namespace) -> int:
-    result = install_home_local_plugin()
+def install_global(args: argparse.Namespace) -> int:
+    result = install_global_plugin()
     print(json.dumps(result, indent=2, sort_keys=True))
     return 0
 
@@ -101,13 +101,7 @@ def main() -> int:
         "install",
         help="Install or refresh the global Codex plugin copy, preferring the desktop marketplace under ~/.codex/.tmp/plugins",
     )
-    install_parser.set_defaults(func=install_home_local)
-
-    install_home_local_parser = subparsers.add_parser(
-        "install-home-local",
-        help="Alias for install; prefers the desktop marketplace under ~/.codex/.tmp/plugins and falls back to ~/.agents/plugins/marketplace.json",
-    )
-    install_home_local_parser.set_defaults(func=install_home_local)
+    install_parser.set_defaults(func=install_global)
 
     serve_parser = subparsers.add_parser("mcp-serve", help="Run the stdio MCP server")
     serve_parser.set_defaults(func=serve_mcp)

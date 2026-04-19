@@ -91,7 +91,7 @@ Install or refresh the global home-local copy:
 ```
 
 On Codex Desktop this prefers the app-managed catalog under `~/.codex/.tmp/plugins` and only falls back to `~/plugins` plus `~/.agents/plugins/marketplace.json` when the desktop catalog is unavailable.
-When Codex is present, the installer also seeds `~/.codex/plugins/cache/...` and enables the plugin in `~/.codex/config.toml`.
+When Codex is present, the installer enables the plugin in `~/.codex/config.toml` without creating an extra local cache copy.
 
 ## Overlay Model
 

@@ -273,10 +273,6 @@ def _resolve_install_target(home: Path) -> dict[str, Path | str]:
     }
 
 
-def _codex_cache_plugin_root(home: Path, marketplace_name: str, plugin_name: str) -> Path:
-    return _codex_root(home) / "plugins" / "cache" / marketplace_name / plugin_name / "local"
-
-
 def _plugin_config_header(plugin_name: str, marketplace_name: str) -> str:
     return f'[plugins."{plugin_name}@{marketplace_name}"]'
 
@@ -319,7 +315,7 @@ def _enable_codex_plugin(home: Path, plugin_name: str, marketplace_name: str) ->
     return str(config_path.resolve())
 
 
-def install_home_local_plugin(
+def install_global_plugin(
     *,
     home: Path | None = None,
     source_plugin_root: Path = PLUGIN_ROOT,
@@ -340,17 +336,12 @@ def install_home_local_plugin(
     _write_marketplace_entry(marketplace_path, plugin_name, category)
     rebuild = _rebuild_target_plugin(target_root)
     marketplace_name = _marketplace_name(marketplace_path)
-    codex_cache_root: str | None = None
     codex_config_path: str | None = None
     if _codex_root(resolved_home).exists():
-        cache_target_root = _codex_cache_plugin_root(resolved_home, marketplace_name, plugin_name)
-        cache_plugins_root = _codex_root(resolved_home) / "plugins" / "cache"
-        _sync_plugin_contents(target_root, cache_target_root, cache_plugins_root)
-        codex_cache_root = str(cache_target_root.resolve())
         codex_config_path = _enable_codex_plugin(resolved_home, plugin_name, marketplace_name)
     return {
         "install_kind": install_kind,
-        "codex_cache_plugin_root": codex_cache_root,
+        "codex_cache_plugin_root": None,
         "codex_config_path": codex_config_path,
         "plugin_name": plugin_name,
         "source_plugin_root": str(source_plugin_root.resolve()),
