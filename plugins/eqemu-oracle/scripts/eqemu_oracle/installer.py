@@ -199,7 +199,7 @@ def _sync_plugin_contents(source_root: Path, target_root: Path, plugins_root: Pa
         preserved_paths = _capture_preserved_paths(target_root, backup_root) if target_root.exists() else []
         if target_root.exists():
             _validate_target_path(target_root, plugins_root)
-            shutil.rmtree(target_root, onexc=_clear_readonly_and_retry)
+            shutil.rmtree(target_root, onerror=_clear_readonly_and_retry)
         _copy_plugin_tree(source_root, target_root)
         return _restore_preserved_paths(target_root, preserved_paths)
 

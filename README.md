@@ -55,6 +55,8 @@ If you only care about getting it running, follow these steps:
    ./install.sh
    ```
 
+   On macOS, `install.sh` is meant to be run from Terminal. If you double-click it in Finder, macOS may open it in a text editor instead of executing it. For a double-clickable macOS launcher, use `install.command`.
+
 5. If Codex was already open, restart it once.
 6. Go to the Plugins window within codex.
    <img width="418" height="175" alt="image" src="https://github.com/user-attachments/assets/eb7f0658-587e-4500-b7c0-617c6280cf5d" />
@@ -120,6 +122,8 @@ macOS/Linux:
 ```sh
 ./install.sh
 ```
+
+On macOS, run that from Terminal. If you want a Finder-friendly launcher, double-click `install.command` instead.
 
 This is the normal setup path. It installs or refreshes the global Codex copy of the plugin so it can be used from other project threads.
 
