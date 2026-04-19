@@ -19,7 +19,7 @@
 
 It is built for people who want fast help with EQEmu scripting, database tables, and documentation without digging through multiple sites or relying on generic AI guesses.
 
-This plugin is specifically designed to work with the OpenAI ChatGPT Codex App: https://chatgpt.com/codex
+This plugin is specifically designed to work with the OpenAI ChatGPT <img src="assets/codex_dark_badge.svg" alt="Codex" width="16" /> Codex App: https://chatgpt.com/codex
 
 ## What It Helps With
 
