@@ -1,6 +1,6 @@
 {
   "name": "eqemu-oracle",
-  "version": "0.2.1",
+  "version": "1.0.0",
   "description": "Deterministic EQEmu scripting, schema, and documentation context for Codex.",
   "author": {
     "name": "Valorith",
