@@ -43,13 +43,13 @@ If you only care about getting it running, follow these steps:
 2. Install Python 3 if you do not already have it.
 3. Run the install script from the extracted release folder.
    
-   Windows:
+   <img src="assets/windows.svg" alt="Windows" width="18" /> Windows:
 
    ```powershell
    .\install.cmd
    ```
 
-   macOS/Linux:
+   <img src="assets/apple_dark.svg" alt="macOS" width="16" /> macOS/Linux:
 
    ```sh
    ./install.sh
@@ -84,14 +84,14 @@ If you want the live source checkout for development or contribution work, you c
 
 Examples:
 
-- Windows: `C:\Users\<you>\Documents\eqemu-oracle-vX.Y.Z`
-- macOS: `~/Code/eqemu-oracle-vX.Y.Z`
+- <img src="assets/windows.svg" alt="Windows" width="18" /> Windows: `C:\Users\<you>\Documents\eqemu-oracle-vX.Y.Z`
+- <img src="assets/apple_dark.svg" alt="macOS" width="16" /> macOS: `~/Code/eqemu-oracle-vX.Y.Z`
 
 ### 2. Confirm Python
 
 You only need a working Python 3 install.
 
-Windows:
+<img src="assets/windows.svg" alt="Windows" width="18" /> Windows:
 
 ```powershell
 py -3 --version
@@ -103,7 +103,7 @@ If that does not work, try:
 python --version
 ```
 
-macOS:
+<img src="assets/apple_dark.svg" alt="macOS" width="16" /> macOS:
 
 ```sh
 python3 --version
@@ -113,13 +113,13 @@ python3 --version
 
 Run the install script from the repository root or extracted release folder.
 
-Windows:
+<img src="assets/windows.svg" alt="Windows" width="18" /> Windows:
 
 ```powershell
 .\install.cmd
 ```
 
-macOS/Linux:
+<img src="assets/apple_dark.svg" alt="macOS" width="16" /> macOS/Linux:
 
 ```sh
 ./install.sh
@@ -133,13 +133,13 @@ If you are developing the plugin from a local checkout and want your latest chan
 
 If you specifically need the lower-level Python entrypoint, use:
 
-Windows:
+<img src="assets/windows.svg" alt="Windows" width="18" /> Windows:
 
 ```powershell
 py -3 plugins/eqemu-oracle/scripts/eqemu_oracle.py install
 ```
 
-macOS/Linux:
+<img src="assets/apple_dark.svg" alt="macOS" width="16" /> macOS/Linux:
 
 ```sh
 python3 plugins/eqemu-oracle/scripts/eqemu_oracle.py install
@@ -246,13 +246,13 @@ Install Python 3, then reopen the terminal and re-run the version check.
 
 Run this manual check from the repository root:
 
-Windows:
+<img src="assets/windows.svg" alt="Windows" width="18" /> Windows:
 
 ```powershell
 py -3 plugins/eqemu-oracle/scripts/eqemu_oracle.py mcp-serve
 ```
 
-macOS:
+<img src="assets/apple_dark.svg" alt="macOS" width="16" /> macOS:
 
 ```sh
 python3 plugins/eqemu-oracle/scripts/eqemu_oracle.py mcp-serve
