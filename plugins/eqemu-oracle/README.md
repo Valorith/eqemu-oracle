@@ -1,6 +1,6 @@
 # EQEmu Oracle Plugin
 
-`eqemu-oracle` is a repo-local Codex plugin that serves deterministic EQEmu context through a built-in stdio MCP server.
+`eqemu-oracle` is a Codex plugin that serves deterministic EQEmu context through a built-in stdio MCP server.
 
 ## Scope
 
@@ -37,11 +37,12 @@ That document covers:
 - Windows setup
 - macOS setup
 - Python verification
-- loading the local marketplace entry
+- running the global installer
+- how the installer registers the global plugin catalog entry
 - verifying that Codex can see and use the plugin
 - basic troubleshooting
 
-This plugin README focuses on the runtime, data layout, and CLI after installation.
+This plugin README focuses on the runtime, data layout, and CLI after installation. The repo-local marketplace remains available for development, but it is not the primary user install path.
 
 ## CLI
 
@@ -82,6 +83,15 @@ Return to your previous branch after updating from a different branch:
 ```
 
 `<python-launcher>` means `python3` on macOS/Linux and `py -3` (or `python`) on Windows. Codex itself starts the plugin through `scripts/eqemu_oracle_launcher.cmd`, which bridges that difference for the MCP server startup path. Python 3.11+ is still preferred, but the checked-in `sources.toml` format also works on older Python 3 versions without installing extra parser dependencies.
+
+Install or refresh the global home-local copy:
+
+```sh
+<python-launcher> plugins/eqemu-oracle/scripts/eqemu_oracle.py install
+```
+
+On Codex Desktop this prefers the app-managed catalog under `~/.codex/.tmp/plugins` and only falls back to `~/plugins` plus `~/.agents/plugins/marketplace.json` when the desktop catalog is unavailable.
+When Codex is present, the installer also seeds `~/.codex/plugins/cache/...` and enables the plugin in `~/.codex/config.toml`.
 
 ## Overlay Model
 
@@ -126,3 +136,19 @@ See:
 
 Getter and search tools also attach `presentation.markdown` and `copy_blocks` so Codex can answer users with a consistent polished format while still keeping the raw structured record available to agents. Quest API events are rendered in a Spire-style copyable code format.
 `search_eqemu_context` also accepts `prefer_fresh: true` to break ranking ties toward newer staged records.
+
+## MCP Resources
+
+The server is tool-first, but it also exposes browseable MCP resources for clients that support them:
+
+- `eqemu://manifest`
+- `eqemu://indexes/quest-api`
+- `eqemu://indexes/schema`
+- `eqemu://indexes/docs`
+- `eqemu://indexes/docs-sections`
+- `eqemu://quest-api/{id}`
+- `eqemu://schema/table/{table_name}`
+- `eqemu://docs/page/{path}`
+- `eqemu://provenance/{domain}/{id}`
+
+If a Codex session does not surface generic MCP resources, the plugin is still usable through its MCP tools. Resource visibility is supplemental, not the primary access path.

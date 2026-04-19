@@ -264,6 +264,7 @@ class McpServer:
             {"uri": "eqemu://indexes/quest-api", "name": "Quest API Index", "mimeType": "application/json"},
             {"uri": "eqemu://indexes/schema", "name": "Schema Index", "mimeType": "application/json"},
             {"uri": "eqemu://indexes/docs", "name": "Docs Index", "mimeType": "application/json"},
+            {"uri": "eqemu://indexes/docs-sections", "name": "Docs Sections Index", "mimeType": "application/json"},
         ]
 
     def _resource_templates(self) -> list[dict[str, Any]]:
@@ -271,6 +272,7 @@ class McpServer:
             {"uriTemplate": "eqemu://quest-api/{id}", "name": "Quest API Entry", "mimeType": "application/json"},
             {"uriTemplate": "eqemu://schema/table/{table_name}", "name": "Schema Table", "mimeType": "application/json"},
             {"uriTemplate": "eqemu://docs/page/{path}", "name": "Docs Page", "mimeType": "application/json"},
+            {"uriTemplate": "eqemu://provenance/{domain}/{id}", "name": "Record Provenance", "mimeType": "application/json"},
         ]
 
     def _handle_tool(self, name: str, arguments: dict[str, Any]) -> dict[str, Any]:
@@ -412,12 +414,20 @@ class McpServer:
             payload = self.store.schema_index()
         elif uri == "eqemu://indexes/docs":
             payload = self.store.docs_index()
+        elif uri == "eqemu://indexes/docs-sections":
+            payload = self.store.docs_sections
         elif uri.startswith("eqemu://quest-api/"):
             payload = self.store.get_quest_entry_by_id(uri.removeprefix("eqemu://quest-api/"))
         elif uri.startswith("eqemu://schema/table/"):
             payload = self.store.get_table(uri.removeprefix("eqemu://schema/table/"))
         elif uri.startswith("eqemu://docs/page/"):
             payload = self.store.get_doc_page(uri.removeprefix("eqemu://docs/page/"))
+        elif uri.startswith("eqemu://provenance/"):
+            _, _, remainder = uri.partition("eqemu://provenance/")
+            domain, separator, record_id = remainder.partition("/")
+            if not separator or not record_id:
+                raise ValueError(f"Unknown resource '{uri}'")
+            payload = self.store.explain_provenance(domain, record_id)
         else:
             raise ValueError(f"Unknown resource '{uri}'")
         return {"contents": [{"uri": uri, "mimeType": "application/json", "text": json.dumps(payload, indent=2)}]}

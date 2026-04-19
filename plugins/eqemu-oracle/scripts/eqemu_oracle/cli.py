@@ -6,6 +6,7 @@ import sys
 
 from .constants import CACHE_ROOT, MODE_CHOICES, SCOPE_CHOICES
 from .extensions import ExtensionValidationError
+from .installer import install_home_local_plugin
 from .mcp import serve_mcp
 from .operations import prune_schema_extensions_dataset, rebuild_extensions_dataset, refresh_dataset
 from .updater import update_plugin_repo
@@ -60,6 +61,12 @@ def update_plugin(args: argparse.Namespace) -> int:
     return 0
 
 
+def install_home_local(args: argparse.Namespace) -> int:
+    result = install_home_local_plugin()
+    print(json.dumps(result, indent=2, sort_keys=True))
+    return 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="EQEmu Oracle plugin runtime")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -89,6 +96,18 @@ def main() -> int:
     update_parser.add_argument("--skip-rebuild", action="store_true")
     update_parser.add_argument("--restore-branch", action="store_true")
     update_parser.set_defaults(func=update_plugin)
+
+    install_parser = subparsers.add_parser(
+        "install",
+        help="Install or refresh the global Codex plugin copy, preferring the desktop marketplace under ~/.codex/.tmp/plugins",
+    )
+    install_parser.set_defaults(func=install_home_local)
+
+    install_home_local_parser = subparsers.add_parser(
+        "install-home-local",
+        help="Alias for install; prefers the desktop marketplace under ~/.codex/.tmp/plugins and falls back to ~/.agents/plugins/marketplace.json",
+    )
+    install_home_local_parser.set_defaults(func=install_home_local)
 
     serve_parser = subparsers.add_parser("mcp-serve", help="Run the stdio MCP server")
     serve_parser.set_defaults(func=serve_mcp)

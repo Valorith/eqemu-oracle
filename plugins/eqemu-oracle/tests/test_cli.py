@@ -40,3 +40,19 @@ class CliRefreshTest(unittest.TestCase):
             skip_rebuild=True,
             restore_branch=True,
         )
+
+    def test_install_home_local_forwards_to_installer(self) -> None:
+        args = SimpleNamespace()
+        with patch("eqemu_oracle.cli.install_home_local_plugin", return_value={"target_plugin_root": "C:/Users/test/plugins/eqemu-oracle"}) as installer:
+            exit_code = cli.install_home_local(args)
+
+        self.assertEqual(exit_code, 0)
+        installer.assert_called_once_with()
+
+    def test_main_accepts_install_alias(self) -> None:
+        with patch("eqemu_oracle.cli.install_home_local_plugin", return_value={"target_plugin_root": "C:/Users/test/plugins/eqemu-oracle"}) as installer:
+            with patch.object(sys, "argv", ["eqemu_oracle.py", "install"]):
+                exit_code = cli.main()
+
+        self.assertEqual(exit_code, 0)
+        installer.assert_called_once_with()

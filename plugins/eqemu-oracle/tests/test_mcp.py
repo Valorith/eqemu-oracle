@@ -24,11 +24,12 @@ class McpServerValidationTest(unittest.TestCase):
             summarize_quest_topic=lambda *args, **kwargs: {},
             get_table=lambda *args, **kwargs: {"table": "aa_ability", "presentation": {"markdown": "schema markdown"}},
             get_doc_page=lambda *args, **kwargs: {},
-            explain_provenance=lambda *args, **kwargs: {},
+            explain_provenance=lambda *args, **kwargs: {"domain": "schema", "id": "aa_ability", "source_url": "https://example.test"},
             manifest=lambda: {},
             quest_index=lambda: {},
             schema_index=lambda: [],
             docs_index=lambda: [],
+            docs_sections=[{"id": "page#section", "page_id": "page", "heading": "Section"}],
         )
 
     def test_tool_call_preflights_extensions_and_returns_feedback(self) -> None:
@@ -177,6 +178,57 @@ class McpServerValidationTest(unittest.TestCase):
         self.assertIn('"name": "Say"', text)
         self.assertNotIn('"domain": "quest-api"', text)
 
+    def test_resources_list_exposes_indexes_and_templates(self) -> None:
+        with patch("eqemu_oracle.mcp.DataStore", return_value=self._stub_store()):
+            server = McpServer()
+
+        resource_response = server.handle(
+            {
+                "jsonrpc": "2.0",
+                "id": 6,
+                "method": "resources/list",
+                "params": {},
+            }
+        )
+        template_response = server.handle(
+            {
+                "jsonrpc": "2.0",
+                "id": 7,
+                "method": "resources/templates/list",
+                "params": {},
+            }
+        )
+
+        self.assertIsNotNone(resource_response)
+        self.assertIsNotNone(template_response)
+        assert resource_response is not None
+        assert template_response is not None
+        resources = resource_response["result"]["resources"]
+        templates = template_response["result"]["resourceTemplates"]
+        self.assertIn("eqemu://indexes/docs-sections", {item["uri"] for item in resources})
+        self.assertIn("eqemu://provenance/{domain}/{id}", {item["uriTemplate"] for item in templates})
+
+    def test_provenance_resource_returns_payload(self) -> None:
+        with patch("eqemu_oracle.mcp.DataStore", return_value=self._stub_store()):
+            server = McpServer()
+
+        with patch.object(server, "_preflight_extensions") as preflight:
+            response = server.handle(
+                {
+                    "jsonrpc": "2.0",
+                    "id": 8,
+                    "method": "resources/read",
+                    "params": {"uri": "eqemu://provenance/schema/aa_ability"},
+                }
+            )
+
+        self.assertIsNotNone(response)
+        assert response is not None
+        self.assertEqual(preflight.call_count, 1)
+        text = response["result"]["contents"][0]["text"]
+        self.assertIn('"domain": "schema"', text)
+        self.assertIn('"id": "aa_ability"', text)
+
     def test_invalid_search_limit_returns_error(self) -> None:
         with patch("eqemu_oracle.mcp.DataStore", return_value=self._stub_store()):
             server = McpServer()
@@ -184,7 +236,7 @@ class McpServerValidationTest(unittest.TestCase):
         response = server.handle(
             {
                 "jsonrpc": "2.0",
-                "id": 6,
+                "id": 9,
                 "method": "tools/call",
                 "params": {"name": "search_eqemu_context", "arguments": {"query": "say", "limit": 0}},
             }
@@ -205,7 +257,7 @@ class McpServerValidationTest(unittest.TestCase):
         response = server.handle(
             {
                 "jsonrpc": "2.0",
-                "id": 7,
+                "id": 10,
                 "method": "initialize",
                 "params": {"protocolVersion": "2024-11-05", "capabilities": {}, "clientInfo": {"name": "test", "version": "0"}},
             }
