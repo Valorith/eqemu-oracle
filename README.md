@@ -63,6 +63,9 @@ If you only care about getting it running, follow these steps:
    <img width="814" height="277" alt="image" src="https://github.com/user-attachments/assets/b5c198cf-a593-44e2-a0a9-4081b0ace53b" />
 
 8. Ask Codex an EQEmu question from any project thread while invoking the plugin with `@EQEmu Oracle`.
+   <img width="747" height="439" alt="image" src="https://github.com/user-attachments/assets/23aa3e1e-8966-4ea9-82c5-3fc5cfa3aeb0" />
+   
+   <img width="756" height="133" alt="image" src="https://github.com/user-attachments/assets/78ac79e9-c8fe-4f48-abe4-c31dcd4118d3" />
 
 
 ## Setup
