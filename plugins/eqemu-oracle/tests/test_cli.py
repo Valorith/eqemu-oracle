@@ -56,3 +56,11 @@ class CliRefreshTest(unittest.TestCase):
 
         self.assertEqual(exit_code, 0)
         installer.assert_called_once_with()
+
+    def test_build_bundle_forwards_output_dir(self) -> None:
+        args = SimpleNamespace(output_dir=Path("/tmp/dist"))
+        with patch("eqemu_oracle.cli.build_release_bundle", return_value=Path("/tmp/dist/eqemu-oracle-v1.0.1.zip")) as build_release_bundle:
+            exit_code = cli.build_bundle(args)
+
+        self.assertEqual(exit_code, 0)
+        build_release_bundle.assert_called_once_with(output_dir=Path("/tmp/dist"))

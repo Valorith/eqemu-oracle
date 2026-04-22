@@ -3,12 +3,14 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+from pathlib import Path
 
-from .constants import CACHE_ROOT, MODE_CHOICES, SCOPE_CHOICES
+from .constants import CACHE_ROOT, MODE_CHOICES, REPO_ROOT, SCOPE_CHOICES
 from .extensions import ExtensionValidationError
 from .installer import install_global_plugin
 from .mcp import serve_mcp
 from .operations import prune_schema_extensions_dataset, rebuild_extensions_dataset, refresh_dataset
+from .release_bundle import build_release_bundle
 from .updater import update_plugin_repo
 
 
@@ -67,6 +69,12 @@ def install_global(args: argparse.Namespace) -> int:
     return 0
 
 
+def build_bundle(args: argparse.Namespace) -> int:
+    archive_path = build_release_bundle(output_dir=args.output_dir)
+    print(json.dumps({"archive_path": str(archive_path.resolve())}, indent=2, sort_keys=True))
+    return 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="EQEmu Oracle plugin runtime")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -102,6 +110,10 @@ def main() -> int:
         help="Install or refresh the global Codex plugin copy, preferring the desktop marketplace under ~/.codex/.tmp/plugins",
     )
     install_parser.set_defaults(func=install_global)
+
+    build_bundle_parser = subparsers.add_parser("build-release-bundle", help="Create a versioned release zip from the current repository state")
+    build_bundle_parser.add_argument("--output-dir", type=Path, default=REPO_ROOT / "dist")
+    build_bundle_parser.set_defaults(func=build_bundle)
 
     serve_parser = subparsers.add_parser("mcp-serve", help="Run the stdio MCP server")
     serve_parser.set_defaults(func=serve_mcp)

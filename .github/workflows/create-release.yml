@@ -118,33 +118,9 @@ jobs:
           echo "tag=${PREVIOUS_TAG}" >> "$GITHUB_OUTPUT"
 
       - name: Build release zip
-        env:
-          ARCHIVE_NAME: ${{ steps.version.outputs.archive_name }}
-          BUNDLE_ROOT: ${{ steps.version.outputs.bundle_root }}
         shell: bash
         run: |
-          mkdir -p dist
-          python - <<'PY'
-          import os
-          from pathlib import Path
-          from zipfile import ZIP_DEFLATED, ZipFile
-
-          repo_root = Path(os.environ["GITHUB_WORKSPACE"]).resolve()
-          archive_path = repo_root / "dist" / os.environ["ARCHIVE_NAME"]
-          bundle_root = os.environ["BUNDLE_ROOT"]
-          skipped_roots = {".git", "dist"}
-
-          with ZipFile(archive_path, "w", compression=ZIP_DEFLATED) as archive:
-              for path in sorted(repo_root.rglob("*")):
-                  if path.is_dir():
-                      continue
-                  rel_path = path.relative_to(repo_root)
-                  if rel_path.parts and rel_path.parts[0] in skipped_roots:
-                      continue
-                  archive.write(path, Path(bundle_root, *rel_path.parts).as_posix())
-
-          print(f"Created {archive_path}")
-          PY
+          python ./plugins/eqemu-oracle/scripts/eqemu_oracle.py build-release-bundle --output-dir ./dist
 
       - name: Create GitHub release
         env:

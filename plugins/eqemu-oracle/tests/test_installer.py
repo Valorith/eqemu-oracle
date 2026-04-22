@@ -59,7 +59,7 @@ class InstallerTest(unittest.TestCase):
                 self.assertEqual(marketplace["plugins"][0]["name"], "eqemu-oracle")
                 self.assertEqual(marketplace["plugins"][0]["source"]["path"], "./plugins/eqemu-oracle")
                 rebuild_command = run_mock.call_args.args[0]
-                self.assertEqual(rebuild_command[1], str(target_root / "scripts" / "eqemu_oracle.py"))
+                self.assertEqual(rebuild_command[1], str((target_root / "scripts" / "eqemu_oracle.py").resolve()))
 
     def test_install_global_plugin_uses_codex_desktop_marketplace_when_available(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
