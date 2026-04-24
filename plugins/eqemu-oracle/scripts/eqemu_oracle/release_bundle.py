@@ -8,10 +8,16 @@ from .constants import PLUGIN_METADATA_PATH, REPO_ROOT
 
 
 SKIPPED_ROOTS = {".git", "dist", "dist-local-smoke"}
+SKIPPED_NAMES = {".DS_Store", "__pycache__", ".pytest_cache"}
+SKIPPED_SUFFIXES = {".pyc", ".pyo"}
 
 
 def _should_skip_bundle_path(rel_path: Path) -> bool:
     if rel_path.parts and rel_path.parts[0] in SKIPPED_ROOTS:
+        return True
+    if any(part in SKIPPED_NAMES for part in rel_path.parts):
+        return True
+    if rel_path.suffix in SKIPPED_SUFFIXES:
         return True
     if rel_path.parts[:3] == ("plugins", "eqemu-oracle", "cache"):
         return True

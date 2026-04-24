@@ -1,7 +1,8 @@
 from __future__ import annotations
 
-import json
 import errno
+import itertools
+import json
 import sqlite3
 import shutil
 import time
@@ -10,7 +11,7 @@ from pathlib import Path
 from typing import Any
 
 from .constants import BASE_ROOT, CACHE_ROOT, DOMAIN_CHOICES, EXTENSIONS_ROOT, LOCAL_EXTENSIONS_ROOT, MAINTENANCE_LOCK_ROOT, MERGED_ROOT, OVERLAY_ROOT, SEARCH_DB_PATH
-from .extensions import ExtensionValidationError, load_domain_extensions, merge_records, merge_source_records
+from .extensions import ExtensionValidationError, extension_inputs_digest, load_domain_extensions, merge_records, merge_source_records
 from .presentation import QUEST_TOPIC_STOPWORDS, add_presentation, add_search_presentation, present_quest_entry, present_quest_topic_summary
 from .utils import deep_merge, dump_json, dump_text, ensure_dir, excerpt, load_json, markdown_sections, split_identifier_words
 
@@ -533,6 +534,7 @@ def _search_identity(data_root: Path) -> dict[str, str]:
                 "merge_scope": manifest.get("merge_scope"),
                 "sources": manifest.get("sources", {}),
                 "extension_health": manifest.get("extension_health", {}),
+                "extension_inputs": manifest.get("extension_inputs", {}),
             },
             sort_keys=True,
         )
@@ -679,6 +681,9 @@ def write_merged_dataset(base_root: Path, target_root: Path, *, scope: str = "al
             "stale_schema_candidate_count": len(stale_schema_extensions),
             "stale_schema_candidates": stale_schema_extensions,
         },
+        "extension_inputs": {
+            "digest": extension_inputs_digest(EXTENSIONS_ROOT, LOCAL_EXTENSIONS_ROOT),
+        },
     }
     dump_json(target_root.parent / "manifest.json", manifest)
     build_search_index(target_root, SEARCH_DB_PATH)
@@ -744,10 +749,22 @@ def _search_term_groups(query: str) -> list[list[str]]:
 
 
 def _build_fts_query(query: str) -> str:
+    return " OR ".join(_build_fts_queries(query))
+
+
+def _build_fts_queries(query: str, *, max_queries: int = 64) -> list[str]:
     groups = _search_term_groups(query)
     if not groups:
-        return query
-    return " ".join(f"({' OR '.join(term for term in group)})" for group in groups)
+        stripped = query.strip()
+        return [stripped] if stripped else []
+    queries: list[str] = []
+    for combination in itertools.product(*groups):
+        candidate = " ".join(combination)
+        if candidate:
+            queries.append(candidate)
+        if len(queries) >= max_queries:
+            break
+    return list(dict.fromkeys(queries))
 
 
 def _matches_term_groups(haystack: str, groups: list[list[str]]) -> bool:
@@ -780,6 +797,10 @@ def _boost_search_hit(query: str, title: str, record_id: str, entity_type: str, 
         score += 10
     if "#" in uri:
         score += 5
+    if entity_type in {"method", "event"}:
+        score += 8
+    if entity_type == "constant" and query_terms & {"quest", "script", "scripting"}:
+        score -= 20
     if "changelog" in uri_terms and "changelog" not in query_terms and not any(term.isdigit() and len(term) == 4 for term in query_terms):
         score -= 120
     return score
@@ -797,6 +818,34 @@ class DataStore:
         self.docs_sections = load_docs_sections(self.data_root)
         self.quest_source_records = load_json(self.data_root / "quests" / "sources.json") if (self.data_root / "quests" / "sources.json").exists() else []
         self.plugin_source_records = load_json(self.data_root / "plugins" / "sources.json") if (self.data_root / "plugins" / "sources.json").exists() else []
+        self.quest_records_by_id = {item.get("id"): item for item in self.quest_records if item.get("id")}
+        self.quest_records_by_lookup: dict[tuple[str, str, str, str], dict[str, Any]] = {}
+        self.quest_records_by_name: dict[tuple[str, str, str], dict[str, Any]] = {}
+        for item in self.quest_records:
+            language = str(item.get("language", "")).lower()
+            kind = str(item.get("kind", "")).lower()
+            name = str(item.get("name", "")).lower()
+            container = str(item.get("container", "")).lower()
+            self.quest_records_by_lookup.setdefault((language, kind, name, container), item)
+            self.quest_records_by_name.setdefault((language, kind, name), item)
+        self.schema_records_by_table = {str(item.get("table", "")).lower(): item for item in self.schema_records if item.get("table")}
+        self.schema_records_by_id = {item.get("id"): item for item in self.schema_records if item.get("id")}
+        self.docs_records_by_id = {item.get("id"): item for item in self.docs_records if item.get("id")}
+        self.docs_records_by_key: dict[str, dict[str, Any]] = {}
+        for page in self.docs_records:
+            for key in (page.get("path"), page.get("slug")):
+                if isinstance(key, str) and key:
+                    self.docs_records_by_key[key.strip("/").lower()] = page
+        self.docs_sections_by_page_id: dict[str, list[dict[str, Any]]] = {}
+        for section in self.docs_sections:
+            page_id = section.get("page_id")
+            if isinstance(page_id, str):
+                self.docs_sections_by_page_id.setdefault(page_id, []).append(section)
+        self.source_records_by_domain = {
+            "quests": {item.get("id"): item for item in self.quest_source_records if item.get("id")},
+            "plugins": {item.get("id"): item for item in self.plugin_source_records if item.get("id")},
+        }
+        self._base_quest_records_by_id: dict[str, dict[str, Any]] | None = None
 
     def manifest(self) -> dict[str, Any]:
         if self.manifest_path and self.manifest_path.exists():
@@ -821,13 +870,13 @@ class DataStore:
 
     def _raw_doc_page(self, path_or_slug: str) -> dict[str, Any] | None:
         needle = path_or_slug.strip("/").lower().split("#", 1)[0]
-        for page in self.docs_records:
-            if page.get("path", "").lower() == needle or page.get("slug", "").lower() == needle:
-                full_page = dict(page)
-                full_page["markdown"] = _doc_markdown(self.data_root, page)
-                full_page["sections"] = [section for section in self.docs_sections if section.get("page_id") == page["id"]]
-                return full_page
-        return None
+        page = self.docs_records_by_key.get(needle)
+        if page is None:
+            return None
+        full_page = dict(page)
+        full_page["markdown"] = _doc_markdown(self.data_root, page)
+        full_page["sections"] = self.docs_sections_by_page_id.get(page["id"], [])
+        return full_page
 
     def _present_quest_entry(self, item: dict[str, Any]) -> dict[str, Any]:
         full_item = dict(item)
@@ -838,52 +887,44 @@ class DataStore:
         return full_item
 
     def get_quest_entry(self, language: str, kind: str, name: str, group_or_type: str | None = None) -> dict[str, Any] | None:
-        for item in self.quest_records:
-            if (
-                item.get("language") == language
-                and item.get("kind") == kind
-                and item.get("name", "").lower() == name.lower()
-                and (not group_or_type or item.get("container", "").lower() == group_or_type.lower())
-            ):
-                return self._present_quest_entry(item)
-        return None
+        if group_or_type:
+            item = self.quest_records_by_lookup.get((language.lower(), kind.lower(), name.lower(), group_or_type.lower()))
+        else:
+            item = self.quest_records_by_name.get((language.lower(), kind.lower(), name.lower()))
+        return self._present_quest_entry(item) if item else None
 
     def get_quest_entry_by_id(self, record_id: str) -> dict[str, Any] | None:
-        for item in self.quest_records:
-            if item.get("id") == record_id:
-                return self._present_quest_entry(item)
-        return None
+        item = self.quest_records_by_id.get(record_id)
+        return self._present_quest_entry(item) if item else None
 
     def get_table(self, table_name: str) -> dict[str, Any] | None:
-        for item in self.schema_records:
-            if item.get("table", "").lower() == table_name.lower():
-                return add_presentation("schema", item)
-        return None
+        return add_presentation("schema", self.schema_records_by_table.get(table_name.lower()))
 
     def get_doc_page(self, path_or_slug: str) -> dict[str, Any] | None:
         full_page = self._raw_doc_page(path_or_slug)
         return add_presentation("docs", full_page) if full_page else None
 
     def explain_provenance(self, domain: str, record_id: str) -> dict[str, Any] | None:
-        collection = {
-            "quest-api": self.quest_records,
-            "schema": self.schema_records,
-            "docs": self.docs_records,
-            "quests": self.quest_source_records,
-            "plugins": self.plugin_source_records,
-        }.get(domain)
-        if collection is None:
+        item = None
+        if domain == "quest-api":
+            item = self.quest_records_by_id.get(record_id)
+        elif domain == "schema":
+            item = self.schema_records_by_id.get(record_id)
+        elif domain == "docs":
+            item = self.docs_records_by_id.get(record_id)
+        elif domain in self.source_records_by_domain:
+            item = self.source_records_by_domain[domain].get(record_id)
+        else:
             return None
-        for item in collection:
-            if item.get("id") == record_id:
-                return {
-                    "id": item["id"],
-                    "domain": domain,
-                    "provenance": item.get("provenance", {}),
-                    "extension_flags": item.get("extension_flags", {}),
-                    "source_url": item.get("source_url") or item.get("url"),
-                    "source_ref": item.get("source_ref"),
-                }
+        if item is not None:
+            return {
+                "id": item["id"],
+                "domain": domain,
+                "provenance": item.get("provenance", {}),
+                "extension_flags": item.get("extension_flags", {}),
+                "source_url": item.get("source_url") or item.get("url"),
+                "source_ref": item.get("source_ref"),
+            }
         if domain == "docs" and "#" in record_id:
             return self.explain_provenance(domain, record_id.split("#", 1)[0])
         return None
@@ -891,12 +932,14 @@ class DataStore:
     def _language_matches(self, record_id: str, language: str | None) -> bool:
         if not language:
             return True
-        for item in self.quest_records:
-            if item.get("id") == record_id:
-                return item.get("language") == language
-        for item in load_quest_base(self.base_root):
-            if item.get("id") == record_id:
-                return item.get("language") == language
+        item = self.quest_records_by_id.get(record_id)
+        if item is not None:
+            return item.get("language") == language
+        if self._base_quest_records_by_id is None:
+            self._base_quest_records_by_id = {item.get("id"): item for item in load_quest_base(self.base_root) if item.get("id")}
+        item = self._base_quest_records_by_id.get(record_id)
+        if item is not None:
+            return item.get("language") == language
         return False
 
     def summarize_quest_topic(self, query: str, language: str = "perl", limit: int = 16) -> dict[str, Any]:
@@ -1017,7 +1060,8 @@ class DataStore:
     ) -> dict[str, Any]:
         domains = domains or list(DOMAIN_CHOICES)
         term_groups = _search_term_groups(query)
-        fts_query = _build_fts_query(query)
+        fts_queries = _build_fts_queries(query)
+        fts_query = " OR ".join(fts_queries)
         if include_extensions:
             if not _search_cache_matches(self.data_root, SEARCH_DB_PATH):
                 build_search_index(self.data_root, SEARCH_DB_PATH)
@@ -1027,12 +1071,18 @@ class DataStore:
             while True:
                 conn = sqlite3.connect(SEARCH_DB_PATH)
                 try:
-                    sql = (
-                        "SELECT r.domain, r.record_id, r.title, r.body, r.uri, r.entity_type, r.parent_id, bm25(search_fts), r.freshness_ts "
-                        "FROM search_fts f JOIN search_records r ON f.record_id = r.record_id "
-                        f"WHERE search_fts MATCH ? AND r.domain IN ({','.join('?' for _ in domains)}) LIMIT ?"
-                    )
-                    rows = conn.execute(sql, [fts_query, *domains, search_limit]).fetchall()
+                    rows_by_id: dict[str, tuple[str, str, str, str, str, str, str | None, float | None, int]] = {}
+                    for match_query in fts_queries:
+                        sql = (
+                            "SELECT r.domain, r.record_id, r.title, r.body, r.uri, r.entity_type, r.parent_id, bm25(search_fts), r.freshness_ts "
+                            "FROM search_fts f JOIN search_records r ON f.record_id = r.record_id "
+                            f"WHERE search_fts MATCH ? AND r.domain IN ({','.join('?' for _ in domains)}) LIMIT ?"
+                        )
+                        for row in conn.execute(sql, [match_query, *domains, search_limit]).fetchall():
+                            existing = rows_by_id.get(row[1])
+                            if existing is None or (row[7] is not None and (existing[7] is None or row[7] < existing[7])):
+                                rows_by_id[row[1]] = row
+                    rows = list(rows_by_id.values())
                     break
                 except sqlite3.OperationalError as exc:
                     if _search_cache_needs_rebuild(exc) and not retried_with_rebuild:
@@ -1041,11 +1091,11 @@ class DataStore:
                         build_search_index(self.data_root, SEARCH_DB_PATH)
                         continue
                     sql = (
-                        f"SELECT domain, record_id, title, body, uri, entity_type, parent_id, NULL, freshness_ts FROM search_records "
-                        f"WHERE domain IN ({','.join('?' for _ in domains)}) LIMIT ?"
+                        "SELECT domain, record_id, title, body, uri, entity_type, parent_id, NULL, freshness_ts FROM search_records "
+                        f"WHERE domain IN ({','.join('?' for _ in domains)})"
                     )
                     try:
-                        rows = conn.execute(sql, [*domains, search_limit * 4]).fetchall()
+                        rows = conn.execute(sql, [*domains]).fetchall()
                         break
                     except sqlite3.OperationalError as fallback_exc:
                         if _search_cache_needs_rebuild(fallback_exc) and not retried_with_rebuild:

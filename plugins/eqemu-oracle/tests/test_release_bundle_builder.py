@@ -62,6 +62,33 @@ class ReleaseBundleBuilderTest(unittest.TestCase):
         self.assertIn(f"{bundle_root}/plugins/eqemu-oracle/local-extensions/quests/_example.json", names)
         self.assertNotIn(f"{bundle_root}/plugins/eqemu-oracle/local-extensions/quests/local.json", names)
 
+    def test_build_release_bundle_excludes_runtime_noise(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            repo_root = Path(temp_dir) / "repo"
+            runtime_root = repo_root / "plugins" / "eqemu-oracle" / "scripts"
+            cache_root = runtime_root / "__pycache__"
+            pytest_root = repo_root / "plugins" / "eqemu-oracle" / ".pytest_cache"
+            runtime_root.mkdir(parents=True, exist_ok=True)
+            cache_root.mkdir()
+            pytest_root.mkdir()
+            (repo_root / ".DS_Store").write_text("noise", encoding="utf-8")
+            (cache_root / "module.cpython-312.pyc").write_bytes(b"bytecode")
+            (runtime_root / "module.pyo").write_bytes(b"optimized")
+            (pytest_root / "README.md").write_text("cache", encoding="utf-8")
+            (runtime_root / "keep.py").write_text("print('ok')\n", encoding="utf-8")
+
+            archive_path = build_release_bundle(Path(temp_dir) / "dist", repo_root=repo_root)
+
+            with zipfile.ZipFile(archive_path) as archive:
+                names = set(archive.namelist())
+
+        bundle_root = get_bundle_root()
+        self.assertIn(f"{bundle_root}/plugins/eqemu-oracle/scripts/keep.py", names)
+        self.assertNotIn(f"{bundle_root}/.DS_Store", names)
+        self.assertFalse(any("__pycache__" in name for name in names))
+        self.assertFalse(any(".pytest_cache" in name for name in names))
+        self.assertFalse(any(name.endswith((".pyc", ".pyo")) for name in names))
+
 
 if __name__ == "__main__":
     unittest.main()

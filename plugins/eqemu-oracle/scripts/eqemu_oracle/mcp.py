@@ -17,7 +17,7 @@ from .constants import (
     SERVER_NAME,
 )
 from .dataset import DataStore, base_data_root, find_stale_schema_extensions, validate_extension_overlays
-from .extensions import ExtensionValidationError, extension_inputs_fingerprint, load_domain_extensions
+from .extensions import ExtensionValidationError, extension_inputs_digest, extension_inputs_fingerprint, load_domain_extensions
 from .operations import prune_schema_extensions_dataset, rebuild_extensions_dataset, refresh_dataset
 from .updater import update_plugin_repo
 
@@ -43,10 +43,16 @@ class McpServer:
             self._extension_validation_fingerprint = fingerprint
             self._extension_validation_error = exc
             raise
+        digest = extension_inputs_digest(EXTENSIONS_ROOT, LOCAL_EXTENSIONS_ROOT)
+        manifest = self.store.manifest() if hasattr(self.store, "manifest") else {}
+        manifest_inputs = manifest.get("extension_inputs", {}) if isinstance(manifest, dict) else {}
+        active_manifest_digest = manifest_inputs.get("digest") if isinstance(manifest_inputs, dict) else None
+        has_active_local_extensions = any(load_domain_extensions(LOCAL_EXTENSIONS_ROOT, domain) for domain in DOMAIN_CHOICES)
+        using_overlay = "overlay" in str(self.store.data_root)
         should_rebuild_overlay = (
-            self._extension_validation_fingerprint is not None
-            or "overlay" in str(self.store.data_root)
-            or any(load_domain_extensions(LOCAL_EXTENSIONS_ROOT, domain) for domain in DOMAIN_CHOICES)
+            (active_manifest_digest is not None and active_manifest_digest != digest)
+            or (active_manifest_digest is None and using_overlay)
+            or (has_active_local_extensions and not using_overlay)
         )
         if should_rebuild_overlay:
             rebuild_extensions_dataset(scope="all", mode="overlay")

@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import hashlib
+import json
 from pathlib import Path
 from urllib.parse import urlparse
 from typing import Any
@@ -44,6 +46,21 @@ def extension_inputs_fingerprint(*roots: Path) -> tuple[tuple[str, int, int], ..
             stat = path.stat()
             fingerprint.append((str(path), stat.st_mtime_ns, stat.st_size))
     return tuple(sorted(fingerprint))
+
+
+def extension_inputs_digest(*roots: Path) -> str:
+    inputs: list[dict[str, str | int]] = []
+    for root in roots:
+        for path in _iter_extension_files(root):
+            inputs.append(
+                {
+                    "path": _stable_extension_file_label(path, root),
+                    "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+                    "size": path.stat().st_size,
+                }
+            )
+    payload = json.dumps(sorted(inputs, key=lambda item: str(item["path"])), sort_keys=True)
+    return hashlib.sha256(payload.encode("utf-8")).hexdigest()
 
 
 def load_domain_extensions(root: Path, domain: str) -> list[dict[str, Any]]:

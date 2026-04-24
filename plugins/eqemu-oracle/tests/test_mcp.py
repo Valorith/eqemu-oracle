@@ -156,6 +156,45 @@ class McpServerValidationTest(unittest.TestCase):
         refresh_mock.assert_called_once_with(scope="schema", mode="committed")
         self.assertEqual(response["result"]["structuredContent"]["merge_scope"], "schema")
 
+    def test_preflight_does_not_rebuild_current_overlay_digest(self) -> None:
+        store = self._stub_store()
+        store.data_root = Path("C:/cache/overlay/merged")
+        store.manifest = lambda: {"extension_inputs": {"digest": "current"}}
+
+        with patch("eqemu_oracle.mcp.DataStore", return_value=store):
+            server = McpServer()
+
+        with patch("eqemu_oracle.mcp.extension_inputs_fingerprint", return_value=(("extensions/schema/example.json", 1, 2),)):
+            with patch("eqemu_oracle.mcp.extension_inputs_digest", return_value="current"):
+                with patch("eqemu_oracle.mcp.validate_extension_overlays") as validate:
+                    with patch("eqemu_oracle.mcp.load_domain_extensions", return_value=[]):
+                        with patch("eqemu_oracle.mcp.rebuild_extensions_dataset") as rebuild:
+                            server._preflight_extensions()
+
+        validate.assert_called_once()
+        rebuild.assert_not_called()
+
+    def test_preflight_rebuilds_when_manifest_digest_changes(self) -> None:
+        store = self._stub_store()
+        store.data_root = Path("C:/cache/overlay/merged")
+        store.manifest = lambda: {"extension_inputs": {"digest": "old"}}
+        rebuilt_store = self._stub_store()
+        rebuilt_store.data_root = Path("C:/cache/overlay/merged")
+
+        with patch("eqemu_oracle.mcp.DataStore", side_effect=[store, rebuilt_store]) as datastore:
+            server = McpServer()
+
+            with patch("eqemu_oracle.mcp.extension_inputs_fingerprint", return_value=(("extensions/schema/example.json", 1, 2),)):
+                with patch("eqemu_oracle.mcp.extension_inputs_digest", return_value="current"):
+                    with patch("eqemu_oracle.mcp.validate_extension_overlays"):
+                        with patch("eqemu_oracle.mcp.load_domain_extensions", return_value=[]):
+                            with patch("eqemu_oracle.mcp.rebuild_extensions_dataset", return_value={"merge_scope": "all"}) as rebuild:
+                                server._preflight_extensions()
+
+        rebuild.assert_called_once_with(scope="all", mode="overlay")
+        self.assertEqual(datastore.call_count, 2)
+        self.assertIs(server.store, rebuilt_store)
+
     def test_quest_api_resource_returns_entry_payload(self) -> None:
         with patch("eqemu_oracle.mcp.DataStore", return_value=self._stub_store()):
             server = McpServer()
