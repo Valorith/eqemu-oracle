@@ -1,1 +1,29 @@
-{}
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ./hooks/eqemu_oracle_hooks.py stop",
+            "statusMessage": "Checking EQEmu Oracle answer",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ./hooks/eqemu_oracle_hooks.py post-tool-use",
+            "statusMessage": "Checking EQEmu Oracle maintenance command",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,5 +1,15 @@
 # Hooks
 
-Reserve this directory for optional development hooks.
+EQEmu Oracle ships quiet Codex hooks that only act when they have strong evidence
+that the user explicitly invoked the plugin or that Codex is maintaining plugin
+data.
 
-If hook automation becomes necessary, add the actual hook config and update the plugin manifest to point at the final path instead of the current placeholder value.
+- `Stop`: asks Codex to continue when an explicit EQEmu Oracle answer appears
+  ungrounded, lacks source/provenance context, or edits extension overlays
+  without validation.
+- `PostToolUse`: reviews Bash output from EQEmu Oracle maintenance commands such
+  as refresh, rebuild, prune, update, and release bundle creation.
+
+The hooks fail open by default. If they cannot parse the payload or cannot prove
+that the current turn is relevant to EQEmu Oracle, they exit successfully without
+output.
