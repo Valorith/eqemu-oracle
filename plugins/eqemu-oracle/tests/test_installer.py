@@ -54,6 +54,10 @@ class InstallerTest(unittest.TestCase):
                 self.assertEqual(result["target_plugin_root"], str(target_root.resolve()))
                 self.assertTrue((target_root / ".codex-plugin" / "plugin.json").exists())
                 self.assertTrue((target_root / "README.md").exists())
+                self.assertTrue((target_root / "local-extensions" / "quests" / "local.json").exists())
+                self.assertTrue((target_root / "local-extensions" / "plugins" / "local.json").exists())
+                self.assertIn("local-extensions/quests/local.json", result["seeded_local_extension_files"])
+                self.assertIn("local-extensions/plugins/local.json", result["seeded_local_extension_files"])
                 marketplace = json.loads(marketplace_path.read_text(encoding="utf-8"))
                 self.assertEqual(marketplace["name"], installer.MARKETPLACE_NAME)
                 self.assertEqual(marketplace["plugins"][0]["name"], "eqemu-oracle")
@@ -145,6 +149,9 @@ class InstallerTest(unittest.TestCase):
             _seed_plugin_root(existing_target)
             (existing_target / "config" / "sources.local.toml").write_text("[docs]\nbranch = 'local'\n", encoding="utf-8")
             (existing_target / "local-extensions" / "custom.json").write_text('{"ok": true}\n', encoding="utf-8")
+            existing_local_quests = existing_target / "local-extensions" / "quests" / "local.json"
+            existing_local_quests.parent.mkdir(parents=True, exist_ok=True)
+            existing_local_quests.write_text('{"sources": [{"id": "mine"}]}\n', encoding="utf-8")
 
             with patch("eqemu_oracle.installer.subprocess.run") as run_mock:
                 run_mock.return_value.returncode = 0
@@ -156,6 +163,12 @@ class InstallerTest(unittest.TestCase):
                 self.assertIn("local-extensions", result["restored_paths"])
                 self.assertTrue((target_root / "config" / "sources.local.toml").exists())
                 self.assertTrue((target_root / "local-extensions" / "custom.json").exists())
+                self.assertEqual(
+                    json.loads((target_root / "local-extensions" / "quests" / "local.json").read_text(encoding="utf-8"))["sources"][0]["id"],
+                    "mine",
+                )
+                self.assertIn("local-extensions/plugins/local.json", result["seeded_local_extension_files"])
+                self.assertNotIn("local-extensions/quests/local.json", result["seeded_local_extension_files"])
 
 
 if __name__ == "__main__":

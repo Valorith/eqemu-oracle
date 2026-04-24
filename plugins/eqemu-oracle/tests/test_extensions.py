@@ -8,7 +8,7 @@ import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 
 from eqemu_oracle.dataset import find_stale_schema_extensions, prune_stale_schema_extensions, validate_extension_overlays  # noqa: E402
-from eqemu_oracle.extensions import load_domain_extensions, merge_records  # noqa: E402
+from eqemu_oracle.extensions import load_domain_extensions, merge_records, merge_source_records  # noqa: E402
 from eqemu_oracle.extensions import ExtensionValidationError  # noqa: E402
 from eqemu_oracle.utils import dump_json, load_json  # noqa: E402
 
@@ -89,6 +89,42 @@ class MergeRecordsTest(unittest.TestCase):
             self.assertEqual(len(loaded), 1)
             self.assertEqual(loaded[0]["id"], "real_table")
             self.assertEqual(loaded[0]["_extension_file"], "schema/real_extension.json")
+
+    def test_source_extensions_use_sources_array(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            dump_json(
+                root / "quests" / "custom.json",
+                {"sources": [{"id": "custom-quests", "url": "https://github.com/example/custom-quests"}]},
+            )
+
+            loaded = load_domain_extensions(root, "quests")
+
+            self.assertEqual(len(loaded), 1)
+            self.assertEqual(loaded[0]["id"], "custom-quests")
+
+    def test_local_source_context_key_replaces_repo_source(self) -> None:
+        repo_ext = [
+            {
+                "id": "projecteq-projecteqquests",
+                "url": "https://github.com/ProjectEQ/projecteqquests",
+                "context_key": "primary-quest-script-examples",
+                "_extension_file": "extensions/quests/default_sources.json",
+            }
+        ]
+        local_ext = [
+            {
+                "id": "custom-quest-scripts",
+                "url": "https://github.com/example/custom-quests",
+                "context_key": "primary-quest-script-examples",
+                "_extension_file": "local-extensions/quests/custom.json",
+            }
+        ]
+
+        merged = merge_source_records(repo_ext, local_ext, domain="quests")
+
+        self.assertEqual([record["id"] for record in merged], ["custom-quest-scripts"])
+        self.assertEqual(merged[0]["provenance"]["effective_source"], "local_extension")
 
     def test_extension_file_labels_are_stable_for_standard_roots(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:

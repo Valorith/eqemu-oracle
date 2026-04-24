@@ -204,12 +204,14 @@ Download or clone the full repository instead. The install script expects the fu
 
 ## Optional: Add Your Own Server Knowledge
 
-If your server has custom tables, docs, or quest API behavior, you can add that on top of the built-in EQEmu data.
+If your server has custom tables, docs, quest API behavior, or preferred quest/plugin example repositories, you can add that on top of the built-in EQEmu data.
 
 Use:
 
 - `plugins/eqemu-oracle/extensions/` for shared repo-tracked additions
 - `plugins/eqemu-oracle/local-extensions/` for machine-local additions you do not want in git
+
+For local additions, edit the installer-created `local.json` scaffold files or copy a `_example.json` file to a new filename and edit that copy. The plugin rebuilds local edits into its ignored overlay cache when it serves extension-backed results, and git ignores the local JSON files so private server resources are not uploaded to the repository or release bundles.
 
 This is optional. Most users can ignore it until they need custom behavior.
 

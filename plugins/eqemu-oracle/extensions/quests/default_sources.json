@@ -1,0 +1,22 @@
+{
+  "sources": [
+    {
+      "id": "projecteq-projecteqquests",
+      "title": "ProjectEQ Quest Scripts",
+      "url": "https://github.com/ProjectEQ/projecteqquests",
+      "source_type": "github_repo",
+      "context_key": "primary-quest-script-examples",
+      "languages": [
+        "perl",
+        "lua"
+      ],
+      "tags": [
+        "quest scripts",
+        "examples",
+        "projecteq"
+      ],
+      "description": "Default repo-level quest script examples for EQEmu Perl and Lua quest work.",
+      "mode": "augment"
+    }
+  ]
+}

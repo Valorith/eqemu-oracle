@@ -1,0 +1,18 @@
+{
+  "sources": [
+    {
+      "id": "my-quest-script-examples",
+      "title": "My Quest Script Examples",
+      "url": "https://github.com/example/custom-quests",
+      "source_type": "github_repo",
+      "context_key": "primary-quest-script-examples",
+      "languages": ["perl", "lua"],
+      "tags": [
+        "quest scripts",
+        "examples"
+      ],
+      "description": "Server-specific quest scripts to use as examples when writing or reviewing quests.",
+      "mode": "augment"
+    }
+  ]
+}

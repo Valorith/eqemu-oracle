@@ -1,0 +1,20 @@
+{
+  "sources": [
+    {
+      "id": "my-local-perl-plugin-examples",
+      "title": "My Local Perl Plugin Examples",
+      "url": "https://github.com/example/custom-plugins",
+      "source_type": "github_repo",
+      "context_key": "primary-perl-plugin-examples",
+      "languages": [
+        "perl"
+      ],
+      "tags": [
+        "perl plugins",
+        "local examples"
+      ],
+      "description": "Local Perl plugin examples. Keeping the default context_key replaces the repo-level ProjectEQ plugin source on this machine.",
+      "mode": "augment"
+    }
+  ]
+}

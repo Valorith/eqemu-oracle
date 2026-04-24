@@ -1,0 +1,22 @@
+{
+  "sources": [
+    {
+      "id": "projecteq-projecteqquests-plugins",
+      "title": "ProjectEQ Perl Plugins",
+      "url": "https://github.com/ProjectEQ/projecteqquests/tree/master/plugins",
+      "source_type": "github_path",
+      "context_key": "primary-perl-plugin-examples",
+      "languages": [
+        "perl"
+      ],
+      "tags": [
+        "perl plugins",
+        "plugin:: helpers",
+        "examples",
+        "projecteq"
+      ],
+      "description": "Default repo-level Perl plugin examples for reusable EQEmu quest helpers.",
+      "mode": "augment"
+    }
+  ]
+}

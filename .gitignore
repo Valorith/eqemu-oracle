@@ -19,17 +19,26 @@ out/
 tmp/
 plugins/eqemu-oracle/cache/
 plugins/eqemu-oracle/config/sources.local.toml
+
+# Keep user-authored local extension data private. Only checked-in templates
+# are unignored so users have examples to copy before editing their own files.
 plugins/eqemu-oracle/local-extensions/*
 !plugins/eqemu-oracle/local-extensions/README.md
 !plugins/eqemu-oracle/local-extensions/docs/
 !plugins/eqemu-oracle/local-extensions/quest-api/
 !plugins/eqemu-oracle/local-extensions/schema/
+!plugins/eqemu-oracle/local-extensions/quests/
+!plugins/eqemu-oracle/local-extensions/plugins/
 plugins/eqemu-oracle/local-extensions/docs/*
 plugins/eqemu-oracle/local-extensions/quest-api/*
 plugins/eqemu-oracle/local-extensions/schema/*
+plugins/eqemu-oracle/local-extensions/quests/*
+plugins/eqemu-oracle/local-extensions/plugins/*
 !plugins/eqemu-oracle/local-extensions/docs/_example.json
 !plugins/eqemu-oracle/local-extensions/quest-api/_example.json
 !plugins/eqemu-oracle/local-extensions/schema/_example.json
+!plugins/eqemu-oracle/local-extensions/quests/_example.json
+!plugins/eqemu-oracle/local-extensions/plugins/_example.json
 
 # Local secrets
 .env

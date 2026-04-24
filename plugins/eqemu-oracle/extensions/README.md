@@ -19,6 +19,8 @@ If a local extension reuses the same id, it wins over the repo extension on that
 - `quest-api/`: extra or overridden Perl/Lua scripting API records
 - `schema/`: extra or overridden table definitions and relationships
 - `docs/`: extra or overridden docs pages, aliases, and tags
+- `quests/`: example quest script source repositories or paths
+- `plugins/`: example Perl plugin source repositories or paths
 
 ## Record Modes
 
@@ -37,6 +39,8 @@ Each domain uses a different top-level array:
 - quest API: `records`
 - schema: `tables`
 - docs: `pages`
+- quests: `sources`
+- plugins: `sources`
 
 The reserved filename `_example.json` is ignored by the loader and can be used as a safe template in any extension folder.
 
@@ -45,5 +49,7 @@ Current starter templates:
 - `extensions/quest-api/_example.json`
 - `extensions/schema/_example.json`
 - `extensions/docs/_example.json`
+- `extensions/quests/_example.json`
+- `extensions/plugins/_example.json`
 
 See the domain-specific readmes in each folder for concrete examples.

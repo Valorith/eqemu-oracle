@@ -68,6 +68,56 @@ class OperationsTest(unittest.TestCase):
         self.assertEqual(result["removed_count"], 1)
         self.assertEqual(manifest["merge_scope"], "schema")
 
+    def test_committed_rebuild_refuses_active_local_extensions_in_git_checkout(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            repo_root = root / "repo"
+            repo_root.mkdir()
+            (repo_root / ".git").mkdir()
+            merged_root = repo_root / "plugins" / "eqemu-oracle" / "data" / "merged"
+
+            with patch("eqemu_oracle.operations.REPO_ROOT", repo_root):
+                with patch("eqemu_oracle.operations.MERGED_ROOT", merged_root):
+                    with patch("eqemu_oracle.operations.BASE_ROOT", repo_root / "plugins" / "eqemu-oracle" / "data" / "base"):
+                        with patch("eqemu_oracle.operations._active_local_extension_files", return_value=["local-extensions/quests/local.json"]):
+                            with self.assertRaises(RuntimeError) as ctx:
+                                operations.rebuild_extensions_dataset(scope="all", mode="committed")
+
+            self.assertIn("Refusing to write committed merged data", str(ctx.exception))
+            self.assertIn("--mode overlay", str(ctx.exception))
+
+    def test_committed_rebuild_allows_active_local_extensions_outside_git_checkout(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            base_root = root / "base"
+            merged_root = root / "merged"
+
+            with patch("eqemu_oracle.operations.REPO_ROOT", root / "repo"):
+                with patch("eqemu_oracle.operations.BASE_ROOT", base_root):
+                    with patch("eqemu_oracle.operations.MERGED_ROOT", merged_root):
+                        with patch("eqemu_oracle.operations._active_local_extension_files", return_value=["local-extensions/quests/local.json"]):
+                            with patch("eqemu_oracle.operations.write_merged_dataset", return_value={"merge_scope": "all"}) as write_merged_dataset:
+                                manifest = operations.rebuild_extensions_dataset(scope="all", mode="committed")
+
+            self.assertEqual(manifest["merge_scope"], "all")
+            write_merged_dataset.assert_called_once_with(base_root, merged_root, scope="all")
+
+    def test_overlay_rebuild_bootstraps_base_from_committed_snapshot(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            base_root = root / "data" / "base"
+            overlay_root = root / "cache" / "overlay"
+            dump_json(base_root / "quest-api" / "methods.json", [])
+
+            with patch("eqemu_oracle.operations.BASE_ROOT", base_root):
+                with patch("eqemu_oracle.operations.OVERLAY_ROOT", overlay_root):
+                    with patch("eqemu_oracle.operations.write_merged_dataset", return_value={"merge_scope": "all"}) as write_merged_dataset:
+                        manifest = operations.rebuild_extensions_dataset(scope="all", mode="overlay")
+
+            self.assertEqual(manifest["merge_scope"], "all")
+            self.assertTrue((overlay_root / "base" / "quest-api" / "methods.json").exists())
+            write_merged_dataset.assert_called_once_with(overlay_root / "base", overlay_root / "merged", scope="all")
+
     def test_maintenance_lock_serializes_callers(self) -> None:
         entered: list[str] = []
         released = threading.Event()

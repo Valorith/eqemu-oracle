@@ -125,3 +125,6 @@ def main() -> int:
     except ExtensionValidationError as exc:
         print(str(exc), file=sys.stderr)
         return 2
+    except RuntimeError as exc:
+        print(str(exc), file=sys.stderr)
+        return 1

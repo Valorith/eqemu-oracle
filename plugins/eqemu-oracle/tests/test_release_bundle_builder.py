@@ -45,6 +45,23 @@ class ReleaseBundleBuilderTest(unittest.TestCase):
         bundle_root = get_bundle_root()
         self.assertNotIn(f"{bundle_root}/{output_dir.name}/{archive_path.name}", names)
 
+    def test_build_release_bundle_excludes_private_local_extensions(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            repo_root = Path(temp_dir) / "repo"
+            local_quests = repo_root / "plugins" / "eqemu-oracle" / "local-extensions" / "quests"
+            local_quests.mkdir(parents=True, exist_ok=True)
+            (local_quests / "_example.json").write_text('{"sources": []}\n', encoding="utf-8")
+            (local_quests / "local.json").write_text('{"sources": [{"id": "private"}]}\n', encoding="utf-8")
+
+            archive_path = build_release_bundle(Path(temp_dir) / "dist", repo_root=repo_root)
+
+            with zipfile.ZipFile(archive_path) as archive:
+                names = set(archive.namelist())
+
+        bundle_root = get_bundle_root()
+        self.assertIn(f"{bundle_root}/plugins/eqemu-oracle/local-extensions/quests/_example.json", names)
+        self.assertNotIn(f"{bundle_root}/plugins/eqemu-oracle/local-extensions/quests/local.json", names)
+
 
 if __name__ == "__main__":
     unittest.main()

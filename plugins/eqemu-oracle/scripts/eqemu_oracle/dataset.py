@@ -9,8 +9,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from .constants import BASE_ROOT, CACHE_ROOT, EXTENSIONS_ROOT, LOCAL_EXTENSIONS_ROOT, MAINTENANCE_LOCK_ROOT, MERGED_ROOT, OVERLAY_ROOT, SEARCH_DB_PATH
-from .extensions import ExtensionValidationError, load_domain_extensions, merge_records
+from .constants import BASE_ROOT, CACHE_ROOT, DOMAIN_CHOICES, EXTENSIONS_ROOT, LOCAL_EXTENSIONS_ROOT, MAINTENANCE_LOCK_ROOT, MERGED_ROOT, OVERLAY_ROOT, SEARCH_DB_PATH
+from .extensions import ExtensionValidationError, load_domain_extensions, merge_records, merge_source_records
 from .presentation import QUEST_TOPIC_STOPWORDS, add_presentation, add_search_presentation, present_quest_entry, present_quest_topic_summary
 from .utils import deep_merge, dump_json, dump_text, ensure_dir, excerpt, load_json, markdown_sections, split_identifier_words
 
@@ -75,6 +75,8 @@ def _overlay_root_is_valid() -> bool:
         OVERLAY_ROOT / "merged" / "quest-api" / "records.json",
         OVERLAY_ROOT / "merged" / "schema" / "index.json",
         OVERLAY_ROOT / "merged" / "docs" / "pages.json",
+        OVERLAY_ROOT / "merged" / "quests" / "sources.json",
+        OVERLAY_ROOT / "merged" / "plugins" / "sources.json",
     ]
     return all(path.exists() for path in required)
 
@@ -111,6 +113,11 @@ def load_docs_base(root: Path) -> list[dict[str, Any]]:
     return load_json(pages_path) if pages_path.exists() else []
 
 
+def load_source_base(root: Path, domain: str) -> list[dict[str, Any]]:
+    sources_path = root / domain / "sources.json"
+    return load_json(sources_path) if sources_path.exists() else []
+
+
 def validate_extension_overlays(
     base_root: Path,
     repo_root: Path = EXTENSIONS_ROOT,
@@ -121,14 +128,17 @@ def validate_extension_overlays(
         "quest-api": load_quest_base,
         "schema": load_schema_base,
         "docs": load_docs_base,
+        "quests": lambda root: load_source_base(root, "quests"),
+        "plugins": lambda root: load_source_base(root, "plugins"),
     }
     for domain, loader in domain_loaders.items():
         try:
-            merge_records(
-                loader(base_root),
-                load_domain_extensions(repo_root, domain),
-                load_domain_extensions(local_root, domain),
-            )
+            repo_extensions = load_domain_extensions(repo_root, domain)
+            local_extensions = load_domain_extensions(local_root, domain)
+            if domain in {"quests", "plugins"}:
+                merge_source_records(repo_extensions, local_extensions, domain=domain)
+            else:
+                merge_records(loader(base_root), repo_extensions, local_extensions)
         except Exception as exc:
             issues.append(f"{domain}: {exc}")
     if issues:
@@ -273,7 +283,7 @@ def prune_stale_schema_extensions(
 
 def _load_domain_meta(base_root: Path) -> dict[str, Any]:
     meta: dict[str, Any] = {}
-    for domain in ("quest-api", "schema", "docs"):
+    for domain in DOMAIN_CHOICES:
         meta_path = base_root / domain / "meta.json"
         if meta_path.exists():
             meta[domain] = load_json(meta_path)
@@ -386,6 +396,23 @@ def _compose_search_text(record: dict[str, Any], domain: str, root: Path) -> tup
         )
         uri = f"eqemu://schema/table/{record['table']}"
         return title, body, uri, "table", None
+    if domain in {"quests", "plugins"}:
+        title = record.get("title") or record.get("name") or record.get("id", "")
+        body = " ".join(
+            [
+                record.get("description", ""),
+                record.get("url", ""),
+                record.get("path", ""),
+                record.get("context_key", ""),
+                _stringify_list(record.get("languages")),
+                _stringify_list(record.get("tags")),
+                _stringify_list(record.get("search_aliases")),
+            ]
+        )
+        uri = f"eqemu://{domain}/source/{record['id']}"
+        return title, body, uri, "source", None
+    if domain != "docs":
+        raise ValueError(f"Unsupported search domain '{domain}'")
     if record.get("entity_type") == "section":
         title = f"{record.get('page_title')} > {record.get('heading')}"
         body = " ".join(
@@ -427,6 +454,12 @@ def _merged_domain_is_present(target_root: Path, domain: str) -> bool:
             target_root / "docs" / "pages.json",
             target_root / "docs" / "sections.json",
         ],
+        "quests": [
+            target_root / "quests" / "sources.json",
+        ],
+        "plugins": [
+            target_root / "plugins" / "sources.json",
+        ],
     }[domain]
     return all(path.exists() for path in required)
 
@@ -434,12 +467,17 @@ def _merged_domain_is_present(target_root: Path, domain: str) -> bool:
 def _effective_merge_scope(target_root: Path, scope: str) -> str:
     if scope == "all":
         return scope
-    missing_domains = [domain for domain in ("quest-api", "schema", "docs") if domain != scope and not _merged_domain_is_present(target_root, domain)]
+    source_domains = {"quests", "plugins"}
+    missing_domains = [
+        domain
+        for domain in DOMAIN_CHOICES
+        if domain not in source_domains and domain != scope and not _merged_domain_is_present(target_root, domain)
+    ]
     return "all" if missing_domains else scope
 
 
 def _manifest_merge_scope(target_root: Path, scope: str) -> str:
-    if all(_merged_domain_is_present(target_root, domain) for domain in ("quest-api", "schema", "docs")):
+    if all(_merged_domain_is_present(target_root, domain) for domain in DOMAIN_CHOICES):
         return "all"
     return scope
 
@@ -610,12 +648,29 @@ def write_merged_dataset(base_root: Path, target_root: Path, *, scope: str = "al
         docs_records = load_json(target_root / "docs" / "pages.json")
         docs_sections = load_json(target_root / "docs" / "sections.json")
 
+    source_records_by_domain: dict[str, list[dict[str, Any]]] = {}
+    for domain in ("quests", "plugins"):
+        if scope in ("all", domain) or not _merged_domain_is_present(target_root, domain):
+            source_records = merge_source_records(
+                load_domain_extensions(EXTENSIONS_ROOT, domain),
+                load_domain_extensions(LOCAL_EXTENSIONS_ROOT, domain),
+                domain=domain,
+            )
+            source_root = target_root / domain
+            _reset_domain_root(source_root)
+            dump_json(source_root / "sources.json", source_records)
+        else:
+            source_records = load_json(target_root / domain / "sources.json")
+        source_records_by_domain[domain] = source_records
+
     manifest = {
         "counts": {
             "quest-api": len(quest_records),
             "schema": len(schema_records),
             "docs": len(docs_records),
             "docs-sections": len(docs_sections),
+            "quests": len(source_records_by_domain["quests"]),
+            "plugins": len(source_records_by_domain["plugins"]),
         },
         "freshness_state": "fresh",
         "merge_scope": _manifest_merge_scope(target_root, scope),
@@ -649,42 +704,28 @@ def build_search_index(data_root: Path, db_path: Path) -> None:
         schema_records = load_json(data_root / "schema" / "index.json")
         docs_records = load_json(data_root / "docs" / "pages.json")
         docs_sections = load_docs_sections(data_root)
-        for record in quest_records:
-            title, body, uri, entity_type, parent_id = _compose_search_text(record, "quest-api", data_root)
-            freshness_ts = _record_freshness(record)
-            conn.execute(
-                "INSERT INTO search_records VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-                ("quest-api", record["id"], title, body, uri, entity_type, parent_id, freshness_ts),
-            )
-            if has_fts:
-                conn.execute("INSERT INTO search_fts VALUES (?, ?, ?, ?)", (record["id"], title, body, "quest-api"))
-        for record in schema_records:
-            title, body, uri, entity_type, parent_id = _compose_search_text(record, "schema", data_root)
-            freshness_ts = _record_freshness(record)
-            conn.execute(
-                "INSERT INTO search_records VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-                ("schema", record["id"], title, body, uri, entity_type, parent_id, freshness_ts),
-            )
-            if has_fts:
-                conn.execute("INSERT INTO search_fts VALUES (?, ?, ?, ?)", (record["id"], title, body, "schema"))
-        for record in docs_records:
-            title, body, uri, entity_type, parent_id = _compose_search_text(record, "docs", data_root)
-            freshness_ts = _record_freshness(record)
-            conn.execute(
-                "INSERT INTO search_records VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-                ("docs", record["id"], title, body, uri, entity_type, parent_id, freshness_ts),
-            )
-            if has_fts:
-                conn.execute("INSERT INTO search_fts VALUES (?, ?, ?, ?)", (record["id"], title, body, "docs"))
-        for record in docs_sections:
-            title, body, uri, entity_type, parent_id = _compose_search_text(record, "docs", data_root)
-            freshness_ts = _record_freshness(record)
-            conn.execute(
-                "INSERT INTO search_records VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-                ("docs", record["id"], title, body, uri, entity_type, parent_id, freshness_ts),
-            )
-            if has_fts:
-                conn.execute("INSERT INTO search_fts VALUES (?, ?, ?, ?)", (record["id"], title, body, "docs"))
+        source_records_by_domain = {
+            domain: load_json(data_root / domain / "sources.json") if (data_root / domain / "sources.json").exists() else []
+            for domain in ("quests", "plugins")
+        }
+        indexed_records = [
+            ("quest-api", quest_records),
+            ("schema", schema_records),
+            ("docs", docs_records),
+            ("docs", docs_sections),
+            ("quests", source_records_by_domain["quests"]),
+            ("plugins", source_records_by_domain["plugins"]),
+        ]
+        for domain, records in indexed_records:
+            for record in records:
+                title, body, uri, entity_type, parent_id = _compose_search_text(record, domain, data_root)
+                freshness_ts = _record_freshness(record)
+                conn.execute(
+                    "INSERT INTO search_records VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                    (domain, record["id"], title, body, uri, entity_type, parent_id, freshness_ts),
+                )
+                if has_fts:
+                    conn.execute("INSERT INTO search_fts VALUES (?, ?, ?, ?)", (record["id"], title, body, domain))
         conn.commit()
     finally:
         conn.close()
@@ -754,6 +795,8 @@ class DataStore:
         self.schema_records = load_json(self.data_root / "schema" / "index.json")
         self.docs_records = load_json(self.data_root / "docs" / "pages.json")
         self.docs_sections = load_docs_sections(self.data_root)
+        self.quest_source_records = load_json(self.data_root / "quests" / "sources.json") if (self.data_root / "quests" / "sources.json").exists() else []
+        self.plugin_source_records = load_json(self.data_root / "plugins" / "sources.json") if (self.data_root / "plugins" / "sources.json").exists() else []
 
     def manifest(self) -> dict[str, Any]:
         if self.manifest_path and self.manifest_path.exists():
@@ -768,6 +811,13 @@ class DataStore:
 
     def docs_index(self) -> list[dict[str, Any]]:
         return self.docs_records
+
+    def source_index(self, domain: str) -> list[dict[str, Any]]:
+        if domain == "quests":
+            return self.quest_source_records
+        if domain == "plugins":
+            return self.plugin_source_records
+        raise ValueError(f"Unsupported source domain '{domain}'")
 
     def _raw_doc_page(self, path_or_slug: str) -> dict[str, Any] | None:
         needle = path_or_slug.strip("/").lower().split("#", 1)[0]
@@ -815,7 +865,13 @@ class DataStore:
         return add_presentation("docs", full_page) if full_page else None
 
     def explain_provenance(self, domain: str, record_id: str) -> dict[str, Any] | None:
-        collection = {"quest-api": self.quest_records, "schema": self.schema_records, "docs": self.docs_records}.get(domain)
+        collection = {
+            "quest-api": self.quest_records,
+            "schema": self.schema_records,
+            "docs": self.docs_records,
+            "quests": self.quest_source_records,
+            "plugins": self.plugin_source_records,
+        }.get(domain)
         if collection is None:
             return None
         for item in collection:
@@ -825,7 +881,7 @@ class DataStore:
                     "domain": domain,
                     "provenance": item.get("provenance", {}),
                     "extension_flags": item.get("extension_flags", {}),
-                    "source_url": item.get("source_url"),
+                    "source_url": item.get("source_url") or item.get("url"),
                     "source_ref": item.get("source_ref"),
                 }
         if domain == "docs" and "#" in record_id:
@@ -959,7 +1015,7 @@ class DataStore:
         language: str | None = None,
         prefer_fresh: bool = False,
     ) -> dict[str, Any]:
-        domains = domains or ["quest-api", "schema", "docs"]
+        domains = domains or list(DOMAIN_CHOICES)
         term_groups = _search_term_groups(query)
         fts_query = _build_fts_query(query)
         if include_extensions:
@@ -1006,6 +1062,8 @@ class DataStore:
                 "quest-api": load_quest_base(self.base_root),
                 "schema": load_schema_base(self.base_root),
                 "docs": load_docs_base(self.base_root),
+                "quests": load_source_base(self.base_root, "quests"),
+                "plugins": load_source_base(self.base_root, "plugins"),
             }
             for domain in domains:
                 for record in records_by_domain[domain]:

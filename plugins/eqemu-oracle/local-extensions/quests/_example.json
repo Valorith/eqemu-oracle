@@ -1,0 +1,21 @@
+{
+  "sources": [
+    {
+      "id": "my-local-quest-script-examples",
+      "title": "My Local Quest Script Examples",
+      "url": "https://github.com/example/custom-quests",
+      "source_type": "github_repo",
+      "context_key": "primary-quest-script-examples",
+      "languages": [
+        "perl",
+        "lua"
+      ],
+      "tags": [
+        "quest scripts",
+        "local examples"
+      ],
+      "description": "Local quest script examples. Keeping the default context_key replaces the repo-level ProjectEQ quest source on this machine.",
+      "mode": "augment"
+    }
+  ]
+}

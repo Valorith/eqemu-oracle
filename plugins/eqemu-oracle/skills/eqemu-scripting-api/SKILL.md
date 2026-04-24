@@ -22,3 +22,4 @@ description: Look up EQEmu Perl and Lua quest API methods, events, and constants
    - `quests/global/<npc_id|npc_name>.[ext]` is part of normal selection, while `global_player.[ext]` and `global_npc.[ext]` are overlay scripts that still run alongside the selected script.
 13. If the user mentions plugins, treat `/plugins` as a Perl-only feature on this server and prefer it for reusable Perl helpers instead of duplicating logic across Perl quest files.
 14. If a Perl script uses the `plugin::` prefix before a function call, treat that as evidence the implementation belongs in a global Perl plugin script under `/plugins`.
+15. When repository examples would help script work, search `quests` for quest script examples and `plugins` for Perl plugin examples.

@@ -10,6 +10,17 @@ from .constants import PLUGIN_METADATA_PATH, REPO_ROOT
 SKIPPED_ROOTS = {".git", "dist", "dist-local-smoke"}
 
 
+def _should_skip_bundle_path(rel_path: Path) -> bool:
+    if rel_path.parts and rel_path.parts[0] in SKIPPED_ROOTS:
+        return True
+    if rel_path.parts[:3] == ("plugins", "eqemu-oracle", "cache"):
+        return True
+    if rel_path.parts[:3] == ("plugins", "eqemu-oracle", "local-extensions"):
+        filename = rel_path.name
+        return filename not in {"README.md", "_example.json"}
+    return False
+
+
 def get_bundle_root(plugin_metadata_path: Path = PLUGIN_METADATA_PATH) -> str:
     metadata = json.loads(plugin_metadata_path.read_text(encoding="utf-8"))
     version = metadata["version"]
@@ -29,7 +40,7 @@ def build_release_bundle(output_dir: Path, repo_root: Path = REPO_ROOT) -> Path:
             if path.resolve() == archive_path_resolved:
                 continue
             rel_path = path.relative_to(repo_root)
-            if rel_path.parts and rel_path.parts[0] in SKIPPED_ROOTS:
+            if _should_skip_bundle_path(rel_path):
                 continue
             archive.write(path, Path(bundle_root, *rel_path.parts).as_posix())
 

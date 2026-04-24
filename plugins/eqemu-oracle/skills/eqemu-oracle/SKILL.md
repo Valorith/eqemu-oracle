@@ -28,4 +28,4 @@ Use this skill when the task needs authoritative EQEmu context.
     - NPC ID file names beat NPC name file names within the same scope.
     - `.lua` only beats `.pl` when the basename is the same exact match.
     - `quests/global/<npc_id|npc_name>.[ext]` participates in normal script selection, while `quests/global/global_player.[ext]` and `quests/global/global_npc.[ext]` are overlays that run in addition to the selected script.
-15. When example quest structure is useful, prefer the ProjectEQ quest repository as an example source, but do not let example repository conventions override the active server layout or official EQEmu loading rules.
+15. When example quest or Perl plugin structure is useful, search `quests` and/or `plugins` with `search_eqemu_context` to find the configured example sources. Local example sources take precedence when they replace the repo-level defaults, but example repository conventions must not override the active server layout or official EQEmu loading rules.

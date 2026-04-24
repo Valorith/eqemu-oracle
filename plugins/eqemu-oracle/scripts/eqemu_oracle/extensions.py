@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from urllib.parse import urlparse
 from typing import Any
 
 from .utils import deep_merge, load_json
@@ -54,6 +55,8 @@ def load_domain_extensions(root: Path, domain: str) -> list[dict[str, Any]]:
         "quest-api": "records",
         "schema": "tables",
         "docs": "pages",
+        "quests": "sources",
+        "plugins": "sources",
     }[domain]
     for path in _iter_extension_files(domain_root):
         payload = load_json(path)
@@ -125,3 +128,78 @@ def merge_records(
             merged_record["extension_flags"]["has_repo_extension" if source_name == "repo_extension" else "has_local_extension"] = True
             merged[ext_id] = merged_record
     return sorted(merged.values(), key=lambda item: item["id"])
+
+
+def _normalized_source_url(value: Any) -> str | None:
+    if not isinstance(value, str) or not value.strip():
+        return None
+    normalized = value.strip()
+    if normalized.endswith(".git"):
+        normalized = normalized[:-4]
+    return normalized.rstrip("/")
+
+
+def _github_source_identity(url_value: str) -> str | None:
+    parsed = urlparse(url_value)
+    if parsed.netloc.lower() != "github.com":
+        return None
+    parts = [part for part in parsed.path.strip("/").split("/") if part]
+    if len(parts) < 2:
+        return None
+    owner, repo = parts[0].lower(), parts[1].removesuffix(".git").lower()
+    if len(parts) >= 5 and parts[2] == "tree":
+        subpath = "/".join(parts[4:]).lower()
+        return f"github:{owner}/{repo}/{subpath}" if subpath else f"github:{owner}/{repo}"
+    return f"github:{owner}/{repo}"
+
+
+def _source_competition_keys(record: dict[str, Any], domain: str) -> set[str]:
+    keys: set[str] = set()
+    context_key = record.get("context_key")
+    if isinstance(context_key, str) and context_key.strip():
+        keys.add(f"context:{domain}:{context_key.strip().lower()}")
+    replacements = record.get("replaces", [])
+    if not isinstance(replacements, list):
+        replacements = []
+    for replacement in replacements:
+        if isinstance(replacement, str) and replacement.strip():
+            keys.add(f"replace:{replacement.strip().lower()}")
+            replacement_url = _normalized_source_url(replacement)
+            if replacement_url:
+                keys.add(f"url:{replacement_url.lower()}")
+                github_identity = _github_source_identity(replacement_url)
+                if github_identity:
+                    keys.add(github_identity)
+    record_id = record.get("id")
+    if isinstance(record_id, str) and record_id.strip():
+        keys.add(f"replace:{record_id.strip().lower()}")
+    url_value = _normalized_source_url(record.get("url"))
+    if url_value:
+        keys.add(f"url:{url_value.lower()}")
+        github_identity = _github_source_identity(url_value)
+        if github_identity:
+            keys.add(github_identity)
+    return keys
+
+
+def merge_source_records(
+    repo_extensions: list[dict[str, Any]],
+    local_extensions: list[dict[str, Any]],
+    *,
+    domain: str,
+) -> list[dict[str, Any]]:
+    merged = merge_records([], repo_extensions, local_extensions)
+    local_competition_keys: set[str] = set()
+    for extension in local_extensions:
+        local_competition_keys.update(_source_competition_keys(extension, domain))
+    if not local_competition_keys:
+        return merged
+    filtered: list[dict[str, Any]] = []
+    for record in merged:
+        if (
+            record.get("provenance", {}).get("effective_source") == "repo_extension"
+            and _source_competition_keys(record, domain) & local_competition_keys
+        ):
+            continue
+        filtered.append(record)
+    return filtered

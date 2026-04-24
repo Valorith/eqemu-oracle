@@ -17,7 +17,7 @@ from .constants import (
     SERVER_NAME,
 )
 from .dataset import DataStore, base_data_root, find_stale_schema_extensions, validate_extension_overlays
-from .extensions import ExtensionValidationError, extension_inputs_fingerprint
+from .extensions import ExtensionValidationError, extension_inputs_fingerprint, load_domain_extensions
 from .operations import prune_schema_extensions_dataset, rebuild_extensions_dataset, refresh_dataset
 from .updater import update_plugin_repo
 
@@ -43,8 +43,18 @@ class McpServer:
             self._extension_validation_fingerprint = fingerprint
             self._extension_validation_error = exc
             raise
+        should_rebuild_overlay = (
+            self._extension_validation_fingerprint is not None
+            or "overlay" in str(self.store.data_root)
+            or any(load_domain_extensions(LOCAL_EXTENSIONS_ROOT, domain) for domain in DOMAIN_CHOICES)
+        )
+        if should_rebuild_overlay:
+            rebuild_extensions_dataset(scope="all", mode="overlay")
+            self.store = DataStore()
         self._extension_validation_fingerprint = fingerprint
         self._extension_validation_error = None
+        self._schema_extension_health_fingerprint = None
+        self._schema_extension_health = None
 
     def _reset_extension_validation(self) -> None:
         self._extension_validation_fingerprint = None
@@ -142,7 +152,7 @@ class McpServer:
         return [
             {
                 "name": "search_eqemu_context",
-                "description": "Search staged EQEmu quest API, schema, and docs context.",
+                "description": "Search staged EQEmu quest API, schema, docs, quest example sources, and Perl plugin example sources.",
                 "inputSchema": {
                     "type": "object",
                     "properties": {
@@ -265,6 +275,8 @@ class McpServer:
             {"uri": "eqemu://indexes/schema", "name": "Schema Index", "mimeType": "application/json"},
             {"uri": "eqemu://indexes/docs", "name": "Docs Index", "mimeType": "application/json"},
             {"uri": "eqemu://indexes/docs-sections", "name": "Docs Sections Index", "mimeType": "application/json"},
+            {"uri": "eqemu://indexes/quests", "name": "Quest Example Sources", "mimeType": "application/json"},
+            {"uri": "eqemu://indexes/plugins", "name": "Perl Plugin Example Sources", "mimeType": "application/json"},
         ]
 
     def _resource_templates(self) -> list[dict[str, Any]]:
@@ -272,6 +284,8 @@ class McpServer:
             {"uriTemplate": "eqemu://quest-api/{id}", "name": "Quest API Entry", "mimeType": "application/json"},
             {"uriTemplate": "eqemu://schema/table/{table_name}", "name": "Schema Table", "mimeType": "application/json"},
             {"uriTemplate": "eqemu://docs/page/{path}", "name": "Docs Page", "mimeType": "application/json"},
+            {"uriTemplate": "eqemu://quests/source/{id}", "name": "Quest Example Source", "mimeType": "application/json"},
+            {"uriTemplate": "eqemu://plugins/source/{id}", "name": "Perl Plugin Example Source", "mimeType": "application/json"},
             {"uriTemplate": "eqemu://provenance/{domain}/{id}", "name": "Record Provenance", "mimeType": "application/json"},
         ]
 
@@ -324,7 +338,7 @@ class McpServer:
         elif name == "rebuild_eqemu_extensions":
             result = rebuild_extensions_dataset(
                 scope=self._enum_arg(arguments, "scope", SCOPE_CHOICES, default="all"),
-                mode=self._enum_arg(arguments, "mode", MODE_CHOICES, default="overlay" if "overlay" in str(self.store.data_root) else "committed"),
+                mode=self._enum_arg(arguments, "mode", MODE_CHOICES, default="overlay"),
             )
             self.store = DataStore()
             self._reset_extension_validation()
@@ -416,12 +430,22 @@ class McpServer:
             payload = self.store.docs_index()
         elif uri == "eqemu://indexes/docs-sections":
             payload = self.store.docs_sections
+        elif uri == "eqemu://indexes/quests":
+            payload = self.store.source_index("quests")
+        elif uri == "eqemu://indexes/plugins":
+            payload = self.store.source_index("plugins")
         elif uri.startswith("eqemu://quest-api/"):
             payload = self.store.get_quest_entry_by_id(uri.removeprefix("eqemu://quest-api/"))
         elif uri.startswith("eqemu://schema/table/"):
             payload = self.store.get_table(uri.removeprefix("eqemu://schema/table/"))
         elif uri.startswith("eqemu://docs/page/"):
             payload = self.store.get_doc_page(uri.removeprefix("eqemu://docs/page/"))
+        elif uri.startswith("eqemu://quests/source/"):
+            source_id = uri.removeprefix("eqemu://quests/source/")
+            payload = next((item for item in self.store.source_index("quests") if item.get("id") == source_id), None)
+        elif uri.startswith("eqemu://plugins/source/"):
+            source_id = uri.removeprefix("eqemu://plugins/source/")
+            payload = next((item for item in self.store.source_index("plugins") if item.get("id") == source_id), None)
         elif uri.startswith("eqemu://provenance/"):
             _, _, remainder = uri.partition("eqemu://provenance/")
             domain, separator, record_id = remainder.partition("/")

@@ -1,0 +1,21 @@
+{
+  "sources": [
+    {
+      "id": "my-perl-plugin-examples",
+      "title": "My Perl Plugin Examples",
+      "url": "https://github.com/example/custom-quests/tree/master/plugins",
+      "source_type": "github_path",
+      "context_key": "primary-perl-plugin-examples",
+      "languages": [
+        "perl"
+      ],
+      "tags": [
+        "perl plugins",
+        "plugin:: helpers",
+        "examples"
+      ],
+      "description": "Server-specific Perl plugin helpers to use as examples.",
+      "mode": "augment"
+    }
+  ]
+}

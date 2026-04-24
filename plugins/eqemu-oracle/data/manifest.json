@@ -2,7 +2,9 @@
   "counts": {
     "docs": 378,
     "docs-sections": 4754,
+    "plugins": 1,
     "quest-api": 10524,
+    "quests": 1,
     "schema": 274
   },
   "extension_health": {

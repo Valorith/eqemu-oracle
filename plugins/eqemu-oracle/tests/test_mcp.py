@@ -132,7 +132,7 @@ class McpServerValidationTest(unittest.TestCase):
 
         self.assertIsNotNone(response)
         assert response is not None
-        rebuild_mock.assert_called_once_with(scope="docs", mode="committed")
+        rebuild_mock.assert_called_once_with(scope="docs", mode="overlay")
         self.assertEqual(response["result"]["structuredContent"]["merge_scope"], "docs")
 
     def test_refresh_tool_uses_shared_operation(self) -> None:

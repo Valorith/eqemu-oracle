@@ -28,6 +28,50 @@ COPY_IGNORE_NAMES = {
     ".pytest_cache",
     "tests",
 }
+LOCAL_EXTENSION_SCAFFOLDS = {
+    Path("local-extensions") / "quests" / "local.json": {
+        "_instructions": (
+            "Private local quest example sources go in the sources array. "
+            "This file is ignored by git and preserved across installs."
+        ),
+        "sources": [],
+        "_example_source": {
+            "id": "my-local-quest-script-examples",
+            "title": "My Local Quest Script Examples",
+            "url": "https://github.com/example/custom-quests",
+            "source_type": "github_repo",
+            "context_key": "primary-quest-script-examples",
+            "languages": ["perl", "lua"],
+            "tags": ["quest scripts", "local examples"],
+            "description": (
+                "Move this object into the sources array and edit it. Keeping the default context_key "
+                "replaces the repo-level ProjectEQ quest source on this machine."
+            ),
+            "mode": "augment",
+        },
+    },
+    Path("local-extensions") / "plugins" / "local.json": {
+        "_instructions": (
+            "Private local Perl plugin example sources go in the sources array. "
+            "This file is ignored by git and preserved across installs."
+        ),
+        "sources": [],
+        "_example_source": {
+            "id": "my-local-perl-plugin-examples",
+            "title": "My Local Perl Plugin Examples",
+            "url": "https://github.com/example/custom-plugins",
+            "source_type": "github_repo",
+            "context_key": "primary-perl-plugin-examples",
+            "languages": ["perl"],
+            "tags": ["perl plugins", "local examples"],
+            "description": (
+                "Move this object into the sources array and edit it. Keeping the default context_key "
+                "replaces the repo-level ProjectEQ plugin source on this machine."
+            ),
+            "mode": "augment",
+        },
+    },
+}
 
 
 def _category_for_plugin(plugin_root: Path) -> str:
@@ -182,6 +226,17 @@ def _migrate_preserved_paths(source_root: Path, target_root: Path) -> list[str]:
     return migrated
 
 
+def _seed_local_extension_scaffolds(target_root: Path) -> list[str]:
+    seeded: list[str] = []
+    for relative_path, payload in LOCAL_EXTENSION_SCAFFOLDS.items():
+        path = target_root / relative_path
+        if path.exists():
+            continue
+        dump_json(path, payload)
+        seeded.append(relative_path.as_posix())
+    return seeded
+
+
 def _validate_target_path(target_root: Path, plugins_root: Path) -> None:
     resolved_target = target_root.resolve()
     resolved_plugins_root = plugins_root.resolve()
@@ -332,6 +387,7 @@ def install_global_plugin(
     legacy_target_root = _legacy_plugins_root(resolved_home) / plugin_name
     if install_kind == CODEX_DESKTOP_INSTALL_KIND and legacy_target_root.resolve() != target_root.resolve():
         migrated_paths = _migrate_preserved_paths(legacy_target_root, target_root)
+    seeded_local_extension_files = _seed_local_extension_scaffolds(target_root)
     category = _category_for_plugin(source_plugin_root)
     _write_marketplace_entry(marketplace_path, plugin_name, category)
     rebuild = _rebuild_target_plugin(target_root)
@@ -349,5 +405,6 @@ def install_global_plugin(
         "marketplace_path": str(marketplace_path.resolve()),
         "restored_paths": restored_paths,
         "migrated_paths": migrated_paths,
+        "seeded_local_extension_files": seeded_local_extension_files,
         "rebuild": rebuild,
     }
