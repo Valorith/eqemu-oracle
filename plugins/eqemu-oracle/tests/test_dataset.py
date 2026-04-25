@@ -71,9 +71,32 @@ class DatasetSearchTest(unittest.TestCase):
                 "categories": [],
                 "related_docs": ["quest-api/methods/quest"],
             }
-            dump_json(data_root / "quest-api" / "records.json", [quest_record])
+            quest_record_with_language = dict(quest_record)
+            quest_record_with_language["id"] = "perl:method:quest:say:with-language"
+            quest_record_with_language["signature"] = "say(message, language_id)"
+            quest_record_with_language["params"] = ["message", "language_id"]
+            dump_json(data_root / "quest-api" / "records.json", [quest_record, quest_record_with_language])
             dump_json(data_root / "quest-api" / "index.json", {"counts": {}, "languages": ["perl"]})
-            dump_json(data_root / "schema" / "index.json", [{"id": "spawn2", "table": "spawn2", "title": "spawn2", "columns": []}])
+            dump_json(
+                data_root / "schema" / "index.json",
+                [
+                    {
+                        "id": "spawn2",
+                        "table": "spawn2",
+                        "title": "spawn2",
+                        "columns": [],
+                        "relationships": [
+                            {
+                                "relationship_type": "One-to-One",
+                                "local_key": "spawngroupID",
+                                "remote_table": "[spawngroup](../../schema/spawns/spawngroup.md)",
+                                "remote_key": "id",
+                            }
+                        ],
+                    },
+                    {"id": "spawngroup", "table": "spawngroup", "title": "spawngroup", "columns": [], "relationships": []},
+                ],
+            )
             dump_json(
                 data_root / "docs" / "pages.json",
                 [
@@ -97,10 +120,47 @@ class DatasetSearchTest(unittest.TestCase):
                         store = DataStore()
 
             self.assertEqual(store.get_quest_entry_by_id("perl:method:quest:say:test")["id"], "perl:method:quest:say:test")
-            self.assertEqual(store.get_quest_entry("perl", "method", "SAY", "quest")["id"], "perl:method:quest:say:test")
+            say_entry = store.get_quest_entry("perl", "method", "SAY", "quest")
+            self.assertEqual(say_entry["id"], "perl:method:quest:say:test")
+            self.assertEqual(say_entry["overload_count"], 2)
+            self.assertEqual(store.get_quest_entry("perl", "method", "SAY", "quest", params=["message", "language_id"])["id"], "perl:method:quest:say:with-language")
+            self.assertEqual(store.get_quest_overloads("perl", "method", "SAY", "quest")["count"], 2)
             self.assertEqual(store.get_table("SPAWN2")["table"], "spawn2")
+            self.assertEqual(store.get_table("SPAWN2")["relationships"][0]["remote_table_id"], "spawngroup")
+            relationship_graph = store.explain_table_relationships("spawngroup")
+            self.assertEqual(relationship_graph["table"], "spawngroup")
+            self.assertTrue(any(edge["direction"] == "inbound" and edge["from_table"] == "spawn2" for edge in relationship_graph["edges"]))
             self.assertEqual(store.get_doc_page("quest-api-methods-quest")["id"], "quest-api/methods/quest")
             self.assertEqual(store.explain_provenance("quest-api", "perl:method:quest:say:test")["id"], "perl:method:quest:say:test")
+
+    def test_explicit_example_domain_search_indexes_local_example_files(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            data_root = root / "merged"
+            examples_root = root / "examples"
+            quest_repo = root / "quest_repo"
+            (quest_repo / "qeynos").mkdir(parents=True, exist_ok=True)
+            (quest_repo / "qeynos" / "Guard_Bob.pl").write_text("sub EVENT_SAY { quest::say('hail friend'); }", encoding="utf-8")
+
+            dump_json(data_root / "quest-api" / "records.json", [])
+            dump_json(data_root / "quest-api" / "index.json", {"counts": {}, "languages": []})
+            dump_json(data_root / "schema" / "index.json", [])
+            dump_json(data_root / "docs" / "pages.json", [])
+            (data_root / "docs" / "pages").mkdir(parents=True, exist_ok=True)
+            dump_json(data_root / "quests" / "sources.json", [{"id": "local-quests", "title": "Local Quests", "path": str(quest_repo), "source_type": "local_path"}])
+            dump_json(data_root / "plugins" / "sources.json", [])
+
+            with patch("eqemu_oracle.dataset.current_data_root", return_value=data_root):
+                with patch("eqemu_oracle.dataset.base_data_root", return_value=data_root):
+                    with patch("eqemu_oracle.dataset._current_manifest_path", return_value=None):
+                        with patch("eqemu_oracle.dataset.SEARCH_DB_PATH", root / "search.sqlite3"):
+                            with patch("eqemu_oracle.examples.EXAMPLE_INDEX_ROOT", examples_root):
+                                store = DataStore()
+                                hits = store.search("hail friend", ["quests"], 5, True)["hits"]
+
+            self.assertTrue(hits)
+            self.assertEqual(hits[0]["entity_type"], "example-file")
+            self.assertIn("Guard_Bob.pl", hits[0]["title"])
 
 
 if __name__ == "__main__":

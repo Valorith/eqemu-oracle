@@ -152,25 +152,37 @@
       "local_key": "delivertonpc",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[npc_types](../../schema/npcs/npc_types.md)"
+      "remote_table": "[npc_types](../../schema/npcs/npc_types.md)",
+      "remote_table_id": "npc_types",
+      "remote_table_label": "npc_types",
+      "remote_table_path": "../../schema/npcs/npc_types.md"
     },
     {
       "local_key": "goalid",
       "relationship_type": "Has-Many",
       "remote_key": "listid",
-      "remote_table": "[goallists](../../schema/tasks/goallists.md)"
+      "remote_table": "[goallists](../../schema/tasks/goallists.md)",
+      "remote_table_id": "goallists",
+      "remote_table_label": "goallists",
+      "remote_table_path": "../../schema/tasks/goallists.md"
     },
     {
       "local_key": "taskid",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[tasks](../../schema/tasks/tasks.md)"
+      "remote_table": "[tasks](../../schema/tasks/tasks.md)",
+      "remote_table_id": "tasks",
+      "remote_table_label": "tasks",
+      "remote_table_path": "../../schema/tasks/tasks.md"
     },
     {
       "local_key": "zones",
       "relationship_type": "One-to-One",
       "remote_key": "zoneidnumber",
-      "remote_table": "[zone](../../schema/zone/zone.md)"
+      "remote_table": "[zone](../../schema/zone/zone.md)",
+      "remote_table_id": "zone",
+      "remote_table_label": "zone",
+      "remote_table_path": "../../schema/zone/zone.md"
     }
   ],
   "search_aliases": [

@@ -20,15 +20,19 @@ class McpServerValidationTest(unittest.TestCase):
             data_root=Path("C:/merged"),
             search=lambda *args, **kwargs: {},
             get_quest_entry=lambda *args, **kwargs: {},
+            get_quest_overloads=lambda *args, **kwargs: {"count": 2, "matches": [], "presentation": {"markdown": "overloads"}},
             get_quest_entry_by_id=lambda *args, **kwargs: {"id": "perl:method:mob:say:test", "name": "Say"},
             summarize_quest_topic=lambda *args, **kwargs: {},
             get_table=lambda *args, **kwargs: {"table": "aa_ability", "presentation": {"markdown": "schema markdown"}},
+            explain_table_relationships=lambda *args, **kwargs: {"table": "aa_ability", "edges": [], "presentation": {"markdown": "relationships"}},
             get_doc_page=lambda *args, **kwargs: {},
+            get_example_file=lambda *args, **kwargs: {"id": "quests:example:test", "content": "sub EVENT_SAY {}"},
             explain_provenance=lambda *args, **kwargs: {"domain": "schema", "id": "aa_ability", "source_url": "https://example.test"},
             manifest=lambda: {},
             quest_index=lambda: {},
             schema_index=lambda: [],
             docs_index=lambda: [],
+            source_index=lambda *args, **kwargs: [],
             docs_sections=[{"id": "page#section", "page_id": "page", "heading": "Section"}],
         )
 
@@ -105,7 +109,7 @@ class McpServerValidationTest(unittest.TestCase):
                             "jsonrpc": "2.0",
                             "id": 3,
                             "method": "tools/call",
-                            "params": {"name": "prune_stale_schema_extensions", "arguments": {"apply": True}},
+                            "params": {"name": "prune_stale_schema_extensions", "arguments": {"apply": True, "confirm_write": True}},
                         }
                     )
 
@@ -126,7 +130,7 @@ class McpServerValidationTest(unittest.TestCase):
                             "jsonrpc": "2.0",
                             "id": 4,
                             "method": "tools/call",
-                            "params": {"name": "rebuild_eqemu_extensions", "arguments": {"scope": "docs"}},
+                            "params": {"name": "rebuild_eqemu_extensions", "arguments": {"scope": "docs", "confirm_write": True}},
                         }
                     )
 
@@ -147,7 +151,7 @@ class McpServerValidationTest(unittest.TestCase):
                             "jsonrpc": "2.0",
                             "id": 4,
                             "method": "tools/call",
-                            "params": {"name": "refresh_eqemu_oracle", "arguments": {"scope": "schema", "mode": "committed"}},
+                            "params": {"name": "refresh_eqemu_oracle", "arguments": {"scope": "schema", "mode": "committed", "confirm_write": True}},
                         }
                     )
 
@@ -246,6 +250,39 @@ class McpServerValidationTest(unittest.TestCase):
         templates = template_response["result"]["resourceTemplates"]
         self.assertIn("eqemu://indexes/docs-sections", {item["uri"] for item in resources})
         self.assertIn("eqemu://provenance/{domain}/{id}", {item["uriTemplate"] for item in templates})
+        self.assertIn("eqemu://quests/example/{id}", {item["uriTemplate"] for item in templates})
+
+    def test_mutating_tool_requires_confirmation(self) -> None:
+        with patch("eqemu_oracle.mcp.DataStore", return_value=self._stub_store()):
+            server = McpServer()
+
+        response = server.handle(
+            {
+                "jsonrpc": "2.0",
+                "id": 11,
+                "method": "tools/call",
+                "params": {"name": "rebuild_eqemu_extensions", "arguments": {"scope": "docs"}},
+            }
+        )
+
+        self.assertIsNotNone(response)
+        assert response is not None
+        result = response["result"]["structuredContent"]
+        self.assertTrue(result["requires_confirmation"])
+        self.assertEqual(result["confirmation_argument"], {"confirm_write": True})
+
+    def test_new_read_tools_are_exposed(self) -> None:
+        with patch("eqemu_oracle.mcp.DataStore", return_value=self._stub_store()):
+            server = McpServer()
+
+        response = server.handle({"jsonrpc": "2.0", "id": 12, "method": "tools/list", "params": {}})
+
+        self.assertIsNotNone(response)
+        assert response is not None
+        tool_names = {tool["name"] for tool in response["result"]["tools"]}
+        self.assertIn("get_quest_api_overloads", tool_names)
+        self.assertIn("explain_db_relationships", tool_names)
+        self.assertIn("get_eqemu_example_file", tool_names)
 
     def test_provenance_resource_returns_payload(self) -> None:
         with patch("eqemu_oracle.mcp.DataStore", return_value=self._stub_store()):

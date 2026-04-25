@@ -72,7 +72,10 @@
       "local_key": "npc_spells_effects_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[npc_spells_effects](../../schema/npcs/npc_spells_effects.md)"
+      "remote_table": "[npc_spells_effects](../../schema/npcs/npc_spells_effects.md)",
+      "remote_table_id": "npc_spells_effects",
+      "remote_table_label": "npc_spells_effects",
+      "remote_table_path": "../../schema/npcs/npc_spells_effects.md"
     }
   ],
   "search_aliases": [

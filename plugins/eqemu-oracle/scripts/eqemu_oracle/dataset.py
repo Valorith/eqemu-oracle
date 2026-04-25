@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Any
 
 from .constants import BASE_ROOT, CACHE_ROOT, DOMAIN_CHOICES, EXTENSIONS_ROOT, LOCAL_EXTENSIONS_ROOT, MAINTENANCE_LOCK_ROOT, MERGED_ROOT, OVERLAY_ROOT, SEARCH_DB_PATH
+from .examples import ensure_example_indexes, example_index_digest, load_example_records
 from .extensions import ExtensionValidationError, extension_inputs_digest, load_domain_extensions, merge_records, merge_source_records
 from .presentation import QUEST_TOPIC_STOPWORDS, add_presentation, add_search_presentation, present_quest_entry, present_quest_topic_summary
 from .utils import deep_merge, dump_json, dump_text, ensure_dir, excerpt, load_json, markdown_sections, split_identifier_words
@@ -304,6 +305,41 @@ def _tokens_text(*values: Any) -> str:
     return " ".join(dict.fromkeys(tokens))
 
 
+def _parse_markdown_link(value: str) -> tuple[str, str | None]:
+    stripped = value.strip()
+    if stripped.startswith("[") and "](" in stripped and stripped.endswith(")"):
+        label, _, remainder = stripped[1:].partition("](")
+        return label.strip(), remainder[:-1].strip()
+    return stripped, None
+
+
+def _schema_table_id_from_reference(value: Any) -> str:
+    if not isinstance(value, str):
+        return ""
+    label, link = _parse_markdown_link(value)
+    if link:
+        stem = Path(link).stem
+        if stem:
+            return stem
+    return label.strip().strip("`").lower()
+
+
+def normalize_schema_relationships(record: dict[str, Any]) -> dict[str, Any]:
+    record_copy = dict(record)
+    relationships: list[dict[str, Any]] = []
+    for relationship in record.get("relationships", []) or []:
+        if not isinstance(relationship, dict):
+            continue
+        relationship_copy = dict(relationship)
+        remote_label, remote_path = _parse_markdown_link(str(relationship_copy.get("remote_table", "")))
+        relationship_copy.setdefault("remote_table_label", remote_label)
+        relationship_copy.setdefault("remote_table_path", remote_path)
+        relationship_copy.setdefault("remote_table_id", _schema_table_id_from_reference(str(relationship_copy.get("remote_table", ""))))
+        relationships.append(relationship_copy)
+    record_copy["relationships"] = relationships
+    return record_copy
+
+
 def _doc_markdown(root: Path, page: dict[str, Any]) -> str:
     markdown_path = root / "docs" / "pages" / f"{page['slug']}.md"
     if markdown_path.exists():
@@ -390,7 +426,9 @@ def _compose_search_text(record: dict[str, Any], domain: str, root: Path) -> tup
                 _tokens_text(record.get("table"), record.get("title")),
                 " ".join(column.get("name", "") for column in record.get("columns", [])),
                 " ".join(column.get("description", "") for column in record.get("columns", [])),
-                " ".join(relationship.get("remote_table", "") for relationship in record.get("relationships", [])),
+                " ".join(str(relationship.get("remote_table", "")) for relationship in record.get("relationships", [])),
+                " ".join(str(relationship.get("remote_table_id", "")) for relationship in record.get("relationships", [])),
+                " ".join(str(relationship.get("remote_table_label", "")) for relationship in record.get("relationships", [])),
                 _stringify_list(record.get("search_aliases")),
                 _stringify_list(record.get("related_docs")),
             ]
@@ -398,6 +436,20 @@ def _compose_search_text(record: dict[str, Any], domain: str, root: Path) -> tup
         uri = f"eqemu://schema/table/{record['table']}"
         return title, body, uri, "table", None
     if domain in {"quests", "plugins"}:
+        if record.get("entity_type") == "example-file":
+            title = record.get("title") or record.get("path") or record.get("id", "")
+            body = " ".join(
+                [
+                    record.get("path", ""),
+                    record.get("summary", ""),
+                    record.get("content", ""),
+                    record.get("language", ""),
+                    record.get("source_title", ""),
+                    _stringify_list(record.get("tags")),
+                ]
+            )
+            uri = f"eqemu://{domain}/example/{record['id']}"
+            return title, body, uri, "example-file", record.get("source_id")
         title = record.get("title") or record.get("name") or record.get("id", "")
         body = " ".join(
             [
@@ -541,6 +593,7 @@ def _search_identity(data_root: Path) -> dict[str, str]:
     identity = {
         "active_root": str(data_root),
         "manifest_fingerprint": manifest_fingerprint,
+        "examples_fingerprint": example_index_digest(),
     }
     return identity
 
@@ -603,11 +656,14 @@ def write_merged_dataset(base_root: Path, target_root: Path, *, scope: str = "al
         quest_records = load_json(target_root / "quest-api" / "records.json")
 
     if scope in ("all", "schema"):
-        schema_records = merge_records(
-            load_schema_base(base_root),
-            load_domain_extensions(EXTENSIONS_ROOT, "schema"),
-            load_domain_extensions(LOCAL_EXTENSIONS_ROOT, "schema"),
-        )
+        schema_records = [
+            normalize_schema_relationships(record)
+            for record in merge_records(
+                load_schema_base(base_root),
+                load_domain_extensions(EXTENSIONS_ROOT, "schema"),
+                load_domain_extensions(LOCAL_EXTENSIONS_ROOT, "schema"),
+            )
+        ]
         schema_root = target_root / "schema"
         _reset_domain_root(schema_root)
         ensure_dir(schema_root / "tables")
@@ -615,7 +671,7 @@ def write_merged_dataset(base_root: Path, target_root: Path, *, scope: str = "al
             dump_json(schema_root / "tables" / f"{table['table']}.json", table)
         dump_json(schema_root / "index.json", schema_records)
     else:
-        schema_records = load_json(target_root / "schema" / "index.json")
+        schema_records = [normalize_schema_relationships(record) for record in load_json(target_root / "schema" / "index.json")]
 
     if scope in ("all", "docs"):
         docs_records = merge_records(
@@ -713,13 +769,16 @@ def build_search_index(data_root: Path, db_path: Path) -> None:
             domain: load_json(data_root / domain / "sources.json") if (data_root / domain / "sources.json").exists() else []
             for domain in ("quests", "plugins")
         }
+        example_records_by_domain = {domain: load_example_records(domain) for domain in ("quests", "plugins")}
         indexed_records = [
             ("quest-api", quest_records),
             ("schema", schema_records),
             ("docs", docs_records),
             ("docs", docs_sections),
             ("quests", source_records_by_domain["quests"]),
+            ("quests", example_records_by_domain["quests"]),
             ("plugins", source_records_by_domain["plugins"]),
+            ("plugins", example_records_by_domain["plugins"]),
         ]
         for domain, records in indexed_records:
             for record in records:
@@ -782,6 +841,10 @@ def _boost_search_hit(query: str, title: str, record_id: str, entity_type: str, 
     query_terms = set(split_identifier_words(query))
     uri_terms = set(split_identifier_words(uri))
     score = 0
+    if normalized_query and normalized_id == normalized_query:
+        score += 260
+    if entity_type == "table" and normalized_query and normalized_title == f"table {normalized_query}":
+        score += 220
     if normalized_query and normalized_title == normalized_query:
         score += 120
     if normalized_query and normalized_title.endswith(normalized_query):
@@ -813,21 +876,23 @@ class DataStore:
         self.base_root = base_data_root()
         self.manifest_path = _current_manifest_path()
         self.quest_records = load_json(self.data_root / "quest-api" / "records.json")
-        self.schema_records = load_json(self.data_root / "schema" / "index.json")
+        self.schema_records = [normalize_schema_relationships(record) for record in load_json(self.data_root / "schema" / "index.json")]
         self.docs_records = load_json(self.data_root / "docs" / "pages.json")
         self.docs_sections = load_docs_sections(self.data_root)
         self.quest_source_records = load_json(self.data_root / "quests" / "sources.json") if (self.data_root / "quests" / "sources.json").exists() else []
         self.plugin_source_records = load_json(self.data_root / "plugins" / "sources.json") if (self.data_root / "plugins" / "sources.json").exists() else []
+        self.quest_example_records = load_example_records("quests")
+        self.plugin_example_records = load_example_records("plugins")
         self.quest_records_by_id = {item.get("id"): item for item in self.quest_records if item.get("id")}
-        self.quest_records_by_lookup: dict[tuple[str, str, str, str], dict[str, Any]] = {}
-        self.quest_records_by_name: dict[tuple[str, str, str], dict[str, Any]] = {}
+        self.quest_records_by_lookup: dict[tuple[str, str, str, str], list[dict[str, Any]]] = {}
+        self.quest_records_by_name: dict[tuple[str, str, str], list[dict[str, Any]]] = {}
         for item in self.quest_records:
             language = str(item.get("language", "")).lower()
             kind = str(item.get("kind", "")).lower()
             name = str(item.get("name", "")).lower()
             container = str(item.get("container", "")).lower()
-            self.quest_records_by_lookup.setdefault((language, kind, name, container), item)
-            self.quest_records_by_name.setdefault((language, kind, name), item)
+            self.quest_records_by_lookup.setdefault((language, kind, name, container), []).append(item)
+            self.quest_records_by_name.setdefault((language, kind, name), []).append(item)
         self.schema_records_by_table = {str(item.get("table", "")).lower(): item for item in self.schema_records if item.get("table")}
         self.schema_records_by_id = {item.get("id"): item for item in self.schema_records if item.get("id")}
         self.docs_records_by_id = {item.get("id"): item for item in self.docs_records if item.get("id")}
@@ -845,6 +910,22 @@ class DataStore:
             "quests": {item.get("id"): item for item in self.quest_source_records if item.get("id")},
             "plugins": {item.get("id"): item for item in self.plugin_source_records if item.get("id")},
         }
+        self.example_records_by_domain = {
+            "quests": {item.get("id"): item for item in self.quest_example_records if item.get("id")},
+            "plugins": {item.get("id"): item for item in self.plugin_example_records if item.get("id")},
+        }
+        self.schema_reverse_relationships_by_table: dict[str, list[dict[str, Any]]] = {}
+        for table in self.schema_records:
+            local_table = str(table.get("table", ""))
+            for relationship in table.get("relationships", []) or []:
+                remote_table = str(relationship.get("remote_table_id") or "")
+                if not remote_table:
+                    continue
+                reverse = dict(relationship)
+                reverse["source_table"] = local_table
+                reverse["source_table_id"] = local_table
+                reverse["direction"] = "inbound"
+                self.schema_reverse_relationships_by_table.setdefault(remote_table.lower(), []).append(reverse)
         self._base_quest_records_by_id: dict[str, dict[str, Any]] | None = None
 
     def manifest(self) -> dict[str, Any]:
@@ -868,6 +949,18 @@ class DataStore:
             return self.plugin_source_records
         raise ValueError(f"Unsupported source domain '{domain}'")
 
+    def example_index(self, domain: str) -> list[dict[str, Any]]:
+        if domain == "quests":
+            return self.quest_example_records
+        if domain == "plugins":
+            return self.plugin_example_records
+        raise ValueError(f"Unsupported example domain '{domain}'")
+
+    def get_example_file(self, domain: str, record_id: str) -> dict[str, Any] | None:
+        if domain not in self.example_records_by_domain:
+            raise ValueError(f"Unsupported example domain '{domain}'")
+        return self.example_records_by_domain[domain].get(record_id)
+
     def _raw_doc_page(self, path_or_slug: str) -> dict[str, Any] | None:
         needle = path_or_slug.strip("/").lower().split("#", 1)[0]
         page = self.docs_records_by_key.get(needle)
@@ -886,19 +979,164 @@ class DataStore:
         full_item["presentation"] = present_quest_entry(full_item, docs_page)
         return full_item
 
-    def get_quest_entry(self, language: str, kind: str, name: str, group_or_type: str | None = None) -> dict[str, Any] | None:
+    def _present_quest_entry_with_overloads(self, item: dict[str, Any], matches: list[dict[str, Any]]) -> dict[str, Any]:
+        full_item = self._present_quest_entry(item)
+        if len(matches) <= 1:
+            return full_item
+        full_item["overload_count"] = len(matches)
+        full_item["overloads"] = [
+            {
+                "id": match.get("id"),
+                "container": match.get("container"),
+                "signature": match.get("signature"),
+                "params": match.get("params", []),
+                "return_type": match.get("return_type", ""),
+            }
+            for match in matches
+        ]
+        return full_item
+
+    def _select_quest_match(
+        self,
+        matches: list[dict[str, Any]],
+        *,
+        signature: str | None = None,
+        params: list[str] | None = None,
+    ) -> dict[str, Any] | None:
+        filtered = matches
+        if signature:
+            normalized_signature = signature.strip().lower()
+            filtered = [item for item in filtered if str(item.get("signature", "")).strip().lower() == normalized_signature]
+        if params is not None:
+            normalized_params = [str(param).strip().lower() for param in params]
+            filtered = [
+                item
+                for item in filtered
+                if [str(param).strip().lower() for param in item.get("params", [])] == normalized_params
+            ]
+        return filtered[0] if filtered else None
+
+    def get_quest_entry(
+        self,
+        language: str,
+        kind: str,
+        name: str,
+        group_or_type: str | None = None,
+        signature: str | None = None,
+        params: list[str] | None = None,
+    ) -> dict[str, Any] | None:
         if group_or_type:
-            item = self.quest_records_by_lookup.get((language.lower(), kind.lower(), name.lower(), group_or_type.lower()))
+            matches = self.quest_records_by_lookup.get((language.lower(), kind.lower(), name.lower(), group_or_type.lower()), [])
         else:
-            item = self.quest_records_by_name.get((language.lower(), kind.lower(), name.lower()))
-        return self._present_quest_entry(item) if item else None
+            matches = self.quest_records_by_name.get((language.lower(), kind.lower(), name.lower()), [])
+        item = self._select_quest_match(matches, signature=signature, params=params)
+        return self._present_quest_entry_with_overloads(item, matches) if item else None
+
+    def get_quest_overloads(
+        self,
+        language: str,
+        kind: str,
+        name: str,
+        group_or_type: str | None = None,
+        signature: str | None = None,
+        params: list[str] | None = None,
+    ) -> dict[str, Any]:
+        if group_or_type:
+            matches = self.quest_records_by_lookup.get((language.lower(), kind.lower(), name.lower(), group_or_type.lower()), [])
+        else:
+            matches = self.quest_records_by_name.get((language.lower(), kind.lower(), name.lower()), [])
+        selected = self._select_quest_match(matches, signature=signature, params=params)
+        result = {
+            "language": language.lower(),
+            "kind": kind.lower(),
+            "name": name,
+            "group_or_type": group_or_type,
+            "signature": signature,
+            "params": params,
+            "count": len(matches),
+            "is_ambiguous": len(matches) > 1 and signature is None and params is None,
+            "selected": self._present_quest_entry(selected) if selected else None,
+            "matches": [self._present_quest_entry(match) for match in matches],
+        }
+        signatures = "\n".join(f"- `{item.get('signature')}` ({item.get('id')})" for item in matches) or "No matching overloads found."
+        result["presentation"] = {"markdown": f"## Quest API Overloads\n\n{signatures}", "copy_blocks": []}
+        return result
 
     def get_quest_entry_by_id(self, record_id: str) -> dict[str, Any] | None:
         item = self.quest_records_by_id.get(record_id)
         return self._present_quest_entry(item) if item else None
 
     def get_table(self, table_name: str) -> dict[str, Any] | None:
-        return add_presentation("schema", self.schema_records_by_table.get(table_name.lower()))
+        item = self.schema_records_by_table.get(table_name.lower())
+        if item is None:
+            return None
+        enriched = dict(item)
+        enriched["reverse_relationships"] = self.schema_reverse_relationships_by_table.get(table_name.lower(), [])
+        return add_presentation("schema", enriched)
+
+    def explain_table_relationships(self, table_name: str, depth: int = 1) -> dict[str, Any] | None:
+        root_table = self.schema_records_by_table.get(table_name.lower())
+        if root_table is None:
+            return None
+        max_depth = max(1, min(depth, 3))
+        nodes: dict[str, dict[str, Any]] = {}
+        edges: list[dict[str, Any]] = []
+        queue: list[tuple[str, int]] = [(str(root_table["table"]), 0)]
+        seen: set[tuple[str, int]] = set()
+        while queue:
+            current, current_depth = queue.pop(0)
+            key = current.lower()
+            if (key, current_depth) in seen:
+                continue
+            seen.add((key, current_depth))
+            record = self.schema_records_by_table.get(key)
+            if record is None:
+                continue
+            nodes[key] = {"table": record.get("table"), "title": record.get("title"), "docs_url": record.get("docs_url")}
+            if current_depth >= max_depth:
+                continue
+            for relationship in record.get("relationships", []) or []:
+                remote = str(relationship.get("remote_table_id") or "")
+                if not remote:
+                    continue
+                edges.append(
+                    {
+                        "direction": "outbound",
+                        "from_table": record.get("table"),
+                        "from_key": relationship.get("local_key"),
+                        "to_table": remote,
+                        "to_key": relationship.get("remote_key"),
+                        "relationship_type": relationship.get("relationship_type"),
+                    }
+                )
+                if remote.lower() not in nodes:
+                    queue.append((remote, current_depth + 1))
+            for relationship in self.schema_reverse_relationships_by_table.get(key, []):
+                source_table = str(relationship.get("source_table") or "")
+                if not source_table:
+                    continue
+                edges.append(
+                    {
+                        "direction": "inbound",
+                        "from_table": source_table,
+                        "from_key": relationship.get("local_key"),
+                        "to_table": record.get("table"),
+                        "to_key": relationship.get("remote_key"),
+                        "relationship_type": relationship.get("relationship_type"),
+                    }
+                )
+                if source_table.lower() not in nodes:
+                    queue.append((source_table, current_depth + 1))
+        return {
+            "table": root_table.get("table"),
+            "depth": max_depth,
+            "nodes": list(nodes.values()),
+            "edges": edges,
+            "presentation": {
+                "markdown": f"## `{root_table.get('table')}` Relationships\n\nFound {len(edges)} relationship edge(s) across {len(nodes)} table node(s).",
+                "copy_blocks": [],
+            },
+        }
 
     def get_doc_page(self, path_or_slug: str) -> dict[str, Any] | None:
         full_page = self._raw_doc_page(path_or_slug)
@@ -1058,11 +1296,24 @@ class DataStore:
         language: str | None = None,
         prefer_fresh: bool = False,
     ) -> dict[str, Any]:
+        explicit_domains = domains is not None
         domains = domains or list(DOMAIN_CHOICES)
         term_groups = _search_term_groups(query)
         fts_queries = _build_fts_queries(query)
         fts_query = " OR ".join(fts_queries)
         if include_extensions:
+            if explicit_domains:
+                examples_changed = False
+                if "quests" in domains:
+                    examples_changed = ensure_example_indexes("quests", self.quest_source_records) or examples_changed
+                    self.quest_example_records = load_example_records("quests")
+                    self.example_records_by_domain["quests"] = {item.get("id"): item for item in self.quest_example_records if item.get("id")}
+                if "plugins" in domains:
+                    examples_changed = ensure_example_indexes("plugins", self.plugin_source_records) or examples_changed
+                    self.plugin_example_records = load_example_records("plugins")
+                    self.example_records_by_domain["plugins"] = {item.get("id"): item for item in self.plugin_example_records if item.get("id")}
+                if examples_changed:
+                    build_search_index(self.data_root, SEARCH_DB_PATH)
             if not _search_cache_matches(self.data_root, SEARCH_DB_PATH):
                 build_search_index(self.data_root, SEARCH_DB_PATH)
             rows: list[tuple[str, str, str, str, str, str, str | None, float | None, int]] = []

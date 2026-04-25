@@ -82,49 +82,73 @@
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "guildid",
-      "remote_table": "[guild_bank](../../schema/guilds/guild_bank.md)"
+      "remote_table": "[guild_bank](../../schema/guilds/guild_bank.md)",
+      "remote_table_id": "guild_bank",
+      "remote_table_label": "guild_bank",
+      "remote_table_path": "../../schema/guilds/guild_bank.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "guild_id",
-      "remote_table": "[guild_ranks](../../schema/guilds/guild_ranks.md)"
+      "remote_table": "[guild_ranks](../../schema/guilds/guild_ranks.md)",
+      "remote_table_id": "guild_ranks",
+      "remote_table_label": "guild_ranks",
+      "remote_table_path": "../../schema/guilds/guild_ranks.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "guild_id",
-      "remote_table": "[guild_members](../../schema/views/vw_guild_members.md)"
+      "remote_table": "[guild_members](../../schema/views/vw_guild_members.md)",
+      "remote_table_id": "vw_guild_members",
+      "remote_table_label": "guild_members",
+      "remote_table_path": "../../schema/views/vw_guild_members.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "guild1",
-      "remote_table": "[guild_relations](../../schema/guilds/guild_relations.md)"
+      "remote_table": "[guild_relations](../../schema/guilds/guild_relations.md)",
+      "remote_table_id": "guild_relations",
+      "remote_table_label": "guild_relations",
+      "remote_table_path": "../../schema/guilds/guild_relations.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "guild2",
-      "remote_table": "[guild_relations](../../schema/guilds/guild_relations.md)"
+      "remote_table": "[guild_relations](../../schema/guilds/guild_relations.md)",
+      "remote_table_id": "guild_relations",
+      "remote_table_label": "guild_relations",
+      "remote_table_path": "../../schema/guilds/guild_relations.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "guilddbid",
-      "remote_table": "[qs_player_speech](../../schema/query-server/qs_player_speech.md)"
+      "remote_table": "[qs_player_speech](../../schema/query-server/qs_player_speech.md)",
+      "remote_table_id": "qs_player_speech",
+      "remote_table_label": "qs_player_speech",
+      "remote_table_path": "../../schema/query-server/qs_player_speech.md"
     },
     {
       "local_key": "leader",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+      "remote_table": "[character_data](../../schema/characters/character_data.md)",
+      "remote_table_id": "character_data",
+      "remote_table_label": "character_data",
+      "remote_table_path": "../../schema/characters/character_data.md"
     },
     {
       "local_key": "motd_setter",
       "relationship_type": "One-to-One",
       "remote_key": "name",
-      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+      "remote_table": "[character_data](../../schema/characters/character_data.md)",
+      "remote_table_id": "character_data",
+      "remote_table_label": "character_data",
+      "remote_table_path": "../../schema/characters/character_data.md"
     }
   ],
   "search_aliases": [

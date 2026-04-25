@@ -139,9 +139,12 @@ See:
 
 - `search_eqemu_context`
 - `get_quest_api_entry`
+- `get_quest_api_overloads`
 - `summarize_quest_api_topic`
 - `get_db_table`
+- `explain_db_relationships`
 - `get_doc_page`
+- `get_eqemu_example_file`
 - `explain_eqemu_provenance`
 - `refresh_eqemu_oracle`
 - `rebuild_eqemu_extensions`
@@ -149,7 +152,9 @@ See:
 - `update_eqemu_oracle_plugin`
 
 Getter and search tools also attach `presentation.markdown` and `copy_blocks` so Codex can answer users with a consistent polished format while still keeping the raw structured record available to agents. Quest API events are rendered in a Spire-style copyable code format.
+Maintenance tools that can write local plugin data or touch Git state require `confirm_write: true`.
 `search_eqemu_context` also accepts `prefer_fresh: true` to break ranking ties toward newer staged records.
+When `quests` or `plugins` is explicitly searched, configured example sources are indexed into the ignored cache so results can include real quest/plugin files, not just source metadata.
 
 ## MCP Resources
 
@@ -167,6 +172,8 @@ The server is tool-first, but it also exposes browseable MCP resources for clien
 - `eqemu://docs/page/{path}`
 - `eqemu://quests/source/{id}`
 - `eqemu://plugins/source/{id}`
+- `eqemu://quests/example/{id}`
+- `eqemu://plugins/example/{id}`
 - `eqemu://provenance/{domain}/{id}`
 
 If a Codex session does not surface generic MCP resources, the plugin is still usable through its MCP tools. Resource visibility is supplemental, not the primary access path.

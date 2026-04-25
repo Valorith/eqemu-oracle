@@ -11,9 +11,12 @@ from typing import Any
 ORACLE_TOOL_NAMES = (
     "search_eqemu_context",
     "get_quest_api_entry",
+    "get_quest_api_overloads",
     "summarize_quest_api_topic",
     "get_db_table",
+    "explain_db_relationships",
     "get_doc_page",
+    "get_eqemu_example_file",
     "explain_eqemu_provenance",
     "refresh_eqemu_oracle",
     "rebuild_eqemu_extensions",

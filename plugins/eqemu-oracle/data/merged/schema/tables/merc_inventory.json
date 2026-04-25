@@ -57,13 +57,19 @@
       "local_key": "item_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[items](../../schema/items/items.md)"
+      "remote_table": "[items](../../schema/items/items.md)",
+      "remote_table_id": "items",
+      "remote_table_label": "items",
+      "remote_table_path": "../../schema/items/items.md"
     },
     {
       "local_key": "merc_subtype_id",
       "relationship_type": "One-to-One",
       "remote_key": "merc_subtype_id",
-      "remote_table": "[merc_subtypes](../../schema/mercenaries/merc_subtypes.md)"
+      "remote_table": "[merc_subtypes](../../schema/mercenaries/merc_subtypes.md)",
+      "remote_table_id": "merc_subtypes",
+      "remote_table_label": "merc_subtypes",
+      "remote_table_path": "../../schema/mercenaries/merc_subtypes.md"
     }
   ],
   "search_aliases": [

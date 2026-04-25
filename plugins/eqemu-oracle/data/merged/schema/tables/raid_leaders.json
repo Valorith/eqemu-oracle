@@ -77,7 +77,10 @@
       "local_key": "rid",
       "relationship_type": "One-to-One",
       "remote_key": "raidid",
-      "remote_table": "[raid_details](../../schema/raids/raid_details.md)"
+      "remote_table": "[raid_details](../../schema/raids/raid_details.md)",
+      "remote_table_id": "raid_details",
+      "remote_table_label": "raid_details",
+      "remote_table_path": "../../schema/raids/raid_details.md"
     }
   ],
   "search_aliases": [

@@ -42,7 +42,10 @@
       "local_key": "name",
       "relationship_type": "Has-Many",
       "remote_key": "launcher",
-      "remote_table": "[launcher_zones](../../schema/zone/launcher_zones.md)"
+      "remote_table": "[launcher_zones](../../schema/zone/launcher_zones.md)",
+      "remote_table_id": "launcher_zones",
+      "remote_table_label": "launcher_zones",
+      "remote_table_path": "../../schema/zone/launcher_zones.md"
     }
   ],
   "search_aliases": [

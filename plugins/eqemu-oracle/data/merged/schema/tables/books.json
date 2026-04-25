@@ -52,7 +52,10 @@
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "book",
-      "remote_table": "[items](../../schema/items/items.md)"
+      "remote_table": "[items](../../schema/items/items.md)",
+      "remote_table_id": "items",
+      "remote_table_label": "items",
+      "remote_table_path": "../../schema/items/items.md"
     }
   ],
   "search_aliases": [

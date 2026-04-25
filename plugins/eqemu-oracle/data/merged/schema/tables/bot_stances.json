@@ -42,13 +42,19 @@
       "local_key": "bot_id",
       "relationship_type": "One-to-One",
       "remote_key": "bot_id",
-      "remote_table": "[bot_data](../../schema/bots/bot_data.md)"
+      "remote_table": "[bot_data](../../schema/bots/bot_data.md)",
+      "remote_table_id": "bot_data",
+      "remote_table_label": "bot_data",
+      "remote_table_path": "../../schema/bots/bot_data.md"
     },
     {
       "local_key": "stance_id",
       "relationship_type": "Has-Many",
       "remote_key": "stance_index",
-      "remote_table": "[bot_spell_casting_chances](../../schema/bots/bot_spell_casting_chances.md)"
+      "remote_table": "[bot_spell_casting_chances](../../schema/bots/bot_spell_casting_chances.md)",
+      "remote_table_id": "bot_spell_casting_chances",
+      "remote_table_label": "bot_spell_casting_chances",
+      "remote_table_path": "../../schema/bots/bot_spell_casting_chances.md"
     }
   ],
   "search_aliases": [

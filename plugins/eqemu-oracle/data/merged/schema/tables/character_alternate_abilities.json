@@ -52,13 +52,19 @@
       "local_key": "id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+      "remote_table": "[character_data](../../schema/characters/character_data.md)",
+      "remote_table_id": "character_data",
+      "remote_table_label": "character_data",
+      "remote_table_path": "../../schema/characters/character_data.md"
     },
     {
       "local_key": "aa_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[aa_ranks](../../schema/aas/aa_ranks.md)"
+      "remote_table": "[aa_ranks](../../schema/aas/aa_ranks.md)",
+      "remote_table_id": "aa_ranks",
+      "remote_table_label": "aa_ranks",
+      "remote_table_path": "../../schema/aas/aa_ranks.md"
     }
   ],
   "search_aliases": [

@@ -57,13 +57,19 @@
       "local_key": "faction_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[faction_list](../../schema/factions/faction_list.md)"
+      "remote_table": "[faction_list](../../schema/factions/faction_list.md)",
+      "remote_table_id": "faction_list",
+      "remote_table_label": "faction_list",
+      "remote_table_path": "../../schema/factions/faction_list.md"
     },
     {
       "local_key": "npc_faction_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[npc_faction](../../schema/npcs/npc_faction.md)"
+      "remote_table": "[npc_faction](../../schema/npcs/npc_faction.md)",
+      "remote_table_id": "npc_faction",
+      "remote_table_label": "npc_faction",
+      "remote_table_path": "../../schema/npcs/npc_faction.md"
     }
   ],
   "search_aliases": [

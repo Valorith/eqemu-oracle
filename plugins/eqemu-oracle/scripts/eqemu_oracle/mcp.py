@@ -181,10 +181,30 @@ class McpServer:
                         "language": {"type": "string", "enum": list(QUEST_LANGUAGE_CHOICES)},
                         "kind": {"type": "string", "enum": list(QUEST_KIND_CHOICES)},
                         "name": {"type": "string"},
-                        "group_or_type": {"type": "string"}
+                        "group_or_type": {"type": "string"},
+                        "signature": {"type": "string"},
+                        "params": {"type": "array", "items": {"type": "string"}}
                     },
                     "required": ["language", "kind", "name"]
-                }
+                },
+                "annotations": {"readOnlyHint": True}
+            },
+            {
+                "name": "get_quest_api_overloads",
+                "description": "Get all overloads for a quest API method, event, or constant, optionally filtered by signature or params.",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "language": {"type": "string", "enum": list(QUEST_LANGUAGE_CHOICES)},
+                        "kind": {"type": "string", "enum": list(QUEST_KIND_CHOICES)},
+                        "name": {"type": "string"},
+                        "group_or_type": {"type": "string"},
+                        "signature": {"type": "string"},
+                        "params": {"type": "array", "items": {"type": "string"}}
+                    },
+                    "required": ["language", "kind", "name"]
+                },
+                "annotations": {"readOnlyHint": True}
             },
             {
                 "name": "summarize_quest_api_topic",
@@ -206,7 +226,21 @@ class McpServer:
                     "type": "object",
                     "properties": {"table_name": {"type": "string"}},
                     "required": ["table_name"]
-                }
+                },
+                "annotations": {"readOnlyHint": True}
+            },
+            {
+                "name": "explain_db_relationships",
+                "description": "Explain outbound and inbound EQEmu schema relationships for a table as a small graph.",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "table_name": {"type": "string"},
+                        "depth": {"type": "integer", "minimum": 1}
+                    },
+                    "required": ["table_name"]
+                },
+                "annotations": {"readOnlyHint": True}
             },
             {
                 "name": "get_doc_page",
@@ -231,22 +265,25 @@ class McpServer:
             },
             {
                 "name": "refresh_eqemu_oracle",
-                "description": "Refresh upstream data into an overlay workspace and rebuild merged data.",
+                "description": "Refresh upstream data into an overlay workspace and rebuild merged data. Requires confirm_write=true.",
                 "inputSchema": {
                     "type": "object",
                     "properties": {
                         "scope": {"type": "string", "enum": list(SCOPE_CHOICES)},
-                        "mode": {"type": "string", "enum": list(MODE_CHOICES)}
+                        "mode": {"type": "string", "enum": list(MODE_CHOICES)},
+                        "confirm_write": {"type": "boolean"}
                     }
-                }
+                },
+                "annotations": {"readOnlyHint": False, "destructiveHint": True}
             },
             {
                 "name": "rebuild_eqemu_extensions",
-                "description": "Rebuild merged data and the search cache from existing base data plus extensions.",
+                "description": "Rebuild merged data and the search cache from existing base data plus extensions. Requires confirm_write=true.",
                 "inputSchema": {
                     "type": "object",
-                    "properties": {"scope": {"type": "string", "enum": list(SCOPE_CHOICES)}, "mode": {"type": "string", "enum": list(MODE_CHOICES)}}
-                }
+                    "properties": {"scope": {"type": "string", "enum": list(SCOPE_CHOICES)}, "mode": {"type": "string", "enum": list(MODE_CHOICES)}, "confirm_write": {"type": "boolean"}}
+                },
+                "annotations": {"readOnlyHint": False, "destructiveHint": True}
             },
             {
                 "name": "prune_stale_schema_extensions",
@@ -254,13 +291,15 @@ class McpServer:
                 "inputSchema": {
                     "type": "object",
                     "properties": {
-                        "apply": {"type": "boolean"}
+                        "apply": {"type": "boolean"},
+                        "confirm_write": {"type": "boolean"}
                     }
-                }
+                },
+                "annotations": {"readOnlyHint": False, "destructiveHint": True}
             },
             {
                 "name": "update_eqemu_oracle_plugin",
-                "description": "Pull the EQEmu Oracle plugin repo from Git and rebuild committed merged data.",
+                "description": "Pull the EQEmu Oracle plugin repo from Git and rebuild committed merged data. Requires confirm_write=true.",
                 "inputSchema": {
                     "type": "object",
                     "properties": {
@@ -268,9 +307,24 @@ class McpServer:
                         "branch": {"type": "string"},
                         "allow_dirty": {"type": "boolean"},
                         "skip_rebuild": {"type": "boolean"},
-                        "restore_branch": {"type": "boolean"}
+                        "restore_branch": {"type": "boolean"},
+                        "confirm_write": {"type": "boolean"}
                     }
-                }
+                },
+                "annotations": {"readOnlyHint": False, "destructiveHint": True}
+            },
+            {
+                "name": "get_eqemu_example_file",
+                "description": "Get a cached quest or Perl plugin example file previously indexed from configured example sources.",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "domain": {"type": "string", "enum": ["quests", "plugins"]},
+                        "id": {"type": "string"}
+                    },
+                    "required": ["domain", "id"]
+                },
+                "annotations": {"readOnlyHint": True}
             }
         ]
 
@@ -292,17 +346,31 @@ class McpServer:
             {"uriTemplate": "eqemu://docs/page/{path}", "name": "Docs Page", "mimeType": "application/json"},
             {"uriTemplate": "eqemu://quests/source/{id}", "name": "Quest Example Source", "mimeType": "application/json"},
             {"uriTemplate": "eqemu://plugins/source/{id}", "name": "Perl Plugin Example Source", "mimeType": "application/json"},
+            {"uriTemplate": "eqemu://quests/example/{id}", "name": "Quest Example File", "mimeType": "application/json"},
+            {"uriTemplate": "eqemu://plugins/example/{id}", "name": "Perl Plugin Example File", "mimeType": "application/json"},
             {"uriTemplate": "eqemu://provenance/{domain}/{id}", "name": "Record Provenance", "mimeType": "application/json"},
         ]
+
+    def _confirmation_required(self, tool_name: str, arguments: dict[str, Any]) -> dict[str, Any]:
+        return {
+            "requires_confirmation": True,
+            "tool": tool_name,
+            "message": "This EQEmu Oracle maintenance tool can modify local plugin data or Git state. Re-run with confirm_write=true to proceed.",
+            "requested_arguments": {key: value for key, value in arguments.items() if key != "confirm_write"},
+            "confirmation_argument": {"confirm_write": True},
+        }
 
     def _handle_tool(self, name: str, arguments: dict[str, Any]) -> dict[str, Any]:
         if name in {
             "search_eqemu_context",
             "get_quest_api_entry",
+            "get_quest_api_overloads",
             "summarize_quest_api_topic",
             "get_db_table",
+            "explain_db_relationships",
             "get_doc_page",
             "explain_eqemu_provenance",
+            "get_eqemu_example_file",
         }:
             self._preflight_extensions()
         if name == "search_eqemu_context":
@@ -321,6 +389,17 @@ class McpServer:
                 self._enum_arg(arguments, "kind", QUEST_KIND_CHOICES),
                 arguments["name"],
                 arguments.get("group_or_type"),
+                arguments.get("signature"),
+                self._string_list_arg(arguments, "params", default=None),
+            )
+        elif name == "get_quest_api_overloads":
+            result = self.store.get_quest_overloads(
+                self._enum_arg(arguments, "language", QUEST_LANGUAGE_CHOICES),
+                self._enum_arg(arguments, "kind", QUEST_KIND_CHOICES),
+                arguments["name"],
+                arguments.get("group_or_type"),
+                arguments.get("signature"),
+                self._string_list_arg(arguments, "params", default=None),
             )
         elif name == "summarize_quest_api_topic":
             result = self.store.summarize_quest_topic(
@@ -330,52 +409,74 @@ class McpServer:
             )
         elif name == "get_db_table":
             result = self.store.get_table(arguments["table_name"])
+        elif name == "explain_db_relationships":
+            result = self.store.explain_table_relationships(
+                arguments["table_name"],
+                self._int_arg(arguments, "depth", 1, minimum=1),
+            )
         elif name == "get_doc_page":
             result = self.store.get_doc_page(arguments["path_or_slug"])
         elif name == "explain_eqemu_provenance":
             result = self.store.explain_provenance(self._enum_arg(arguments, "domain", DOMAIN_CHOICES), arguments["id"])
         elif name == "refresh_eqemu_oracle":
-            result = refresh_dataset(
-                scope=self._enum_arg(arguments, "scope", SCOPE_CHOICES, default="all"),
-                mode=self._enum_arg(arguments, "mode", MODE_CHOICES, default="overlay"),
-            )
-            self.store = DataStore()
-            self._reset_extension_validation()
+            if not self._bool_arg(arguments, "confirm_write", False):
+                result = self._confirmation_required(name, arguments)
+            else:
+                result = refresh_dataset(
+                    scope=self._enum_arg(arguments, "scope", SCOPE_CHOICES, default="all"),
+                    mode=self._enum_arg(arguments, "mode", MODE_CHOICES, default="overlay"),
+                )
+                self.store = DataStore()
+                self._reset_extension_validation()
         elif name == "rebuild_eqemu_extensions":
-            result = rebuild_extensions_dataset(
-                scope=self._enum_arg(arguments, "scope", SCOPE_CHOICES, default="all"),
-                mode=self._enum_arg(arguments, "mode", MODE_CHOICES, default="overlay"),
-            )
-            self.store = DataStore()
-            self._reset_extension_validation()
+            if not self._bool_arg(arguments, "confirm_write", False):
+                result = self._confirmation_required(name, arguments)
+            else:
+                result = rebuild_extensions_dataset(
+                    scope=self._enum_arg(arguments, "scope", SCOPE_CHOICES, default="all"),
+                    mode=self._enum_arg(arguments, "mode", MODE_CHOICES, default="overlay"),
+                )
+                self.store = DataStore()
+                self._reset_extension_validation()
         elif name == "prune_stale_schema_extensions":
             apply = self._bool_arg(arguments, "apply", False)
-            result, _manifest = prune_schema_extensions_dataset(
-                apply=apply,
-                mode="overlay" if "overlay" in str(self.store.data_root) else "committed",
-            )
-            if apply and result.get("removed_count"):
-                self.store = DataStore()
-            self._reset_extension_validation()
+            if apply and not self._bool_arg(arguments, "confirm_write", False):
+                result = self._confirmation_required(name, arguments)
+            else:
+                result, _manifest = prune_schema_extensions_dataset(
+                    apply=apply,
+                    mode="overlay" if "overlay" in str(self.store.data_root) else "committed",
+                )
+                if apply and result.get("removed_count"):
+                    self.store = DataStore()
+                self._reset_extension_validation()
         elif name == "update_eqemu_oracle_plugin":
-            result = update_plugin_repo(
-                remote=str(arguments.get("remote", "origin")),
-                branch=arguments.get("branch"),
-                allow_dirty=self._bool_arg(arguments, "allow_dirty", False),
-                skip_rebuild=self._bool_arg(arguments, "skip_rebuild", False),
-                restore_branch=self._bool_arg(arguments, "restore_branch", False),
-            )
-            self.store = DataStore()
-            self._reset_extension_validation()
+            if not self._bool_arg(arguments, "confirm_write", False):
+                result = self._confirmation_required(name, arguments)
+            else:
+                result = update_plugin_repo(
+                    remote=str(arguments.get("remote", "origin")),
+                    branch=arguments.get("branch"),
+                    allow_dirty=self._bool_arg(arguments, "allow_dirty", False),
+                    skip_rebuild=self._bool_arg(arguments, "skip_rebuild", False),
+                    restore_branch=self._bool_arg(arguments, "restore_branch", False),
+                )
+                self.store = DataStore()
+                self._reset_extension_validation()
+        elif name == "get_eqemu_example_file":
+            result = self.store.get_example_file(arguments["domain"], arguments["id"])
         else:
             raise ValueError(f"Unknown tool '{name}'")
         if name in {
             "search_eqemu_context",
             "get_quest_api_entry",
+            "get_quest_api_overloads",
             "summarize_quest_api_topic",
             "get_db_table",
+            "explain_db_relationships",
             "get_doc_page",
             "explain_eqemu_provenance",
+            "get_eqemu_example_file",
             "rebuild_eqemu_extensions",
             "prune_stale_schema_extensions",
             "update_eqemu_oracle_plugin",
@@ -410,6 +511,14 @@ class McpServer:
             return None
         if not isinstance(value, list) or any(not isinstance(item, str) or item not in allowed for item in value):
             raise ValueError(f"Invalid `{name}` values. Expected a list drawn from: {', '.join(allowed)}")
+        return value
+
+    def _string_list_arg(self, arguments: dict[str, Any], name: str, default: list[str] | None = None) -> list[str] | None:
+        value = arguments.get(name, default)
+        if value is None:
+            return None
+        if not isinstance(value, list) or any(not isinstance(item, str) for item in value):
+            raise ValueError(f"Invalid `{name}` value. Expected a list of strings.")
         return value
 
     def _bool_arg(self, arguments: dict[str, Any], name: str, default: bool) -> bool:
@@ -452,6 +561,12 @@ class McpServer:
         elif uri.startswith("eqemu://plugins/source/"):
             source_id = uri.removeprefix("eqemu://plugins/source/")
             payload = next((item for item in self.store.source_index("plugins") if item.get("id") == source_id), None)
+        elif uri.startswith("eqemu://quests/example/"):
+            example_id = uri.removeprefix("eqemu://quests/example/")
+            payload = self.store.get_example_file("quests", example_id)
+        elif uri.startswith("eqemu://plugins/example/"):
+            example_id = uri.removeprefix("eqemu://plugins/example/")
+            payload = self.store.get_example_file("plugins", example_id)
         elif uri.startswith("eqemu://provenance/"):
             _, _, remainder = uri.partition("eqemu://provenance/")
             domain, separator, record_id = remainder.partition("/")

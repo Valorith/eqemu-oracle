@@ -67,7 +67,10 @@
       "local_key": "filename",
       "relationship_type": "One-to-One",
       "remote_key": "name",
-      "remote_table": "[npc_types](../../schema/npcs/npc_types.md)"
+      "remote_table": "[npc_types](../../schema/npcs/npc_types.md)",
+      "remote_table_id": "npc_types",
+      "remote_table_label": "npc_types",
+      "remote_table_path": "../../schema/npcs/npc_types.md"
     }
   ],
   "search_aliases": [

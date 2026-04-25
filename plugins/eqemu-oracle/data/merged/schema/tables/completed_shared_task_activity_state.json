@@ -57,13 +57,19 @@
       "local_key": "activity_id",
       "relationship_type": "One-to-One",
       "remote_key": "activityid",
-      "remote_table": "[task_activities](../../schema/tasks/task_activities.md)"
+      "remote_table": "[task_activities](../../schema/tasks/task_activities.md)",
+      "remote_table_id": "task_activities",
+      "remote_table_label": "task_activities",
+      "remote_table_path": "../../schema/tasks/task_activities.md"
     },
     {
       "local_key": "shared_task_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[shared_tasks](../../schema/tasks/shared_tasks.md)"
+      "remote_table": "[shared_tasks](../../schema/tasks/shared_tasks.md)",
+      "remote_table_id": "shared_tasks",
+      "remote_table_label": "shared_tasks",
+      "remote_table_path": "../../schema/tasks/shared_tasks.md"
     }
   ],
   "search_aliases": [

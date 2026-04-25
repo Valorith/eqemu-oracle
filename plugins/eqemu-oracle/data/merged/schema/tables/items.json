@@ -1457,409 +1457,613 @@
       "local_key": "bardeffect",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[spells_new](../../schema/spells/spells_new.md)"
+      "remote_table": "[spells_new](../../schema/spells/spells_new.md)",
+      "remote_table_id": "spells_new",
+      "remote_table_label": "spells_new",
+      "remote_table_path": "../../schema/spells/spells_new.md"
     },
     {
       "local_key": "book",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[books](../../schema/books/books.md)"
+      "remote_table": "[books](../../schema/books/books.md)",
+      "remote_table_id": "books",
+      "remote_table_label": "books",
+      "remote_table_path": "../../schema/books/books.md"
     },
     {
       "local_key": "clickeffect",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[spells_new](../../schema/spells/spells_new.md)"
+      "remote_table": "[spells_new](../../schema/spells/spells_new.md)",
+      "remote_table_id": "spells_new",
+      "remote_table_label": "spells_new",
+      "remote_table_path": "../../schema/spells/spells_new.md"
     },
     {
       "local_key": "focuseffect",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[spells_new](../../schema/spells/spells_new.md)"
+      "remote_table": "[spells_new](../../schema/spells/spells_new.md)",
+      "remote_table_id": "spells_new",
+      "remote_table_label": "spells_new",
+      "remote_table_path": "../../schema/spells/spells_new.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "item_id",
-      "remote_table": "[alternate_currency](../../schema/alternate-currency/alternate_currency.md)"
+      "remote_table": "[alternate_currency](../../schema/alternate-currency/alternate_currency.md)",
+      "remote_table_id": "alternate_currency",
+      "remote_table_label": "alternate_currency",
+      "remote_table_path": "../../schema/alternate-currency/alternate_currency.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "item_id",
-      "remote_table": "[bot_inventories](../../schema/bots/bot_inventories.md)"
+      "remote_table": "[bot_inventories](../../schema/bots/bot_inventories.md)",
+      "remote_table_id": "bot_inventories",
+      "remote_table_label": "bot_inventories",
+      "remote_table_path": "../../schema/bots/bot_inventories.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "augment_1",
-      "remote_table": "[bot_inventories](../../schema/bots/bot_inventories.md)"
+      "remote_table": "[bot_inventories](../../schema/bots/bot_inventories.md)",
+      "remote_table_id": "bot_inventories",
+      "remote_table_label": "bot_inventories",
+      "remote_table_path": "../../schema/bots/bot_inventories.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "augment_2",
-      "remote_table": "[bot_inventories](../../schema/bots/bot_inventories.md)"
+      "remote_table": "[bot_inventories](../../schema/bots/bot_inventories.md)",
+      "remote_table_id": "bot_inventories",
+      "remote_table_label": "bot_inventories",
+      "remote_table_path": "../../schema/bots/bot_inventories.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "augment_3",
-      "remote_table": "[bot_inventories](../../schema/bots/bot_inventories.md)"
+      "remote_table": "[bot_inventories](../../schema/bots/bot_inventories.md)",
+      "remote_table_id": "bot_inventories",
+      "remote_table_label": "bot_inventories",
+      "remote_table_path": "../../schema/bots/bot_inventories.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "augment_4",
-      "remote_table": "[bot_inventories](../../schema/bots/bot_inventories.md)"
+      "remote_table": "[bot_inventories](../../schema/bots/bot_inventories.md)",
+      "remote_table_id": "bot_inventories",
+      "remote_table_label": "bot_inventories",
+      "remote_table_path": "../../schema/bots/bot_inventories.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "augment_5",
-      "remote_table": "[bot_inventories](../../schema/bots/bot_inventories.md)"
+      "remote_table": "[bot_inventories](../../schema/bots/bot_inventories.md)",
+      "remote_table_id": "bot_inventories",
+      "remote_table_label": "bot_inventories",
+      "remote_table_path": "../../schema/bots/bot_inventories.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "augment_6",
-      "remote_table": "[bot_inventories](../../schema/bots/bot_inventories.md)"
+      "remote_table": "[bot_inventories](../../schema/bots/bot_inventories.md)",
+      "remote_table_id": "bot_inventories",
+      "remote_table_label": "bot_inventories",
+      "remote_table_path": "../../schema/bots/bot_inventories.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "item_id",
-      "remote_table": "[bot_pet_inventories](../../schema/bots/bot_pet_inventories.md)"
+      "remote_table": "[bot_pet_inventories](../../schema/bots/bot_pet_inventories.md)",
+      "remote_table_id": "bot_pet_inventories",
+      "remote_table_label": "bot_pet_inventories",
+      "remote_table_path": "../../schema/bots/bot_pet_inventories.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "item_id",
-      "remote_table": "[character_bandolier](../../schema/characters/character_bandolier.md)"
+      "remote_table": "[character_bandolier](../../schema/characters/character_bandolier.md)",
+      "remote_table_id": "character_bandolier",
+      "remote_table_label": "character_bandolier",
+      "remote_table_path": "../../schema/characters/character_bandolier.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "item_id",
-      "remote_table": "[character_corpse_items](../../schema/characters/character_corpse_items.md)"
+      "remote_table": "[character_corpse_items](../../schema/characters/character_corpse_items.md)",
+      "remote_table_id": "character_corpse_items",
+      "remote_table_label": "character_corpse_items",
+      "remote_table_path": "../../schema/characters/character_corpse_items.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "item_id",
-      "remote_table": "[character_pet_inventory](../../schema/characters/character_pet_inventory.md)"
+      "remote_table": "[character_pet_inventory](../../schema/characters/character_pet_inventory.md)",
+      "remote_table_id": "character_pet_inventory",
+      "remote_table_label": "character_pet_inventory",
+      "remote_table_path": "../../schema/characters/character_pet_inventory.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "item_id",
-      "remote_table": "[character_potionbelt](../../schema/characters/character_potionbelt.md)"
+      "remote_table": "[character_potionbelt](../../schema/characters/character_potionbelt.md)",
+      "remote_table_id": "character_potionbelt",
+      "remote_table_label": "character_potionbelt",
+      "remote_table_path": "../../schema/characters/character_potionbelt.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "item_id",
-      "remote_table": "[discovered_items](../../schema/admin/discovered_items.md)"
+      "remote_table": "[discovered_items](../../schema/admin/discovered_items.md)",
+      "remote_table_id": "discovered_items",
+      "remote_table_label": "discovered_items",
+      "remote_table_path": "../../schema/admin/discovered_items.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "keyitem",
-      "remote_table": "[doors](../../schema/doors/doors.md)"
+      "remote_table": "[doors](../../schema/doors/doors.md)",
+      "remote_table_id": "doors",
+      "remote_table_label": "doors",
+      "remote_table_path": "../../schema/doors/doors.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "Itemid",
-      "remote_table": "[fishing](../../schema/tradeskills/fishing.md)"
+      "remote_table": "[fishing](../../schema/tradeskills/fishing.md)",
+      "remote_table_id": "fishing",
+      "remote_table_label": "fishing",
+      "remote_table_path": "../../schema/tradeskills/fishing.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "Itemid",
-      "remote_table": "[forage](../../schema/tradeskills/forage.md)"
+      "remote_table": "[forage](../../schema/tradeskills/forage.md)",
+      "remote_table_id": "forage",
+      "remote_table_label": "forage",
+      "remote_table_path": "../../schema/tradeskills/forage.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "item",
-      "remote_table": "[ground_spawns](../../schema/ground-spawns/ground_spawns.md)"
+      "remote_table": "[ground_spawns](../../schema/ground-spawns/ground_spawns.md)",
+      "remote_table_id": "ground_spawns",
+      "remote_table_label": "ground_spawns",
+      "remote_table_path": "../../schema/ground-spawns/ground_spawns.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "itemid",
-      "remote_table": "[inventory](../../schema/mercenaries/merc_inventory.md)"
+      "remote_table": "[inventory](../../schema/mercenaries/merc_inventory.md)",
+      "remote_table_id": "merc_inventory",
+      "remote_table_label": "inventory",
+      "remote_table_path": "../../schema/mercenaries/merc_inventory.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "it_itemid",
-      "remote_table": "[item_tick](../../schema/items/item_tick.md)"
+      "remote_table": "[item_tick](../../schema/items/item_tick.md)",
+      "remote_table_id": "item_tick",
+      "remote_table_label": "item_tick",
+      "remote_table_path": "../../schema/items/item_tick.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "item_id",
-      "remote_table": "[keyring](../../schema/characters/keyring.md)"
+      "remote_table": "[keyring](../../schema/characters/keyring.md)",
+      "remote_table_id": "keyring",
+      "remote_table_label": "keyring",
+      "remote_table_path": "../../schema/characters/keyring.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "item_id",
-      "remote_table": "[lootdrop_entries](../../schema/loot/lootdrop_entries.md)"
+      "remote_table": "[lootdrop_entries](../../schema/loot/lootdrop_entries.md)",
+      "remote_table_id": "lootdrop_entries",
+      "remote_table_label": "lootdrop_entries",
+      "remote_table_path": "../../schema/loot/lootdrop_entries.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "item_id",
-      "remote_table": "[merc_inventory](../../schema/mercenaries/merc_inventory.md)"
+      "remote_table": "[merc_inventory](../../schema/mercenaries/merc_inventory.md)",
+      "remote_table_id": "merc_inventory",
+      "remote_table_label": "merc_inventory",
+      "remote_table_path": "../../schema/mercenaries/merc_inventory.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "item",
-      "remote_table": "[merchantlist](../../schema/merchants/merchantlist.md)"
+      "remote_table": "[merchantlist](../../schema/merchants/merchantlist.md)",
+      "remote_table_id": "merchantlist",
+      "remote_table_label": "merchantlist",
+      "remote_table_path": "../../schema/merchants/merchantlist.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "itemid",
-      "remote_table": "[merchantlist_temp](../../schema/merchants/merchantlist_temp.md)"
+      "remote_table": "[merchantlist_temp](../../schema/merchants/merchantlist_temp.md)",
+      "remote_table_id": "merchantlist_temp",
+      "remote_table_label": "merchantlist_temp",
+      "remote_table_path": "../../schema/merchants/merchantlist_temp.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "itemid",
-      "remote_table": "[object](../../schema/objects/object.md)"
+      "remote_table": "[object](../../schema/objects/object.md)",
+      "remote_table_id": "object",
+      "remote_table_label": "object",
+      "remote_table_path": "../../schema/objects/object.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "itemid",
-      "remote_table": "[object_contents](../../schema/objects/object_contents.md)"
+      "remote_table": "[object_contents](../../schema/objects/object_contents.md)",
+      "remote_table_id": "object_contents",
+      "remote_table_label": "object_contents",
+      "remote_table_path": "../../schema/objects/object_contents.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "item_id",
-      "remote_table": "[pets_equipmentset_entries](../../schema/pets/pets_equipmentset_entries.md)"
+      "remote_table": "[pets_equipmentset_entries](../../schema/pets/pets_equipmentset_entries.md)",
+      "remote_table_id": "pets_equipmentset_entries",
+      "remote_table_label": "pets_equipmentset_entries",
+      "remote_table_path": "../../schema/pets/pets_equipmentset_entries.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "item_id",
-      "remote_table": "[qs_merchant_transaction_record_entries](../../schema/query-server/qs_merchant_transaction_record_entries.md)"
+      "remote_table": "[qs_merchant_transaction_record_entries](../../schema/query-server/qs_merchant_transaction_record_entries.md)",
+      "remote_table_id": "qs_merchant_transaction_record_entries",
+      "remote_table_label": "qs_merchant_transaction_record_entries",
+      "remote_table_path": "../../schema/query-server/qs_merchant_transaction_record_entries.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "item_id",
-      "remote_table": "[qs_player_delete_record_entries](../../schema/query-server/qs_player_delete_record_entries.md)"
+      "remote_table": "[qs_player_delete_record_entries](../../schema/query-server/qs_player_delete_record_entries.md)",
+      "remote_table_id": "qs_player_delete_record_entries",
+      "remote_table_label": "qs_player_delete_record_entries",
+      "remote_table_path": "../../schema/query-server/qs_player_delete_record_entries.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "aug_1",
-      "remote_table": "[qs_player_delete_record_entries](../../schema/query-server/qs_player_delete_record_entries.md)"
+      "remote_table": "[qs_player_delete_record_entries](../../schema/query-server/qs_player_delete_record_entries.md)",
+      "remote_table_id": "qs_player_delete_record_entries",
+      "remote_table_label": "qs_player_delete_record_entries",
+      "remote_table_path": "../../schema/query-server/qs_player_delete_record_entries.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "aug_2",
-      "remote_table": "[qs_player_delete_record_entries](../../schema/query-server/qs_player_delete_record_entries.md)"
+      "remote_table": "[qs_player_delete_record_entries](../../schema/query-server/qs_player_delete_record_entries.md)",
+      "remote_table_id": "qs_player_delete_record_entries",
+      "remote_table_label": "qs_player_delete_record_entries",
+      "remote_table_path": "../../schema/query-server/qs_player_delete_record_entries.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "aug_3",
-      "remote_table": "[qs_player_delete_record_entries](../../schema/query-server/qs_player_delete_record_entries.md)"
+      "remote_table": "[qs_player_delete_record_entries](../../schema/query-server/qs_player_delete_record_entries.md)",
+      "remote_table_id": "qs_player_delete_record_entries",
+      "remote_table_label": "qs_player_delete_record_entries",
+      "remote_table_path": "../../schema/query-server/qs_player_delete_record_entries.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "aug_4",
-      "remote_table": "[qs_player_delete_record_entries](../../schema/query-server/qs_player_delete_record_entries.md)"
+      "remote_table": "[qs_player_delete_record_entries](../../schema/query-server/qs_player_delete_record_entries.md)",
+      "remote_table_id": "qs_player_delete_record_entries",
+      "remote_table_label": "qs_player_delete_record_entries",
+      "remote_table_path": "../../schema/query-server/qs_player_delete_record_entries.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "aug_5",
-      "remote_table": "[qs_player_delete_record_entries](../../schema/query-server/qs_player_delete_record_entries.md)"
+      "remote_table": "[qs_player_delete_record_entries](../../schema/query-server/qs_player_delete_record_entries.md)",
+      "remote_table_id": "qs_player_delete_record_entries",
+      "remote_table_label": "qs_player_delete_record_entries",
+      "remote_table_path": "../../schema/query-server/qs_player_delete_record_entries.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "item_id",
-      "remote_table": "[qs_player_handin_record_entries](../../schema/query-server/qs_player_handin_record_entries.md)"
+      "remote_table": "[qs_player_handin_record_entries](../../schema/query-server/qs_player_handin_record_entries.md)",
+      "remote_table_id": "qs_player_handin_record_entries",
+      "remote_table_label": "qs_player_handin_record_entries",
+      "remote_table_path": "../../schema/query-server/qs_player_handin_record_entries.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "aug_1",
-      "remote_table": "[qs_player_handin_record_entries](../../schema/query-server/qs_player_handin_record_entries.md)"
+      "remote_table": "[qs_player_handin_record_entries](../../schema/query-server/qs_player_handin_record_entries.md)",
+      "remote_table_id": "qs_player_handin_record_entries",
+      "remote_table_label": "qs_player_handin_record_entries",
+      "remote_table_path": "../../schema/query-server/qs_player_handin_record_entries.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "aug_2",
-      "remote_table": "[qs_player_handin_record_entries](../../schema/query-server/qs_player_handin_record_entries.md)"
+      "remote_table": "[qs_player_handin_record_entries](../../schema/query-server/qs_player_handin_record_entries.md)",
+      "remote_table_id": "qs_player_handin_record_entries",
+      "remote_table_label": "qs_player_handin_record_entries",
+      "remote_table_path": "../../schema/query-server/qs_player_handin_record_entries.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "aug_3",
-      "remote_table": "[qs_player_handin_record_entries](../../schema/query-server/qs_player_handin_record_entries.md)"
+      "remote_table": "[qs_player_handin_record_entries](../../schema/query-server/qs_player_handin_record_entries.md)",
+      "remote_table_id": "qs_player_handin_record_entries",
+      "remote_table_label": "qs_player_handin_record_entries",
+      "remote_table_path": "../../schema/query-server/qs_player_handin_record_entries.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "aug_4",
-      "remote_table": "[qs_player_handin_record_entries](../../schema/query-server/qs_player_handin_record_entries.md)"
+      "remote_table": "[qs_player_handin_record_entries](../../schema/query-server/qs_player_handin_record_entries.md)",
+      "remote_table_id": "qs_player_handin_record_entries",
+      "remote_table_label": "qs_player_handin_record_entries",
+      "remote_table_path": "../../schema/query-server/qs_player_handin_record_entries.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "aug_5",
-      "remote_table": "[qs_player_handin_record_entries](../../schema/query-server/qs_player_handin_record_entries.md)"
+      "remote_table": "[qs_player_handin_record_entries](../../schema/query-server/qs_player_handin_record_entries.md)",
+      "remote_table_id": "qs_player_handin_record_entries",
+      "remote_table_label": "qs_player_handin_record_entries",
+      "remote_table_path": "../../schema/query-server/qs_player_handin_record_entries.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "item_id",
-      "remote_table": "[qs_player_move_record_entries](../../schema/query-server/qs_player_move_record_entries.md)"
+      "remote_table": "[qs_player_move_record_entries](../../schema/query-server/qs_player_move_record_entries.md)",
+      "remote_table_id": "qs_player_move_record_entries",
+      "remote_table_label": "qs_player_move_record_entries",
+      "remote_table_path": "../../schema/query-server/qs_player_move_record_entries.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "aug_1",
-      "remote_table": "[qs_player_move_record_entries](../../schema/query-server/qs_player_move_record_entries.md)"
+      "remote_table": "[qs_player_move_record_entries](../../schema/query-server/qs_player_move_record_entries.md)",
+      "remote_table_id": "qs_player_move_record_entries",
+      "remote_table_label": "qs_player_move_record_entries",
+      "remote_table_path": "../../schema/query-server/qs_player_move_record_entries.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "aug_2",
-      "remote_table": "[qs_player_move_record_entries](../../schema/query-server/qs_player_move_record_entries.md)"
+      "remote_table": "[qs_player_move_record_entries](../../schema/query-server/qs_player_move_record_entries.md)",
+      "remote_table_id": "qs_player_move_record_entries",
+      "remote_table_label": "qs_player_move_record_entries",
+      "remote_table_path": "../../schema/query-server/qs_player_move_record_entries.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "aug_3",
-      "remote_table": "[qs_player_move_record_entries](../../schema/query-server/qs_player_move_record_entries.md)"
+      "remote_table": "[qs_player_move_record_entries](../../schema/query-server/qs_player_move_record_entries.md)",
+      "remote_table_id": "qs_player_move_record_entries",
+      "remote_table_label": "qs_player_move_record_entries",
+      "remote_table_path": "../../schema/query-server/qs_player_move_record_entries.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "aug_4",
-      "remote_table": "[qs_player_move_record_entries](../../schema/query-server/qs_player_move_record_entries.md)"
+      "remote_table": "[qs_player_move_record_entries](../../schema/query-server/qs_player_move_record_entries.md)",
+      "remote_table_id": "qs_player_move_record_entries",
+      "remote_table_label": "qs_player_move_record_entries",
+      "remote_table_path": "../../schema/query-server/qs_player_move_record_entries.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "aug_5",
-      "remote_table": "[qs_player_move_record_entries](../../schema/query-server/qs_player_move_record_entries.md)"
+      "remote_table": "[qs_player_move_record_entries](../../schema/query-server/qs_player_move_record_entries.md)",
+      "remote_table_id": "qs_player_move_record_entries",
+      "remote_table_label": "qs_player_move_record_entries",
+      "remote_table_path": "../../schema/query-server/qs_player_move_record_entries.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "item_id",
-      "remote_table": "[qs_player_trade_record_entries](../../schema/query-server/qs_player_trade_record_entries.md)"
+      "remote_table": "[qs_player_trade_record_entries](../../schema/query-server/qs_player_trade_record_entries.md)",
+      "remote_table_id": "qs_player_trade_record_entries",
+      "remote_table_label": "qs_player_trade_record_entries",
+      "remote_table_path": "../../schema/query-server/qs_player_trade_record_entries.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "aug_1",
-      "remote_table": "[qs_player_trade_record_entries](../../schema/query-server/qs_player_trade_record_entries.md)"
+      "remote_table": "[qs_player_trade_record_entries](../../schema/query-server/qs_player_trade_record_entries.md)",
+      "remote_table_id": "qs_player_trade_record_entries",
+      "remote_table_label": "qs_player_trade_record_entries",
+      "remote_table_path": "../../schema/query-server/qs_player_trade_record_entries.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "aug_2",
-      "remote_table": "[qs_player_trade_record_entries](../../schema/query-server/qs_player_trade_record_entries.md)"
+      "remote_table": "[qs_player_trade_record_entries](../../schema/query-server/qs_player_trade_record_entries.md)",
+      "remote_table_id": "qs_player_trade_record_entries",
+      "remote_table_label": "qs_player_trade_record_entries",
+      "remote_table_path": "../../schema/query-server/qs_player_trade_record_entries.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "aug_3",
-      "remote_table": "[qs_player_trade_record_entries](../../schema/query-server/qs_player_trade_record_entries.md)"
+      "remote_table": "[qs_player_trade_record_entries](../../schema/query-server/qs_player_trade_record_entries.md)",
+      "remote_table_id": "qs_player_trade_record_entries",
+      "remote_table_label": "qs_player_trade_record_entries",
+      "remote_table_path": "../../schema/query-server/qs_player_trade_record_entries.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "aug_4",
-      "remote_table": "[qs_player_trade_record_entries](../../schema/query-server/qs_player_trade_record_entries.md)"
+      "remote_table": "[qs_player_trade_record_entries](../../schema/query-server/qs_player_trade_record_entries.md)",
+      "remote_table_id": "qs_player_trade_record_entries",
+      "remote_table_label": "qs_player_trade_record_entries",
+      "remote_table_path": "../../schema/query-server/qs_player_trade_record_entries.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "aug_5",
-      "remote_table": "[qs_player_trade_record_entries](../../schema/query-server/qs_player_trade_record_entries.md)"
+      "remote_table": "[qs_player_trade_record_entries](../../schema/query-server/qs_player_trade_record_entries.md)",
+      "remote_table_id": "qs_player_trade_record_entries",
+      "remote_table_label": "qs_player_trade_record_entries",
+      "remote_table_path": "../../schema/query-server/qs_player_trade_record_entries.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "itemid",
-      "remote_table": "[starting_items](../../schema/admin/starting_items.md)"
+      "remote_table": "[starting_items](../../schema/admin/starting_items.md)",
+      "remote_table_id": "starting_items",
+      "remote_table_label": "starting_items",
+      "remote_table_path": "../../schema/admin/starting_items.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "item_id",
-      "remote_table": "[tool_gearup_armor_sets](../../schema/tools/tool_gearup_armor_sets.md)"
+      "remote_table": "[tool_gearup_armor_sets](../../schema/tools/tool_gearup_armor_sets.md)",
+      "remote_table_id": "tool_gearup_armor_sets",
+      "remote_table_label": "tool_gearup_armor_sets",
+      "remote_table_path": "../../schema/tools/tool_gearup_armor_sets.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "item_id",
-      "remote_table": "[trader](../../schema/trader/trader.md)"
+      "remote_table": "[trader](../../schema/trader/trader.md)",
+      "remote_table_id": "trader",
+      "remote_table_label": "trader",
+      "remote_table_path": "../../schema/trader/trader.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "item_id",
-      "remote_table": "[tradeskill_recipe_entries](../../schema/tradeskills/tradeskill_recipe_entries.md)"
+      "remote_table": "[tradeskill_recipe_entries](../../schema/tradeskills/tradeskill_recipe_entries.md)",
+      "remote_table_id": "tradeskill_recipe_entries",
+      "remote_table_label": "tradeskill_recipe_entries",
+      "remote_table_path": "../../schema/tradeskills/tradeskill_recipe_entries.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "item_id",
-      "remote_table": "[tribute_levels](../../schema/tributes/tribute_levels.md)"
+      "remote_table": "[tribute_levels](../../schema/tributes/tribute_levels.md)",
+      "remote_table_id": "tribute_levels",
+      "remote_table_label": "tribute_levels",
+      "remote_table_path": "../../schema/tributes/tribute_levels.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "item_id",
-      "remote_table": "[veteran_reward_templates](../../schema/admin/veteran_reward_templates.md)"
+      "remote_table": "[veteran_reward_templates](../../schema/admin/veteran_reward_templates.md)",
+      "remote_table_id": "veteran_reward_templates",
+      "remote_table_label": "veteran_reward_templates",
+      "remote_table_path": "../../schema/admin/veteran_reward_templates.md"
     },
     {
       "local_key": "name",
       "relationship_type": "Has-Many",
       "remote_key": "itemname",
-      "remote_table": "[trader_audit](../../schema/trader/trader_audit.md)"
+      "remote_table": "[trader_audit](../../schema/trader/trader_audit.md)",
+      "remote_table_id": "trader_audit",
+      "remote_table_label": "trader_audit",
+      "remote_table_path": "../../schema/trader/trader_audit.md"
     },
     {
       "local_key": "proceffect",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[spells_new](../../schema/spells/spells_new.md)"
+      "remote_table": "[spells_new](../../schema/spells/spells_new.md)",
+      "remote_table_id": "spells_new",
+      "remote_table_label": "spells_new",
+      "remote_table_path": "../../schema/spells/spells_new.md"
     },
     {
       "local_key": "recasttype",
       "relationship_type": "Has-Many",
       "remote_key": "recast_type",
-      "remote_table": "[character_item_recast](../../schema/characters/character_item_recast.md)"
+      "remote_table": "[character_item_recast](../../schema/characters/character_item_recast.md)",
+      "remote_table_id": "character_item_recast",
+      "remote_table_label": "character_item_recast",
+      "remote_table_path": "../../schema/characters/character_item_recast.md"
     },
     {
       "local_key": "scrolleffect",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[spells_new](../../schema/spells/spells_new.md)"
+      "remote_table": "[spells_new](../../schema/spells/spells_new.md)",
+      "remote_table_id": "spells_new",
+      "remote_table_label": "spells_new",
+      "remote_table_path": "../../schema/spells/spells_new.md"
     },
     {
       "local_key": "worneffect",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[spells_new](../../schema/spells/spells_new.md)"
+      "remote_table": "[spells_new](../../schema/spells/spells_new.md)",
+      "remote_table_id": "spells_new",
+      "remote_table_label": "spells_new",
+      "remote_table_path": "../../schema/spells/spells_new.md"
     }
   ],
   "search_aliases": [

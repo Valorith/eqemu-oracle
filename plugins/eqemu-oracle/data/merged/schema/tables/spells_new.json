@@ -1217,163 +1217,244 @@
       "local_key": "descnum",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[db_str](../../schema/client-files/db_str.md)"
+      "remote_table": "[db_str](../../schema/client-files/db_str.md)",
+      "remote_table_id": "db_str",
+      "remote_table_label": "db_str",
+      "remote_table_path": "../../schema/client-files/db_str.md"
     },
     {
       "local_key": "effectdescnum",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[db_str](../../schema/client-files/db_str.md)"
+      "remote_table": "[db_str](../../schema/client-files/db_str.md)",
+      "remote_table_id": "db_str",
+      "remote_table_label": "db_str",
+      "remote_table_path": "../../schema/client-files/db_str.md"
     },
     {
       "local_key": "effectdescnum2",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[db_str](../../schema/client-files/db_str.md)"
+      "remote_table": "[db_str](../../schema/client-files/db_str.md)",
+      "remote_table_id": "db_str",
+      "remote_table_label": "db_str",
+      "remote_table_path": "../../schema/client-files/db_str.md"
     },
     {
       "local_key": "typedescnum",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[db_str](../../schema/client-files/db_str.md)"
+      "remote_table": "[db_str](../../schema/client-files/db_str.md)",
+      "remote_table_id": "db_str",
+      "remote_table_label": "db_str",
+      "remote_table_path": "../../schema/client-files/db_str.md"
     },
     {
       "local_key": "id",
       "relationship_type": "One-to-One",
       "remote_key": "spell_id",
-      "remote_table": "[auras](../../schema/spells/auras.md)"
+      "remote_table": "[auras](../../schema/spells/auras.md)",
+      "remote_table_id": "auras",
+      "remote_table_label": "auras",
+      "remote_table_path": "../../schema/spells/auras.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "spellid",
-      "remote_table": "[blocked_spells](../../schema/spells/blocked_spells.md)"
+      "remote_table": "[blocked_spells](../../schema/spells/blocked_spells.md)",
+      "remote_table_id": "blocked_spells",
+      "remote_table_label": "blocked_spells",
+      "remote_table_path": "../../schema/spells/blocked_spells.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "spell_id",
-      "remote_table": "[bot_pets](../../schema/bots/bot_pets.md)"
+      "remote_table": "[bot_pets](../../schema/bots/bot_pets.md)",
+      "remote_table_id": "bot_pets",
+      "remote_table_label": "bot_pets",
+      "remote_table_path": "../../schema/bots/bot_pets.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "spell_id",
-      "remote_table": "[bot_pet_buffs](../../schema/bots/bot_pet_buffs.md)"
+      "remote_table": "[bot_pet_buffs](../../schema/bots/bot_pet_buffs.md)",
+      "remote_table_id": "bot_pet_buffs",
+      "remote_table_label": "bot_pet_buffs",
+      "remote_table_path": "../../schema/bots/bot_pet_buffs.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "spellid",
-      "remote_table": "[bot_spells_entries](../../schema/bots/bot_spells_entries.md)"
+      "remote_table": "[bot_spells_entries](../../schema/bots/bot_spells_entries.md)",
+      "remote_table_id": "bot_spells_entries",
+      "remote_table_label": "bot_spells_entries",
+      "remote_table_path": "../../schema/bots/bot_spells_entries.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "spell_id",
-      "remote_table": "[character_auras](../../schema/characters/character_auras.md)"
+      "remote_table": "[character_auras](../../schema/characters/character_auras.md)",
+      "remote_table_id": "character_auras",
+      "remote_table_label": "character_auras",
+      "remote_table_path": "../../schema/characters/character_auras.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "spell_id",
-      "remote_table": "[character_buffs](../../schema/characters/character_buffs.md)"
+      "remote_table": "[character_buffs](../../schema/characters/character_buffs.md)",
+      "remote_table_id": "character_buffs",
+      "remote_table_label": "character_buffs",
+      "remote_table_path": "../../schema/characters/character_buffs.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "disc_id",
-      "remote_table": "[character_disciplines](../../schema/characters/character_disciplines.md)"
+      "remote_table": "[character_disciplines](../../schema/characters/character_disciplines.md)",
+      "remote_table_id": "character_disciplines",
+      "remote_table_label": "character_disciplines",
+      "remote_table_path": "../../schema/characters/character_disciplines.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "spell_id",
-      "remote_table": "[character_pet_buffs](../../schema/characters/character_pet_buffs.md)"
+      "remote_table": "[character_pet_buffs](../../schema/characters/character_pet_buffs.md)",
+      "remote_table_id": "character_pet_buffs",
+      "remote_table_label": "character_pet_buffs",
+      "remote_table_path": "../../schema/characters/character_pet_buffs.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "spell_id",
-      "remote_table": "[character_pet_info](../../schema/characters/character_pet_info.md)"
+      "remote_table": "[character_pet_info](../../schema/characters/character_pet_info.md)",
+      "remote_table_id": "character_pet_info",
+      "remote_table_label": "character_pet_info",
+      "remote_table_path": "../../schema/characters/character_pet_info.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "spell_id",
-      "remote_table": "[character_spells](../../schema/characters/character_spells.md)"
+      "remote_table": "[character_spells](../../schema/characters/character_spells.md)",
+      "remote_table_id": "character_spells",
+      "remote_table_label": "character_spells",
+      "remote_table_path": "../../schema/characters/character_spells.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "spellid",
-      "remote_table": "[damageshieldtypes](../../schema/spells/damageshieldtypes.md)"
+      "remote_table": "[damageshieldtypes](../../schema/spells/damageshieldtypes.md)",
+      "remote_table_id": "damageshieldtypes",
+      "remote_table_label": "damageshieldtypes",
+      "remote_table_path": "../../schema/spells/damageshieldtypes.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "bardeffect",
-      "remote_table": "[items](../../schema/items/items.md)"
+      "remote_table": "[items](../../schema/items/items.md)",
+      "remote_table_id": "items",
+      "remote_table_label": "items",
+      "remote_table_path": "../../schema/items/items.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "clickeffect",
-      "remote_table": "[items](../../schema/items/items.md)"
+      "remote_table": "[items](../../schema/items/items.md)",
+      "remote_table_id": "items",
+      "remote_table_label": "items",
+      "remote_table_path": "../../schema/items/items.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "focuseffect",
-      "remote_table": "[items](../../schema/items/items.md)"
+      "remote_table": "[items](../../schema/items/items.md)",
+      "remote_table_id": "items",
+      "remote_table_label": "items",
+      "remote_table_path": "../../schema/items/items.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "proceffect",
-      "remote_table": "[items](../../schema/items/items.md)"
+      "remote_table": "[items](../../schema/items/items.md)",
+      "remote_table_id": "items",
+      "remote_table_label": "items",
+      "remote_table_path": "../../schema/items/items.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "scrolleffect",
-      "remote_table": "[items](../../schema/items/items.md)"
+      "remote_table": "[items](../../schema/items/items.md)",
+      "remote_table_id": "items",
+      "remote_table_label": "items",
+      "remote_table_path": "../../schema/items/items.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "worneffect",
-      "remote_table": "[items](../../schema/items/items.md)"
+      "remote_table": "[items](../../schema/items/items.md)",
+      "remote_table_id": "items",
+      "remote_table_label": "items",
+      "remote_table_path": "../../schema/items/items.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "spell_id",
-      "remote_table": "[ldon_trap_templates](../../schema/traps/ldon_trap_templates.md)"
+      "remote_table": "[ldon_trap_templates](../../schema/traps/ldon_trap_templates.md)",
+      "remote_table_id": "ldon_trap_templates",
+      "remote_table_label": "ldon_trap_templates",
+      "remote_table_path": "../../schema/traps/ldon_trap_templates.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "spell_id",
-      "remote_table": "[merc_spell_list_entries](../../schema/mercenaries/merc_spell_list_entries.md)"
+      "remote_table": "[merc_spell_list_entries](../../schema/mercenaries/merc_spell_list_entries.md)",
+      "remote_table_id": "merc_spell_list_entries",
+      "remote_table_label": "merc_spell_list_entries",
+      "remote_table_path": "../../schema/mercenaries/merc_spell_list_entries.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "spellid",
-      "remote_table": "[npc_spells_entries](../../schema/npcs/npc_spells_entries.md)"
+      "remote_table": "[npc_spells_entries](../../schema/npcs/npc_spells_entries.md)",
+      "remote_table_id": "npc_spells_entries",
+      "remote_table_label": "npc_spells_entries",
+      "remote_table_path": "../../schema/npcs/npc_spells_entries.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "spellid",
-      "remote_table": "[spell_buckets](../../schema/spells/spell_buckets.md)"
+      "remote_table": "[spell_buckets](../../schema/spells/spell_buckets.md)",
+      "remote_table_id": "spell_buckets",
+      "remote_table_label": "spell_buckets",
+      "remote_table_path": "../../schema/spells/spell_buckets.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "spellid",
-      "remote_table": "[spell_globals](../../schema/spells/spell_globals.md)"
+      "remote_table": "[spell_globals](../../schema/spells/spell_globals.md)",
+      "remote_table_id": "spell_globals",
+      "remote_table_label": "spell_globals",
+      "remote_table_path": "../../schema/spells/spell_globals.md"
     }
   ],
   "search_aliases": [

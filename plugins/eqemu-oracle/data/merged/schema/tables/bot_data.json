@@ -287,61 +287,91 @@
       "local_key": "bot_id",
       "relationship_type": "One-to-One",
       "remote_key": "bot_id",
-      "remote_table": "[bot_guild_members](../../schema/bots/bot_guild_members.md)"
+      "remote_table": "[bot_guild_members](../../schema/bots/bot_guild_members.md)",
+      "remote_table_id": "bot_guild_members",
+      "remote_table_label": "bot_guild_members",
+      "remote_table_path": "../../schema/bots/bot_guild_members.md"
     },
     {
       "local_key": "bot_id",
       "relationship_type": "Has-Many",
       "remote_key": "bot_id",
-      "remote_table": "[bot_heal_rotation_members](../../schema/bots/bot_heal_rotation_members.md)"
+      "remote_table": "[bot_heal_rotation_members](../../schema/bots/bot_heal_rotation_members.md)",
+      "remote_table_id": "bot_heal_rotation_members",
+      "remote_table_label": "bot_heal_rotation_members",
+      "remote_table_path": "../../schema/bots/bot_heal_rotation_members.md"
     },
     {
       "local_key": "bot_id",
       "relationship_type": "One-to-One",
       "remote_key": "bot_id",
-      "remote_table": "[bot_inspect_messages](../../schema/bots/bot_inspect_messages.md)"
+      "remote_table": "[bot_inspect_messages](../../schema/bots/bot_inspect_messages.md)",
+      "remote_table_id": "bot_inspect_messages",
+      "remote_table_label": "bot_inspect_messages",
+      "remote_table_path": "../../schema/bots/bot_inspect_messages.md"
     },
     {
       "local_key": "bot_id",
       "relationship_type": "Has-Many",
       "remote_key": "bot_id",
-      "remote_table": "[bot_inventories](../../schema/bots/bot_inventories.md)"
+      "remote_table": "[bot_inventories](../../schema/bots/bot_inventories.md)",
+      "remote_table_id": "bot_inventories",
+      "remote_table_label": "bot_inventories",
+      "remote_table_path": "../../schema/bots/bot_inventories.md"
     },
     {
       "local_key": "bot_id",
       "relationship_type": "One-to-One",
       "remote_key": "bot_id",
-      "remote_table": "[bot_pets](../../schema/bots/bot_pets.md)"
+      "remote_table": "[bot_pets](../../schema/bots/bot_pets.md)",
+      "remote_table_id": "bot_pets",
+      "remote_table_label": "bot_pets",
+      "remote_table_path": "../../schema/bots/bot_pets.md"
     },
     {
       "local_key": "bot_id",
       "relationship_type": "One-to-One",
       "remote_key": "bot_id",
-      "remote_table": "[bot_stances](../../schema/bots/bot_stances.md)"
+      "remote_table": "[bot_stances](../../schema/bots/bot_stances.md)",
+      "remote_table_id": "bot_stances",
+      "remote_table_label": "bot_stances",
+      "remote_table_path": "../../schema/bots/bot_stances.md"
     },
     {
       "local_key": "bot_id",
       "relationship_type": "Has-Many",
       "remote_key": "bot_id",
-      "remote_table": "[bot_timers](../../schema/bots/bot_timers.md)"
+      "remote_table": "[bot_timers](../../schema/bots/bot_timers.md)",
+      "remote_table_id": "bot_timers",
+      "remote_table_label": "bot_timers",
+      "remote_table_path": "../../schema/bots/bot_timers.md"
     },
     {
       "local_key": "owner_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+      "remote_table": "[character_data](../../schema/characters/character_data.md)",
+      "remote_table_id": "character_data",
+      "remote_table_label": "character_data",
+      "remote_table_path": "../../schema/characters/character_data.md"
     },
     {
       "local_key": "spells_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[npc_spells](../../schema/npcs/npc_spells.md)"
+      "remote_table": "[npc_spells](../../schema/npcs/npc_spells.md)",
+      "remote_table_id": "npc_spells",
+      "remote_table_label": "npc_spells",
+      "remote_table_path": "../../schema/npcs/npc_spells.md"
     },
     {
       "local_key": "zone_id",
       "relationship_type": "One-to-One",
       "remote_key": "zoneidnumber",
-      "remote_table": "[zone](../../schema/zone/zone.md)"
+      "remote_table": "[zone](../../schema/zone/zone.md)",
+      "remote_table_id": "zone",
+      "remote_table_label": "zone",
+      "remote_table_path": "../../schema/zone/zone.md"
     }
   ],
   "search_aliases": [

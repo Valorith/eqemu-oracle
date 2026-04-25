@@ -117,25 +117,37 @@
       "local_key": "content_flags",
       "relationship_type": "One-to-One",
       "remote_key": "flag_name",
-      "remote_table": "[content_flags](../../schema/flagging/content_flags.md)"
+      "remote_table": "[content_flags](../../schema/flagging/content_flags.md)",
+      "remote_table_id": "content_flags",
+      "remote_table_label": "content_flags",
+      "remote_table_path": "../../schema/flagging/content_flags.md"
     },
     {
       "local_key": "content_flags_disabled",
       "relationship_type": "One-to-One",
       "remote_key": "flag_name",
-      "remote_table": "[content_flags](../../schema/flagging/content_flags.md)"
+      "remote_table": "[content_flags](../../schema/flagging/content_flags.md)",
+      "remote_table_id": "content_flags",
+      "remote_table_label": "content_flags",
+      "remote_table_path": "../../schema/flagging/content_flags.md"
     },
     {
       "local_key": "loottable_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[loottable](../../schema/loot/loottable.md)"
+      "remote_table": "[loottable](../../schema/loot/loottable.md)",
+      "remote_table_id": "loottable",
+      "remote_table_label": "loottable",
+      "remote_table_path": "../../schema/loot/loottable.md"
     },
     {
       "local_key": "zone",
       "relationship_type": "One-to-One",
       "remote_key": "short_name",
-      "remote_table": "[zone](../../schema/zone/zone.md)"
+      "remote_table": "[zone](../../schema/zone/zone.md)",
+      "remote_table_id": "zone",
+      "remote_table_label": "zone",
+      "remote_table_path": "../../schema/zone/zone.md"
     }
   ],
   "search_aliases": [

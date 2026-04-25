@@ -62,25 +62,37 @@
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "shared_task_id",
-      "remote_table": "[shared_task_activity_state](../../schema/tasks/shared_task_activity_state.md)"
+      "remote_table": "[shared_task_activity_state](../../schema/tasks/shared_task_activity_state.md)",
+      "remote_table_id": "shared_task_activity_state",
+      "remote_table_label": "shared_task_activity_state",
+      "remote_table_path": "../../schema/tasks/shared_task_activity_state.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "shared_task_id",
-      "remote_table": "[shared_task_dynamic_zones](../../schema/tasks/shared_task_dynamic_zones.md)"
+      "remote_table": "[shared_task_dynamic_zones](../../schema/tasks/shared_task_dynamic_zones.md)",
+      "remote_table_id": "shared_task_dynamic_zones",
+      "remote_table_label": "shared_task_dynamic_zones",
+      "remote_table_path": "../../schema/tasks/shared_task_dynamic_zones.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "shared_task_id",
-      "remote_table": "[shared_task_members](../../schema/tasks/shared_task_members.md)"
+      "remote_table": "[shared_task_members](../../schema/tasks/shared_task_members.md)",
+      "remote_table_id": "shared_task_members",
+      "remote_table_label": "shared_task_members",
+      "remote_table_path": "../../schema/tasks/shared_task_members.md"
     },
     {
       "local_key": "task_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[tasks](../../schema/tasks/tasks.md)"
+      "remote_table": "[tasks](../../schema/tasks/tasks.md)",
+      "remote_table_id": "tasks",
+      "remote_table_label": "tasks",
+      "remote_table_path": "../../schema/tasks/tasks.md"
     }
   ],
   "search_aliases": [

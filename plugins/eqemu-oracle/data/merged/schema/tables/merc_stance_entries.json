@@ -57,7 +57,10 @@
       "local_key": "stance_id",
       "relationship_type": "Has-Many",
       "remote_key": "stance_id",
-      "remote_table": "[merc_spell_list_entries](../../schema/mercenaries/merc_spell_list_entries.md)"
+      "remote_table": "[merc_spell_list_entries](../../schema/mercenaries/merc_spell_list_entries.md)",
+      "remote_table_id": "merc_spell_list_entries",
+      "remote_table_label": "merc_spell_list_entries",
+      "remote_table_path": "../../schema/mercenaries/merc_spell_list_entries.md"
     }
   ],
   "search_aliases": [

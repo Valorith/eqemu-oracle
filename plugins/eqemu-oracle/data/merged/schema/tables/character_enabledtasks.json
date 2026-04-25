@@ -42,13 +42,19 @@
       "local_key": "charid",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+      "remote_table": "[character_data](../../schema/characters/character_data.md)",
+      "remote_table_id": "character_data",
+      "remote_table_label": "character_data",
+      "remote_table_path": "../../schema/characters/character_data.md"
     },
     {
       "local_key": "taskid",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[tasks](../../schema/tasks/tasks.md)"
+      "remote_table": "[tasks](../../schema/tasks/tasks.md)",
+      "remote_table_id": "tasks",
+      "remote_table_label": "tasks",
+      "remote_table_path": "../../schema/tasks/tasks.md"
     }
   ],
   "search_aliases": [

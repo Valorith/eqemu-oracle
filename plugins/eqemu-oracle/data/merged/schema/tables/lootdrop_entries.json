@@ -87,13 +87,19 @@
       "local_key": "item_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[items](../../schema/items/items.md)"
+      "remote_table": "[items](../../schema/items/items.md)",
+      "remote_table_id": "items",
+      "remote_table_label": "items",
+      "remote_table_path": "../../schema/items/items.md"
     },
     {
       "local_key": "lootdrop_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[lootdrop](../../schema/loot/lootdrop.md)"
+      "remote_table": "[lootdrop](../../schema/loot/lootdrop.md)",
+      "remote_table_id": "lootdrop",
+      "remote_table_label": "lootdrop",
+      "remote_table_path": "../../schema/loot/lootdrop.md"
     }
   ],
   "search_aliases": [

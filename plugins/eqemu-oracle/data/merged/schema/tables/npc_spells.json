@@ -137,43 +137,64 @@
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "spells_id",
-      "remote_table": "[bot_data](../../schema/bots/bot_data.md)"
+      "remote_table": "[bot_data](../../schema/bots/bot_data.md)",
+      "remote_table_id": "bot_data",
+      "remote_table_label": "bot_data",
+      "remote_table_path": "../../schema/bots/bot_data.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "npc_spells_id",
-      "remote_table": "[bot_spells_entries](../../schema/bots/bot_spells_entries.md)"
+      "remote_table": "[bot_spells_entries](../../schema/bots/bot_spells_entries.md)",
+      "remote_table_id": "bot_spells_entries",
+      "remote_table_label": "bot_spells_entries",
+      "remote_table_path": "../../schema/bots/bot_spells_entries.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "npc_spells_id",
-      "remote_table": "[npc_spells_entries](../../schema/npcs/npc_spells_entries.md)"
+      "remote_table": "[npc_spells_entries](../../schema/npcs/npc_spells_entries.md)",
+      "remote_table_id": "npc_spells_entries",
+      "remote_table_label": "npc_spells_entries",
+      "remote_table_path": "../../schema/npcs/npc_spells_entries.md"
     },
     {
       "local_key": "parent_list",
       "relationship_type": "Has-Many",
       "remote_key": "spells_id",
-      "remote_table": "[bot_data](../../schema/bots/bot_data.md)"
+      "remote_table": "[bot_data](../../schema/bots/bot_data.md)",
+      "remote_table_id": "bot_data",
+      "remote_table_label": "bot_data",
+      "remote_table_path": "../../schema/bots/bot_data.md"
     },
     {
       "local_key": "parent_list",
       "relationship_type": "Has-Many",
       "remote_key": "npc_spells_id",
-      "remote_table": "[bot_spells_entries](../../schema/bots/bot_spells_entries.md)"
+      "remote_table": "[bot_spells_entries](../../schema/bots/bot_spells_entries.md)",
+      "remote_table_id": "bot_spells_entries",
+      "remote_table_label": "bot_spells_entries",
+      "remote_table_path": "../../schema/bots/bot_spells_entries.md"
     },
     {
       "local_key": "parent_list",
       "relationship_type": "One-to-One",
       "remote_key": "parent_list",
-      "remote_table": "[npc_spells](../../schema/npcs/npc_spells.md)"
+      "remote_table": "[npc_spells](../../schema/npcs/npc_spells.md)",
+      "remote_table_id": "npc_spells",
+      "remote_table_label": "npc_spells",
+      "remote_table_path": "../../schema/npcs/npc_spells.md"
     },
     {
       "local_key": "parent_list",
       "relationship_type": "Has-Many",
       "remote_key": "npc_spells_id",
-      "remote_table": "[npc_spells_entries](../../schema/npcs/npc_spells_entries.md)"
+      "remote_table": "[npc_spells_entries](../../schema/npcs/npc_spells_entries.md)",
+      "remote_table_id": "npc_spells_entries",
+      "remote_table_label": "npc_spells_entries",
+      "remote_table_path": "../../schema/npcs/npc_spells_entries.md"
     }
   ],
   "search_aliases": [

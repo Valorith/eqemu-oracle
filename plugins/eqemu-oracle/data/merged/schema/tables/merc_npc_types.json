@@ -57,25 +57,37 @@
       "local_key": "merc_npc_type_id",
       "relationship_type": "Has-Many",
       "remote_key": "merc_npc_type_id",
-      "remote_table": "[merc_armorinfo](../../schema/mercenaries/merc_armorinfo.md)"
+      "remote_table": "[merc_armorinfo](../../schema/mercenaries/merc_armorinfo.md)",
+      "remote_table_id": "merc_armorinfo",
+      "remote_table_label": "merc_armorinfo",
+      "remote_table_path": "../../schema/mercenaries/merc_armorinfo.md"
     },
     {
       "local_key": "merc_npc_type_id",
       "relationship_type": "Has-Many",
       "remote_key": "merc_npc_type_id",
-      "remote_table": "[merc_stats](../../schema/mercenaries/merc_stats.md)"
+      "remote_table": "[merc_stats](../../schema/mercenaries/merc_stats.md)",
+      "remote_table_id": "merc_stats",
+      "remote_table_label": "merc_stats",
+      "remote_table_path": "../../schema/mercenaries/merc_stats.md"
     },
     {
       "local_key": "merc_npc_type_id",
       "relationship_type": "Has-Many",
       "remote_key": "merc_npc_type_id",
-      "remote_table": "[merc_templates](../../schema/mercenaries/merc_templates.md)"
+      "remote_table": "[merc_templates](../../schema/mercenaries/merc_templates.md)",
+      "remote_table_id": "merc_templates",
+      "remote_table_label": "merc_templates",
+      "remote_table_path": "../../schema/mercenaries/merc_templates.md"
     },
     {
       "local_key": "merc_npc_type_id",
       "relationship_type": "Has-Many",
       "remote_key": "merc_npc_type_id",
-      "remote_table": "[merc_weaponinfo](../../schema/mercenaries/merc_weaponinfo.md)"
+      "remote_table": "[merc_weaponinfo](../../schema/mercenaries/merc_weaponinfo.md)",
+      "remote_table_id": "merc_weaponinfo",
+      "remote_table_label": "merc_weaponinfo",
+      "remote_table_path": "../../schema/mercenaries/merc_weaponinfo.md"
     }
   ],
   "search_aliases": [

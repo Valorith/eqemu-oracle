@@ -47,7 +47,10 @@
       "local_key": "exemption_ip",
       "relationship_type": "Has-Many",
       "remote_key": "ip",
-      "remote_table": "[account_ip](../../schema/account/account_ip.md)"
+      "remote_table": "[account_ip](../../schema/account/account_ip.md)",
+      "remote_table_id": "account_ip",
+      "remote_table_label": "account_ip",
+      "remote_table_path": "../../schema/account/account_ip.md"
     }
   ],
   "search_aliases": [

@@ -97,7 +97,10 @@
       "local_key": "id",
       "relationship_type": "One-to-One",
       "remote_key": "spawngroupID",
-      "remote_table": "[spawn2](../../schema/spawns/spawn2.md)"
+      "remote_table": "[spawn2](../../schema/spawns/spawn2.md)",
+      "remote_table_id": "spawn2",
+      "remote_table_label": "spawn2",
+      "remote_table_path": "../../schema/spawns/spawn2.md"
     }
   ],
   "search_aliases": [

@@ -177,13 +177,19 @@
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "armortint_id",
-      "remote_table": "[merc_armorinfo](../../schema/mercenaries/merc_armorinfo.md)"
+      "remote_table": "[merc_armorinfo](../../schema/mercenaries/merc_armorinfo.md)",
+      "remote_table_id": "merc_armorinfo",
+      "remote_table_label": "merc_armorinfo",
+      "remote_table_path": "../../schema/mercenaries/merc_armorinfo.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "armortint_id",
-      "remote_table": "[npc_types](../../schema/npcs/npc_types.md)"
+      "remote_table": "[npc_types](../../schema/npcs/npc_types.md)",
+      "remote_table_id": "npc_types",
+      "remote_table_label": "npc_types",
+      "remote_table_path": "../../schema/npcs/npc_types.md"
     }
   ],
   "search_aliases": [

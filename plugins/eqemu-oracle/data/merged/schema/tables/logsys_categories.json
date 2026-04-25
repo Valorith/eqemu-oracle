@@ -67,7 +67,10 @@
       "local_key": "discord_webhook_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[discord_webhooks](../../schema/admin/discord_webhooks.md)"
+      "remote_table": "[discord_webhooks](../../schema/admin/discord_webhooks.md)",
+      "remote_table_id": "discord_webhooks",
+      "remote_table_label": "discord_webhooks",
+      "remote_table_path": "../../schema/admin/discord_webhooks.md"
     }
   ],
   "search_aliases": [

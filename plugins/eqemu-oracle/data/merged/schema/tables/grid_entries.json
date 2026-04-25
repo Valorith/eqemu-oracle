@@ -77,13 +77,19 @@
       "local_key": "grid_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[grid](../../schema/grids/grid.md)"
+      "remote_table": "[grid](../../schema/grids/grid.md)",
+      "remote_table_id": "grid",
+      "remote_table_label": "grid",
+      "remote_table_path": "../../schema/grids/grid.md"
     },
     {
       "local_key": "zoneid",
       "relationship_type": "One-to-One",
       "remote_key": "zoneidnumber",
-      "remote_table": "[zone](../../schema/zone/zone.md)"
+      "remote_table": "[zone](../../schema/zone/zone.md)",
+      "remote_table_id": "zone",
+      "remote_table_label": "zone",
+      "remote_table_path": "../../schema/zone/zone.md"
     }
   ],
   "search_aliases": [

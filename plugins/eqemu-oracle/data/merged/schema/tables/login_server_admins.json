@@ -72,19 +72,28 @@
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "login_server_admin_id",
-      "remote_table": "[login_world_servers](../../schema/loginserver/login_world_servers.md)"
+      "remote_table": "[login_world_servers](../../schema/loginserver/login_world_servers.md)",
+      "remote_table_id": "login_world_servers",
+      "remote_table_label": "login_world_servers",
+      "remote_table_path": "../../schema/loginserver/login_world_servers.md"
     },
     {
       "local_key": "account_name",
       "relationship_type": "One-to-One",
       "remote_key": "name",
-      "remote_table": "[account](../../schema/account/account.md)"
+      "remote_table": "[account](../../schema/account/account.md)",
+      "remote_table_id": "account",
+      "remote_table_label": "account",
+      "remote_table_path": "../../schema/account/account.md"
     },
     {
       "local_key": "registration_ip_address",
       "relationship_type": "Has-Many",
       "remote_key": "ip",
-      "remote_table": "[account_ip](../../schema/account/account_ip.md)"
+      "remote_table": "[account_ip](../../schema/account/account_ip.md)",
+      "remote_table_id": "account_ip",
+      "remote_table_label": "account_ip",
+      "remote_table_path": "../../schema/account/account_ip.md"
     }
   ],
   "search_aliases": [

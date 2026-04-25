@@ -287,31 +287,46 @@
       "local_key": "charid",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+      "remote_table": "[character_data](../../schema/characters/character_data.md)",
+      "remote_table_id": "character_data",
+      "remote_table_label": "character_data",
+      "remote_table_path": "../../schema/characters/character_data.md"
     },
     {
       "local_key": "charname",
       "relationship_type": "One-to-One",
       "remote_key": "name",
-      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+      "remote_table": "[character_data](../../schema/characters/character_data.md)",
+      "remote_table_id": "character_data",
+      "remote_table_label": "character_data",
+      "remote_table_path": "../../schema/characters/character_data.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "corpse_id",
-      "remote_table": "[character_corpse_items](../../schema/characters/character_corpse_items.md)"
+      "remote_table": "[character_corpse_items](../../schema/characters/character_corpse_items.md)",
+      "remote_table_id": "character_corpse_items",
+      "remote_table_label": "character_corpse_items",
+      "remote_table_path": "../../schema/characters/character_corpse_items.md"
     },
     {
       "local_key": "instance_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[instance_list](../../schema/instances/instance_list.md)"
+      "remote_table": "[instance_list](../../schema/instances/instance_list.md)",
+      "remote_table_id": "instance_list",
+      "remote_table_label": "instance_list",
+      "remote_table_path": "../../schema/instances/instance_list.md"
     },
     {
       "local_key": "zone_id",
       "relationship_type": "One-to-One",
       "remote_key": "zoneidnumber",
-      "remote_table": "[zone](../../schema/zone/zone.md)"
+      "remote_table": "[zone](../../schema/zone/zone.md)",
+      "remote_table_id": "zone",
+      "remote_table_label": "zone",
+      "remote_table_path": "../../schema/zone/zone.md"
     }
   ],
   "search_aliases": [

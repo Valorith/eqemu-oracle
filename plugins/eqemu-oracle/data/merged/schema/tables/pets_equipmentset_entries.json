@@ -47,13 +47,19 @@
       "local_key": "item_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[items](../../schema/items/items.md)"
+      "remote_table": "[items](../../schema/items/items.md)",
+      "remote_table_id": "items",
+      "remote_table_label": "items",
+      "remote_table_path": "../../schema/items/items.md"
     },
     {
       "local_key": "set_id",
       "relationship_type": "One-to-One",
       "remote_key": "set_id",
-      "remote_table": "[pets_equipmentset](../../schema/pets/pets_equipmentset.md)"
+      "remote_table": "[pets_equipmentset](../../schema/pets/pets_equipmentset.md)",
+      "remote_table_id": "pets_equipmentset",
+      "remote_table_label": "pets_equipmentset",
+      "remote_table_path": "../../schema/pets/pets_equipmentset.md"
     }
   ],
   "search_aliases": [

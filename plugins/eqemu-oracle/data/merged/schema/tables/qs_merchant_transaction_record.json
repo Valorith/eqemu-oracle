@@ -107,19 +107,28 @@
       "local_key": "char_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+      "remote_table": "[character_data](../../schema/characters/character_data.md)",
+      "remote_table_id": "character_data",
+      "remote_table_label": "character_data",
+      "remote_table_path": "../../schema/characters/character_data.md"
     },
     {
       "local_key": "merchant_id",
       "relationship_type": "Has-Many",
       "remote_key": "merchantid",
-      "remote_table": "[merchantlist](../../schema/merchants/merchantlist.md)"
+      "remote_table": "[merchantlist](../../schema/merchants/merchantlist.md)",
+      "remote_table_id": "merchantlist",
+      "remote_table_label": "merchantlist",
+      "remote_table_path": "../../schema/merchants/merchantlist.md"
     },
     {
       "local_key": "zone_id",
       "relationship_type": "One-to-One",
       "remote_key": "zoneidnumber",
-      "remote_table": "[zone](../../schema/zone/zone.md)"
+      "remote_table": "[zone](../../schema/zone/zone.md)",
+      "remote_table_id": "zone",
+      "remote_table_label": "zone",
+      "remote_table_path": "../../schema/zone/zone.md"
     }
   ],
   "search_aliases": [

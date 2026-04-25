@@ -147,31 +147,46 @@
       "local_key": "compass_zone_id",
       "relationship_type": "One-to-One",
       "remote_key": "zoneidnumber",
-      "remote_table": "[zone](../../schema/zone/zone.md)"
+      "remote_table": "[zone](../../schema/zone/zone.md)",
+      "remote_table_id": "zone",
+      "remote_table_label": "zone",
+      "remote_table_path": "../../schema/zone/zone.md"
     },
     {
       "local_key": "dz_switch_id",
       "relationship_type": "Has-Many",
       "remote_key": "dz_switch_id",
-      "remote_table": "[doors](../../schema/doors/doors.md)"
+      "remote_table": "[doors](../../schema/doors/doors.md)",
+      "remote_table_id": "doors",
+      "remote_table_label": "doors",
+      "remote_table_path": "../../schema/doors/doors.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "dynamic_zone_id",
-      "remote_table": "[dynamic_zone_members](../../schema/dynamic-zones/dynamic_zone_members.md)"
+      "remote_table": "[dynamic_zone_members](../../schema/dynamic-zones/dynamic_zone_members.md)",
+      "remote_table_id": "dynamic_zone_members",
+      "remote_table_label": "dynamic_zone_members",
+      "remote_table_path": "../../schema/dynamic-zones/dynamic_zone_members.md"
     },
     {
       "local_key": "instance_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[instance_list](../../schema/instances/instance_list.md)"
+      "remote_table": "[instance_list](../../schema/instances/instance_list.md)",
+      "remote_table_id": "instance_list",
+      "remote_table_label": "instance_list",
+      "remote_table_path": "../../schema/instances/instance_list.md"
     },
     {
       "local_key": "safe_return_zone_id",
       "relationship_type": "One-to-One",
       "remote_key": "zoneidnumber",
-      "remote_table": "[zone](../../schema/zone/zone.md)"
+      "remote_table": "[zone](../../schema/zone/zone.md)",
+      "remote_table_id": "zone",
+      "remote_table_label": "zone",
+      "remote_table_path": "../../schema/zone/zone.md"
     }
   ],
   "search_aliases": [

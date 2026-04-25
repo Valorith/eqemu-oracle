@@ -153,6 +153,7 @@ class SearchBehaviorTest(unittest.TestCase):
         store = DataStore()
         hits = store.search("npc_types", None, 5, True, None, False)["hits"]
 
+        self.assertEqual(hits[0]["id"], "npc_types")
         self.assertIn("npc_types", {hit["id"] for hit in hits})
 
     def test_quest_say_search_prefers_api_methods_over_constants(self) -> None:

@@ -47,7 +47,10 @@
       "local_key": "p_accid",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[account](../../schema/account/account.md)"
+      "remote_table": "[account](../../schema/account/account.md)",
+      "remote_table_id": "account",
+      "remote_table_label": "account",
+      "remote_table_path": "../../schema/account/account.md"
     }
   ],
   "search_aliases": [

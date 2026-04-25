@@ -178,6 +178,14 @@ def parse_markdown_table(lines: list[str]) -> list[dict[str, str]]:
     return rows
 
 
+def parse_markdown_link(value: str) -> tuple[str, str | None]:
+    stripped = value.strip()
+    if stripped.startswith("[") and "](" in stripped and stripped.endswith(")"):
+        label, _, remainder = stripped[1:].partition("](")
+        return label.strip(), remainder[:-1].strip()
+    return stripped, None
+
+
 def parse_schema_markdown(
     category: str,
     relative_path: str,
@@ -214,15 +222,22 @@ def parse_schema_markdown(
         }
         for row in schema_rows
     ]
-    relationships = [
-        {
-            "relationship_type": row.get("Relationship Type", ""),
-            "local_key": row.get("Local Key", ""),
-            "remote_table": row.get("Relates to Table", ""),
-            "remote_key": row.get("Foreign Key", ""),
-        }
-        for row in relationship_rows
-    ]
+    relationships = []
+    for row in relationship_rows:
+        remote_table = row.get("Relates to Table", "")
+        remote_table_label, remote_table_path = parse_markdown_link(remote_table)
+        remote_table_id = Path(remote_table_path).stem if remote_table_path else remote_table_label.strip("`").lower()
+        relationships.append(
+            {
+                "relationship_type": row.get("Relationship Type", ""),
+                "local_key": row.get("Local Key", ""),
+                "remote_table": remote_table,
+                "remote_table_id": remote_table_id,
+                "remote_table_label": remote_table_label,
+                "remote_table_path": remote_table_path,
+                "remote_key": row.get("Foreign Key", ""),
+            }
+        )
     path_without_suffix = normalized_relative_path[:-3]
     site_path = path_without_suffix.removeprefix("docs/")
     docs_url = docs_config["site_base_url"] + "/" + site_path.rstrip("/") + "/"

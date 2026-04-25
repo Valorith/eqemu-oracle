@@ -72,13 +72,19 @@
       "local_key": "item_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[items](../../schema/items/items.md)"
+      "remote_table": "[items](../../schema/items/items.md)",
+      "remote_table_id": "items",
+      "remote_table_label": "items",
+      "remote_table_path": "../../schema/items/items.md"
     },
     {
       "local_key": "recipe_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[tradeskill_recipe](../../schema/tradeskills/tradeskill_recipe.md)"
+      "remote_table": "[tradeskill_recipe](../../schema/tradeskills/tradeskill_recipe.md)",
+      "remote_table_id": "tradeskill_recipe",
+      "remote_table_label": "tradeskill_recipe",
+      "remote_table_path": "../../schema/tradeskills/tradeskill_recipe.md"
     }
   ],
   "search_aliases": [

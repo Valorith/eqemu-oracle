@@ -72,19 +72,28 @@
       "local_key": "from",
       "relationship_type": "One-to-One",
       "remote_key": "name",
-      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+      "remote_table": "[character_data](../../schema/characters/character_data.md)",
+      "remote_table_id": "character_data",
+      "remote_table_label": "character_data",
+      "remote_table_path": "../../schema/characters/character_data.md"
     },
     {
       "local_key": "to",
       "relationship_type": "One-to-One",
       "remote_key": "name",
-      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+      "remote_table": "[character_data](../../schema/characters/character_data.md)",
+      "remote_table_id": "character_data",
+      "remote_table_label": "character_data",
+      "remote_table_path": "../../schema/characters/character_data.md"
     },
     {
       "local_key": "guilddbid",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[guilds](../../schema/guilds/guilds.md)"
+      "remote_table": "[guilds](../../schema/guilds/guilds.md)",
+      "remote_table_id": "guilds",
+      "remote_table_label": "guilds",
+      "remote_table_path": "../../schema/guilds/guilds.md"
     }
   ],
   "search_aliases": [

@@ -52,19 +52,28 @@
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "gridid",
-      "remote_table": "[grid_entries](../../schema/grids/grid_entries.md)"
+      "remote_table": "[grid_entries](../../schema/grids/grid_entries.md)",
+      "remote_table_id": "grid_entries",
+      "remote_table_label": "grid_entries",
+      "remote_table_path": "../../schema/grids/grid_entries.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "pathgrid",
-      "remote_table": "[spawn2](../../schema/spawns/spawn2.md)"
+      "remote_table": "[spawn2](../../schema/spawns/spawn2.md)",
+      "remote_table_id": "spawn2",
+      "remote_table_label": "spawn2",
+      "remote_table_path": "../../schema/spawns/spawn2.md"
     },
     {
       "local_key": "zoneid",
       "relationship_type": "One-to-One",
       "remote_key": "zoneidnumber",
-      "remote_table": "[zone](../../schema/zone/zone.md)"
+      "remote_table": "[zone](../../schema/zone/zone.md)",
+      "remote_table_id": "zone",
+      "remote_table_label": "zone",
+      "remote_table_path": "../../schema/zone/zone.md"
     }
   ],
   "search_aliases": [

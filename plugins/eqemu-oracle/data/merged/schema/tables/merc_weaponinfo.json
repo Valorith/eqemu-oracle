@@ -72,7 +72,10 @@
       "local_key": "merc_npc_type_id",
       "relationship_type": "One-to-One",
       "remote_key": "merc_npc_type_id",
-      "remote_table": "[merc_npc_types](../../schema/mercenaries/merc_npc_types.md)"
+      "remote_table": "[merc_npc_types](../../schema/mercenaries/merc_npc_types.md)",
+      "remote_table_id": "merc_npc_types",
+      "remote_table_label": "merc_npc_types",
+      "remote_table_path": "../../schema/mercenaries/merc_npc_types.md"
     }
   ],
   "search_aliases": [

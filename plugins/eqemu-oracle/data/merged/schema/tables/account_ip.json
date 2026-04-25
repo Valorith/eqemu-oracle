@@ -52,19 +52,28 @@
       "local_key": "ip",
       "relationship_type": "One-to-One",
       "remote_key": "ip_address",
-      "remote_table": "[banned_ips](../../schema/admin/banned_ips.md)"
+      "remote_table": "[banned_ips](../../schema/admin/banned_ips.md)",
+      "remote_table_id": "banned_ips",
+      "remote_table_label": "banned_ips",
+      "remote_table_path": "../../schema/admin/banned_ips.md"
     },
     {
       "local_key": "ip",
       "relationship_type": "One-to-One",
       "remote_key": "ip_address",
-      "remote_table": "[gm_ips](../../schema/admin/gm_ips.md)"
+      "remote_table": "[gm_ips](../../schema/admin/gm_ips.md)",
+      "remote_table_id": "gm_ips",
+      "remote_table_label": "gm_ips",
+      "remote_table_path": "../../schema/admin/gm_ips.md"
     },
     {
       "local_key": "ip",
       "relationship_type": "One-to-One",
       "remote_key": "exemption_ip",
-      "remote_table": "[ip_exemptions](../../schema/admin/ip_exemptions.md)"
+      "remote_table": "[ip_exemptions](../../schema/admin/ip_exemptions.md)",
+      "remote_table_id": "ip_exemptions",
+      "remote_table_label": "ip_exemptions",
+      "remote_table_path": "../../schema/admin/ip_exemptions.md"
     }
   ],
   "search_aliases": [

@@ -42,7 +42,10 @@
       "local_key": "ruleset_id",
       "relationship_type": "Has-Many",
       "remote_key": "ruleset_id",
-      "remote_table": "[rule_values](../../schema/rules/rule_values.md)"
+      "remote_table": "[rule_values](../../schema/rules/rule_values.md)",
+      "remote_table_id": "rule_values",
+      "remote_table_label": "rule_values",
+      "remote_table_path": "../../schema/rules/rule_values.md"
     }
   ],
   "search_aliases": [

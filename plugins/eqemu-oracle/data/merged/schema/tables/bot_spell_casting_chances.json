@@ -132,7 +132,10 @@
       "local_key": "spell_type_index",
       "relationship_type": "Has-Many",
       "remote_key": "type",
-      "remote_table": "[bot_spells_entries](../../schema/bots/bot_spells_entries.md)"
+      "remote_table": "[bot_spells_entries](../../schema/bots/bot_spells_entries.md)",
+      "remote_table_id": "bot_spells_entries",
+      "remote_table_label": "bot_spells_entries",
+      "remote_table_path": "../../schema/bots/bot_spells_entries.md"
     }
   ],
   "search_aliases": [

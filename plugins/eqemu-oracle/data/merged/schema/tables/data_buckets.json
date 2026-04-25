@@ -67,13 +67,19 @@
       "local_key": "key",
       "relationship_type": "Has-Many",
       "remote_key": "bucket_name",
-      "remote_table": "[merchantlist](../../schema/merchants/merchantlist.md)"
+      "remote_table": "[merchantlist](../../schema/merchants/merchantlist.md)",
+      "remote_table_id": "merchantlist",
+      "remote_table_label": "merchantlist",
+      "remote_table_path": "../../schema/merchants/merchantlist.md"
     },
     {
       "local_key": "key",
       "relationship_type": "Has-Many",
       "remote_key": "key",
-      "remote_table": "[spell_buckets](../../schema/spells/spell_buckets.md)"
+      "remote_table": "[spell_buckets](../../schema/spells/spell_buckets.md)",
+      "remote_table_id": "spell_buckets",
+      "remote_table_label": "spell_buckets",
+      "remote_table_path": "../../schema/spells/spell_buckets.md"
     }
   ],
   "search_aliases": [
