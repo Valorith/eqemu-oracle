@@ -170,6 +170,24 @@ class InstallerTest(unittest.TestCase):
                 self.assertIn("local-extensions/plugins/local.json", result["seeded_local_extension_files"])
                 self.assertNotIn("local-extensions/quests/local.json", result["seeded_local_extension_files"])
 
+    def test_install_global_plugin_rebuilds_overlay_when_local_extensions_are_active(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            home = Path(temp_dir) / "home"
+            source_root = Path(temp_dir) / "source" / "eqemu-oracle"
+            _seed_plugin_root(source_root)
+            local_quests = source_root / "local-extensions" / "quests" / "local.json"
+            local_quests.parent.mkdir(parents=True, exist_ok=True)
+            local_quests.write_text('{"sources": [{"id": "mine", "url": "file:///quests"}]}\n', encoding="utf-8")
+
+            with patch("eqemu_oracle.installer.subprocess.run") as run_mock:
+                run_mock.return_value.returncode = 0
+                run_mock.return_value.stdout = ""
+                run_mock.return_value.stderr = ""
+                result = installer.install_global_plugin(home=home, source_plugin_root=source_root)
+                rebuild_command = run_mock.call_args.args[0]
+                self.assertEqual(rebuild_command[-2:], ["--mode", "overlay"])
+                self.assertEqual(result["rebuild"]["command"][-2:], ["--mode", "overlay"])
+
 
 if __name__ == "__main__":
     unittest.main()

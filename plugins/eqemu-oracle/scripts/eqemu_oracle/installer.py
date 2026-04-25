@@ -11,7 +11,8 @@ import tempfile
 from pathlib import Path
 from typing import Any
 
-from .constants import PLUGIN_ROOT
+from .constants import DOMAIN_CHOICES, PLUGIN_ROOT
+from .extensions import load_domain_extensions
 from .utils import dump_json, ensure_dir, load_json
 
 
@@ -259,8 +260,14 @@ def _sync_plugin_contents(source_root: Path, target_root: Path, plugins_root: Pa
         return _restore_preserved_paths(target_root, preserved_paths)
 
 
+def _has_active_local_extensions(target_root: Path) -> bool:
+    local_root = target_root / "local-extensions"
+    return any(load_domain_extensions(local_root, domain) for domain in DOMAIN_CHOICES)
+
+
 def _rebuild_target_plugin(target_root: Path) -> dict[str, Any]:
     script_path = target_root / "scripts" / "eqemu_oracle.py"
+    mode = "overlay" if _has_active_local_extensions(target_root) else "committed"
     completed = subprocess.run(
         [
             sys.executable,
@@ -269,7 +276,7 @@ def _rebuild_target_plugin(target_root: Path) -> dict[str, Any]:
             "--scope",
             "all",
             "--mode",
-            "committed",
+            mode,
         ],
         capture_output=True,
         text=True,
@@ -282,7 +289,7 @@ def _rebuild_target_plugin(target_root: Path) -> dict[str, Any]:
             f"stderr:\n{completed.stderr}"
         )
     return {
-        "command": [sys.executable, str(script_path), "rebuild-extensions", "--scope", "all", "--mode", "committed"],
+        "command": [sys.executable, str(script_path), "rebuild-extensions", "--scope", "all", "--mode", mode],
         "stdout": completed.stdout.strip(),
         "stderr": completed.stderr.strip(),
     }
