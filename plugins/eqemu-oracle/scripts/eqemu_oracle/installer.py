@@ -339,39 +339,104 @@ def _plugin_config_header(plugin_name: str, marketplace_name: str) -> str:
     return f'[plugins."{plugin_name}@{marketplace_name}"]'
 
 
+_TOML_TABLE_HEADER_RE = re.compile(r"(?m)^[ \t]*\[{1,2}[^\n]+?\]{1,2}[ \t]*(?:#.*)?$")
+_CODEX_PLUGIN_HEADER_RE = re.compile(
+    r'^[ \t]*\[plugins\."(?P<plugin>[^"@\n]+)@(?P<marketplace>[^"\n]+)"\][ \t]*(?:#.*)?$'
+)
+_CODEX_ENABLED_RE = re.compile(r"^[ \t]*enabled\s*=")
+
+
+def _codex_plugin_header_info(header_line: str) -> tuple[str, str] | None:
+    match = _CODEX_PLUGIN_HEADER_RE.fullmatch(header_line.strip())
+    if match is None:
+        return None
+    return (match.group("plugin"), match.group("marketplace"))
+
+
+def _replace_section_header(section: str, header: str) -> str:
+    lines = section.splitlines(keepends=True)
+    if not lines:
+        return f"{header}\n"
+    first_line = lines[0]
+    line_ending = "\n" if first_line.endswith("\n") else ""
+    lines[0] = f"{header}{line_ending}"
+    return "".join(lines)
+
+
+def _ensure_section_enabled(section: str) -> str:
+    lines = section.splitlines(keepends=True)
+    if not lines:
+        return "enabled = true\n"
+    if not lines[0].endswith(("\n", "\r")):
+        lines[0] = f"{lines[0]}\n"
+
+    normalized_lines = [lines[0]]
+    wrote_enabled = False
+    for line in lines[1:]:
+        if _CODEX_ENABLED_RE.match(line):
+            if not wrote_enabled:
+                normalized_lines.append("enabled = true\n")
+                wrote_enabled = True
+            continue
+        normalized_lines.append(line)
+    if not wrote_enabled:
+        if len(normalized_lines) > 1 and not normalized_lines[-1].endswith(("\n", "\r")):
+            normalized_lines[-1] = f"{normalized_lines[-1]}\n"
+        normalized_lines.append("enabled = true\n")
+    return "".join(normalized_lines)
+
+
+def _append_codex_plugin_section(text: str, header: str) -> str:
+    suffix = ""
+    if text and not text.endswith("\n"):
+        suffix += "\n"
+    if text and not text.endswith("\n\n"):
+        suffix += "\n"
+    return f"{text}{suffix}{header}\nenabled = true\n"
+
+
+def _normalize_codex_plugin_config(text: str, plugin_name: str, marketplace_name: str) -> str:
+    header = _plugin_config_header(plugin_name, marketplace_name)
+    table_matches = list(_TOML_TABLE_HEADER_RE.finditer(text))
+    if not table_matches:
+        return _append_codex_plugin_section(text, header)
+
+    plugin_sections: list[tuple[int, str]] = []
+    section_infos: list[tuple[int, int, tuple[str, str] | None]] = []
+    for index, match in enumerate(table_matches):
+        section_start = match.start()
+        section_end = table_matches[index + 1].start() if index + 1 < len(table_matches) else len(text)
+        info = _codex_plugin_header_info(match.group(0))
+        section_infos.append((section_start, section_end, info))
+        if info is not None and info[0] == plugin_name:
+            plugin_sections.append((index, info[1]))
+
+    if not plugin_sections:
+        return _append_codex_plugin_section(text, header)
+
+    keep_index = next((index for index, marketplace in plugin_sections if marketplace == marketplace_name), plugin_sections[0][0])
+    pieces = [text[: table_matches[0].start()]]
+    for index, (section_start, section_end, info) in enumerate(section_infos):
+        section = text[section_start:section_end]
+        if info is not None and info[0] == plugin_name:
+            if index != keep_index:
+                continue
+            section = _replace_section_header(section, header)
+            section = _ensure_section_enabled(section)
+        pieces.append(section)
+    return "".join(pieces)
+
+
 def _enable_codex_plugin(home: Path, plugin_name: str, marketplace_name: str) -> str | None:
     codex_root = _codex_root(home)
     if not codex_root.exists():
         return None
     config_path = codex_root / "config.toml"
-    header = _plugin_config_header(plugin_name, marketplace_name)
     if config_path.exists():
         text = config_path.read_text(encoding="utf-8")
     else:
         text = ""
-    section_pattern = re.compile(
-        rf"(?ms)^{re.escape(header)}\n(?P<body>(?:^(?!\[).*\n?)*)"
-    )
-    match = section_pattern.search(text)
-    if match is None:
-        suffix = ""
-        if text and not text.endswith("\n"):
-            suffix += "\n"
-        if text and not text.endswith("\n\n"):
-            suffix += "\n"
-        text += f"{suffix}{header}\nenabled = true\n"
-    else:
-        body = match.group("body")
-        if re.search(r"(?m)^enabled\s*=\s*true\s*$", body):
-            config_path.parent.mkdir(parents=True, exist_ok=True)
-            config_path.write_text(text, encoding="utf-8")
-            return str(config_path.resolve())
-        if re.search(r"(?m)^enabled\s*=\s*false\s*$", body):
-            updated_body = re.sub(r"(?m)^enabled\s*=\s*false\s*$", "enabled = true", body, count=1)
-        else:
-            separator = "" if not body or body.endswith("\n") else "\n"
-            updated_body = f"{body}{separator}enabled = true\n"
-        text = f"{text[:match.start('body')]}{updated_body}{text[match.end('body'):]}"
+    text = _normalize_codex_plugin_config(text, plugin_name, marketplace_name)
     config_path.parent.mkdir(parents=True, exist_ok=True)
     config_path.write_text(text, encoding="utf-8")
     return str(config_path.resolve())

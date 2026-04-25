@@ -105,6 +105,64 @@ class InstallerTest(unittest.TestCase):
                 self.assertIn('[plugins."eqemu-oracle@openai-curated"]', config_path.read_text(encoding="utf-8"))
                 self.assertIn("enabled = true", config_path.read_text(encoding="utf-8"))
 
+    def test_enable_codex_plugin_repairs_duplicate_config_sections(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            home = Path(temp_dir) / "home"
+            codex_root = home / ".codex"
+            codex_root.mkdir(parents=True, exist_ok=True)
+            config_path = codex_root / "config.toml"
+            config_path.write_text(
+                "\n".join(
+                    [
+                        'model = "gpt-5"',
+                        "",
+                        '[plugins."eqemu-oracle@openai-curated"]',
+                        "enabled = false",
+                        'channel = "stable"',
+                        "",
+                        '[plugins."eqemu-oracle@openai-curated"]',
+                        "enabled = true",
+                        'channel = "duplicate"',
+                        "",
+                    ]
+                ),
+                encoding="utf-8",
+            )
+
+            installer._enable_codex_plugin(home, "eqemu-oracle", "openai-curated")
+            text = config_path.read_text(encoding="utf-8")
+            self.assertEqual(text.count('[plugins."eqemu-oracle@openai-curated"]'), 1)
+            self.assertEqual(text.count("enabled = true"), 1)
+            self.assertNotIn("enabled = false", text)
+            self.assertIn('channel = "stable"', text)
+            self.assertNotIn('channel = "duplicate"', text)
+
+    def test_enable_codex_plugin_replaces_stale_marketplace_config_section(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            home = Path(temp_dir) / "home"
+            codex_root = home / ".codex"
+            codex_root.mkdir(parents=True, exist_ok=True)
+            config_path = codex_root / "config.toml"
+            config_path.write_text(
+                "\n".join(
+                    [
+                        '[plugins."eqemu-oracle@user-local"]',
+                        "enabled = false",
+                        'channel = "stable"',
+                        "",
+                    ]
+                ),
+                encoding="utf-8",
+            )
+
+            installer._enable_codex_plugin(home, "eqemu-oracle", "openai-curated")
+            text = config_path.read_text(encoding="utf-8")
+            self.assertNotIn('[plugins."eqemu-oracle@user-local"]', text)
+            self.assertEqual(text.count('[plugins."eqemu-oracle@openai-curated"]'), 1)
+            self.assertEqual(text.count("enabled = true"), 1)
+            self.assertNotIn("enabled = false", text)
+            self.assertIn('channel = "stable"', text)
+
     def test_install_global_plugin_migrates_legacy_local_overrides_into_codex_target(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             home = Path(temp_dir) / "home"
