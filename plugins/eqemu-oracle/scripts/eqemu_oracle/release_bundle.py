@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from zipfile import ZIP_DEFLATED, ZipFile
+from zipfile import ZIP_DEFLATED, ZipFile, ZipInfo
 
 from .constants import PLUGIN_METADATA_PATH, REPO_ROOT
 
@@ -10,6 +10,7 @@ from .constants import PLUGIN_METADATA_PATH, REPO_ROOT
 SKIPPED_ROOTS = {".git", "dist", "dist-local-smoke"}
 SKIPPED_NAMES = {".DS_Store", "__pycache__", ".pytest_cache"}
 SKIPPED_SUFFIXES = {".pyc", ".pyo"}
+EXECUTABLE_BUNDLE_NAMES = {"install.sh", "install.command", "eqemu_oracle_launcher.cmd"}
 
 
 def _should_skip_bundle_path(rel_path: Path) -> bool:
@@ -48,6 +49,14 @@ def build_release_bundle(output_dir: Path, repo_root: Path = REPO_ROOT) -> Path:
             rel_path = path.relative_to(repo_root)
             if _should_skip_bundle_path(rel_path):
                 continue
-            archive.write(path, Path(bundle_root, *rel_path.parts).as_posix())
+            archive_name = Path(bundle_root, *rel_path.parts).as_posix()
+            if path.name in EXECUTABLE_BUNDLE_NAMES:
+                info = ZipInfo.from_file(path, archive_name)
+                info.compress_type = ZIP_DEFLATED
+                info.create_system = 3
+                info.external_attr = (0o755 << 16)
+                archive.writestr(info, path.read_bytes())
+            else:
+                archive.write(path, archive_name)
 
     return archive_path

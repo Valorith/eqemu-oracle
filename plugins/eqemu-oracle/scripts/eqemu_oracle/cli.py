@@ -1,11 +1,12 @@
 from __future__ import annotations
 
 import argparse
+import importlib.util
 import json
 import sys
 from pathlib import Path
 
-from .constants import CACHE_ROOT, MODE_CHOICES, REPO_ROOT, SCOPE_CHOICES
+from .constants import CACHE_ROOT, MODE_CHOICES, PLUGIN_ROOT, REPO_ROOT, SCOPE_CHOICES
 from .extensions import ExtensionValidationError
 from .installer import install_global_plugin
 from .mcp import serve_mcp
@@ -75,6 +76,21 @@ def build_bundle(args: argparse.Namespace) -> int:
     return 0
 
 
+def run_hook(args: argparse.Namespace) -> int:
+    hook_path = PLUGIN_ROOT / "hooks" / "eqemu_oracle_hooks.py"
+    spec = importlib.util.spec_from_file_location("eqemu_oracle_hooks", hook_path)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"Unable to load hook script: {hook_path}")
+    module = importlib.util.module_from_spec(spec)
+    old_argv = sys.argv
+    try:
+        sys.argv = [str(hook_path), args.mode]
+        spec.loader.exec_module(module)
+        return int(module.main())
+    finally:
+        sys.argv = old_argv
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="EQEmu Oracle plugin runtime")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -117,6 +133,10 @@ def main() -> int:
 
     serve_parser = subparsers.add_parser("mcp-serve", help="Run the stdio MCP server")
     serve_parser.set_defaults(func=serve_mcp)
+
+    hook_parser = subparsers.add_parser("hook", help=argparse.SUPPRESS)
+    hook_parser.add_argument("mode", choices=("stop", "post-tool-use"))
+    hook_parser.set_defaults(func=run_hook)
 
     args = parser.parse_args()
     CACHE_ROOT.mkdir(parents=True, exist_ok=True)

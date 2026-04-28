@@ -3,8 +3,10 @@ from __future__ import annotations
 import errno
 import itertools
 import json
+import os
 import sqlite3
 import shutil
+import stat
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -536,10 +538,19 @@ def _manifest_merge_scope(target_root: Path, scope: str) -> str:
 
 
 def _reset_domain_root(path: Path) -> None:
+    def onerror(func, failed_path, exc_info):  # type: ignore[no-untyped-def]
+        failed = Path(failed_path)
+        mode = failed.stat().st_mode if failed.exists() else 0
+        writable_mode = mode | stat.S_IWUSR
+        if failed.is_dir():
+            writable_mode |= stat.S_IXUSR
+        os.chmod(failed_path, writable_mode or stat.S_IWRITE)
+        func(failed_path)
+
     if path.exists():
         for attempt in range(5):
             try:
-                shutil.rmtree(path)
+                shutil.rmtree(path, onerror=onerror)
                 break
             except OSError as exc:
                 if exc.errno not in {errno.ENOTEMPTY, 66} or attempt == 4:

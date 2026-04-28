@@ -37,6 +37,14 @@ class HookTest(unittest.TestCase):
         self.assertEqual(manifest["hooks"], "./hooks.json")
         self.assertIn("Stop", hooks["hooks"])
         self.assertIn("PostToolUse", hooks["hooks"])
+        self.assertEqual(
+            hooks["hooks"]["Stop"][0]["hooks"][0]["command"],
+            "./scripts/eqemu_oracle_launcher.cmd hook stop",
+        )
+        self.assertEqual(
+            hooks["hooks"]["PostToolUse"][0]["hooks"][0]["command"],
+            "./scripts/eqemu_oracle_launcher.cmd hook post-tool-use",
+        )
 
     def test_stop_hook_ignores_turn_without_explicit_invocation(self) -> None:
         path = self.transcript_file(json.dumps({"role": "user", "content": "How do hooks work?"}))

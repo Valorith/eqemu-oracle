@@ -5,7 +5,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 ./hooks/eqemu_oracle_hooks.py stop",
+            "command": "./scripts/eqemu_oracle_launcher.cmd hook stop",
             "statusMessage": "Checking EQEmu Oracle answer",
             "timeout": 30
           }
@@ -18,7 +18,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 ./hooks/eqemu_oracle_hooks.py post-tool-use",
+            "command": "./scripts/eqemu_oracle_launcher.cmd hook post-tool-use",
             "statusMessage": "Checking EQEmu Oracle maintenance command",
             "timeout": 30
           }

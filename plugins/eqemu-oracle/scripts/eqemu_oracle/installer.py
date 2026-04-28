@@ -144,12 +144,60 @@ def _plugin_entry(plugin_name: str, category: str) -> dict[str, Any]:
     }
 
 
-def _write_marketplace_entry(marketplace_path: Path, plugin_name: str, category: str) -> None:
+def _normalized_plugin_identity(value: object) -> str:
+    if not isinstance(value, str):
+        return ""
+    return re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")
+
+
+def _source_path_matches_plugin(source_path: object, plugin_name: str) -> bool:
+    if not isinstance(source_path, str) or not source_path.strip():
+        return False
+    normalized_path = source_path.replace("\\", "/").strip().rstrip("/")
+    lower_path = normalized_path.lower()
+    lower_plugin_name = plugin_name.lower()
+    if lower_path in {lower_plugin_name, f"./plugins/{lower_plugin_name}", f"plugins/{lower_plugin_name}"}:
+        return True
+    if lower_path.endswith(f"/plugins/{lower_plugin_name}"):
+        return True
+    return _normalized_plugin_identity(Path(normalized_path).name) == _normalized_plugin_identity(plugin_name)
+
+
+def _marketplace_entry_matches_plugin(entry: object, plugin_name: str) -> bool:
+    if not isinstance(entry, dict):
+        return False
+    plugin_identity = _normalized_plugin_identity(plugin_name)
+    if _normalized_plugin_identity(entry.get("name")) == plugin_identity:
+        return True
+    source = entry.get("source")
+    if isinstance(source, dict) and _source_path_matches_plugin(source.get("path"), plugin_name):
+        return True
+    return False
+
+
+def _write_marketplace_entry(marketplace_path: Path, plugin_name: str, category: str) -> int:
     payload = _ensure_marketplace_shape(_load_marketplace(marketplace_path))
-    plugins = [entry for entry in payload["plugins"] if not (isinstance(entry, dict) and entry.get("name") == plugin_name)]
+    original_plugins = payload["plugins"]
+    plugins = [entry for entry in original_plugins if not _marketplace_entry_matches_plugin(entry, plugin_name)]
+    removed_count = len(original_plugins) - len(plugins)
     plugins.append(_plugin_entry(plugin_name, category))
     payload["plugins"] = plugins
     dump_json(marketplace_path, payload)
+    return removed_count
+
+
+def _remove_marketplace_entries(marketplace_path: Path, plugin_name: str) -> int:
+    if not marketplace_path.exists():
+        return 0
+    payload = _ensure_marketplace_shape(_load_marketplace(marketplace_path))
+    original_plugins = payload["plugins"]
+    plugins = [entry for entry in original_plugins if not _marketplace_entry_matches_plugin(entry, plugin_name)]
+    removed_count = len(original_plugins) - len(plugins)
+    if removed_count <= 0:
+        return 0
+    payload["plugins"] = plugins
+    dump_json(marketplace_path, payload)
+    return removed_count
 
 
 def _has_preserved_content(path: Path) -> bool:
@@ -166,6 +214,22 @@ def _copy_preserved_path(source_path: Path, destination: Path) -> None:
         shutil.copytree(source_path, destination, dirs_exist_ok=True)
     else:
         shutil.copy2(source_path, destination)
+
+
+def _copy_missing_directory_content(source_path: Path, destination: Path) -> bool:
+    copied = False
+    for source_child in source_path.rglob("*"):
+        relative_path = source_child.relative_to(source_path)
+        destination_child = destination / relative_path
+        if source_child.is_dir():
+            ensure_dir(destination_child)
+            continue
+        if destination_child.exists():
+            continue
+        ensure_dir(destination_child.parent)
+        shutil.copy2(source_child, destination_child)
+        copied = True
+    return copied
 
 
 def _clear_readonly_and_retry(function: Any, path: str, excinfo: tuple[type[BaseException], BaseException, Any]) -> None:
@@ -221,6 +285,8 @@ def _migrate_preserved_paths(source_root: Path, target_root: Path) -> list[str]:
         if not _has_preserved_content(source_path):
             continue
         if _has_preserved_content(destination):
+            if source_path.is_dir() and destination.is_dir() and _copy_missing_directory_content(source_path, destination):
+                migrated.append(relative_path.as_posix())
             continue
         _copy_preserved_path(source_path, destination)
         migrated.append(relative_path.as_posix())
@@ -319,6 +385,10 @@ def _codex_plugins_root(home: Path) -> Path:
     return _codex_marketplace_root(home) / "plugins"
 
 
+def _codex_plugin_cache_root(home: Path) -> Path:
+    return _codex_root(home) / "plugins" / "cache"
+
+
 def _resolve_install_target(home: Path) -> dict[str, Path | str]:
     codex_marketplace_path = _codex_marketplace_path(home)
     codex_plugins_root = _codex_plugins_root(home)
@@ -333,6 +403,72 @@ def _resolve_install_target(home: Path) -> dict[str, Path | str]:
         "marketplace_path": _legacy_marketplace_path(home),
         "plugins_root": _legacy_plugins_root(home),
     }
+
+
+def _same_resolved_path(left: Path, right: Path) -> bool:
+    return left.resolve() == right.resolve()
+
+
+def _known_marketplace_paths(home: Path) -> tuple[Path, ...]:
+    return (_codex_marketplace_path(home), _legacy_marketplace_path(home))
+
+
+def _prune_inactive_marketplace_entries(home: Path, active_marketplace_path: Path, plugin_name: str) -> list[dict[str, Any]]:
+    pruned: list[dict[str, Any]] = []
+    for marketplace_path in _known_marketplace_paths(home):
+        if _same_resolved_path(marketplace_path, active_marketplace_path):
+            continue
+        removed_count = _remove_marketplace_entries(marketplace_path, plugin_name)
+        if removed_count > 0:
+            pruned.append(
+                {
+                    "marketplace_path": str(marketplace_path.resolve()),
+                    "removed_entries": removed_count,
+                }
+            )
+    return pruned
+
+
+def _stale_codex_cache_plugin_roots(home: Path, plugin_name: str, target_root: Path) -> list[Path]:
+    cache_root = _codex_plugin_cache_root(home)
+    if not cache_root.exists():
+        return []
+    plugin_identity = _normalized_plugin_identity(plugin_name)
+    stale_roots: list[Path] = []
+    for candidate in cache_root.glob("*/*/local"):
+        if not candidate.is_dir():
+            continue
+        if (
+            _normalized_plugin_identity(candidate.parent.name) == plugin_identity
+            and not _same_resolved_path(candidate, target_root)
+        ):
+            stale_roots.append(candidate)
+    return stale_roots
+
+
+def _validate_stale_cache_plugin_root(cache_plugin_root: Path, home: Path, plugin_name: str) -> None:
+    resolved_root = cache_plugin_root.resolve()
+    resolved_cache_root = _codex_plugin_cache_root(home).resolve()
+    if resolved_cache_root not in resolved_root.parents:
+        raise RuntimeError(f"Refusing to remove plugin cache path outside Codex cache root: {resolved_root}")
+    plugin_identity = _normalized_plugin_identity(plugin_name)
+    if cache_plugin_root.name != "local" or _normalized_plugin_identity(cache_plugin_root.parent.name) != plugin_identity:
+        raise RuntimeError(f"Refusing to remove unexpected plugin cache path: {resolved_root}")
+
+
+def _prune_stale_codex_cache_installs(home: Path, plugin_name: str, target_root: Path) -> list[dict[str, Any]]:
+    pruned: list[dict[str, Any]] = []
+    for cache_plugin_root in _stale_codex_cache_plugin_roots(home, plugin_name, target_root):
+        _validate_stale_cache_plugin_root(cache_plugin_root, home, plugin_name)
+        migrated_paths = _migrate_preserved_paths(cache_plugin_root, target_root)
+        shutil.rmtree(cache_plugin_root, onerror=_clear_readonly_and_retry)
+        pruned.append(
+            {
+                "plugin_root": str(cache_plugin_root.resolve()),
+                "migrated_paths": migrated_paths,
+            }
+        )
+    return pruned
 
 
 def _plugin_config_header(plugin_name: str, marketplace_name: str) -> str:
@@ -459,9 +595,11 @@ def install_global_plugin(
     legacy_target_root = _legacy_plugins_root(resolved_home) / plugin_name
     if install_kind == CODEX_DESKTOP_INSTALL_KIND and legacy_target_root.resolve() != target_root.resolve():
         migrated_paths = _migrate_preserved_paths(legacy_target_root, target_root)
+    pruned_stale_cache_installs = _prune_stale_codex_cache_installs(resolved_home, plugin_name, target_root)
     seeded_local_extension_files = _seed_local_extension_scaffolds(target_root)
     category = _category_for_plugin(source_plugin_root)
-    _write_marketplace_entry(marketplace_path, plugin_name, category)
+    replaced_active_marketplace_entries = _write_marketplace_entry(marketplace_path, plugin_name, category)
+    pruned_inactive_marketplace_entries = _prune_inactive_marketplace_entries(resolved_home, marketplace_path, plugin_name)
     rebuild = _rebuild_target_plugin(target_root)
     marketplace_name = _marketplace_name(marketplace_path)
     codex_config_path: str | None = None
@@ -475,6 +613,9 @@ def install_global_plugin(
         "source_plugin_root": str(source_plugin_root.resolve()),
         "target_plugin_root": str(target_root.resolve()),
         "marketplace_path": str(marketplace_path.resolve()),
+        "replaced_active_marketplace_entries": replaced_active_marketplace_entries,
+        "pruned_inactive_marketplace_entries": pruned_inactive_marketplace_entries,
+        "pruned_stale_cache_installs": pruned_stale_cache_installs,
         "restored_paths": restored_paths,
         "migrated_paths": migrated_paths,
         "seeded_local_extension_files": seeded_local_extension_files,

@@ -105,6 +105,103 @@ class InstallerTest(unittest.TestCase):
                 self.assertIn('[plugins."eqemu-oracle@openai-curated"]', config_path.read_text(encoding="utf-8"))
                 self.assertIn("enabled = true", config_path.read_text(encoding="utf-8"))
 
+    def test_install_global_plugin_deduplicates_marketplace_registrations(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            home = Path(temp_dir) / "home"
+            source_root = Path(temp_dir) / "source" / "eqemu-oracle"
+            _seed_plugin_root(source_root)
+            codex_root = home / ".codex" / ".tmp" / "plugins"
+            marketplace_path = codex_root / ".agents" / "plugins" / "marketplace.json"
+            legacy_marketplace_path = home / ".agents" / "plugins" / "marketplace.json"
+            marketplace_path.parent.mkdir(parents=True, exist_ok=True)
+            legacy_marketplace_path.parent.mkdir(parents=True, exist_ok=True)
+            (codex_root / "plugins").mkdir(parents=True, exist_ok=True)
+            marketplace_path.write_text(
+                json.dumps(
+                    {
+                        "name": "openai-curated",
+                        "interface": {"displayName": "Codex official"},
+                        "plugins": [
+                            {"name": "eqemu-oracle", "source": {"path": "./plugins/old-eqemu-oracle"}},
+                            {"name": "EQEmu Oracle", "source": {"path": "./plugins/eqemu-oracle"}},
+                            {"name": "other-plugin", "source": {"path": "./plugins/other-plugin"}},
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            legacy_marketplace_path.write_text(
+                json.dumps(
+                    {
+                        "name": "user-local",
+                        "interface": {"displayName": "Local Plugins"},
+                        "plugins": [
+                            {"name": "eqemu-oracle", "source": {"path": "./plugins/eqemu-oracle"}},
+                            {"name": "other-legacy", "source": {"path": "./plugins/other-legacy"}},
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            with patch("eqemu_oracle.installer.subprocess.run") as run_mock:
+                run_mock.return_value.returncode = 0
+                run_mock.return_value.stdout = ""
+                run_mock.return_value.stderr = ""
+                result = installer.install_global_plugin(home=home, source_plugin_root=source_root)
+
+                marketplace = json.loads(marketplace_path.read_text(encoding="utf-8"))
+                plugin_names = [entry["name"] for entry in marketplace["plugins"]]
+                self.assertEqual(plugin_names.count("eqemu-oracle"), 1)
+                self.assertIn("other-plugin", plugin_names)
+                self.assertEqual(result["replaced_active_marketplace_entries"], 2)
+
+                legacy_marketplace = json.loads(legacy_marketplace_path.read_text(encoding="utf-8"))
+                legacy_plugin_names = [entry["name"] for entry in legacy_marketplace["plugins"]]
+                self.assertNotIn("eqemu-oracle", legacy_plugin_names)
+                self.assertIn("other-legacy", legacy_plugin_names)
+                self.assertEqual(result["pruned_inactive_marketplace_entries"][0]["removed_entries"], 1)
+
+    def test_install_global_plugin_prunes_stale_codex_cache_install_after_migration(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            home = Path(temp_dir) / "home"
+            source_root = Path(temp_dir) / "source" / "eqemu-oracle"
+            _seed_plugin_root(source_root)
+            source_example = source_root / "local-extensions" / "quests" / "_example.json"
+            source_example.parent.mkdir(parents=True, exist_ok=True)
+            source_example.write_text('{"example": true}\n', encoding="utf-8")
+            codex_root = home / ".codex" / ".tmp" / "plugins"
+            marketplace_path = codex_root / ".agents" / "plugins" / "marketplace.json"
+            marketplace_path.parent.mkdir(parents=True, exist_ok=True)
+            (codex_root / "plugins").mkdir(parents=True, exist_ok=True)
+            marketplace_path.write_text(
+                json.dumps(
+                    {
+                        "name": "openai-curated",
+                        "interface": {"displayName": "Codex official"},
+                        "plugins": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            stale_cache_root = home / ".codex" / "plugins" / "cache" / "openai-curated" / "eqemu-oracle" / "local"
+            _seed_plugin_root(stale_cache_root)
+            (stale_cache_root / "config" / "sources.local.toml").write_text("[docs]\nbranch = 'cache-local'\n", encoding="utf-8")
+            (stale_cache_root / "local-extensions" / "custom.json").write_text('{"cache": true}\n', encoding="utf-8")
+
+            with patch("eqemu_oracle.installer.subprocess.run") as run_mock:
+                run_mock.return_value.returncode = 0
+                run_mock.return_value.stdout = ""
+                run_mock.return_value.stderr = ""
+                result = installer.install_global_plugin(home=home, source_plugin_root=source_root)
+                target_root = codex_root / "plugins" / "eqemu-oracle"
+
+                self.assertFalse(stale_cache_root.exists())
+                self.assertTrue((target_root / "local-extensions" / "quests" / "_example.json").exists())
+                self.assertTrue((target_root / "config" / "sources.local.toml").exists())
+                self.assertTrue((target_root / "local-extensions" / "custom.json").exists())
+                self.assertEqual(result["pruned_stale_cache_installs"][0]["migrated_paths"], ["config/sources.local.toml", "local-extensions"])
+
     def test_enable_codex_plugin_repairs_duplicate_config_sections(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             home = Path(temp_dir) / "home"
