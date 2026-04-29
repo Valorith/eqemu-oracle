@@ -34,13 +34,19 @@
       "local_key": "char_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+      "remote_table": "[character_data](../../schema/characters/character_data.md)",
+      "remote_table_id": "character_data",
+      "remote_table_label": "character_data",
+      "remote_table_path": "../../schema/characters/character_data.md"
     },
     {
       "local_key": "currency_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[alternate_currency](../../schema/alternate-currency/alternate_currency.md)"
+      "remote_table": "[alternate_currency](../../schema/alternate-currency/alternate_currency.md)",
+      "remote_table_id": "alternate_currency",
+      "remote_table_label": "alternate_currency",
+      "remote_table_path": "../../schema/alternate-currency/alternate_currency.md"
     }
   ],
   "search_aliases": [

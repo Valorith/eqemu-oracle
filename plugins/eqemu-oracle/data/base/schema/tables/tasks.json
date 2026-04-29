@@ -164,25 +164,37 @@
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "taskid",
-      "remote_table": "[task_activities](../../schema/tasks/task_activities.md)"
+      "remote_table": "[task_activities](../../schema/tasks/task_activities.md)",
+      "remote_table_id": "task_activities",
+      "remote_table_label": "task_activities",
+      "remote_table_path": "../../schema/tasks/task_activities.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "taskid",
-      "remote_table": "[tasksets](../../schema/tasks/tasksets.md)"
+      "remote_table": "[tasksets](../../schema/tasks/tasksets.md)",
+      "remote_table_id": "tasksets",
+      "remote_table_label": "tasksets",
+      "remote_table_path": "../../schema/tasks/tasksets.md"
     },
     {
       "local_key": "type",
       "relationship_type": "Has-Many",
       "remote_key": "type",
-      "remote_table": "[character_tasks](../../schema/characters/character_tasks.md)"
+      "remote_table": "[character_tasks](../../schema/characters/character_tasks.md)",
+      "remote_table_id": "character_tasks",
+      "remote_table_label": "character_tasks",
+      "remote_table_path": "../../schema/characters/character_tasks.md"
     },
     {
       "local_key": "dz_template_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[dynamic_zone_templates](../../schema/dynamic-zones/dynamic_zone_templates.md)"
+      "remote_table": "[dynamic_zone_templates](../../schema/dynamic-zones/dynamic_zone_templates.md)",
+      "remote_table_id": "dynamic_zone_templates",
+      "remote_table_label": "dynamic_zone_templates",
+      "remote_table_path": "../../schema/dynamic-zones/dynamic_zone_templates.md"
     }
   ],
   "search_aliases": [
