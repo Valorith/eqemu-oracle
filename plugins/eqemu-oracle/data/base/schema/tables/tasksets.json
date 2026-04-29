@@ -29,7 +29,10 @@
       "local_key": "taskid",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[tasks](../../schema/tasks/tasks.md)"
+      "remote_table": "[tasks](../../schema/tasks/tasks.md)",
+      "remote_table_id": "tasks",
+      "remote_table_label": "tasks",
+      "remote_table_path": "../../schema/tasks/tasks.md"
     }
   ],
   "search_aliases": [

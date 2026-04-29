@@ -34,13 +34,19 @@
       "local_key": "launcher",
       "relationship_type": "One-to-One",
       "remote_key": "name",
-      "remote_table": "[launcher](../../schema/zone/launcher.md)"
+      "remote_table": "[launcher](../../schema/zone/launcher.md)",
+      "remote_table_id": "launcher",
+      "remote_table_label": "launcher",
+      "remote_table_path": "../../schema/zone/launcher.md"
     },
     {
       "local_key": "zone",
       "relationship_type": "One-to-One",
       "remote_key": "short_name",
-      "remote_table": "[zone](../../schema/zone/zone.md)"
+      "remote_table": "[zone](../../schema/zone/zone.md)",
+      "remote_table_id": "zone",
+      "remote_table_label": "zone",
+      "remote_table_path": "../../schema/zone/zone.md"
     }
   ],
   "search_aliases": [
