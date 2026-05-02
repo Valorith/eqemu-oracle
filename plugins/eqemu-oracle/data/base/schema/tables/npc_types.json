@@ -654,115 +654,172 @@
       "local_key": "adventure_template_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[adventure_template](../../schema/adventures/adventure_template.md)"
+      "remote_table": "[adventure_template](../../schema/adventures/adventure_template.md)",
+      "remote_table_id": "adventure_template",
+      "remote_table_label": "adventure_template",
+      "remote_table_path": "../../schema/adventures/adventure_template.md"
     },
     {
       "local_key": "alt_currency_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[alternate_currency](../../schema/alternate-currency/alternate_currency.md)"
+      "remote_table": "[alternate_currency](../../schema/alternate-currency/alternate_currency.md)",
+      "remote_table_id": "alternate_currency",
+      "remote_table_label": "alternate_currency",
+      "remote_table_path": "../../schema/alternate-currency/alternate_currency.md"
     },
     {
       "local_key": "armortint_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[npc_types_tint](../../schema/npcs/npc_types_tint.md)"
+      "remote_table": "[npc_types_tint](../../schema/npcs/npc_types_tint.md)",
+      "remote_table_id": "npc_types_tint",
+      "remote_table_label": "npc_types_tint",
+      "remote_table_path": "../../schema/npcs/npc_types_tint.md"
     },
     {
       "local_key": "emoteid",
       "relationship_type": "Has-Many",
       "remote_key": "emoteid",
-      "remote_table": "[npc_emotes](../../schema/npcs/npc_emotes.md)"
+      "remote_table": "[npc_emotes](../../schema/npcs/npc_emotes.md)",
+      "remote_table_id": "npc_emotes",
+      "remote_table_label": "npc_emotes",
+      "remote_table_path": "../../schema/npcs/npc_emotes.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "npc_id",
-      "remote_table": "[fishing](../../schema/tradeskills/fishing.md)"
+      "remote_table": "[fishing](../../schema/tradeskills/fishing.md)",
+      "remote_table_id": "fishing",
+      "remote_table_label": "fishing",
+      "remote_table_path": "../../schema/tradeskills/fishing.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "npcid",
-      "remote_table": "[merchantlist_temp](../../schema/merchants/merchantlist_temp.md)"
+      "remote_table": "[merchantlist_temp](../../schema/merchants/merchantlist_temp.md)",
+      "remote_table_id": "merchantlist_temp",
+      "remote_table_label": "merchantlist_temp",
+      "remote_table_path": "../../schema/merchants/merchantlist_temp.md"
     },
     {
       "local_key": "id",
       "relationship_type": "One-to-One",
       "remote_key": "npcID",
-      "remote_table": "[pets](../../schema/pets/pets.md)"
+      "remote_table": "[pets](../../schema/pets/pets.md)",
+      "remote_table_id": "pets",
+      "remote_table_label": "pets",
+      "remote_table_path": "../../schema/pets/pets.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "npc_id",
-      "remote_table": "[qs_player_handin_record](../../schema/query-server/qs_player_handin_record.md)"
+      "remote_table": "[qs_player_handin_record](../../schema/query-server/qs_player_handin_record.md)",
+      "remote_table_id": "qs_player_handin_record",
+      "remote_table_label": "qs_player_handin_record",
+      "remote_table_path": "../../schema/query-server/qs_player_handin_record.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "npc_id",
-      "remote_table": "[qs_player_npc_kill_record](../../schema/query-server/qs_player_npc_kill_record.md)"
+      "remote_table": "[qs_player_npc_kill_record](../../schema/query-server/qs_player_npc_kill_record.md)",
+      "remote_table_id": "qs_player_npc_kill_record",
+      "remote_table_label": "qs_player_npc_kill_record",
+      "remote_table_path": "../../schema/query-server/qs_player_npc_kill_record.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "npcid",
-      "remote_table": "[quest_globals](../../schema/data-storage/quest_globals.md)"
+      "remote_table": "[quest_globals](../../schema/data-storage/quest_globals.md)",
+      "remote_table_id": "quest_globals",
+      "remote_table_label": "quest_globals",
+      "remote_table_path": "../../schema/data-storage/quest_globals.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "npcID",
-      "remote_table": "[spawnentry](../../schema/spawns/spawnentry.md)"
+      "remote_table": "[spawnentry](../../schema/spawns/spawnentry.md)",
+      "remote_table_id": "spawnentry",
+      "remote_table_label": "spawnentry",
+      "remote_table_path": "../../schema/spawns/spawnentry.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "delivertonpc",
-      "remote_table": "[task_activities](../../schema/tasks/task_activities.md)"
+      "remote_table": "[task_activities](../../schema/tasks/task_activities.md)",
+      "remote_table_id": "task_activities",
+      "remote_table_label": "task_activities",
+      "remote_table_path": "../../schema/tasks/task_activities.md"
     },
     {
       "local_key": "loottable_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[loottable](../../schema/loot/loottable.md)"
+      "remote_table": "[loottable](../../schema/loot/loottable.md)",
+      "remote_table_id": "loottable",
+      "remote_table_label": "loottable",
+      "remote_table_path": "../../schema/loot/loottable.md"
     },
     {
       "local_key": "merchant_id",
       "relationship_type": "Has-Many",
       "remote_key": "merchantid",
-      "remote_table": "[merchantlist](../../schema/merchants/merchantlist.md)"
+      "remote_table": "[merchantlist](../../schema/merchants/merchantlist.md)",
+      "remote_table_id": "merchantlist",
+      "remote_table_label": "merchantlist",
+      "remote_table_path": "../../schema/merchants/merchantlist.md"
     },
     {
       "local_key": "name",
       "relationship_type": "One-to-One",
       "remote_key": "filename",
-      "remote_table": "[horses](../../schema/horses/horses.md)"
+      "remote_table": "[horses](../../schema/horses/horses.md)",
+      "remote_table_id": "horses",
+      "remote_table_label": "horses",
+      "remote_table_path": "../../schema/horses/horses.md"
     },
     {
       "local_key": "npc_faction_id",
       "relationship_type": "Has-Many",
       "remote_key": "id",
-      "remote_table": "[npc_faction](../../schema/npcs/npc_faction.md)"
+      "remote_table": "[npc_faction](../../schema/npcs/npc_faction.md)",
+      "remote_table_id": "npc_faction",
+      "remote_table_label": "npc_faction",
+      "remote_table_path": "../../schema/npcs/npc_faction.md"
     },
     {
       "local_key": "npc_spells_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[npc_spells](../../schema/npcs/npc_spells.md)"
+      "remote_table": "[npc_spells](../../schema/npcs/npc_spells.md)",
+      "remote_table_id": "npc_spells",
+      "remote_table_label": "npc_spells",
+      "remote_table_path": "../../schema/npcs/npc_spells.md"
     },
     {
       "local_key": "npc_spells_effects_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[npc_spells_effects](../../schema/npcs/npc_spells_effects.md)"
+      "remote_table": "[npc_spells_effects](../../schema/npcs/npc_spells_effects.md)",
+      "remote_table_id": "npc_spells_effects",
+      "remote_table_label": "npc_spells_effects",
+      "remote_table_path": "../../schema/npcs/npc_spells_effects.md"
     },
     {
       "local_key": "trap_template",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[ldon_trap_templates](../../schema/traps/ldon_trap_templates.md)"
+      "remote_table": "[ldon_trap_templates](../../schema/traps/ldon_trap_templates.md)",
+      "remote_table_id": "ldon_trap_templates",
+      "remote_table_label": "ldon_trap_templates",
+      "remote_table_path": "../../schema/traps/ldon_trap_templates.md"
     }
   ],
   "search_aliases": [

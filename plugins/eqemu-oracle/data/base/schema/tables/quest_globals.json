@@ -49,37 +49,55 @@
       "local_key": "charid",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+      "remote_table": "[character_data](../../schema/characters/character_data.md)",
+      "remote_table_id": "character_data",
+      "remote_table_label": "character_data",
+      "remote_table_path": "../../schema/characters/character_data.md"
     },
     {
       "local_key": "name",
       "relationship_type": "Has-Many",
       "remote_key": "it_qglobal",
-      "remote_table": "[item_tick](../../schema/items/item_tick.md)"
+      "remote_table": "[item_tick](../../schema/items/item_tick.md)",
+      "remote_table_id": "item_tick",
+      "remote_table_label": "item_tick",
+      "remote_table_path": "../../schema/items/item_tick.md"
     },
     {
       "local_key": "name",
       "relationship_type": "Has-Many",
       "remote_key": "qglobal",
-      "remote_table": "[merc_merchant_templates](../../schema/mercenaries/merc_merchant_templates.md)"
+      "remote_table": "[merc_merchant_templates](../../schema/mercenaries/merc_merchant_templates.md)",
+      "remote_table_id": "merc_merchant_templates",
+      "remote_table_label": "merc_merchant_templates",
+      "remote_table_path": "../../schema/mercenaries/merc_merchant_templates.md"
     },
     {
       "local_key": "name",
       "relationship_type": "Has-Many",
       "remote_key": "qglobal",
-      "remote_table": "[spell_globals](../../schema/spells/spell_globals.md)"
+      "remote_table": "[spell_globals](../../schema/spells/spell_globals.md)",
+      "remote_table_id": "spell_globals",
+      "remote_table_label": "spell_globals",
+      "remote_table_path": "../../schema/spells/spell_globals.md"
     },
     {
       "local_key": "npcid",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[npc_types](../../schema/npcs/npc_types.md)"
+      "remote_table": "[npc_types](../../schema/npcs/npc_types.md)",
+      "remote_table_id": "npc_types",
+      "remote_table_label": "npc_types",
+      "remote_table_path": "../../schema/npcs/npc_types.md"
     },
     {
       "local_key": "zoneid",
       "relationship_type": "One-to-One",
       "remote_key": "zoneidnumber",
-      "remote_table": "[zone](../../schema/zone/zone.md)"
+      "remote_table": "[zone](../../schema/zone/zone.md)",
+      "remote_table_id": "zone",
+      "remote_table_label": "zone",
+      "remote_table_path": "../../schema/zone/zone.md"
     }
   ],
   "search_aliases": [

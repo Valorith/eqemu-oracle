@@ -69,25 +69,37 @@
       "local_key": "content_flags",
       "relationship_type": "One-to-One",
       "remote_key": "flag_name",
-      "remote_table": "[content_flags](../../schema/flagging/content_flags.md)"
+      "remote_table": "[content_flags](../../schema/flagging/content_flags.md)",
+      "remote_table_id": "content_flags",
+      "remote_table_label": "content_flags",
+      "remote_table_path": "../../schema/flagging/content_flags.md"
     },
     {
       "local_key": "content_flags_disabled",
       "relationship_type": "One-to-One",
       "remote_key": "flag_name",
-      "remote_table": "[content_flags](../../schema/flagging/content_flags.md)"
+      "remote_table": "[content_flags](../../schema/flagging/content_flags.md)",
+      "remote_table_id": "content_flags",
+      "remote_table_label": "content_flags",
+      "remote_table_path": "../../schema/flagging/content_flags.md"
     },
     {
       "local_key": "spawngroupID",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[spawngroup](../../schema/spawns/spawngroup.md)"
+      "remote_table": "[spawngroup](../../schema/spawns/spawngroup.md)",
+      "remote_table_id": "spawngroup",
+      "remote_table_label": "spawngroup",
+      "remote_table_path": "../../schema/spawns/spawngroup.md"
     },
     {
       "local_key": "npcID",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[npc_types](../../schema/npcs/npc_types.md)"
+      "remote_table": "[npc_types](../../schema/npcs/npc_types.md)",
+      "remote_table_id": "npc_types",
+      "remote_table_label": "npc_types",
+      "remote_table_path": "../../schema/npcs/npc_types.md"
     }
   ],
   "search_aliases": [

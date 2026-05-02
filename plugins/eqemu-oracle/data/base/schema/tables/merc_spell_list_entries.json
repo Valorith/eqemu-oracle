@@ -64,19 +64,28 @@
       "local_key": "merc_spell_list_id",
       "relationship_type": "One-to-One",
       "remote_key": "merc_spell_list_id",
-      "remote_table": "[merc_spell_lists](../../schema/mercenaries/merc_spell_lists.md)"
+      "remote_table": "[merc_spell_lists](../../schema/mercenaries/merc_spell_lists.md)",
+      "remote_table_id": "merc_spell_lists",
+      "remote_table_label": "merc_spell_lists",
+      "remote_table_path": "../../schema/mercenaries/merc_spell_lists.md"
     },
     {
       "local_key": "spell_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[spells_new](../../schema/spells/spells_new.md)"
+      "remote_table": "[spells_new](../../schema/spells/spells_new.md)",
+      "remote_table_id": "spells_new",
+      "remote_table_label": "spells_new",
+      "remote_table_path": "../../schema/spells/spells_new.md"
     },
     {
       "local_key": "stance_id",
       "relationship_type": "Has-Many",
       "remote_key": "stance_id",
-      "remote_table": "[merc_stance_entries](../../schema/mercenaries/merc_stance_entries.md)"
+      "remote_table": "[merc_stance_entries](../../schema/mercenaries/merc_stance_entries.md)",
+      "remote_table_id": "merc_stance_entries",
+      "remote_table_label": "merc_stance_entries",
+      "remote_table_path": "../../schema/mercenaries/merc_stance_entries.md"
     }
   ],
   "search_aliases": [
