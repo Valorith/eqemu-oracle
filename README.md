@@ -1,4 +1,6 @@
-<img width="779" height="912" alt="EQEmu Oracle logo" src="https://github.com/user-attachments/assets/3fb7197b-bbb3-45a5-acf3-1ac0a50043e5" />
+<p align="center">
+  <img src="plugins/eqemu-oracle/assets/eqemu-oracle-logo.png" alt="EQEmu Oracle logo" width="280">
+</p>
 
 <p align="center">
 
@@ -10,7 +12,7 @@
   <a href="https://github.com/Valorith/eqemu-oracle/pulls?q=is%3Apr+is%3Aclosed"><img src="https://img.shields.io/github/issues-pr-closed/Valorith/eqemu-oracle" alt="Closed Pull Requests"></a>
   <a href="https://github.com/Valorith/eqemu-oracle/commits/main"><img src="https://img.shields.io/github/last-commit/Valorith/eqemu-oracle" alt="Last Commit"></a>
   <img src="assets/codex_dark_badge.svg" alt="Codex" width="22">
-  <a href="https://github.com/Valorith/eqemu-oracle"><img src="https://img.shields.io/badge/Codex-Plugin-5A7D2B" alt="Codex Plugin"></a>
+  <a href="https://github.com/Valorith/eqemu-oracle"><img src="https://img.shields.io/badge/Codex-Plugin-00AFA7" alt="Codex Plugin"></a>
 </p>
 
 # EQEmu Oracle

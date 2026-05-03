@@ -41,7 +41,7 @@
       "Use EQEmu Oracle to find the schema and relationships for this EQEmu table",
       "Use EQEmu Oracle to locate the official EQEmu documentation page for this topic"
     ],
-    "brandColor": "#5A7D2B",
+    "brandColor": "#00AFA7",
     "composerIcon": "./assets/eqemu-oracle-logo.png",
     "logo": "./assets/eqemu-oracle-logo.png",
     "screenshots": []
