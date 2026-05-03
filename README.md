@@ -15,7 +15,7 @@
   <a href="https://github.com/Valorith/eqemu-oracle"><img src="https://img.shields.io/badge/Codex-Plugin-00AFA7" alt="Codex Plugin"></a>
 </p>
 
-# EQEmu Oracle
+# <img src="plugins/eqemu-oracle/assets/eqemu-oracle-logo.png" alt="EQEmu Oracle logo" width="40"> EQEmu Oracle
 
 `EQEmu Oracle` is a <img src="assets/codex_dark_badge.svg" alt="Codex" width="16" /> Codex plugin that helps you ask EQEmu questions in plain language and get grounded answers from local EQEmu reference data.
 
@@ -23,7 +23,7 @@ It is built for people who want fast help with EQEmu scripting, database tables,
 
 This plugin is specifically designed to work with the OpenAI ChatGPT <img src="assets/codex_dark_badge.svg" alt="Codex" width="16" /> Codex App: https://chatgpt.com/codex
 
-## What It Helps With
+## <img src="plugins/eqemu-oracle/assets/eqemu-oracle-logo.png" alt="EQEmu Oracle logo" width="40"> EQEmu What It Helps With
 
 Once installed, the plugin can help <img src="assets/codex_dark_badge.svg" alt="Codex" width="16" /> Codex:
 
@@ -33,14 +33,14 @@ Once installed, the plugin can help <img src="assets/codex_dark_badge.svg" alt="
 - search across those sources from one prompt
 - use your own local server-specific extensions if you want custom data later
 
-## Why Use It
+## <img src="plugins/eqemu-oracle/assets/eqemu-oracle-logo.png" alt="EQEmu Oracle logo" width="40"> EQEmu Why Use It
 
 - Local and predictable: answers come from staged EQEmu data in this repository
 - Better than ad hoc search: <img src="assets/codex_dark_badge.svg" alt="Codex" width="16" /> Codex can pull from a purpose-built EQEmu source instead of guessing
 - Friendly workflow: ask normal questions instead of memorizing where the information lives
 - Expandable: you can add your own schema, docs, or quest API overlays for private server changes
 
-## Quick Start
+## <img src="plugins/eqemu-oracle/assets/eqemu-oracle-logo.png" alt="EQEmu Oracle logo" width="40"> EQEmu Quick Start
 
 If you only care about getting it running, follow these steps:
 
@@ -77,7 +77,7 @@ If you only care about getting it running, follow these steps:
    <img width="756" height="133" alt="image" src="https://github.com/user-attachments/assets/78ac79e9-c8fe-4f48-abe4-c31dcd4118d3" />
 
 
-## Development
+## <img src="plugins/eqemu-oracle/assets/eqemu-oracle-logo.png" alt="EQEmu Oracle logo" width="40"> EQEmu Development
 
 If you are developing the plugin from a local checkout and want your latest changes to be available globally, rerun the install script after you edit the plugin files.
 
@@ -105,7 +105,7 @@ Do not open only `plugins/eqemu-oracle/`. The repo-local marketplace and MCP wir
 
 When this repository is opened as a <img src="assets/codex_dark_badge.svg" alt="Codex" width="16" /> Codex project, the repo-local plugin should still appear in that project's Plugins UI without any separate marketplace import step.
 
-## First Use
+## <img src="plugins/eqemu-oracle/assets/eqemu-oracle-logo.png" alt="EQEmu Oracle logo" width="40"> EQEmu First Use
 
 Once the plugin is installed, try prompts like these:
 
@@ -116,7 +116,7 @@ Once the plugin is installed, try prompts like these:
 
 You do not need to manually start the plugin in normal use. <img src="assets/codex_dark_badge.svg" alt="Codex" width="16" /> Codex handles that through the included MCP configuration.
 
-## What You Can Ask
+## <img src="plugins/eqemu-oracle/assets/eqemu-oracle-logo.png" alt="EQEmu Oracle logo" width="40"> EQEmu What You Can Ask
 
 The plugin is most useful for three kinds of questions:
 
@@ -130,7 +130,7 @@ Examples:
 - `Use EQEmu Oracle to show me how EVENT_SAY works in Perl`
 - `Use EQEmu Oracle to explain the difference between a quest method and a plugin call`
 
-### Database Help
+### <img src="plugins/eqemu-oracle/assets/eqemu-oracle-logo.png" alt="EQEmu Oracle logo" width="40"> EQEmu Database Help
 
 Ask about EQEmu tables, columns, and related records.
 
@@ -140,7 +140,7 @@ Examples:
 - `Use EQEmu Oracle to find tables related to loot`
 - `Use EQEmu Oracle to show the columns for spawn2`
 
-### Documentation Lookup
+### <img src="plugins/eqemu-oracle/assets/eqemu-oracle-logo.png" alt="EQEmu Oracle logo" width="40"> EQEmu Documentation Lookup
 
 Ask <img src="assets/codex_dark_badge.svg" alt="Codex" width="16" /> Codex to find official docs and summarize them.
 
@@ -150,7 +150,7 @@ Examples:
 - `Use EQEmu Oracle to summarize the task system docs`
 - `Use EQEmu Oracle to find the EQEmu docs page about server configuration`
 
-## How It Works
+## <img src="plugins/eqemu-oracle/assets/eqemu-oracle-logo.png" alt="EQEmu Oracle logo" width="40"> EQEmu How It Works
 
 At a high level, the plugin gives <img src="assets/codex_dark_badge.svg" alt="Codex" width="16" /> Codex a local EQEmu reference source made from:
 
@@ -160,7 +160,7 @@ At a high level, the plugin gives <img src="assets/codex_dark_badge.svg" alt="Co
 
 That means answers are based on the staged data in this repository instead of loose web browsing.
 
-## Troubleshooting
+## <img src="plugins/eqemu-oracle/assets/eqemu-oracle-logo.png" alt="EQEmu Oracle logo" width="40"> EQEmu Troubleshooting
 
 ### The Plugin Does Not Show Up In <img src="assets/codex_dark_badge.svg" alt="Codex" width="16" /> Codex
 
@@ -204,7 +204,7 @@ If the command starts cleanly, the runtime is available and <img src="assets/cod
 
 Download or clone the full repository instead. The install script expects the full repository root, not just `plugins/eqemu-oracle/`.
 
-## Optional: Add Your Own Server Knowledge
+## <img src="plugins/eqemu-oracle/assets/eqemu-oracle-logo.png" alt="EQEmu Oracle logo" width="40"> EQEmu Optional: Add Your Own Server Knowledge
 
 If your server has custom tables, docs, quest API behavior, or preferred quest/plugin example repositories, you can add that on top of the built-in EQEmu data.
 
@@ -217,7 +217,7 @@ For local additions, edit the installer-created `local.json` scaffold files or c
 
 This is optional. Most users can ignore it until they need custom behavior.
 
-## Optional: Point To Different Sources
+## <img src="plugins/eqemu-oracle/assets/eqemu-oracle-logo.png" alt="EQEmu Oracle logo" width="40"> EQEmu Optional: Point To Different Sources
 
 If you want to use a fork, mirror, or different upstream source set:
 
@@ -227,7 +227,7 @@ If you want to use a fork, mirror, or different upstream source set:
 
 The local file is meant for personal overrides.
 
-## Project Layout
+## <img src="plugins/eqemu-oracle/assets/eqemu-oracle-logo.png" alt="EQEmu Oracle logo" width="40"> EQEmu Project Layout
 
 If you want to know where things live:
 
@@ -240,6 +240,6 @@ If you want to know where things live:
 - `plugins/eqemu-oracle/extensions/`: shared extension files
 - `plugins/eqemu-oracle/local-extensions/`: local-only extension files
 
-## In One Sentence
+## <img src="plugins/eqemu-oracle/assets/eqemu-oracle-logo.png" alt="EQEmu Oracle logo" width="40"> EQEmu In One Sentence
 
 If you use <img src="assets/codex_dark_badge.svg" alt="Codex" width="16" /> Codex for EQEmu work, `EQEmu Oracle` gives it a clean, local source for scripting help, schema lookup, and documentation answers.
