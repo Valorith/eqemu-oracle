@@ -489,7 +489,7 @@ def _plugin_config_header(plugin_name: str, marketplace_name: str) -> str:
 
 _TOML_TABLE_HEADER_RE = re.compile(r"(?m)^[ \t]*\[{1,2}[^\n]+?\]{1,2}[ \t]*(?:#.*)?$")
 _CODEX_PLUGIN_HEADER_RE = re.compile(
-    r'^[ \t]*\[plugins\."(?P<plugin>[^"@\n]+)@(?P<marketplace>[^"\n]+)"\][ \t]*(?:#.*)?$'
+    r"""^[ \t]*\[plugins\.(?P<quote>["'])(?P<plugin>[^"'@\n]+)@(?P<marketplace>[^"'\n]+)(?P=quote)\][ \t]*(?:#.*)?$"""
 )
 
 
