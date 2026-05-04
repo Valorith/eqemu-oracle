@@ -23,6 +23,27 @@ class UpdaterTest(unittest.TestCase):
 
         git_mock.assert_not_called()
 
+    def test_update_plugin_repo_refuses_non_oracle_remote_before_fetch(self) -> None:
+        calls: list[tuple[str, ...]] = []
+        responses = {
+            ("rev-parse", "--is-inside-work-tree"): "true",
+            ("config", "--get", "remote.origin.url"): "https://github.com/openai/plugins.git",
+        }
+
+        def fake_git(args: list[str], cwd: Path) -> str:
+            calls.append(tuple(args))
+            return responses[tuple(args)]
+
+        with patch("eqemu_oracle.updater._git", side_effect=fake_git), _valid_codex_config_patch():
+            with self.assertRaisesRegex(RuntimeError, "not an eqemu-oracle repository"):
+                updater.update_plugin_repo(Path("C:/repo"))
+
+        self.assertNotIn(("fetch", "origin"), calls)
+
+    def test_update_plugin_repo_accepts_forked_oracle_remote(self) -> None:
+        self.assertEqual(updater._remote_repo_name("git@github.com:example/eqemu-oracle.git"), "eqemu-oracle")
+        self.assertEqual(updater._remote_repo_name("https://github.com/example/eqemu-oracle"), "eqemu-oracle")
+
     def test_update_plugin_repo_refuses_dirty_worktree(self) -> None:
         responses = {
             ("rev-parse", "--is-inside-work-tree"): "true",

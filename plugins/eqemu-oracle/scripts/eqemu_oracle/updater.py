@@ -26,6 +26,22 @@ def _git(args: list[str], cwd: Path) -> str:
     return _run_command(["git", *args], cwd)
 
 
+def _remote_repo_name(remote_url: str) -> str:
+    normalized = remote_url.strip().rstrip("/")
+    if normalized.endswith(".git"):
+        normalized = normalized[:-4]
+    normalized = normalized.replace("\\", "/")
+    return normalized.rsplit("/", 1)[-1].rsplit(":", 1)[-1]
+
+
+def _validate_update_remote(remote: str, remote_url: str) -> None:
+    if _remote_repo_name(remote_url) != "eqemu-oracle":
+        raise RuntimeError(
+            "Refusing to update EQEmu Oracle from "
+            f"remote `{remote}` because it points to `{remote_url}`, not an eqemu-oracle repository."
+        )
+
+
 def _current_branch(repo_root: Path) -> str | None:
     branch = _git(["rev-parse", "--abbrev-ref", "HEAD"], repo_root).strip()
     return None if branch == "HEAD" else branch
@@ -68,6 +84,7 @@ def update_plugin_repo(
 
     _git(["rev-parse", "--is-inside-work-tree"], root)
     remote_url = _git(["config", "--get", f"remote.{remote}.url"], root).strip()
+    _validate_update_remote(remote, remote_url)
     current_branch = _current_branch(root)
     target_branch = branch or current_branch or "main"
     status = _git(["status", "--porcelain"], root)
