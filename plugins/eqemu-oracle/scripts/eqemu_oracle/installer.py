@@ -11,6 +11,14 @@ import tempfile
 from pathlib import Path
 from typing import Any
 
+try:
+    import tomllib as _tomllib
+except ModuleNotFoundError:
+    try:
+        import tomli as _tomllib  # type: ignore[import-not-found]
+    except ModuleNotFoundError:
+        _tomllib = None
+
 from .constants import DOMAIN_CHOICES, PLUGIN_ROOT
 from .extensions import load_domain_extensions
 from .utils import dump_json, ensure_dir, load_json
@@ -73,6 +81,10 @@ LOCAL_EXTENSION_SCAFFOLDS = {
         },
     },
 }
+
+
+class CodexConfigError(RuntimeError):
+    pass
 
 
 def _category_for_plugin(plugin_root: Path) -> str:
@@ -479,7 +491,6 @@ _TOML_TABLE_HEADER_RE = re.compile(r"(?m)^[ \t]*\[{1,2}[^\n]+?\]{1,2}[ \t]*(?:#.
 _CODEX_PLUGIN_HEADER_RE = re.compile(
     r'^[ \t]*\[plugins\."(?P<plugin>[^"@\n]+)@(?P<marketplace>[^"\n]+)"\][ \t]*(?:#.*)?$'
 )
-_CODEX_ENABLED_RE = re.compile(r"^[ \t]*enabled\s*=")
 
 
 def _codex_plugin_header_info(header_line: str) -> tuple[str, str] | None:
@@ -499,6 +510,81 @@ def _replace_section_header(section: str, header: str) -> str:
     return "".join(lines)
 
 
+def _find_unquoted_char(value: str, target: str) -> int:
+    in_single = False
+    in_double = False
+    escaped = False
+    for index, char in enumerate(value):
+        if char == "\\" and in_double and not escaped:
+            escaped = True
+            continue
+        if char == "'" and not in_double and not escaped:
+            in_single = not in_single
+        elif char == '"' and not in_single and not escaped:
+            in_double = not in_double
+        elif char == target and not in_single and not in_double:
+            return index
+        escaped = False
+    return -1
+
+
+def _split_toml_key(raw_key: str) -> list[str]:
+    parts: list[str] = []
+    remainder = raw_key.strip()
+    while remainder:
+        if remainder[0] in {'"', "'"}:
+            quote = remainder[0]
+            escaped = False
+            end_index = -1
+            for index, char in enumerate(remainder[1:], start=1):
+                if char == "\\" and quote == '"' and not escaped:
+                    escaped = True
+                    continue
+                if char == quote and not escaped:
+                    end_index = index
+                    break
+                escaped = False
+            if end_index < 0:
+                return []
+            parts.append(remainder[1:end_index])
+            remainder = remainder[end_index + 1 :].strip()
+        else:
+            dot_index = _find_unquoted_char(remainder, ".")
+            if dot_index < 0:
+                part = remainder.strip()
+                remainder = ""
+            else:
+                part = remainder[:dot_index].strip()
+                remainder = remainder[dot_index:].strip()
+            if not part:
+                return []
+            parts.append(part)
+
+        if not remainder:
+            break
+        if not remainder.startswith("."):
+            return []
+        remainder = remainder[1:].strip()
+    return parts
+
+
+def _toml_assignment_key(line: str) -> str | None:
+    stripped = line.lstrip()
+    if not stripped or stripped.startswith(("#", "[")):
+        return None
+    equals_index = _find_unquoted_char(stripped, "=")
+    if equals_index < 0:
+        return None
+    key_parts = _split_toml_key(stripped[:equals_index])
+    if len(key_parts) != 1:
+        return None
+    return key_parts[0]
+
+
+def _is_enabled_assignment(line: str) -> bool:
+    return _toml_assignment_key(line) == "enabled"
+
+
 def _ensure_section_enabled(section: str) -> str:
     lines = section.splitlines(keepends=True)
     if not lines:
@@ -509,7 +595,7 @@ def _ensure_section_enabled(section: str) -> str:
     normalized_lines = [lines[0]]
     wrote_enabled = False
     for line in lines[1:]:
-        if _CODEX_ENABLED_RE.match(line):
+        if _is_enabled_assignment(line):
             if not wrote_enabled:
                 normalized_lines.append("enabled = true\n")
                 wrote_enabled = True
@@ -529,6 +615,34 @@ def _append_codex_plugin_section(text: str, header: str) -> str:
     if text and not text.endswith("\n\n"):
         suffix += "\n"
     return f"{text}{suffix}{header}\nenabled = true\n"
+
+
+def _validate_codex_config_toml(text: str, config_path: Path) -> None:
+    if _tomllib is None:
+        return
+    try:
+        _tomllib.loads(text)
+    except Exception as exc:
+        raise CodexConfigError(f"Refusing to write invalid Codex config TOML at {config_path}: {exc}") from exc
+
+
+def _write_codex_config_atomically(config_path: Path, text: str) -> None:
+    config_path.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.NamedTemporaryFile(
+        "w",
+        encoding="utf-8",
+        dir=str(config_path.parent),
+        prefix=f".{config_path.name}.",
+        suffix=".tmp",
+        delete=False,
+    ) as temp_file:
+        temp_file.write(text)
+        temp_path = Path(temp_file.name)
+    try:
+        os.replace(temp_path, config_path)
+    finally:
+        if temp_path.exists():
+            temp_path.unlink()
 
 
 def _normalize_codex_plugin_config(text: str, plugin_name: str, marketplace_name: str) -> str:
@@ -563,6 +677,18 @@ def _normalize_codex_plugin_config(text: str, plugin_name: str, marketplace_name
     return "".join(pieces)
 
 
+def validate_codex_config(home: Path | None = None) -> str | None:
+    resolved_home = home.resolve() if home is not None else Path.home().resolve()
+    codex_root = _codex_root(resolved_home)
+    if not codex_root.exists():
+        return None
+    config_path = codex_root / "config.toml"
+    if not config_path.exists():
+        return None
+    _validate_codex_config_toml(config_path.read_text(encoding="utf-8"), config_path)
+    return str(config_path.resolve())
+
+
 def _enable_codex_plugin(home: Path, plugin_name: str, marketplace_name: str) -> str | None:
     codex_root = _codex_root(home)
     if not codex_root.exists():
@@ -573,8 +699,8 @@ def _enable_codex_plugin(home: Path, plugin_name: str, marketplace_name: str) ->
     else:
         text = ""
     text = _normalize_codex_plugin_config(text, plugin_name, marketplace_name)
-    config_path.parent.mkdir(parents=True, exist_ok=True)
-    config_path.write_text(text, encoding="utf-8")
+    _validate_codex_config_toml(text, config_path)
+    _write_codex_config_atomically(config_path, text)
     return str(config_path.resolve())
 
 

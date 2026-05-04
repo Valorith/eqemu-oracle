@@ -10,7 +10,19 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from eqemu_oracle import updater  # noqa: E402
 
 
+def _valid_codex_config_patch():
+    return patch("eqemu_oracle.updater.validate_codex_config", return_value="/home/test/.codex/config.toml")
+
+
 class UpdaterTest(unittest.TestCase):
+    def test_update_plugin_repo_refuses_invalid_codex_config_before_git_changes(self) -> None:
+        with patch("eqemu_oracle.updater.validate_codex_config", side_effect=RuntimeError("duplicate key")):
+            with patch("eqemu_oracle.updater._git") as git_mock:
+                with self.assertRaisesRegex(RuntimeError, "duplicate key"):
+                    updater.update_plugin_repo(Path("C:/repo"))
+
+        git_mock.assert_not_called()
+
     def test_update_plugin_repo_refuses_dirty_worktree(self) -> None:
         responses = {
             ("rev-parse", "--is-inside-work-tree"): "true",
@@ -22,9 +34,11 @@ class UpdaterTest(unittest.TestCase):
         def fake_git(args: list[str], cwd: Path) -> str:
             return responses[tuple(args)]
 
-        with patch("eqemu_oracle.updater._git", side_effect=fake_git):
+        with patch("eqemu_oracle.updater._git", side_effect=fake_git), _valid_codex_config_patch() as validate_config:
             with self.assertRaisesRegex(RuntimeError, "dirty worktree"):
                 updater.update_plugin_repo(Path("C:/repo"))
+
+        validate_config.assert_called_once_with()
 
     def test_update_plugin_repo_fetches_pulls_and_rebuilds(self) -> None:
         calls: list[tuple[str, ...]] = []
@@ -45,7 +59,7 @@ class UpdaterTest(unittest.TestCase):
                 return value.pop(0)
             return value
 
-        with patch("eqemu_oracle.updater._git", side_effect=fake_git):
+        with patch("eqemu_oracle.updater._git", side_effect=fake_git), _valid_codex_config_patch() as validate_config:
             with patch("eqemu_oracle.updater.rebuild_committed_dataset", return_value={"counts": {"quest-api": 1}}):
                 result = updater.update_plugin_repo(Path("C:/repo"))
 
@@ -54,8 +68,11 @@ class UpdaterTest(unittest.TestCase):
         self.assertTrue(result["code_changed"])
         self.assertTrue(result["rebuild"]["ran"])
         self.assertEqual(result["rebuild"]["manifest"]["counts"]["quest-api"], 1)
+        self.assertEqual(result["codex_config_validation"]["preflight_path"], "/home/test/.codex/config.toml")
+        self.assertEqual(result["codex_config_validation"]["postflight_path"], "/home/test/.codex/config.toml")
         self.assertIn(("fetch", "origin"), calls)
         self.assertIn(("pull", "--ff-only", "origin", "main"), calls)
+        self.assertEqual(validate_config.call_count, 2)
 
     def test_update_plugin_repo_skips_rebuild_when_requested(self) -> None:
         responses = {
@@ -74,7 +91,7 @@ class UpdaterTest(unittest.TestCase):
                 return value.pop(0)
             return value
 
-        with patch("eqemu_oracle.updater._git", side_effect=fake_git):
+        with patch("eqemu_oracle.updater._git", side_effect=fake_git), _valid_codex_config_patch() as validate_config:
             with patch("eqemu_oracle.updater.rebuild_committed_dataset") as rebuild_mock:
                 result = updater.update_plugin_repo(Path("C:/repo"), skip_rebuild=True)
 
@@ -82,6 +99,7 @@ class UpdaterTest(unittest.TestCase):
         self.assertFalse(result["code_changed"])
         self.assertFalse(result["rebuild"]["ran"])
         self.assertEqual(result["branch"], "feature/test")
+        self.assertEqual(validate_config.call_count, 2)
 
     def test_update_plugin_repo_switches_to_requested_branch_before_pull(self) -> None:
         calls: list[tuple[str, ...]] = []
@@ -104,7 +122,7 @@ class UpdaterTest(unittest.TestCase):
                 return value.pop(0)
             return value
 
-        with patch("eqemu_oracle.updater._git", side_effect=fake_git):
+        with patch("eqemu_oracle.updater._git", side_effect=fake_git), _valid_codex_config_patch() as validate_config:
             with patch("eqemu_oracle.updater.rebuild_committed_dataset", return_value={"counts": {"quest-api": 1}}):
                 result = updater.update_plugin_repo(Path("C:/repo"), branch="release")
 
@@ -113,6 +131,7 @@ class UpdaterTest(unittest.TestCase):
         self.assertTrue(result["switched_branches"])
         self.assertIn(("switch", "release"), calls)
         self.assertLess(calls.index(("switch", "release")), calls.index(("pull", "--ff-only", "origin", "release")))
+        self.assertEqual(validate_config.call_count, 2)
 
     def test_update_plugin_repo_can_restore_previous_branch(self) -> None:
         calls: list[tuple[str, ...]] = []
@@ -136,7 +155,7 @@ class UpdaterTest(unittest.TestCase):
                 return value.pop(0)
             return value
 
-        with patch("eqemu_oracle.updater._git", side_effect=fake_git):
+        with patch("eqemu_oracle.updater._git", side_effect=fake_git), _valid_codex_config_patch() as validate_config:
             with patch("eqemu_oracle.updater.rebuild_committed_dataset", return_value={"counts": {"quest-api": 1}}):
                 result = updater.update_plugin_repo(Path("C:/repo"), branch="release", restore_branch=True)
 
@@ -144,6 +163,7 @@ class UpdaterTest(unittest.TestCase):
         self.assertTrue(result["restored_branch"])
         self.assertIn(("switch", "main"), calls)
         self.assertLess(calls.index(("pull", "--ff-only", "origin", "release")), calls.index(("switch", "main")))
+        self.assertEqual(validate_config.call_count, 2)
 
 
 if __name__ == "__main__":

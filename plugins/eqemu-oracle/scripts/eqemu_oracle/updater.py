@@ -7,6 +7,7 @@ from typing import Any
 
 from .constants import BASE_ROOT, MERGED_ROOT, REPO_ROOT
 from .dataset import write_merged_dataset
+from .installer import validate_codex_config
 from .operations import maintenance_lock
 
 
@@ -63,6 +64,7 @@ def update_plugin_repo(
 ) -> dict[str, Any]:
     root = repo_root or REPO_ROOT
     root = Path(root)
+    codex_config_preflight_path = validate_codex_config()
 
     _git(["rev-parse", "--is-inside-work-tree"], root)
     remote_url = _git(["config", "--get", f"remote.{remote}.url"], root).strip()
@@ -102,6 +104,10 @@ def update_plugin_repo(
             "dirty_worktree": dirty,
             "pull_output": pull_output,
             "rebuild": {"ran": False},
+            "codex_config_validation": {
+                "preflight_path": codex_config_preflight_path,
+                "postflight_path": None,
+            },
         }
 
         if not skip_rebuild:
@@ -109,6 +115,8 @@ def update_plugin_repo(
                 "ran": True,
                 "manifest": rebuild_committed_dataset(),
             }
+
+        result["codex_config_validation"]["postflight_path"] = validate_codex_config()
     finally:
         if restore_branch and switched_branches and current_branch:
             _git(["switch", current_branch], root)
