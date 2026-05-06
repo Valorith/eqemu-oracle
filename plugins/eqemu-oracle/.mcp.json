@@ -2,7 +2,7 @@
   "mcpServers": {
     "eqemu-oracle": {
       "type": "stdio",
-      "command": "./plugins/eqemu-oracle/scripts/eqemu_oracle_launcher.cmd",
+      "command": "./scripts/eqemu_oracle_launcher.cmd",
       "args": [
         "mcp-serve"
       ],

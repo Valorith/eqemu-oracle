@@ -11,8 +11,9 @@ class ManifestTest(unittest.TestCase):
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
 
         server = manifest["mcpServers"]["eqemu-oracle"]
-        self.assertEqual(server["command"], "./plugins/eqemu-oracle/scripts/eqemu_oracle_launcher.cmd")
+        self.assertEqual(server["command"], "./scripts/eqemu_oracle_launcher.cmd")
         self.assertEqual(server["args"], ["mcp-serve"])
+        self.assertTrue((manifest_path.parent / server["command"]).exists())
 
 
 if __name__ == "__main__":
