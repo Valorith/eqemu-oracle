@@ -94,10 +94,12 @@ class InstallerTest(unittest.TestCase):
                 cache_root = home / ".codex" / "plugins" / "cache" / "openai-curated" / "eqemu-oracle" / "local"
                 config_path = home / ".codex" / "config.toml"
                 self.assertEqual(result["install_kind"], installer.CODEX_DESKTOP_INSTALL_KIND)
-                self.assertIsNone(result["codex_cache_plugin_root"])
+                self.assertEqual(result["codex_cache_plugin_root"], str(cache_root.resolve()))
                 self.assertEqual(result["codex_config_path"], str(config_path.resolve()))
                 self.assertEqual(result["target_plugin_root"], str(target_root.resolve()))
-                self.assertFalse(cache_root.exists())
+                self.assertTrue(cache_root.exists())
+                self.assertEqual(result["codex_cache_activation_copy"]["target_root"], str(target_root.resolve()))
+                self.assertTrue((cache_root / ".codex-plugin" / "plugin.json").exists())
                 marketplace = json.loads(marketplace_path.read_text(encoding="utf-8"))
                 self.assertEqual(marketplace["name"], "openai-curated")
                 self.assertEqual(marketplace["plugins"][0]["name"], "eqemu-oracle")
@@ -105,6 +107,9 @@ class InstallerTest(unittest.TestCase):
                 self.assertIn('[plugins."eqemu-oracle@openai-curated"]', config_path.read_text(encoding="utf-8"))
                 self.assertIn("enabled = true", config_path.read_text(encoding="utf-8"))
                 self.assertIn('[mcp_servers."eqemu-oracle"]', config_path.read_text(encoding="utf-8"))
+                self.assertIn('[marketplaces."openai-curated"]', config_path.read_text(encoding="utf-8"))
+                self.assertIn('source_type = "local"', config_path.read_text(encoding="utf-8"))
+                self.assertIn(str(codex_root.resolve()).replace("\\", "\\\\"), config_path.read_text(encoding="utf-8"))
                 self.assertIn(str((target_root / "scripts" / "eqemu_oracle_launcher.cmd").resolve()).replace("\\", "\\\\"), config_path.read_text(encoding="utf-8"))
                 self.assertIn(str(target_root.resolve()).replace("\\", "\\\\"), config_path.read_text(encoding="utf-8"))
 
@@ -240,6 +245,8 @@ class InstallerTest(unittest.TestCase):
             _seed_plugin_root(stale_cache_root)
             (stale_cache_root / "config" / "sources.local.toml").write_text("[docs]\nbranch = 'cache-local'\n", encoding="utf-8")
             (stale_cache_root / "local-extensions" / "custom.json").write_text('{"cache": true}\n', encoding="utf-8")
+            hashed_cache_root = home / ".codex" / "plugins" / "cache" / "openai-curated" / "eqemu-oracle" / "6807e4de"
+            _seed_plugin_root(hashed_cache_root)
 
             with patch("eqemu_oracle.installer.subprocess.run") as run_mock:
                 run_mock.return_value.returncode = 0
@@ -248,11 +255,15 @@ class InstallerTest(unittest.TestCase):
                 result = installer.install_global_plugin(home=home, source_plugin_root=source_root)
                 target_root = codex_root / "plugins" / "eqemu-oracle"
 
-                self.assertFalse(stale_cache_root.exists())
+                activation_copy = hashed_cache_root.parent / "local"
+                self.assertTrue(activation_copy.exists())
+                self.assertTrue((activation_copy / ".codex-plugin" / "plugin.json").exists())
+                self.assertFalse(hashed_cache_root.exists())
                 self.assertTrue((target_root / "local-extensions" / "quests" / "_example.json").exists())
                 self.assertTrue((target_root / "config" / "sources.local.toml").exists())
                 self.assertTrue((target_root / "local-extensions" / "custom.json").exists())
-                self.assertEqual(result["pruned_stale_cache_installs"][0]["migrated_paths"], ["config/sources.local.toml", "local-extensions"])
+                migrated_path_sets = [entry["migrated_paths"] for entry in result["pruned_stale_cache_installs"]]
+                self.assertIn(["config/sources.local.toml", "local-extensions"], migrated_path_sets)
 
     def test_enable_codex_plugin_repairs_duplicate_config_sections(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -319,6 +330,40 @@ class InstallerTest(unittest.TestCase):
             self.assertIn(str((target_root / "scripts" / "eqemu_oracle_launcher.cmd").resolve()).replace("\\", "\\\\"), text)
             self.assertIn('args = ["mcp-serve"]', text)
             self.assertIn(str(target_root.resolve()).replace("\\", "\\\\"), text)
+            installer.validate_codex_config(home)
+
+    def test_enable_codex_plugin_writes_local_marketplace_source_config(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            home = Path(temp_dir) / "home"
+            codex_root = home / ".codex"
+            codex_root.mkdir(parents=True, exist_ok=True)
+            marketplace_root = codex_root / ".tmp" / "plugins"
+            marketplace_root.mkdir(parents=True, exist_ok=True)
+            config_path = codex_root / "config.toml"
+            config_path.write_text(
+                "\n".join(
+                    [
+                        "[marketplaces.openai-curated]",
+                        'source_type = "remote"',
+                        'source = "old"',
+                        "",
+                        '[marketplaces."openai-curated"]',
+                        'source_type = "local"',
+                        'source = "duplicate"',
+                        "",
+                    ]
+                ),
+                encoding="utf-8",
+            )
+
+            installer._enable_codex_plugin(home, "eqemu-oracle", "openai-curated", marketplace_root=marketplace_root)
+
+            text = config_path.read_text(encoding="utf-8")
+            self.assertEqual(text.count('[marketplaces."openai-curated"]'), 1)
+            self.assertNotIn('source = "old"', text)
+            self.assertNotIn('source = "duplicate"', text)
+            self.assertIn('source_type = "local"', text)
+            self.assertIn(str(marketplace_root.resolve()).replace("\\", "\\\\"), text)
             installer.validate_codex_config(home)
 
     def test_enable_codex_plugin_repairs_duplicate_enabled_key_spellings(self) -> None:

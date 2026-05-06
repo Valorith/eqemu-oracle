@@ -546,6 +546,10 @@ def _codex_plugin_cache_root(home: Path) -> Path:
     return _codex_root(home) / "plugins" / "cache"
 
 
+def _codex_cache_activation_root(home: Path, marketplace_name: str, plugin_name: str) -> Path:
+    return _codex_plugin_cache_root(home) / marketplace_name / plugin_name / "local"
+
+
 def _resolve_install_target(home: Path) -> dict[str, Path | str]:
     codex_marketplace_path = _codex_marketplace_path(home)
     codex_plugins_root = _codex_plugins_root(home)
@@ -605,7 +609,7 @@ def _stale_codex_cache_plugin_roots(home: Path, plugin_name: str, target_root: P
         return []
     plugin_identity = _normalized_plugin_identity(plugin_name)
     stale_roots: list[Path] = []
-    for candidate in cache_root.glob("*/*/local"):
+    for candidate in cache_root.glob("*/*/*"):
         if not candidate.is_dir():
             continue
         if (
@@ -622,8 +626,16 @@ def _validate_stale_cache_plugin_root(cache_plugin_root: Path, home: Path, plugi
     if resolved_cache_root not in resolved_root.parents:
         raise RuntimeError(f"Refusing to remove plugin cache path outside Codex cache root: {resolved_root}")
     plugin_identity = _normalized_plugin_identity(plugin_name)
-    if cache_plugin_root.name != "local" or _normalized_plugin_identity(cache_plugin_root.parent.name) != plugin_identity:
+    if _normalized_plugin_identity(cache_plugin_root.parent.name) != plugin_identity:
         raise RuntimeError(f"Refusing to remove unexpected plugin cache path: {resolved_root}")
+
+
+def _remove_directory_link_or_tree(path: Path) -> None:
+    is_junction = getattr(path, "is_junction", None)
+    if path.is_symlink() or (callable(is_junction) and is_junction()):
+        path.rmdir()
+    else:
+        shutil.rmtree(path, onerror=_clear_readonly_and_retry)
 
 
 def _prune_stale_codex_cache_installs(home: Path, plugin_name: str, target_root: Path) -> list[dict[str, Any]]:
@@ -631,7 +643,10 @@ def _prune_stale_codex_cache_installs(home: Path, plugin_name: str, target_root:
     for cache_plugin_root in _stale_codex_cache_plugin_roots(home, plugin_name, target_root):
         _validate_stale_cache_plugin_root(cache_plugin_root, home, plugin_name)
         migrated_paths = _migrate_preserved_paths(cache_plugin_root, target_root)
-        shutil.rmtree(cache_plugin_root, onerror=_clear_readonly_and_retry)
+        _remove_directory_link_or_tree(cache_plugin_root)
+        plugin_cache_root = cache_plugin_root.parent
+        if plugin_cache_root.exists() and not any(plugin_cache_root.iterdir()):
+            plugin_cache_root.rmdir()
         pruned.append(
             {
                 "plugin_root": str(cache_plugin_root.resolve()),
@@ -639,6 +654,23 @@ def _prune_stale_codex_cache_installs(home: Path, plugin_name: str, target_root:
             }
         )
     return pruned
+
+
+def _sync_codex_cache_activation_copy(home: Path, marketplace_name: str, plugin_name: str, target_root: Path) -> dict[str, Any]:
+    cache_plugin_root = _codex_cache_activation_root(home, marketplace_name, plugin_name)
+    migrated_paths: list[str] = []
+    if cache_plugin_root.exists():
+        _validate_stale_cache_plugin_root(cache_plugin_root, home, plugin_name)
+        if not _same_resolved_path(cache_plugin_root, target_root):
+            migrated_paths = _migrate_preserved_paths(cache_plugin_root, target_root)
+        _remove_directory_link_or_tree(cache_plugin_root)
+    _copy_plugin_tree(target_root, cache_plugin_root)
+    return {
+        "plugin_root": str(cache_plugin_root.resolve()),
+        "target_root": str(target_root.resolve()),
+        "synced": True,
+        "migrated_paths": migrated_paths,
+    }
 
 
 def _plugin_config_header(plugin_name: str, marketplace_name: str) -> str:
@@ -649,12 +681,19 @@ def _mcp_server_config_header(server_name: str) -> str:
     return f'[mcp_servers."{server_name}"]'
 
 
+def _marketplace_config_header(marketplace_name: str) -> str:
+    return f'[marketplaces."{marketplace_name}"]'
+
+
 _TOML_TABLE_HEADER_RE = re.compile(r"(?m)^[ \t]*\[{1,2}[^\n]+?\]{1,2}[ \t]*(?:#.*)?$")
 _CODEX_PLUGIN_HEADER_RE = re.compile(
     r"""^[ \t]*\[plugins\.(?P<quote>["'])(?P<plugin>[^"'@\n]+)@(?P<marketplace>[^"'\n]+)(?P=quote)\][ \t]*(?:#.*)?$"""
 )
 _CODEX_MCP_SERVER_HEADER_RE = re.compile(
     r"""^[ \t]*\[mcp_servers\.(?:(?P<quote>["'])(?P<quoted>[^"'\n]+)(?P=quote)|(?P<bare>[A-Za-z0-9_-]+))\][ \t]*(?:#.*)?$"""
+)
+_CODEX_MARKETPLACE_HEADER_RE = re.compile(
+    r"""^[ \t]*\[marketplaces\.(?:(?P<quote>["'])(?P<quoted>[^"'\n]+)(?P=quote)|(?P<bare>[A-Za-z0-9_-]+))\][ \t]*(?:#.*)?$"""
 )
 
 
@@ -667,6 +706,13 @@ def _codex_plugin_header_info(header_line: str) -> tuple[str, str] | None:
 
 def _codex_mcp_server_header_info(header_line: str) -> str | None:
     match = _CODEX_MCP_SERVER_HEADER_RE.fullmatch(header_line.strip())
+    if match is None:
+        return None
+    return match.group("quoted") or match.group("bare")
+
+
+def _codex_marketplace_header_info(header_line: str) -> str | None:
+    match = _CODEX_MARKETPLACE_HEADER_RE.fullmatch(header_line.strip())
     if match is None:
         return None
     return match.group("quoted") or match.group("bare")
@@ -879,6 +925,17 @@ def _mcp_server_section(server_name: str, target_root: Path) -> str:
     )
 
 
+def _marketplace_source_section(marketplace_name: str, marketplace_root: Path) -> str:
+    return "\n".join(
+        [
+            _marketplace_config_header(marketplace_name),
+            'source_type = "local"',
+            f"source = {_toml_basic_string(str(marketplace_root.resolve()))}",
+            "",
+        ]
+    )
+
+
 def _normalize_codex_mcp_server_config(text: str, server_name: str, target_root: Path) -> str:
     section_text = _mcp_server_section(server_name, target_root)
     table_matches = list(_TOML_TABLE_HEADER_RE.finditer(text))
@@ -910,6 +967,37 @@ def _normalize_codex_mcp_server_config(text: str, server_name: str, target_root:
     return "".join(pieces)
 
 
+def _normalize_codex_marketplace_source_config(text: str, marketplace_name: str, marketplace_root: Path) -> str:
+    section_text = _marketplace_source_section(marketplace_name, marketplace_root)
+    table_matches = list(_TOML_TABLE_HEADER_RE.finditer(text))
+    if not table_matches:
+        return _append_toml_section(text, section_text)
+
+    marketplace_sections: list[int] = []
+    section_infos: list[tuple[int, int, str | None]] = []
+    for index, match in enumerate(table_matches):
+        section_start = match.start()
+        section_end = table_matches[index + 1].start() if index + 1 < len(table_matches) else len(text)
+        info = _codex_marketplace_header_info(match.group(0))
+        section_infos.append((section_start, section_end, info))
+        if info == marketplace_name:
+            marketplace_sections.append(index)
+
+    if not marketplace_sections:
+        return _append_toml_section(text, section_text)
+
+    keep_index = marketplace_sections[0]
+    pieces = [text[: table_matches[0].start()]]
+    for index, (section_start, section_end, info) in enumerate(section_infos):
+        section = text[section_start:section_end]
+        if info == marketplace_name:
+            if index != keep_index:
+                continue
+            section = section_text
+        pieces.append(section)
+    return "".join(pieces)
+
+
 def validate_codex_config(home: Path | None = None) -> str | None:
     resolved_home = home.resolve() if home is not None else Path.home().resolve()
     codex_root = _codex_root(resolved_home)
@@ -922,7 +1010,13 @@ def validate_codex_config(home: Path | None = None) -> str | None:
     return str(config_path.resolve())
 
 
-def _enable_codex_plugin(home: Path, plugin_name: str, marketplace_name: str, target_root: Path | None = None) -> str | None:
+def _enable_codex_plugin(
+    home: Path,
+    plugin_name: str,
+    marketplace_name: str,
+    target_root: Path | None = None,
+    marketplace_root: Path | None = None,
+) -> str | None:
     codex_root = _codex_root(home)
     if not codex_root.exists():
         return None
@@ -931,6 +1025,8 @@ def _enable_codex_plugin(home: Path, plugin_name: str, marketplace_name: str, ta
         text = config_path.read_text(encoding="utf-8")
     else:
         text = ""
+    if marketplace_root is not None:
+        text = _normalize_codex_marketplace_source_config(text, marketplace_name, marketplace_root)
     text = _normalize_codex_plugin_config(text, plugin_name, marketplace_name)
     if target_root is not None:
         text = _normalize_codex_mcp_server_config(text, plugin_name, target_root)
@@ -958,20 +1054,30 @@ def install_global_plugin(
     legacy_target_root = _legacy_plugins_root(resolved_home) / plugin_name
     if install_kind == CODEX_DESKTOP_INSTALL_KIND and legacy_target_root.resolve() != target_root.resolve():
         migrated_paths = _migrate_preserved_paths(legacy_target_root, target_root)
+    marketplace_name = _marketplace_name(marketplace_path)
     pruned_stale_cache_installs = _prune_stale_codex_cache_installs(resolved_home, plugin_name, target_root)
+    codex_cache_activation_copy: dict[str, Any] | None = None
+    if install_kind == CODEX_DESKTOP_INSTALL_KIND:
+        codex_cache_activation_copy = _sync_codex_cache_activation_copy(resolved_home, marketplace_name, plugin_name, target_root)
     seeded_local_extension_files = _seed_local_extension_scaffolds(target_root)
     category = _category_for_plugin(source_plugin_root)
     marketplace_source_path = _marketplace_source_path(marketplace_path, target_root)
     replaced_active_marketplace_entries = _write_marketplace_entry(marketplace_path, plugin_name, category, marketplace_source_path)
     pruned_inactive_marketplace_entries = _prune_inactive_marketplace_entries(resolved_home, marketplace_path, plugin_name)
     rebuild = _rebuild_target_plugin(target_root, git_checkout=sync_result["git"] is not None)
-    marketplace_name = _marketplace_name(marketplace_path)
     codex_config_path: str | None = None
     if _codex_root(resolved_home).exists():
-        codex_config_path = _enable_codex_plugin(resolved_home, plugin_name, marketplace_name, target_root)
+        codex_config_path = _enable_codex_plugin(
+            resolved_home,
+            plugin_name,
+            marketplace_name,
+            target_root,
+            _marketplace_root(marketplace_path),
+        )
     return {
         "install_kind": install_kind,
-        "codex_cache_plugin_root": None,
+        "codex_cache_plugin_root": codex_cache_activation_copy["plugin_root"] if codex_cache_activation_copy is not None else None,
+        "codex_cache_activation_copy": codex_cache_activation_copy,
         "codex_config_path": codex_config_path,
         "plugin_name": plugin_name,
         "source_plugin_root": str(source_plugin_root.resolve()),
