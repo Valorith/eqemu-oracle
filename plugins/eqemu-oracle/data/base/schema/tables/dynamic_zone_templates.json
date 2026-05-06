@@ -129,7 +129,10 @@
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "dz_template_id",
-      "remote_table": "[tasks](../../schema/tasks/tasks.md)"
+      "remote_table": "[tasks](../../schema/tasks/tasks.md)",
+      "remote_table_id": "tasks",
+      "remote_table_label": "tasks",
+      "remote_table_path": "../../schema/tasks/tasks.md"
     }
   ],
   "search_aliases": [

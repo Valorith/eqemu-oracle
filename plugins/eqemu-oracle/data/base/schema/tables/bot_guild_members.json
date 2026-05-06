@@ -64,13 +64,19 @@
       "local_key": "bot_id",
       "relationship_type": "One-to-One",
       "remote_key": "bot_id",
-      "remote_table": "[bot_data](../../schema/bots/bot_data.md)"
+      "remote_table": "[bot_data](../../schema/bots/bot_data.md)",
+      "remote_table_id": "bot_data",
+      "remote_table_label": "bot_data",
+      "remote_table_path": "../../schema/bots/bot_data.md"
     },
     {
       "local_key": "guild_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[guilds](../../schema/guilds/guilds.md)"
+      "remote_table": "[guilds](../../schema/guilds/guilds.md)",
+      "remote_table_id": "guilds",
+      "remote_table_label": "guilds",
+      "remote_table_path": "../../schema/guilds/guilds.md"
     }
   ],
   "search_aliases": [

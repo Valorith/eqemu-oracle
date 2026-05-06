@@ -39,13 +39,19 @@
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "npc_faction_id",
-      "remote_table": "[npc_faction_entries](../../schema/npcs/npc_faction_entries.md)"
+      "remote_table": "[npc_faction_entries](../../schema/npcs/npc_faction_entries.md)",
+      "remote_table_id": "npc_faction_entries",
+      "remote_table_label": "npc_faction_entries",
+      "remote_table_path": "../../schema/npcs/npc_faction_entries.md"
     },
     {
       "local_key": "primaryfaction",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[faction_list](../../schema/factions/faction_list.md)"
+      "remote_table": "[faction_list](../../schema/factions/faction_list.md)",
+      "remote_table_id": "faction_list",
+      "remote_table_label": "faction_list",
+      "remote_table_path": "../../schema/factions/faction_list.md"
     }
   ],
   "search_aliases": [

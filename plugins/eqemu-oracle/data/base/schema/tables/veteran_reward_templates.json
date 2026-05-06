@@ -44,13 +44,19 @@
       "local_key": "claim_id",
       "relationship_type": "Has-Many",
       "remote_key": "reward_id",
-      "remote_table": "[account_rewards](../../schema/account/account_rewards.md)"
+      "remote_table": "[account_rewards](../../schema/account/account_rewards.md)",
+      "remote_table_id": "account_rewards",
+      "remote_table_label": "account_rewards",
+      "remote_table_path": "../../schema/account/account_rewards.md"
     },
     {
       "local_key": "item_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[items](../../schema/items/items.md)"
+      "remote_table": "[items](../../schema/items/items.md)",
+      "remote_table_id": "items",
+      "remote_table_label": "items",
+      "remote_table_path": "../../schema/items/items.md"
     }
   ],
   "search_aliases": [

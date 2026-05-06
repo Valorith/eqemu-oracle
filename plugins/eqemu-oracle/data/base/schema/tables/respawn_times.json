@@ -39,13 +39,19 @@
       "local_key": "id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[spawn2](../../schema/spawns/spawn2.md)"
+      "remote_table": "[spawn2](../../schema/spawns/spawn2.md)",
+      "remote_table_id": "spawn2",
+      "remote_table_label": "spawn2",
+      "remote_table_path": "../../schema/spawns/spawn2.md"
     },
     {
       "local_key": "instance_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[instance_list](../../schema/instances/instance_list.md)"
+      "remote_table": "[instance_list](../../schema/instances/instance_list.md)",
+      "remote_table_id": "instance_list",
+      "remote_table_label": "instance_list",
+      "remote_table_path": "../../schema/instances/instance_list.md"
     }
   ],
   "search_aliases": [

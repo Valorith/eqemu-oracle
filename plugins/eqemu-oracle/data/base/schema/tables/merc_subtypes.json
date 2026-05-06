@@ -39,13 +39,19 @@
       "local_key": "merc_subtype_id",
       "relationship_type": "Has-Many",
       "remote_key": "merc_subtype_id",
-      "remote_table": "[merc_inventory](../../schema/mercenaries/merc_inventory.md)"
+      "remote_table": "[merc_inventory](../../schema/mercenaries/merc_inventory.md)",
+      "remote_table_id": "merc_inventory",
+      "remote_table_label": "merc_inventory",
+      "remote_table_path": "../../schema/mercenaries/merc_inventory.md"
     },
     {
       "local_key": "merc_subtype_id",
       "relationship_type": "Has-Many",
       "remote_key": "merc_subtype_id",
-      "remote_table": "[merc_templates](../../schema/mercenaries/merc_templates.md)"
+      "remote_table": "[merc_templates](../../schema/mercenaries/merc_templates.md)",
+      "remote_table_id": "merc_templates",
+      "remote_table_label": "merc_templates",
+      "remote_table_path": "../../schema/mercenaries/merc_templates.md"
     }
   ],
   "search_aliases": [

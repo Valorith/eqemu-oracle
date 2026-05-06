@@ -89,13 +89,19 @@
       "local_key": "cond_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[spawn_conditions](../../schema/spawns/spawn_conditions.md)"
+      "remote_table": "[spawn_conditions](../../schema/spawns/spawn_conditions.md)",
+      "remote_table_id": "spawn_conditions",
+      "remote_table_label": "spawn_conditions",
+      "remote_table_path": "../../schema/spawns/spawn_conditions.md"
     },
     {
       "local_key": "zone",
       "relationship_type": "One-to-One",
       "remote_key": "short_name",
-      "remote_table": "[zone](../../schema/zone/zone.md)"
+      "remote_table": "[zone](../../schema/zone/zone.md)",
+      "remote_table_id": "zone",
+      "remote_table_label": "zone",
+      "remote_table_path": "../../schema/zone/zone.md"
     }
   ],
   "search_aliases": [
