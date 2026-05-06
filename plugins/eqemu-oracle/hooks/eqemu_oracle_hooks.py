@@ -32,6 +32,11 @@ MAINTENANCE_COMMANDS = (
     "build-release-bundle",
 )
 
+CLI_TOOL_MARKERS = (
+    "eqemu_oracle.py tool ",
+    "eqemu_oracle_launcher.cmd tool ",
+)
+
 VALIDATION_MARKERS = (
     "rebuild-extensions",
     "rebuild_eqemu_extensions",
@@ -253,7 +258,9 @@ def _extract_text(value: Any) -> str:
 
 def _oracle_tool_used(transcript: str) -> bool:
     lower_transcript = transcript.lower()
-    return any(tool.lower() in lower_transcript for tool in ORACLE_TOOL_NAMES)
+    return any(tool.lower() in lower_transcript for tool in ORACLE_TOOL_NAMES) or any(
+        marker in lower_transcript for marker in CLI_TOOL_MARKERS
+    )
 
 
 def _substantive_answer(message: str) -> bool:

@@ -12,7 +12,7 @@ Use this skill when the task needs authoritative EQEmu context.
 1. Use the EQEmu Oracle MCP server first.
 2. Use MCP tools as the normal and expected access path. Resources are supplemental only.
 3. Never describe the plugin as lacking "callable resources". MCP resources are readable, not callable. Tools are the callable interface.
-4. If generic resource enumeration is missing in a session, continue using the plugin tools and do not say the plugin is unavailable.
+4. If generic resource enumeration or `tool_search` does not expose the MCP tools in a session, do not narrate a discovery failure. Use the bundled CLI fallback from the plugin root: `py -3 scripts\eqemu_oracle.py tool <tool_name> --args '<json object>'`. This calls the same local Oracle tool handlers and returns the same structured payload.
 5. For EQEmu questions, call at least one EQEmu Oracle tool before falling back to local quest files, unless the user explicitly asked you not to use the plugin.
 6. Prefer exact getters over broad search when the target symbol, table, or page is known.
 7. Use `summarize_quest_api_topic` for broad quest API topic questions such as "aggro", "loot", "task", or "what options are available".
@@ -30,3 +30,12 @@ Use this skill when the task needs authoritative EQEmu context.
     - `.lua` only beats `.pl` when the basename is the same exact match.
     - `quests/global/<npc_id|npc_name>.[ext]` participates in normal script selection, while `quests/global/global_player.[ext]` and `quests/global/global_npc.[ext]` are overlays that run in addition to the selected script.
 16. When example quest or Perl plugin structure is useful, search `quests` and/or `plugins` with `search_eqemu_context` to find indexed example files from configured sources, then call `get_eqemu_example_file` for exact file contents. Local example sources take precedence when they replace the repo-level defaults, but example repository conventions must not override the active server layout or official EQEmu loading rules.
+
+## CLI Fallback Examples
+
+Run these from the installed EQEmu Oracle plugin root when MCP tools are not directly exposed:
+
+- `py -3 scripts\eqemu_oracle.py tool search_eqemu_context --args '{"query":"spawn2","domains":["schema"],"limit":5}'`
+- `py -3 scripts\eqemu_oracle.py tool get_db_table --args '{"table_name":"spawn2"}'`
+- `py -3 scripts\eqemu_oracle.py tool get_quest_api_entry --args '{"language":"perl","kind":"method","name":"say"}'`
+- `py -3 scripts\eqemu_oracle.py tool get_doc_page --args '{"path_or_slug":"schema/spawns/spawn2"}'`

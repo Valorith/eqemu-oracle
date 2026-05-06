@@ -128,6 +128,34 @@ class HookTest(unittest.TestCase):
         self.assertEqual(stdout, "")
         self.assertEqual(stderr, "")
 
+    def test_stop_hook_accepts_cli_tool_fallback_usage(self) -> None:
+        transcript = "\n".join(
+            [
+                json.dumps({"role": "user", "content": "Use EQEmu Oracle to explain quest::say"}),
+                json.dumps(
+                    {
+                        "tool_input": {
+                            "command": "py -3 plugins/eqemu-oracle/scripts/eqemu_oracle.py tool get_quest_api_entry --args '{\"language\":\"perl\",\"kind\":\"method\",\"name\":\"say\"}'"
+                        }
+                    }
+                ),
+            ]
+        )
+        path = self.transcript_file(transcript)
+
+        code, stdout, stderr = self.run_hook(
+            "stop",
+            {
+                "hook_event_name": "Stop",
+                "transcript_path": path,
+                "last_assistant_message": "From the EQEmu Oracle quest API entry, quest::say sends NPC dialogue text to nearby clients.",
+            },
+        )
+
+        self.assertEqual(code, 0)
+        self.assertEqual(stdout, "")
+        self.assertEqual(stderr, "")
+
     def test_stop_hook_requires_validation_after_extension_edits(self) -> None:
         transcript = "\n".join(
             [

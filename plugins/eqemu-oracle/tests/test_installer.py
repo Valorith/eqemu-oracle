@@ -104,6 +104,58 @@ class InstallerTest(unittest.TestCase):
                 self.assertEqual(marketplace["plugins"][0]["source"]["path"], "./plugins/eqemu-oracle")
                 self.assertIn('[plugins."eqemu-oracle@openai-curated"]', config_path.read_text(encoding="utf-8"))
                 self.assertIn("enabled = true", config_path.read_text(encoding="utf-8"))
+                self.assertIn('[mcp_servers."eqemu-oracle"]', config_path.read_text(encoding="utf-8"))
+                self.assertIn(str((target_root / "scripts" / "eqemu_oracle_launcher.cmd").resolve()).replace("\\", "\\\\"), config_path.read_text(encoding="utf-8"))
+                self.assertIn(str(target_root.resolve()).replace("\\", "\\\\"), config_path.read_text(encoding="utf-8"))
+
+    def test_install_global_plugin_installs_git_checkout_when_source_is_git(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            home = Path(temp_dir) / "home"
+            repo_root = Path(temp_dir) / "source" / "repo"
+            source_root = repo_root / "plugins" / "eqemu-oracle"
+            _seed_plugin_root(source_root)
+            codex_root = home / ".codex" / ".tmp" / "plugins"
+            marketplace_path = codex_root / ".agents" / "plugins" / "marketplace.json"
+            marketplace_path.parent.mkdir(parents=True, exist_ok=True)
+            (codex_root / "plugins").mkdir(parents=True, exist_ok=True)
+            marketplace_path.write_text(
+                json.dumps(
+                    {
+                        "name": "openai-curated",
+                        "interface": {"displayName": "Codex official"},
+                        "plugins": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            git_source = {
+                "repo_root": repo_root,
+                "plugin_subpath": Path("plugins") / "eqemu-oracle",
+                "remote_url": "https://github.com/Valorith/eqemu-oracle.git",
+                "branch": "main",
+            }
+
+            def fake_clone(_git_source: dict[str, object], checkout_root: Path, _plugins_root: Path) -> None:
+                _seed_plugin_root(checkout_root / "plugins" / "eqemu-oracle")
+
+            with patch("eqemu_oracle.installer._source_git_checkout", return_value=git_source):
+                with patch("eqemu_oracle.installer._clone_git_checkout", side_effect=fake_clone):
+                    with patch("eqemu_oracle.installer.subprocess.run") as run_mock:
+                        run_mock.return_value.returncode = 0
+                        run_mock.return_value.stdout = ""
+                        run_mock.return_value.stderr = ""
+                        result = installer.install_global_plugin(home=home, source_plugin_root=source_root)
+
+            checkout_root = codex_root / "plugins" / "eqemu-oracle"
+            target_root = checkout_root / "plugins" / "eqemu-oracle"
+            marketplace = json.loads(marketplace_path.read_text(encoding="utf-8"))
+            self.assertEqual(result["install_strategy"], "git-checkout")
+            self.assertEqual(result["checkout_root"], str(checkout_root.resolve()))
+            self.assertEqual(result["target_plugin_root"], str(target_root.resolve()))
+            self.assertEqual(result["marketplace_source_path"], "./plugins/eqemu-oracle/plugins/eqemu-oracle")
+            self.assertEqual(marketplace["plugins"][0]["source"]["path"], "./plugins/eqemu-oracle/plugins/eqemu-oracle")
+            self.assertEqual(result["git"]["plugin_subpath"], "plugins/eqemu-oracle")
+            self.assertEqual(result["git"]["remote_url"], "https://github.com/Valorith/eqemu-oracle.git")
 
     def test_install_global_plugin_deduplicates_marketplace_registrations(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -233,6 +285,41 @@ class InstallerTest(unittest.TestCase):
             self.assertNotIn("enabled = false", text)
             self.assertIn('channel = "stable"', text)
             self.assertNotIn('channel = "duplicate"', text)
+
+    def test_enable_codex_plugin_writes_direct_mcp_server_config(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            home = Path(temp_dir) / "home"
+            codex_root = home / ".codex"
+            codex_root.mkdir(parents=True, exist_ok=True)
+            target_root = Path(temp_dir) / "installed" / "eqemu-oracle"
+            _seed_plugin_root(target_root)
+            config_path = codex_root / "config.toml"
+            config_path.write_text(
+                "\n".join(
+                    [
+                        '[mcp_servers."eqemu-oracle"]',
+                        'command = "old"',
+                        'args = ["old"]',
+                        'cwd = "old"',
+                        "",
+                        "[mcp_servers.eqemu-oracle]",
+                        'command = "duplicate"',
+                        "",
+                    ]
+                ),
+                encoding="utf-8",
+            )
+
+            installer._enable_codex_plugin(home, "eqemu-oracle", "openai-curated", target_root)
+
+            text = config_path.read_text(encoding="utf-8")
+            self.assertEqual(text.count('[mcp_servers."eqemu-oracle"]'), 1)
+            self.assertNotIn('command = "old"', text)
+            self.assertNotIn('command = "duplicate"', text)
+            self.assertIn(str((target_root / "scripts" / "eqemu_oracle_launcher.cmd").resolve()).replace("\\", "\\\\"), text)
+            self.assertIn('args = ["mcp-serve"]', text)
+            self.assertIn(str(target_root.resolve()).replace("\\", "\\\\"), text)
+            installer.validate_codex_config(home)
 
     def test_enable_codex_plugin_repairs_duplicate_enabled_key_spellings(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:

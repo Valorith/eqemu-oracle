@@ -1,10 +1,9 @@
 from __future__ import annotations
 
-import tempfile
 import unittest
 from pathlib import Path
 from types import SimpleNamespace
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
@@ -64,3 +63,42 @@ class CliRefreshTest(unittest.TestCase):
 
         self.assertEqual(exit_code, 0)
         build_release_bundle.assert_called_once_with(output_dir=Path("/tmp/dist"))
+
+    def test_tool_command_runs_read_tool(self) -> None:
+        server = Mock()
+        server._handle_tool.return_value = {
+            "content": [{"type": "text", "text": "schema markdown"}],
+            "structuredContent": {"table": "spawn2"},
+            "isError": False,
+        }
+        args = SimpleNamespace(name="get_db_table", args='{"table_name":"spawn2"}', markdown=False)
+
+        with patch("eqemu_oracle.cli.McpServer", return_value=server):
+            exit_code = cli.run_tool(args)
+
+        self.assertEqual(exit_code, 0)
+        server._handle_tool.assert_called_once_with("get_db_table", {"table_name": "spawn2"})
+
+    def test_tool_command_rejects_invalid_json(self) -> None:
+        args = SimpleNamespace(name="get_db_table", args="{", markdown=False)
+
+        with patch("eqemu_oracle.cli.McpServer") as server:
+            exit_code = cli.run_tool(args)
+
+        self.assertEqual(exit_code, 2)
+        server.assert_not_called()
+
+    def test_main_accepts_tool_command(self) -> None:
+        server = Mock()
+        server._handle_tool.return_value = {
+            "content": [{"type": "text", "text": "schema markdown"}],
+            "structuredContent": {"table": "spawn2"},
+            "isError": False,
+        }
+
+        with patch("eqemu_oracle.cli.McpServer", return_value=server):
+            with patch.object(sys, "argv", ["eqemu_oracle.py", "tool", "get_db_table", "--args", '{"table_name":"spawn2"}']):
+                exit_code = cli.main()
+
+        self.assertEqual(exit_code, 0)
+        server._handle_tool.assert_called_once_with("get_db_table", {"table_name": "spawn2"})

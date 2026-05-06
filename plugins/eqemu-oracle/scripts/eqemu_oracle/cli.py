@@ -9,10 +9,22 @@ from pathlib import Path
 from .constants import CACHE_ROOT, MODE_CHOICES, PLUGIN_ROOT, REPO_ROOT, SCOPE_CHOICES
 from .extensions import ExtensionValidationError
 from .installer import install_global_plugin
-from .mcp import serve_mcp
+from .mcp import McpServer, serve_mcp
 from .operations import prune_schema_extensions_dataset, rebuild_extensions_dataset, refresh_dataset
 from .release_bundle import build_release_bundle
 from .updater import update_plugin_repo
+
+READ_TOOL_NAMES = (
+    "search_eqemu_context",
+    "get_quest_api_entry",
+    "get_quest_api_overloads",
+    "summarize_quest_api_topic",
+    "get_db_table",
+    "explain_db_relationships",
+    "get_doc_page",
+    "explain_eqemu_provenance",
+    "get_eqemu_example_file",
+)
 
 
 def _print_schema_extension_health(manifest: dict[str, object]) -> None:
@@ -76,6 +88,39 @@ def build_bundle(args: argparse.Namespace) -> int:
     return 0
 
 
+def list_tools(args: argparse.Namespace) -> int:
+    server = McpServer()
+    print(json.dumps(server._tool_spec(), indent=2, sort_keys=True))
+    return 0
+
+
+def run_tool(args: argparse.Namespace) -> int:
+    try:
+        tool_args = json.loads(args.args)
+    except json.JSONDecodeError as exc:
+        print(f"Invalid JSON passed to --args: {exc}", file=sys.stderr)
+        return 2
+    if not isinstance(tool_args, dict):
+        print("Invalid --args value: expected a JSON object.", file=sys.stderr)
+        return 2
+
+    server = McpServer()
+    try:
+        result = server._handle_tool(args.name, tool_args)
+    except Exception as exc:
+        print(str(exc), file=sys.stderr)
+        return 1
+
+    if args.markdown:
+        content = result.get("content", [])
+        if content and isinstance(content[0], dict):
+            print(str(content[0].get("text", "")))
+        return 0
+
+    print(json.dumps(result, indent=2, sort_keys=True, default=str))
+    return 0
+
+
 def run_hook(args: argparse.Namespace) -> int:
     hook_path = PLUGIN_ROOT / "hooks" / "eqemu_oracle_hooks.py"
     spec = importlib.util.spec_from_file_location("eqemu_oracle_hooks", hook_path)
@@ -130,6 +175,15 @@ def main() -> int:
     build_bundle_parser = subparsers.add_parser("build-release-bundle", help="Create a versioned release zip from the current repository state")
     build_bundle_parser.add_argument("--output-dir", type=Path, default=REPO_ROOT / "dist")
     build_bundle_parser.set_defaults(func=build_bundle)
+
+    tools_parser = subparsers.add_parser("tools", help="List EQEmu Oracle MCP tool specs as JSON")
+    tools_parser.set_defaults(func=list_tools)
+
+    tool_parser = subparsers.add_parser("tool", help="Run a read-only EQEmu Oracle MCP tool from the CLI")
+    tool_parser.add_argument("name", choices=READ_TOOL_NAMES)
+    tool_parser.add_argument("--args", default="{}", help="Tool arguments as a JSON object")
+    tool_parser.add_argument("--markdown", action="store_true", help="Print only the presentation markdown text")
+    tool_parser.set_defaults(func=run_tool)
 
     serve_parser = subparsers.add_parser("mcp-serve", help="Run the stdio MCP server")
     serve_parser.set_defaults(func=serve_mcp)

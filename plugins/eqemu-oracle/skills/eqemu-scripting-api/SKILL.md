@@ -11,7 +11,7 @@ description: Look up EQEmu Perl and Lua quest API methods, events, and constants
 4. Otherwise call `search_eqemu_context` with `domains=["quest-api"]`.
 4. Treat the plugin tools as the normal access path.
 5. Never say the plugin lacks "callable resources". In MCP, resources are not callable; tools are.
-6. If resources are not surfaced in the session, continue with the EQEmu Oracle tools instead of narrating that the plugin is unavailable.
+6. If MCP tools are not surfaced in the session, do not narrate a discovery failure. From the installed plugin root, use the CLI fallback for the same tool handler, for example `py -3 scripts\eqemu_oracle.py tool get_quest_api_entry --args '{"language":"perl","kind":"method","name":"say"}'`.
 7. For EQEmu quest-script questions, call an EQEmu Oracle tool before falling back to local quest files unless the user explicitly asked otherwise.
 8. Prefer the plugin-provided `presentation.markdown` and `copy_blocks` when answering the user.
 9. Preserve quest API code blocks so methods, events, and constants are easy to copy.

@@ -87,11 +87,26 @@ class CodexConfigError(RuntimeError):
     pass
 
 
-def _category_for_plugin(plugin_root: Path) -> str:
+def _load_plugin_metadata(plugin_root: Path) -> dict[str, Any]:
     metadata_path = plugin_root / ".codex-plugin" / "plugin.json"
     try:
-        metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+        payload = json.loads(metadata_path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError):
+        return {}
+    return payload if isinstance(payload, dict) else {}
+
+
+def _plugin_name_for_source(plugin_root: Path) -> str:
+    metadata = _load_plugin_metadata(plugin_root)
+    name = metadata.get("name")
+    if isinstance(name, str) and name.strip():
+        return name.strip()
+    return plugin_root.name
+
+
+def _category_for_plugin(plugin_root: Path) -> str:
+    metadata = _load_plugin_metadata(plugin_root)
+    if not metadata:
         return "Coding"
     interface = metadata.get("interface")
     if not isinstance(interface, dict):
@@ -141,12 +156,12 @@ def _marketplace_name(path: Path) -> str:
     return name.strip()
 
 
-def _plugin_entry(plugin_name: str, category: str) -> dict[str, Any]:
+def _plugin_entry(plugin_name: str, category: str, source_path: str | None = None) -> dict[str, Any]:
     return {
         "name": plugin_name,
         "source": {
             "source": "local",
-            "path": f"./plugins/{plugin_name}",
+            "path": source_path or f"./plugins/{plugin_name}",
         },
         "policy": {
             "installation": "AVAILABLE",
@@ -187,12 +202,12 @@ def _marketplace_entry_matches_plugin(entry: object, plugin_name: str) -> bool:
     return False
 
 
-def _write_marketplace_entry(marketplace_path: Path, plugin_name: str, category: str) -> int:
+def _write_marketplace_entry(marketplace_path: Path, plugin_name: str, category: str, source_path: str | None = None) -> int:
     payload = _ensure_marketplace_shape(_load_marketplace(marketplace_path))
     original_plugins = payload["plugins"]
     plugins = [entry for entry in original_plugins if not _marketplace_entry_matches_plugin(entry, plugin_name)]
     removed_count = len(original_plugins) - len(plugins)
-    plugins.append(_plugin_entry(plugin_name, category))
+    plugins.append(_plugin_entry(plugin_name, category, source_path))
     payload["plugins"] = plugins
     dump_json(marketplace_path, payload)
     return removed_count
@@ -257,6 +272,59 @@ def _copy_plugin_tree(source_root: Path, target_root: Path) -> None:
         target_root,
         ignore=shutil.ignore_patterns(*COPY_IGNORE_NAMES),
     )
+
+
+def _run_command(args: list[str], cwd: Path) -> str:
+    completed = subprocess.run(
+        args,
+        cwd=str(cwd),
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if completed.returncode != 0:
+        raise RuntimeError(
+            "Command failed while installing EQEmu Oracle plugin:\n"
+            f"command: {' '.join(args)}\n"
+            f"cwd: {cwd}\n"
+            f"stdout:\n{completed.stdout}\n"
+            f"stderr:\n{completed.stderr}"
+        )
+    return completed.stdout.strip()
+
+
+def _try_git(args: list[str], cwd: Path) -> str | None:
+    completed = subprocess.run(
+        ["git", *args],
+        cwd=str(cwd),
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if completed.returncode != 0:
+        return None
+    return completed.stdout.strip()
+
+
+def _source_git_checkout(source_root: Path) -> dict[str, Any] | None:
+    repo_root_text = _try_git(["rev-parse", "--show-toplevel"], source_root)
+    if not repo_root_text:
+        return None
+    repo_root = Path(repo_root_text).resolve()
+    try:
+        plugin_subpath = source_root.resolve().relative_to(repo_root)
+    except ValueError:
+        return None
+    remote_url = _try_git(["config", "--get", "remote.origin.url"], source_root) or str(repo_root)
+    branch = _try_git(["rev-parse", "--abbrev-ref", "HEAD"], source_root) or ""
+    if branch == "HEAD":
+        branch = ""
+    return {
+        "repo_root": repo_root,
+        "plugin_subpath": plugin_subpath,
+        "remote_url": remote_url,
+        "branch": branch,
+    }
 
 
 def _capture_preserved_paths(target_root: Path, backup_root: Path) -> list[tuple[Path, Path]]:
@@ -325,9 +393,13 @@ def _validate_target_path(target_root: Path, plugins_root: Path) -> None:
         raise RuntimeError(f"Refusing to replace path outside the home plugins root: {resolved_target}")
 
 
-def _sync_plugin_contents(source_root: Path, target_root: Path, plugins_root: Path) -> list[str]:
-    if source_root.resolve() == target_root.resolve():
+def _restore_plugin_paths(target_root: Path, preserved_paths: list[tuple[Path, Path]]) -> list[str]:
+    if not preserved_paths:
         return []
+    return _restore_preserved_paths(target_root, preserved_paths)
+
+
+def _sync_copied_plugin_contents(source_root: Path, target_root: Path, plugins_root: Path) -> list[str]:
     with tempfile.TemporaryDirectory(prefix="eqemu-oracle-install-") as temp_dir:
         backup_root = Path(temp_dir)
         preserved_paths = _capture_preserved_paths(target_root, backup_root) if target_root.exists() else []
@@ -335,7 +407,74 @@ def _sync_plugin_contents(source_root: Path, target_root: Path, plugins_root: Pa
             _validate_target_path(target_root, plugins_root)
             shutil.rmtree(target_root, onerror=_clear_readonly_and_retry)
         _copy_plugin_tree(source_root, target_root)
-        return _restore_preserved_paths(target_root, preserved_paths)
+        return _restore_plugin_paths(target_root, preserved_paths)
+
+
+def _clone_git_checkout(git_source: dict[str, Any], checkout_root: Path, plugins_root: Path) -> None:
+    if checkout_root.exists():
+        _validate_target_path(checkout_root, plugins_root)
+        shutil.rmtree(checkout_root, onerror=_clear_readonly_and_retry)
+    ensure_dir(checkout_root.parent)
+    remote_url = str(git_source["remote_url"])
+    branch = str(git_source.get("branch") or "")
+    clone_command = ["git", "clone"]
+    if branch:
+        clone_command.extend(["--branch", branch])
+    clone_command.extend([remote_url, str(checkout_root)])
+    _run_command(clone_command, plugins_root)
+
+
+def _sync_git_plugin_contents(source_root: Path, checkout_root: Path, plugins_root: Path, git_source: dict[str, Any]) -> dict[str, Any]:
+    plugin_subpath = Path(git_source["plugin_subpath"])
+    target_root = checkout_root / plugin_subpath
+    if source_root.resolve() == target_root.resolve():
+        return {
+            "target_root": target_root,
+            "checkout_root": checkout_root,
+            "restored_paths": [],
+            "install_strategy": "existing-git-checkout",
+            "git": git_source,
+        }
+
+    with tempfile.TemporaryDirectory(prefix="eqemu-oracle-install-") as temp_dir:
+        backup_root = Path(temp_dir)
+        preserved_paths: list[tuple[Path, Path]] = []
+        if checkout_root.exists():
+            preserved_paths.extend(_capture_preserved_paths(checkout_root, backup_root / "flat"))
+            nested_existing_root = checkout_root / plugin_subpath
+            if nested_existing_root != checkout_root:
+                preserved_paths.extend(_capture_preserved_paths(nested_existing_root, backup_root / "nested"))
+        _clone_git_checkout(git_source, checkout_root, plugins_root)
+        if not target_root.exists():
+            raise RuntimeError(f"Cloned repository does not contain plugin subpath: {plugin_subpath.as_posix()}")
+        restored_paths = _restore_plugin_paths(target_root, preserved_paths)
+    return {
+        "target_root": target_root,
+        "checkout_root": checkout_root,
+        "restored_paths": restored_paths,
+        "install_strategy": "git-checkout",
+        "git": git_source,
+    }
+
+
+def _sync_plugin_contents(source_root: Path, plugins_root: Path, plugin_name: str) -> dict[str, Any]:
+    git_source = _source_git_checkout(source_root)
+    if git_source is not None:
+        checkout_root = plugins_root / plugin_name
+        return _sync_git_plugin_contents(source_root, checkout_root, plugins_root, git_source)
+
+    target_root = plugins_root / plugin_name
+    if source_root.resolve() == target_root.resolve():
+        restored_paths: list[str] = []
+    else:
+        restored_paths = _sync_copied_plugin_contents(source_root, target_root, plugins_root)
+    return {
+        "target_root": target_root,
+        "checkout_root": target_root,
+        "restored_paths": restored_paths,
+        "install_strategy": "copy",
+        "git": None,
+    }
 
 
 def _has_active_local_extensions(target_root: Path) -> bool:
@@ -343,9 +482,15 @@ def _has_active_local_extensions(target_root: Path) -> bool:
     return any(load_domain_extensions(local_root, domain) for domain in DOMAIN_CHOICES)
 
 
-def _rebuild_target_plugin(target_root: Path) -> dict[str, Any]:
+def _rebuild_target_plugin(target_root: Path, *, git_checkout: bool = False) -> dict[str, Any]:
+    has_active_local_extensions = _has_active_local_extensions(target_root)
+    if git_checkout and not has_active_local_extensions:
+        return {
+            "ran": False,
+            "reason": "git checkout install uses committed merged data from the repository",
+        }
     script_path = target_root / "scripts" / "eqemu_oracle.py"
-    mode = "overlay" if _has_active_local_extensions(target_root) else "committed"
+    mode = "overlay" if has_active_local_extensions else "committed"
     completed = subprocess.run(
         [
             sys.executable,
@@ -421,6 +566,19 @@ def _same_resolved_path(left: Path, right: Path) -> bool:
     return left.resolve() == right.resolve()
 
 
+def _marketplace_root(marketplace_path: Path) -> Path:
+    return marketplace_path.parents[2]
+
+
+def _marketplace_source_path(marketplace_path: Path, target_root: Path) -> str:
+    root = _marketplace_root(marketplace_path).resolve()
+    try:
+        relative_path = target_root.resolve().relative_to(root)
+    except ValueError:
+        return str(target_root.resolve())
+    return f"./{relative_path.as_posix()}"
+
+
 def _known_marketplace_paths(home: Path) -> tuple[Path, ...]:
     return (_codex_marketplace_path(home), _legacy_marketplace_path(home))
 
@@ -487,9 +645,16 @@ def _plugin_config_header(plugin_name: str, marketplace_name: str) -> str:
     return f'[plugins."{plugin_name}@{marketplace_name}"]'
 
 
+def _mcp_server_config_header(server_name: str) -> str:
+    return f'[mcp_servers."{server_name}"]'
+
+
 _TOML_TABLE_HEADER_RE = re.compile(r"(?m)^[ \t]*\[{1,2}[^\n]+?\]{1,2}[ \t]*(?:#.*)?$")
 _CODEX_PLUGIN_HEADER_RE = re.compile(
     r"""^[ \t]*\[plugins\.(?P<quote>["'])(?P<plugin>[^"'@\n]+)@(?P<marketplace>[^"'\n]+)(?P=quote)\][ \t]*(?:#.*)?$"""
+)
+_CODEX_MCP_SERVER_HEADER_RE = re.compile(
+    r"""^[ \t]*\[mcp_servers\.(?:(?P<quote>["'])(?P<quoted>[^"'\n]+)(?P=quote)|(?P<bare>[A-Za-z0-9_-]+))\][ \t]*(?:#.*)?$"""
 )
 
 
@@ -498,6 +663,21 @@ def _codex_plugin_header_info(header_line: str) -> tuple[str, str] | None:
     if match is None:
         return None
     return (match.group("plugin"), match.group("marketplace"))
+
+
+def _codex_mcp_server_header_info(header_line: str) -> str | None:
+    match = _CODEX_MCP_SERVER_HEADER_RE.fullmatch(header_line.strip())
+    if match is None:
+        return None
+    return match.group("quoted") or match.group("bare")
+
+
+def _toml_basic_string(value: str) -> str:
+    return json.dumps(value)
+
+
+def _toml_string_array(values: list[str]) -> str:
+    return "[" + ", ".join(_toml_basic_string(value) for value in values) + "]"
 
 
 def _replace_section_header(section: str, header: str) -> str:
@@ -617,6 +797,15 @@ def _append_codex_plugin_section(text: str, header: str) -> str:
     return f"{text}{suffix}{header}\nenabled = true\n"
 
 
+def _append_toml_section(text: str, section: str) -> str:
+    suffix = ""
+    if text and not text.endswith("\n"):
+        suffix += "\n"
+    if text and not text.endswith("\n\n"):
+        suffix += "\n"
+    return f"{text}{suffix}{section}"
+
+
 def _validate_codex_config_toml(text: str, config_path: Path) -> None:
     if _tomllib is None:
         return
@@ -677,6 +866,50 @@ def _normalize_codex_plugin_config(text: str, plugin_name: str, marketplace_name
     return "".join(pieces)
 
 
+def _mcp_server_section(server_name: str, target_root: Path) -> str:
+    launcher_path = target_root / "scripts" / "eqemu_oracle_launcher.cmd"
+    return "\n".join(
+        [
+            _mcp_server_config_header(server_name),
+            f"command = {_toml_basic_string(str(launcher_path.resolve()))}",
+            f"args = {_toml_string_array(['mcp-serve'])}",
+            f"cwd = {_toml_basic_string(str(target_root.resolve()))}",
+            "",
+        ]
+    )
+
+
+def _normalize_codex_mcp_server_config(text: str, server_name: str, target_root: Path) -> str:
+    section_text = _mcp_server_section(server_name, target_root)
+    table_matches = list(_TOML_TABLE_HEADER_RE.finditer(text))
+    if not table_matches:
+        return _append_toml_section(text, section_text)
+
+    server_sections: list[int] = []
+    section_infos: list[tuple[int, int, str | None]] = []
+    for index, match in enumerate(table_matches):
+        section_start = match.start()
+        section_end = table_matches[index + 1].start() if index + 1 < len(table_matches) else len(text)
+        info = _codex_mcp_server_header_info(match.group(0))
+        section_infos.append((section_start, section_end, info))
+        if info == server_name:
+            server_sections.append(index)
+
+    if not server_sections:
+        return _append_toml_section(text, section_text)
+
+    keep_index = server_sections[0]
+    pieces = [text[: table_matches[0].start()]]
+    for index, (section_start, section_end, info) in enumerate(section_infos):
+        section = text[section_start:section_end]
+        if info == server_name:
+            if index != keep_index:
+                continue
+            section = section_text
+        pieces.append(section)
+    return "".join(pieces)
+
+
 def validate_codex_config(home: Path | None = None) -> str | None:
     resolved_home = home.resolve() if home is not None else Path.home().resolve()
     codex_root = _codex_root(resolved_home)
@@ -689,7 +922,7 @@ def validate_codex_config(home: Path | None = None) -> str | None:
     return str(config_path.resolve())
 
 
-def _enable_codex_plugin(home: Path, plugin_name: str, marketplace_name: str) -> str | None:
+def _enable_codex_plugin(home: Path, plugin_name: str, marketplace_name: str, target_root: Path | None = None) -> str | None:
     codex_root = _codex_root(home)
     if not codex_root.exists():
         return None
@@ -699,6 +932,8 @@ def _enable_codex_plugin(home: Path, plugin_name: str, marketplace_name: str) ->
     else:
         text = ""
     text = _normalize_codex_plugin_config(text, plugin_name, marketplace_name)
+    if target_root is not None:
+        text = _normalize_codex_mcp_server_config(text, plugin_name, target_root)
     _validate_codex_config_toml(text, config_path)
     _write_codex_config_atomically(config_path, text)
     return str(config_path.resolve())
@@ -714,9 +949,11 @@ def install_global_plugin(
     marketplace_path = Path(install_target["marketplace_path"])
     plugins_root = Path(install_target["plugins_root"])
     install_kind = str(install_target["install_kind"])
-    plugin_name = source_plugin_root.name
-    target_root = plugins_root / plugin_name
-    restored_paths = _sync_plugin_contents(source_plugin_root, target_root, plugins_root)
+    plugin_name = _plugin_name_for_source(source_plugin_root)
+    sync_result = _sync_plugin_contents(source_plugin_root, plugins_root, plugin_name)
+    target_root = Path(sync_result["target_root"])
+    checkout_root = Path(sync_result["checkout_root"])
+    restored_paths = list(sync_result["restored_paths"])
     migrated_paths: list[str] = []
     legacy_target_root = _legacy_plugins_root(resolved_home) / plugin_name
     if install_kind == CODEX_DESKTOP_INSTALL_KIND and legacy_target_root.resolve() != target_root.resolve():
@@ -724,13 +961,14 @@ def install_global_plugin(
     pruned_stale_cache_installs = _prune_stale_codex_cache_installs(resolved_home, plugin_name, target_root)
     seeded_local_extension_files = _seed_local_extension_scaffolds(target_root)
     category = _category_for_plugin(source_plugin_root)
-    replaced_active_marketplace_entries = _write_marketplace_entry(marketplace_path, plugin_name, category)
+    marketplace_source_path = _marketplace_source_path(marketplace_path, target_root)
+    replaced_active_marketplace_entries = _write_marketplace_entry(marketplace_path, plugin_name, category, marketplace_source_path)
     pruned_inactive_marketplace_entries = _prune_inactive_marketplace_entries(resolved_home, marketplace_path, plugin_name)
-    rebuild = _rebuild_target_plugin(target_root)
+    rebuild = _rebuild_target_plugin(target_root, git_checkout=sync_result["git"] is not None)
     marketplace_name = _marketplace_name(marketplace_path)
     codex_config_path: str | None = None
     if _codex_root(resolved_home).exists():
-        codex_config_path = _enable_codex_plugin(resolved_home, plugin_name, marketplace_name)
+        codex_config_path = _enable_codex_plugin(resolved_home, plugin_name, marketplace_name, target_root)
     return {
         "install_kind": install_kind,
         "codex_cache_plugin_root": None,
@@ -738,7 +976,20 @@ def install_global_plugin(
         "plugin_name": plugin_name,
         "source_plugin_root": str(source_plugin_root.resolve()),
         "target_plugin_root": str(target_root.resolve()),
+        "checkout_root": str(checkout_root.resolve()),
+        "install_strategy": sync_result["install_strategy"],
+        "git": (
+            {
+                "repo_root": str(Path(sync_result["git"]["repo_root"]).resolve()),
+                "plugin_subpath": Path(sync_result["git"]["plugin_subpath"]).as_posix(),
+                "remote_url": sync_result["git"]["remote_url"],
+                "branch": sync_result["git"]["branch"],
+            }
+            if sync_result["git"] is not None
+            else None
+        ),
         "marketplace_path": str(marketplace_path.resolve()),
+        "marketplace_source_path": marketplace_source_path,
         "replaced_active_marketplace_entries": replaced_active_marketplace_entries,
         "pruned_inactive_marketplace_entries": pruned_inactive_marketplace_entries,
         "pruned_stale_cache_installs": pruned_stale_cache_installs,
