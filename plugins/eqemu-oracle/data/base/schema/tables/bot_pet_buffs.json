@@ -44,13 +44,19 @@
       "local_key": "pets_index",
       "relationship_type": "One-to-One",
       "remote_key": "pets_index",
-      "remote_table": "[bot_pets](../../schema/bots/bot_pets.md)"
+      "remote_table": "[bot_pets](../../schema/bots/bot_pets.md)",
+      "remote_table_id": "bot_pets",
+      "remote_table_label": "bot_pets",
+      "remote_table_path": "../../schema/bots/bot_pets.md"
     },
     {
       "local_key": "spell_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[spells_new](../../schema/spells/spells_new.md)"
+      "remote_table": "[spells_new](../../schema/spells/spells_new.md)",
+      "remote_table_id": "spells_new",
+      "remote_table_label": "spells_new",
+      "remote_table_path": "../../schema/spells/spells_new.md"
     }
   ],
   "search_aliases": [

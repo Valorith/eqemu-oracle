@@ -49,7 +49,10 @@
       "local_key": "zone_id",
       "relationship_type": "One-to-One",
       "remote_key": "zoneidnumber",
-      "remote_table": "[zone](../../schema/zone/zone.md)"
+      "remote_table": "[zone](../../schema/zone/zone.md)",
+      "remote_table_id": "zone",
+      "remote_table_label": "zone",
+      "remote_table_path": "../../schema/zone/zone.md"
     }
   ],
   "search_aliases": [

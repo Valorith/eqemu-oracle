@@ -69,13 +69,19 @@
       "local_key": "armortint_id",
       "relationship_type": "Has-Many",
       "remote_key": "id",
-      "remote_table": "[npc_types_tint](../../schema/npcs/npc_types_tint.md)"
+      "remote_table": "[npc_types_tint](../../schema/npcs/npc_types_tint.md)",
+      "remote_table_id": "npc_types_tint",
+      "remote_table_label": "npc_types_tint",
+      "remote_table_path": "../../schema/npcs/npc_types_tint.md"
     },
     {
       "local_key": "merc_npc_type_id",
       "relationship_type": "One-to-One",
       "remote_key": "merc_npc_type_id",
-      "remote_table": "[merc_npc_types](../../schema/mercenaries/merc_npc_types.md)"
+      "remote_table": "[merc_npc_types](../../schema/mercenaries/merc_npc_types.md)",
+      "remote_table_id": "merc_npc_types",
+      "remote_table_label": "merc_npc_types",
+      "remote_table_path": "../../schema/mercenaries/merc_npc_types.md"
     }
   ],
   "search_aliases": [

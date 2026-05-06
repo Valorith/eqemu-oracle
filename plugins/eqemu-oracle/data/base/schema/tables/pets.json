@@ -64,19 +64,28 @@
       "local_key": "npcID",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[npc_types](../../schema/npcs/npc_types.md)"
+      "remote_table": "[npc_types](../../schema/npcs/npc_types.md)",
+      "remote_table_id": "npc_types",
+      "remote_table_label": "npc_types",
+      "remote_table_path": "../../schema/npcs/npc_types.md"
     },
     {
       "local_key": "type",
       "relationship_type": "One-to-One",
       "remote_key": "name",
-      "remote_table": "[npc_types](../../schema/npcs/npc_types.md)"
+      "remote_table": "[npc_types](../../schema/npcs/npc_types.md)",
+      "remote_table_id": "npc_types",
+      "remote_table_label": "npc_types",
+      "remote_table_path": "../../schema/npcs/npc_types.md"
     },
     {
       "local_key": "equipmentset",
       "relationship_type": "One-to-One",
       "remote_key": "set_id",
-      "remote_table": "[pets_equipmentset](../../schema/pets/pets_equipmentset.md)"
+      "remote_table": "[pets_equipmentset](../../schema/pets/pets_equipmentset.md)",
+      "remote_table_id": "pets_equipmentset",
+      "remote_table_label": "pets_equipmentset",
+      "remote_table_path": "../../schema/pets/pets_equipmentset.md"
     }
   ],
   "search_aliases": [

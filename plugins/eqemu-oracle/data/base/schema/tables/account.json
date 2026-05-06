@@ -139,61 +139,91 @@
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "p_accid",
-      "remote_table": "[account_flags](../../schema/account/account_flags.md)"
+      "remote_table": "[account_flags](../../schema/account/account_flags.md)",
+      "remote_table_id": "account_flags",
+      "remote_table_label": "account_flags",
+      "remote_table_path": "../../schema/account/account_flags.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "accid",
-      "remote_table": "[account_ip](../../schema/account/account_ip.md)"
+      "remote_table": "[account_ip](../../schema/account/account_ip.md)",
+      "remote_table_id": "account_ip",
+      "remote_table_label": "account_ip",
+      "remote_table_path": "../../schema/account/account_ip.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "account_id",
-      "remote_table": "[account_rewards](../../schema/account/account_rewards.md)"
+      "remote_table": "[account_rewards](../../schema/account/account_rewards.md)",
+      "remote_table_id": "account_rewards",
+      "remote_table_label": "account_rewards",
+      "remote_table_path": "../../schema/account/account_rewards.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "account_id",
-      "remote_table": "[bug_reports](../../schema/admin/bug_reports.md)"
+      "remote_table": "[bug_reports](../../schema/admin/bug_reports.md)",
+      "remote_table_id": "bug_reports",
+      "remote_table_label": "bug_reports",
+      "remote_table_path": "../../schema/admin/bug_reports.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "acctid",
-      "remote_table": "[sharedbank](../../schema/account/sharedbank.md)"
+      "remote_table": "[sharedbank](../../schema/account/sharedbank.md)",
+      "remote_table_id": "sharedbank",
+      "remote_table_label": "sharedbank",
+      "remote_table_path": "../../schema/account/sharedbank.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "accountid",
-      "remote_table": "[eventlog](../../schema/admin/eventlog.md)"
+      "remote_table": "[eventlog](../../schema/admin/eventlog.md)",
+      "remote_table_id": "eventlog",
+      "remote_table_label": "eventlog",
+      "remote_table_path": "../../schema/admin/eventlog.md"
     },
     {
       "local_key": "id",
       "relationship_type": "One-to-One",
       "remote_key": "account_id",
-      "remote_table": "[gm_ips](../../schema/admin/gm_ips.md)"
+      "remote_table": "[gm_ips](../../schema/admin/gm_ips.md)",
+      "remote_table_id": "gm_ips",
+      "remote_table_label": "gm_ips",
+      "remote_table_path": "../../schema/admin/gm_ips.md"
     },
     {
       "local_key": "name",
       "relationship_type": "Has-Many",
       "remote_key": "accountname",
-      "remote_table": "[eventlog](../../schema/admin/eventlog.md)"
+      "remote_table": "[eventlog](../../schema/admin/eventlog.md)",
+      "remote_table_id": "eventlog",
+      "remote_table_label": "eventlog",
+      "remote_table_path": "../../schema/admin/eventlog.md"
     },
     {
       "local_key": "name",
       "relationship_type": "Has-Many",
       "remote_key": "account",
-      "remote_table": "[hackers](../../schema/admin/hackers.md)"
+      "remote_table": "[hackers](../../schema/admin/hackers.md)",
+      "remote_table_id": "hackers",
+      "remote_table_label": "hackers",
+      "remote_table_path": "../../schema/admin/hackers.md"
     },
     {
       "local_key": "name",
       "relationship_type": "Has-Many",
       "remote_key": "accountname",
-      "remote_table": "[petitions](../../schema/admin/petitions.md)"
+      "remote_table": "[petitions](../../schema/admin/petitions.md)",
+      "remote_table_id": "petitions",
+      "remote_table_label": "petitions",
+      "remote_table_path": "../../schema/admin/petitions.md"
     }
   ],
   "search_aliases": [

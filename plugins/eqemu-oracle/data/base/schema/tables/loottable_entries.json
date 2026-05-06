@@ -49,13 +49,19 @@
       "local_key": "loottable_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[loottable](../../schema/loot/loottable.md)"
+      "remote_table": "[loottable](../../schema/loot/loottable.md)",
+      "remote_table_id": "loottable",
+      "remote_table_label": "loottable",
+      "remote_table_path": "../../schema/loot/loottable.md"
     },
     {
       "local_key": "lootdrop_id",
       "relationship_type": "Has-Many",
       "remote_key": "lootdrop_id",
-      "remote_table": "[lootdrop_entries](../../schema/loot/lootdrop_entries.md)"
+      "remote_table": "[lootdrop_entries](../../schema/loot/lootdrop_entries.md)",
+      "remote_table_id": "lootdrop_entries",
+      "remote_table_label": "lootdrop_entries",
+      "remote_table_path": "../../schema/loot/lootdrop_entries.md"
     }
   ],
   "search_aliases": [
