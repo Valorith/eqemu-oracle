@@ -168,7 +168,7 @@ def main() -> int:
 
     install_parser = subparsers.add_parser(
         "install",
-        help="Install or refresh the global Codex plugin copy, preferring the desktop marketplace under ~/.codex/.tmp/plugins",
+        help="Install or refresh the global Codex plugin copy in the stable local marketplace",
     )
     install_parser.set_defaults(func=install_global)
 

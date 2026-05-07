@@ -88,7 +88,7 @@ Return to your previous branch after updating from a different branch:
 <python-launcher> plugins/eqemu-oracle/scripts/eqemu_oracle.py update-plugin --branch my-branch --restore-branch
 ```
 
-`<python-launcher>` means `python3` on macOS/Linux and `py -3` (or `python`) on Windows. Codex itself starts the plugin through `scripts/eqemu_oracle_launcher.cmd`, which bridges that difference for the MCP server startup path. Python 3.11+ is still preferred, but the checked-in `sources.toml` format also works on older Python 3 versions without installing extra parser dependencies.
+`<python-launcher>` means `python3` on macOS/Linux and `py -3` (or `python`) on Windows. Codex starts the installed MCP server with the resolved Python executable and `scripts/eqemu_oracle.py mcp-serve`, avoiding shell-wrapper startup differences. Python 3.11+ is still preferred, but the checked-in `sources.toml` format also works on older Python 3 versions without installing extra parser dependencies.
 
 Install or refresh the global home-local copy:
 
@@ -96,8 +96,8 @@ Install or refresh the global home-local copy:
 <python-launcher> plugins/eqemu-oracle/scripts/eqemu_oracle.py install
 ```
 
-On Codex Desktop this prefers the app-managed catalog under `~/.codex/.tmp/plugins` and only falls back to `~/plugins` plus `~/.agents/plugins/marketplace.json` when the desktop catalog is unavailable.
-When Codex is present, the installer enables the plugin in `~/.codex/config.toml`, points the direct MCP server at the editable catalog checkout, and refreshes the Codex plugin-loader cache copy from that checkout.
+On Codex Desktop this installs into the stable local marketplace under `~/.codex/local-marketplaces/user-local` and only falls back to the legacy home-local plugin path when Codex is unavailable.
+When Codex is present, the installer enables the plugin in `~/.codex/config.toml`, points the direct MCP server at the editable catalog checkout, and refreshes the Codex plugin-loader cache copy from that checkout. Current Codex Desktop builds may load the plugin skills without exposing local plugin MCP tools through `tool_search`; in that case use the CLI fallback shown below.
 
 ## Overlay Model
 
@@ -176,4 +176,4 @@ The server is tool-first, but it also exposes browseable MCP resources for clien
 - `eqemu://plugins/example/{id}`
 - `eqemu://provenance/{domain}/{id}`
 
-If a Codex session does not surface generic MCP resources, the plugin is still usable through its MCP tools. Resource visibility is supplemental, not the primary access path.
+If a Codex session does not surface generic MCP resources or local plugin MCP tools, the plugin is still usable through the CLI `tool` command. The CLI command calls the same local handlers as the MCP server and returns the same structured payload.

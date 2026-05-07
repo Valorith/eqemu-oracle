@@ -28,6 +28,8 @@ MARKETPLACE_NAME = "user-local"
 MARKETPLACE_DISPLAY_NAME = "Local Plugins"
 CODEX_DESKTOP_INSTALL_KIND = "codex-desktop-marketplace"
 LEGACY_HOME_INSTALL_KIND = "legacy-home-marketplace"
+CODEX_MCP_SERVER_NAME = "eqemu_oracle"
+LEGACY_CODEX_MCP_SERVER_NAMES = ("eqemu-oracle",)
 PRESERVED_PATHS = (
     Path("config") / "sources.local.toml",
     Path("local-extensions"),
@@ -531,7 +533,7 @@ def _codex_root(home: Path) -> Path:
 
 
 def _codex_marketplace_root(home: Path) -> Path:
-    return _codex_root(home) / ".tmp" / "plugins"
+    return _codex_root(home) / "local-marketplaces" / MARKETPLACE_NAME
 
 
 def _codex_marketplace_path(home: Path) -> Path:
@@ -551,13 +553,11 @@ def _codex_cache_activation_root(home: Path, marketplace_name: str, plugin_name:
 
 
 def _resolve_install_target(home: Path) -> dict[str, Path | str]:
-    codex_marketplace_path = _codex_marketplace_path(home)
-    codex_plugins_root = _codex_plugins_root(home)
-    if codex_marketplace_path.exists() and codex_plugins_root.exists():
+    if _codex_root(home).exists():
         return {
             "install_kind": CODEX_DESKTOP_INSTALL_KIND,
-            "marketplace_path": codex_marketplace_path,
-            "plugins_root": codex_plugins_root,
+            "marketplace_path": _codex_marketplace_path(home),
+            "plugins_root": _codex_plugins_root(home),
         }
     return {
         "install_kind": LEGACY_HOME_INSTALL_KIND,
@@ -584,7 +584,8 @@ def _marketplace_source_path(marketplace_path: Path, target_root: Path) -> str:
 
 
 def _known_marketplace_paths(home: Path) -> tuple[Path, ...]:
-    return (_codex_marketplace_path(home), _legacy_marketplace_path(home))
+    official_codex_marketplace_path = _codex_root(home) / ".tmp" / "plugins" / ".agents" / "plugins" / "marketplace.json"
+    return (_codex_marketplace_path(home), official_codex_marketplace_path, _legacy_marketplace_path(home))
 
 
 def _prune_inactive_marketplace_entries(home: Path, active_marketplace_path: Path, plugin_name: str) -> list[dict[str, Any]]:
@@ -913,12 +914,12 @@ def _normalize_codex_plugin_config(text: str, plugin_name: str, marketplace_name
 
 
 def _mcp_server_section(server_name: str, target_root: Path) -> str:
-    launcher_path = target_root / "scripts" / "eqemu_oracle_launcher.cmd"
+    script_path = target_root / "scripts" / "eqemu_oracle.py"
     return "\n".join(
         [
             _mcp_server_config_header(server_name),
-            f"command = {_toml_basic_string(str(launcher_path.resolve()))}",
-            f"args = {_toml_string_array(['mcp-serve'])}",
+            f"command = {_toml_basic_string(str(Path(sys.executable).resolve()))}",
+            f"args = {_toml_string_array([str(script_path.resolve()), 'mcp-serve'])}",
             f"cwd = {_toml_basic_string(str(target_root.resolve()))}",
             "",
         ]
@@ -936,8 +937,9 @@ def _marketplace_source_section(marketplace_name: str, marketplace_root: Path) -
     )
 
 
-def _normalize_codex_mcp_server_config(text: str, server_name: str, target_root: Path) -> str:
+def _normalize_codex_mcp_server_config(text: str, server_name: str, target_root: Path, legacy_server_names: tuple[str, ...] = ()) -> str:
     section_text = _mcp_server_section(server_name, target_root)
+    server_names = {server_name, *legacy_server_names}
     table_matches = list(_TOML_TABLE_HEADER_RE.finditer(text))
     if not table_matches:
         return _append_toml_section(text, section_text)
@@ -949,7 +951,7 @@ def _normalize_codex_mcp_server_config(text: str, server_name: str, target_root:
         section_end = table_matches[index + 1].start() if index + 1 < len(table_matches) else len(text)
         info = _codex_mcp_server_header_info(match.group(0))
         section_infos.append((section_start, section_end, info))
-        if info == server_name:
+        if info in server_names:
             server_sections.append(index)
 
     if not server_sections:
@@ -959,7 +961,7 @@ def _normalize_codex_mcp_server_config(text: str, server_name: str, target_root:
     pieces = [text[: table_matches[0].start()]]
     for index, (section_start, section_end, info) in enumerate(section_infos):
         section = text[section_start:section_end]
-        if info == server_name:
+        if info in server_names:
             if index != keep_index:
                 continue
             section = section_text
@@ -1029,7 +1031,7 @@ def _enable_codex_plugin(
         text = _normalize_codex_marketplace_source_config(text, marketplace_name, marketplace_root)
     text = _normalize_codex_plugin_config(text, plugin_name, marketplace_name)
     if target_root is not None:
-        text = _normalize_codex_mcp_server_config(text, plugin_name, target_root)
+        text = _normalize_codex_mcp_server_config(text, CODEX_MCP_SERVER_NAME, target_root, LEGACY_CODEX_MCP_SERVER_NAMES)
     _validate_codex_config_toml(text, config_path)
     _write_codex_config_atomically(config_path, text)
     return str(config_path.resolve())

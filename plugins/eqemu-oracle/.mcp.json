@@ -1,9 +1,10 @@
 {
   "mcpServers": {
-    "eqemu-oracle": {
+    "eqemu_oracle": {
       "type": "stdio",
-      "command": "./scripts/eqemu_oracle_launcher.cmd",
+      "command": "python",
       "args": [
+        "./scripts/eqemu_oracle.py",
         "mcp-serve"
       ],
       "cwd": ".",

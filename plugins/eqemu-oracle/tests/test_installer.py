@@ -90,8 +90,10 @@ class InstallerTest(unittest.TestCase):
                 run_mock.return_value.stdout = ""
                 run_mock.return_value.stderr = ""
                 result = installer.install_global_plugin(home=home, source_plugin_root=source_root)
-                target_root = codex_root / "plugins" / "eqemu-oracle"
-                cache_root = home / ".codex" / "plugins" / "cache" / "openai-curated" / "eqemu-oracle" / "local"
+                local_marketplace_root = home / ".codex" / "local-marketplaces" / "user-local"
+                local_marketplace_path = local_marketplace_root / ".agents" / "plugins" / "marketplace.json"
+                target_root = local_marketplace_root / "plugins" / "eqemu-oracle"
+                cache_root = home / ".codex" / "plugins" / "cache" / "user-local" / "eqemu-oracle" / "local"
                 config_path = home / ".codex" / "config.toml"
                 self.assertEqual(result["install_kind"], installer.CODEX_DESKTOP_INSTALL_KIND)
                 self.assertEqual(result["codex_cache_plugin_root"], str(cache_root.resolve()))
@@ -100,18 +102,37 @@ class InstallerTest(unittest.TestCase):
                 self.assertTrue(cache_root.exists())
                 self.assertEqual(result["codex_cache_activation_copy"]["target_root"], str(target_root.resolve()))
                 self.assertTrue((cache_root / ".codex-plugin" / "plugin.json").exists())
-                marketplace = json.loads(marketplace_path.read_text(encoding="utf-8"))
-                self.assertEqual(marketplace["name"], "openai-curated")
+                marketplace = json.loads(local_marketplace_path.read_text(encoding="utf-8"))
+                self.assertEqual(marketplace["name"], "user-local")
                 self.assertEqual(marketplace["plugins"][0]["name"], "eqemu-oracle")
                 self.assertEqual(marketplace["plugins"][0]["source"]["path"], "./plugins/eqemu-oracle")
-                self.assertIn('[plugins."eqemu-oracle@openai-curated"]', config_path.read_text(encoding="utf-8"))
+                self.assertIn('[plugins."eqemu-oracle@user-local"]', config_path.read_text(encoding="utf-8"))
                 self.assertIn("enabled = true", config_path.read_text(encoding="utf-8"))
-                self.assertIn('[mcp_servers."eqemu-oracle"]', config_path.read_text(encoding="utf-8"))
-                self.assertIn('[marketplaces."openai-curated"]', config_path.read_text(encoding="utf-8"))
+                self.assertIn('[mcp_servers."eqemu_oracle"]', config_path.read_text(encoding="utf-8"))
+                self.assertIn('[marketplaces."user-local"]', config_path.read_text(encoding="utf-8"))
                 self.assertIn('source_type = "local"', config_path.read_text(encoding="utf-8"))
-                self.assertIn(str(codex_root.resolve()).replace("\\", "\\\\"), config_path.read_text(encoding="utf-8"))
-                self.assertIn(str((target_root / "scripts" / "eqemu_oracle_launcher.cmd").resolve()).replace("\\", "\\\\"), config_path.read_text(encoding="utf-8"))
+                self.assertIn(str(local_marketplace_root.resolve()).replace("\\", "\\\\"), config_path.read_text(encoding="utf-8"))
+                self.assertIn(str((target_root / "scripts" / "eqemu_oracle.py").resolve()).replace("\\", "\\\\"), config_path.read_text(encoding="utf-8"))
                 self.assertIn(str(target_root.resolve()).replace("\\", "\\\\"), config_path.read_text(encoding="utf-8"))
+
+    def test_install_global_plugin_uses_stable_local_marketplace_when_official_marketplace_is_absent(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            home = Path(temp_dir) / "home"
+            source_root = Path(temp_dir) / "source" / "eqemu-oracle"
+            _seed_plugin_root(source_root)
+            (home / ".codex").mkdir(parents=True, exist_ok=True)
+
+            with patch("eqemu_oracle.installer.subprocess.run") as run_mock:
+                run_mock.return_value.returncode = 0
+                run_mock.return_value.stdout = ""
+                run_mock.return_value.stderr = ""
+                result = installer.install_global_plugin(home=home, source_plugin_root=source_root)
+
+            local_marketplace_root = home / ".codex" / "local-marketplaces" / "user-local"
+            target_root = local_marketplace_root / "plugins" / "eqemu-oracle"
+            self.assertEqual(result["marketplace_path"], str((local_marketplace_root / ".agents" / "plugins" / "marketplace.json").resolve()))
+            self.assertEqual(result["target_plugin_root"], str(target_root.resolve()))
+            self.assertTrue((target_root / ".codex-plugin" / "plugin.json").exists())
 
     def test_install_global_plugin_installs_git_checkout_when_source_is_git(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -151,9 +172,11 @@ class InstallerTest(unittest.TestCase):
                         run_mock.return_value.stderr = ""
                         result = installer.install_global_plugin(home=home, source_plugin_root=source_root)
 
-            checkout_root = codex_root / "plugins" / "eqemu-oracle"
+            local_marketplace_root = home / ".codex" / "local-marketplaces" / "user-local"
+            local_marketplace_path = local_marketplace_root / ".agents" / "plugins" / "marketplace.json"
+            checkout_root = local_marketplace_root / "plugins" / "eqemu-oracle"
             target_root = checkout_root / "plugins" / "eqemu-oracle"
-            marketplace = json.loads(marketplace_path.read_text(encoding="utf-8"))
+            marketplace = json.loads(local_marketplace_path.read_text(encoding="utf-8"))
             self.assertEqual(result["install_strategy"], "git-checkout")
             self.assertEqual(result["checkout_root"], str(checkout_root.resolve()))
             self.assertEqual(result["target_plugin_root"], str(target_root.resolve()))
@@ -207,17 +230,24 @@ class InstallerTest(unittest.TestCase):
                 run_mock.return_value.stderr = ""
                 result = installer.install_global_plugin(home=home, source_plugin_root=source_root)
 
-                marketplace = json.loads(marketplace_path.read_text(encoding="utf-8"))
-                plugin_names = [entry["name"] for entry in marketplace["plugins"]]
-                self.assertEqual(plugin_names.count("eqemu-oracle"), 1)
-                self.assertIn("other-plugin", plugin_names)
-                self.assertEqual(result["replaced_active_marketplace_entries"], 2)
+                local_marketplace_path = home / ".codex" / "local-marketplaces" / "user-local" / ".agents" / "plugins" / "marketplace.json"
+                local_marketplace = json.loads(local_marketplace_path.read_text(encoding="utf-8"))
+                local_plugin_names = [entry["name"] for entry in local_marketplace["plugins"]]
+                self.assertEqual(local_plugin_names.count("eqemu-oracle"), 1)
+                self.assertEqual(result["replaced_active_marketplace_entries"], 0)
+
+                official_marketplace = json.loads(marketplace_path.read_text(encoding="utf-8"))
+                official_plugin_names = [entry["name"] for entry in official_marketplace["plugins"]]
+                self.assertNotIn("eqemu-oracle", official_plugin_names)
+                self.assertNotIn("EQEmu Oracle", official_plugin_names)
+                self.assertIn("other-plugin", official_plugin_names)
 
                 legacy_marketplace = json.loads(legacy_marketplace_path.read_text(encoding="utf-8"))
                 legacy_plugin_names = [entry["name"] for entry in legacy_marketplace["plugins"]]
                 self.assertNotIn("eqemu-oracle", legacy_plugin_names)
                 self.assertIn("other-legacy", legacy_plugin_names)
-                self.assertEqual(result["pruned_inactive_marketplace_entries"][0]["removed_entries"], 1)
+                removed_counts = sorted(entry["removed_entries"] for entry in result["pruned_inactive_marketplace_entries"])
+                self.assertEqual(removed_counts, [1, 2])
 
     def test_install_global_plugin_prunes_stale_codex_cache_install_after_migration(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -253,12 +283,13 @@ class InstallerTest(unittest.TestCase):
                 run_mock.return_value.stdout = ""
                 run_mock.return_value.stderr = ""
                 result = installer.install_global_plugin(home=home, source_plugin_root=source_root)
-                target_root = codex_root / "plugins" / "eqemu-oracle"
+                target_root = home / ".codex" / "local-marketplaces" / "user-local" / "plugins" / "eqemu-oracle"
 
-                activation_copy = hashed_cache_root.parent / "local"
+                activation_copy = home / ".codex" / "plugins" / "cache" / "user-local" / "eqemu-oracle" / "local"
                 self.assertTrue(activation_copy.exists())
                 self.assertTrue((activation_copy / ".codex-plugin" / "plugin.json").exists())
                 self.assertFalse(hashed_cache_root.exists())
+                self.assertFalse(stale_cache_root.exists())
                 self.assertTrue((target_root / "local-extensions" / "quests" / "_example.json").exists())
                 self.assertTrue((target_root / "config" / "sources.local.toml").exists())
                 self.assertTrue((target_root / "local-extensions" / "custom.json").exists())
@@ -313,7 +344,7 @@ class InstallerTest(unittest.TestCase):
                         'args = ["old"]',
                         'cwd = "old"',
                         "",
-                        "[mcp_servers.eqemu-oracle]",
+                        "[mcp_servers.eqemu_oracle]",
                         'command = "duplicate"',
                         "",
                     ]
@@ -324,11 +355,13 @@ class InstallerTest(unittest.TestCase):
             installer._enable_codex_plugin(home, "eqemu-oracle", "openai-curated", target_root)
 
             text = config_path.read_text(encoding="utf-8")
-            self.assertEqual(text.count('[mcp_servers."eqemu-oracle"]'), 1)
+            self.assertNotIn('[mcp_servers."eqemu-oracle"]', text)
+            self.assertEqual(text.count('[mcp_servers."eqemu_oracle"]'), 1)
             self.assertNotIn('command = "old"', text)
             self.assertNotIn('command = "duplicate"', text)
-            self.assertIn(str((target_root / "scripts" / "eqemu_oracle_launcher.cmd").resolve()).replace("\\", "\\\\"), text)
-            self.assertIn('args = ["mcp-serve"]', text)
+            self.assertIn(str((target_root / "scripts" / "eqemu_oracle.py").resolve()).replace("\\", "\\\\"), text)
+            self.assertIn(str(Path(sys.executable).resolve()).replace("\\", "\\\\"), text)
+            self.assertIn('"mcp-serve"', text)
             self.assertIn(str(target_root.resolve()).replace("\\", "\\\\"), text)
             installer.validate_codex_config(home)
 
@@ -494,7 +527,7 @@ class InstallerTest(unittest.TestCase):
                 run_mock.return_value.stdout = ""
                 run_mock.return_value.stderr = ""
                 result = installer.install_global_plugin(home=home, source_plugin_root=source_root)
-                target_root = codex_root / "plugins" / "eqemu-oracle"
+                target_root = home / ".codex" / "local-marketplaces" / "user-local" / "plugins" / "eqemu-oracle"
                 self.assertIn("config/sources.local.toml", result["migrated_paths"])
                 self.assertIn("local-extensions", result["migrated_paths"])
                 self.assertTrue((target_root / "config" / "sources.local.toml").exists())

@@ -9,10 +9,10 @@ Use this skill when the task needs authoritative EQEmu context.
 
 ## Required behavior
 
-1. Use the EQEmu Oracle MCP server first.
-2. Use MCP tools as the normal and expected access path. Resources are supplemental only.
+1. Use the EQEmu Oracle MCP server first when the MCP tools are surfaced in the session.
+2. Use MCP tools as the normal access path when available. Resources are supplemental only.
 3. Never describe the plugin as lacking "callable resources". MCP resources are readable, not callable. Tools are the callable interface.
-4. If generic resource enumeration or `tool_search` does not expose the MCP tools in a session, do not narrate a discovery failure. Use the bundled CLI fallback from the plugin root: `py -3 scripts\eqemu_oracle.py tool <tool_name> --args '<json object>'`. This calls the same local Oracle tool handlers and returns the same structured payload.
+4. If generic resource enumeration, direct tool listing, or `tool_search` does not expose the MCP tools in a session, do not narrate a discovery failure. Use the bundled CLI fallback from the plugin root: `py -3 scripts\eqemu_oracle.py tool <tool_name> --args '<json object>'`. This calls the same local Oracle tool handlers and returns the same structured payload.
 5. For EQEmu questions, call at least one EQEmu Oracle tool before falling back to local quest files, unless the user explicitly asked you not to use the plugin.
 6. Prefer exact getters over broad search when the target symbol, table, or page is known.
 7. Use `summarize_quest_api_topic` for broad quest API topic questions such as "aggro", "loot", "task", or "what options are available".
