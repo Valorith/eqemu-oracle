@@ -39,13 +39,19 @@
       "local_key": "charid",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+      "remote_table": "[character_data](../../schema/characters/character_data.md)",
+      "remote_table_id": "character_data",
+      "remote_table_label": "character_data",
+      "remote_table_path": "../../schema/characters/character_data.md"
     },
     {
       "local_key": "groupid",
       "relationship_type": "One-to-One",
       "remote_key": "gid",
-      "remote_table": "[group_leaders](../../schema/groups/group_leaders.md)"
+      "remote_table": "[group_leaders](../../schema/groups/group_leaders.md)",
+      "remote_table_id": "group_leaders",
+      "remote_table_label": "group_leaders",
+      "remote_table_path": "../../schema/groups/group_leaders.md"
     }
   ],
   "search_aliases": [

@@ -34,7 +34,10 @@
       "local_key": "heal_rotation_index",
       "relationship_type": "One-to-One",
       "remote_key": "heal_rotation_index",
-      "remote_table": "[bot_heal_rotations](../../schema/bots/bot_heal_rotations.md)"
+      "remote_table": "[bot_heal_rotations](../../schema/bots/bot_heal_rotations.md)",
+      "remote_table_id": "bot_heal_rotations",
+      "remote_table_label": "bot_heal_rotations",
+      "remote_table_path": "../../schema/bots/bot_heal_rotations.md"
     }
   ],
   "search_aliases": [

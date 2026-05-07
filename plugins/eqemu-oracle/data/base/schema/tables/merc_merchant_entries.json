@@ -34,13 +34,19 @@
       "local_key": "merc_merchant_template_id",
       "relationship_type": "One-to-One",
       "remote_key": "merc_merchant_template_id",
-      "remote_table": "[merc_merchant_templates](../../schema/mercenaries/merc_merchant_templates.md)"
+      "remote_table": "[merc_merchant_templates](../../schema/mercenaries/merc_merchant_templates.md)",
+      "remote_table_id": "merc_merchant_templates",
+      "remote_table_label": "merc_merchant_templates",
+      "remote_table_path": "../../schema/mercenaries/merc_merchant_templates.md"
     },
     {
       "local_key": "merchant_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[npc_types](../../schema/npcs/npc_types.md)"
+      "remote_table": "[npc_types](../../schema/npcs/npc_types.md)",
+      "remote_table_id": "npc_types",
+      "remote_table_label": "npc_types",
+      "remote_table_path": "../../schema/npcs/npc_types.md"
     }
   ],
   "search_aliases": [

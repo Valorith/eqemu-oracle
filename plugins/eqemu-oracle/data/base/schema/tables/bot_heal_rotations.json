@@ -99,19 +99,28 @@
       "local_key": "bot_id",
       "relationship_type": "One-to-One",
       "remote_key": "bot_id",
-      "remote_table": "[bot_data](../../schema/bots/bot_data.md)"
+      "remote_table": "[bot_data](../../schema/bots/bot_data.md)",
+      "remote_table_id": "bot_data",
+      "remote_table_label": "bot_data",
+      "remote_table_path": "../../schema/bots/bot_data.md"
     },
     {
       "local_key": "heal_rotation_index",
       "relationship_type": "Has-Many",
       "remote_key": "heal_rotation_index",
-      "remote_table": "[bot_heal_rotation_members](../../schema/bots/bot_heal_rotation_members.md)"
+      "remote_table": "[bot_heal_rotation_members](../../schema/bots/bot_heal_rotation_members.md)",
+      "remote_table_id": "bot_heal_rotation_members",
+      "remote_table_label": "bot_heal_rotation_members",
+      "remote_table_path": "../../schema/bots/bot_heal_rotation_members.md"
     },
     {
       "local_key": "heal_rotation_index",
       "relationship_type": "Has-Many",
       "remote_key": "heal_rotation_index",
-      "remote_table": "[bot_heal_rotation_targets](../../schema/bots/bot_heal_rotation_targets.md)"
+      "remote_table": "[bot_heal_rotation_targets](../../schema/bots/bot_heal_rotation_targets.md)",
+      "remote_table_id": "bot_heal_rotation_targets",
+      "remote_table_label": "bot_heal_rotation_targets",
+      "remote_table_path": "../../schema/bots/bot_heal_rotation_targets.md"
     }
   ],
   "search_aliases": [

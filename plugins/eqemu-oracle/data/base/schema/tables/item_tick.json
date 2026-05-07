@@ -49,13 +49,19 @@
       "local_key": "it_itemid",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[items](../../schema/items/items.md)"
+      "remote_table": "[items](../../schema/items/items.md)",
+      "remote_table_id": "items",
+      "remote_table_label": "items",
+      "remote_table_path": "../../schema/items/items.md"
     },
     {
       "local_key": "it_qglobal",
       "relationship_type": "Has-Many",
       "remote_key": "name",
-      "remote_table": "[quest_globals](../../schema/data-storage/quest_globals.md)"
+      "remote_table": "[quest_globals](../../schema/data-storage/quest_globals.md)",
+      "remote_table_id": "quest_globals",
+      "remote_table_label": "quest_globals",
+      "remote_table_path": "../../schema/data-storage/quest_globals.md"
     }
   ],
   "search_aliases": [

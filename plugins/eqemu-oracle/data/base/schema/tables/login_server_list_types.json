@@ -29,7 +29,10 @@
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "login_server_list_type_id",
-      "remote_table": "[login_world_servers](../../schema/loginserver/login_world_servers.md)"
+      "remote_table": "[login_world_servers](../../schema/loginserver/login_world_servers.md)",
+      "remote_table_id": "login_world_servers",
+      "remote_table_label": "login_world_servers",
+      "remote_table_path": "../../schema/loginserver/login_world_servers.md"
     }
   ],
   "search_aliases": [

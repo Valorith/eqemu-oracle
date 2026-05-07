@@ -29,13 +29,19 @@
       "local_key": "id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[adventure_details](../../schema/adventures/adventure_details.md)"
+      "remote_table": "[adventure_details](../../schema/adventures/adventure_details.md)",
+      "remote_table_id": "adventure_details",
+      "remote_table_label": "adventure_details",
+      "remote_table_path": "../../schema/adventures/adventure_details.md"
     },
     {
       "local_key": "template_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[adventure_template](../../schema/adventures/adventure_template.md)"
+      "remote_table": "[adventure_template](../../schema/adventures/adventure_template.md)",
+      "remote_table_id": "adventure_template",
+      "remote_table_label": "adventure_template",
+      "remote_table_path": "../../schema/adventures/adventure_template.md"
     }
   ],
   "search_aliases": [

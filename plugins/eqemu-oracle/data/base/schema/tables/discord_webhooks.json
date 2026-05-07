@@ -44,7 +44,10 @@
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "discord_webhook_id",
-      "remote_table": "[logsys_categories](../../schema/admin/logsys_categories.md)"
+      "remote_table": "[logsys_categories](../../schema/admin/logsys_categories.md)",
+      "remote_table_id": "logsys_categories",
+      "remote_table_label": "logsys_categories",
+      "remote_table_path": "../../schema/admin/logsys_categories.md"
     }
   ],
   "search_aliases": [

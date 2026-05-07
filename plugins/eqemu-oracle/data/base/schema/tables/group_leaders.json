@@ -64,13 +64,19 @@
       "local_key": "gid",
       "relationship_type": "Has-Many",
       "remote_key": "groupid",
-      "remote_table": "[group_id](../../schema/groups/group_id.md)"
+      "remote_table": "[group_id](../../schema/groups/group_id.md)",
+      "remote_table_id": "group_id",
+      "remote_table_label": "group_id",
+      "remote_table_path": "../../schema/groups/group_id.md"
     },
     {
       "local_key": "leadername",
       "relationship_type": "One-to-One",
       "remote_key": "name",
-      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+      "remote_table": "[character_data](../../schema/characters/character_data.md)",
+      "remote_table_id": "character_data",
+      "remote_table_label": "character_data",
+      "remote_table_path": "../../schema/characters/character_data.md"
     }
   ],
   "search_aliases": [

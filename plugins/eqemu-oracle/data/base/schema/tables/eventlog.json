@@ -69,19 +69,28 @@
       "local_key": "accountid",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[account](../../schema/account/account.md)"
+      "remote_table": "[account](../../schema/account/account.md)",
+      "remote_table_id": "account",
+      "remote_table_label": "account",
+      "remote_table_path": "../../schema/account/account.md"
     },
     {
       "local_key": "accountname",
       "relationship_type": "One-to-One",
       "remote_key": "name",
-      "remote_table": "[account](../../schema/account/account.md)"
+      "remote_table": "[account](../../schema/account/account.md)",
+      "remote_table_id": "account",
+      "remote_table_label": "account",
+      "remote_table_path": "../../schema/account/account.md"
     },
     {
       "local_key": "charname",
       "relationship_type": "One-to-One",
       "remote_key": "name",
-      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+      "remote_table": "[character_data](../../schema/characters/character_data.md)",
+      "remote_table_id": "character_data",
+      "remote_table_label": "character_data",
+      "remote_table_path": "../../schema/characters/character_data.md"
     }
   ],
   "search_aliases": [

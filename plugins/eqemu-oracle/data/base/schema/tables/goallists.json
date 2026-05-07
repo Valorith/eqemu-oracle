@@ -29,7 +29,10 @@
       "local_key": "listid",
       "relationship_type": "Has-Many",
       "remote_key": "goalid",
-      "remote_table": "[task_activities](../../schema/tasks/task_activities.md)"
+      "remote_table": "[task_activities](../../schema/tasks/task_activities.md)",
+      "remote_table_id": "task_activities",
+      "remote_table_label": "task_activities",
+      "remote_table_path": "../../schema/tasks/task_activities.md"
     }
   ],
   "search_aliases": [

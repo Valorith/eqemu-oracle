@@ -99,49 +99,73 @@
       "local_key": "charid",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+      "remote_table": "[character_data](../../schema/characters/character_data.md)",
+      "remote_table_id": "character_data",
+      "remote_table_label": "character_data",
+      "remote_table_path": "../../schema/characters/character_data.md"
     },
     {
       "local_key": "itemid",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[items](../../schema/items/items.md)"
+      "remote_table": "[items](../../schema/items/items.md)",
+      "remote_table_id": "items",
+      "remote_table_label": "items",
+      "remote_table_path": "../../schema/items/items.md"
     },
     {
       "local_key": "augslot1",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[items](../../schema/items/items.md)"
+      "remote_table": "[items](../../schema/items/items.md)",
+      "remote_table_id": "items",
+      "remote_table_label": "items",
+      "remote_table_path": "../../schema/items/items.md"
     },
     {
       "local_key": "augslot2",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[items](../../schema/items/items.md)"
+      "remote_table": "[items](../../schema/items/items.md)",
+      "remote_table_id": "items",
+      "remote_table_label": "items",
+      "remote_table_path": "../../schema/items/items.md"
     },
     {
       "local_key": "augslot3",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[items](../../schema/items/items.md)"
+      "remote_table": "[items](../../schema/items/items.md)",
+      "remote_table_id": "items",
+      "remote_table_label": "items",
+      "remote_table_path": "../../schema/items/items.md"
     },
     {
       "local_key": "augslot4",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[items](../../schema/items/items.md)"
+      "remote_table": "[items](../../schema/items/items.md)",
+      "remote_table_id": "items",
+      "remote_table_label": "items",
+      "remote_table_path": "../../schema/items/items.md"
     },
     {
       "local_key": "augslot5",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[items](../../schema/items/items.md)"
+      "remote_table": "[items](../../schema/items/items.md)",
+      "remote_table_id": "items",
+      "remote_table_label": "items",
+      "remote_table_path": "../../schema/items/items.md"
     },
     {
       "local_key": "augslot6",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[items](../../schema/items/items.md)"
+      "remote_table": "[items](../../schema/items/items.md)",
+      "remote_table_id": "items",
+      "remote_table_label": "items",
+      "remote_table_path": "../../schema/items/items.md"
     }
   ],
   "search_aliases": [

@@ -139,31 +139,46 @@
       "local_key": "MercID",
       "relationship_type": "Has-Many",
       "remote_key": "MercId",
-      "remote_table": "[merc_buffs](../../schema/mercenaries/merc_buffs.md)"
+      "remote_table": "[merc_buffs](../../schema/mercenaries/merc_buffs.md)",
+      "remote_table_id": "merc_buffs",
+      "remote_table_label": "merc_buffs",
+      "remote_table_path": "../../schema/mercenaries/merc_buffs.md"
     },
     {
       "local_key": "OwnerCharacterID",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+      "remote_table": "[character_data](../../schema/characters/character_data.md)",
+      "remote_table_id": "character_data",
+      "remote_table_label": "character_data",
+      "remote_table_path": "../../schema/characters/character_data.md"
     },
     {
       "local_key": "StanceID",
       "relationship_type": "Has-Many",
       "remote_key": "stance_id",
-      "remote_table": "[merc_spell_list_entries](../../schema/mercenaries/merc_spell_list_entries.md)"
+      "remote_table": "[merc_spell_list_entries](../../schema/mercenaries/merc_spell_list_entries.md)",
+      "remote_table_id": "merc_spell_list_entries",
+      "remote_table_label": "merc_spell_list_entries",
+      "remote_table_path": "../../schema/mercenaries/merc_spell_list_entries.md"
     },
     {
       "local_key": "StanceID",
       "relationship_type": "Has-Many",
       "remote_key": "stance_id",
-      "remote_table": "[merc_stance_entries](../../schema/mercenaries/merc_stance_entries.md)"
+      "remote_table": "[merc_stance_entries](../../schema/mercenaries/merc_stance_entries.md)",
+      "remote_table_id": "merc_stance_entries",
+      "remote_table_label": "merc_stance_entries",
+      "remote_table_path": "../../schema/mercenaries/merc_stance_entries.md"
     },
     {
       "local_key": "TemplateID",
       "relationship_type": "One-to-One",
       "remote_key": "merc_template_id",
-      "remote_table": "[merc_templates](../../schema/mercenaries/merc_templates.md)"
+      "remote_table": "[merc_templates](../../schema/mercenaries/merc_templates.md)",
+      "remote_table_id": "merc_templates",
+      "remote_table_label": "merc_templates",
+      "remote_table_path": "../../schema/mercenaries/merc_templates.md"
     }
   ],
   "search_aliases": [

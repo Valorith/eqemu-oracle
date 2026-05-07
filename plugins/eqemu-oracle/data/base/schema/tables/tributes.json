@@ -44,7 +44,10 @@
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "tribute_id",
-      "remote_table": "[tribute_levels](../../schema/tributes/tribute_levels.md)"
+      "remote_table": "[tribute_levels](../../schema/tributes/tribute_levels.md)",
+      "remote_table_id": "tribute_levels",
+      "remote_table_label": "tribute_levels",
+      "remote_table_path": "../../schema/tributes/tribute_levels.md"
     }
   ],
   "search_aliases": [

@@ -84,13 +84,19 @@
       "local_key": "raidid",
       "relationship_type": "Has-Many",
       "remote_key": "rid",
-      "remote_table": "[raid_leaders](../../schema/raids/raid_leaders.md)"
+      "remote_table": "[raid_leaders](../../schema/raids/raid_leaders.md)",
+      "remote_table_id": "raid_leaders",
+      "remote_table_label": "raid_leaders",
+      "remote_table_path": "../../schema/raids/raid_leaders.md"
     },
     {
       "local_key": "raidid",
       "relationship_type": "Has-Many",
       "remote_key": "raidid",
-      "remote_table": "[raid_members](../../schema/raids/raid_members.md)"
+      "remote_table": "[raid_members](../../schema/raids/raid_members.md)",
+      "remote_table_id": "raid_members",
+      "remote_table_label": "raid_members",
+      "remote_table_path": "../../schema/raids/raid_members.md"
     }
   ],
   "search_aliases": [
