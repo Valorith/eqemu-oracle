@@ -4,6 +4,7 @@ import json
 import shutil
 import tempfile
 import time
+import urllib.error
 import urllib.request
 import zipfile
 from pathlib import Path
@@ -14,15 +15,36 @@ from .constants import PLUGIN_VERSION
 from .utils import dump_json, dump_text, ensure_dir, excerpt, heading_title, markdown_headings, markdown_links, short_hash, slugify, split_identifier_words
 
 
+FETCH_ATTEMPTS = 3
+FETCH_RETRY_DELAY_SECONDS = 2.0
+RETRYABLE_HTTP_STATUSES = {408, 429, 500, 502, 503, 504}
+
+
+def _urlopen_with_retry(req: urllib.request.Request, *, timeout: int) -> Any:
+    for attempt in range(1, FETCH_ATTEMPTS + 1):
+        try:
+            return urllib.request.urlopen(req, timeout=timeout)
+        except urllib.error.HTTPError as exc:
+            if exc.code not in RETRYABLE_HTTP_STATUSES or attempt == FETCH_ATTEMPTS:
+                raise
+            time.sleep(FETCH_RETRY_DELAY_SECONDS * attempt)
+        except urllib.error.URLError:
+            if attempt == FETCH_ATTEMPTS:
+                raise
+            time.sleep(FETCH_RETRY_DELAY_SECONDS * attempt)
+
+    raise RuntimeError("unreachable fetch retry state")
+
+
 def fetch_json(url: str) -> Any:
     req = urllib.request.Request(url, headers={"User-Agent": f"eqemu-oracle/{PLUGIN_VERSION}", "Accept": "application/json"})
-    with urllib.request.urlopen(req, timeout=60) as response:
+    with _urlopen_with_retry(req, timeout=60) as response:
         return json.loads(response.read().decode("utf-8"))
 
 
 def fetch_bytes(url: str) -> bytes:
     req = urllib.request.Request(url, headers={"User-Agent": f"eqemu-oracle/{PLUGIN_VERSION}"})
-    with urllib.request.urlopen(req, timeout=120) as response:
+    with _urlopen_with_retry(req, timeout=120) as response:
         return response.read()
 
 
