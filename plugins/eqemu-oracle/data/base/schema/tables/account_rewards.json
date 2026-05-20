@@ -34,7 +34,10 @@
       "local_key": "reward_id",
       "relationship_type": "One-to-One",
       "remote_key": "claim_id",
-      "remote_table": "[veteran_reward_templates](../../schema/admin/veteran_reward_templates.md)"
+      "remote_table": "[veteran_reward_templates](../../schema/admin/veteran_reward_templates.md)",
+      "remote_table_id": "veteran_reward_templates",
+      "remote_table_label": "veteran_reward_templates",
+      "remote_table_path": "../../schema/admin/veteran_reward_templates.md"
     }
   ],
   "search_aliases": [

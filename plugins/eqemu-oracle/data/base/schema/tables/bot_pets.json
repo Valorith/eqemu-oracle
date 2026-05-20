@@ -49,25 +49,37 @@
       "local_key": "bot_id",
       "relationship_type": "One-to-One",
       "remote_key": "bot_id",
-      "remote_table": "[bot_data](../../schema/bots/bot_data.md)"
+      "remote_table": "[bot_data](../../schema/bots/bot_data.md)",
+      "remote_table_id": "bot_data",
+      "remote_table_label": "bot_data",
+      "remote_table_path": "../../schema/bots/bot_data.md"
     },
     {
       "local_key": "pets_index",
       "relationship_type": "Has-Many",
       "remote_key": "pets_index",
-      "remote_table": "[bot_pet_buffs](../../schema/bots/bot_pet_buffs.md)"
+      "remote_table": "[bot_pet_buffs](../../schema/bots/bot_pet_buffs.md)",
+      "remote_table_id": "bot_pet_buffs",
+      "remote_table_label": "bot_pet_buffs",
+      "remote_table_path": "../../schema/bots/bot_pet_buffs.md"
     },
     {
       "local_key": "pets_index",
       "relationship_type": "Has-Many",
       "remote_key": "pets_index",
-      "remote_table": "[bot_pet_inventories](../../schema/bots/bot_pet_inventories.md)"
+      "remote_table": "[bot_pet_inventories](../../schema/bots/bot_pet_inventories.md)",
+      "remote_table_id": "bot_pet_inventories",
+      "remote_table_label": "bot_pet_inventories",
+      "remote_table_path": "../../schema/bots/bot_pet_inventories.md"
     },
     {
       "local_key": "spell_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[spells_new](../../schema/spells/spells_new.md)"
+      "remote_table": "[spells_new](../../schema/spells/spells_new.md)",
+      "remote_table_id": "spells_new",
+      "remote_table_label": "spells_new",
+      "remote_table_path": "../../schema/spells/spells_new.md"
     }
   ],
   "search_aliases": [

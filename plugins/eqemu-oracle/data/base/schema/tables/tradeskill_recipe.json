@@ -99,19 +99,28 @@
       "local_key": "content_flags",
       "relationship_type": "One-to-One",
       "remote_key": "flag_name",
-      "remote_table": "[content_flags](../../schema/flagging/content_flags.md)"
+      "remote_table": "[content_flags](../../schema/flagging/content_flags.md)",
+      "remote_table_id": "content_flags",
+      "remote_table_label": "content_flags",
+      "remote_table_path": "../../schema/flagging/content_flags.md"
     },
     {
       "local_key": "content_flags_disabled",
       "relationship_type": "One-to-One",
       "remote_key": "flag_name",
-      "remote_table": "[content_flags](../../schema/flagging/content_flags.md)"
+      "remote_table": "[content_flags](../../schema/flagging/content_flags.md)",
+      "remote_table_id": "content_flags",
+      "remote_table_label": "content_flags",
+      "remote_table_path": "../../schema/flagging/content_flags.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "recipe_id",
-      "remote_table": "[tradeskill_recipe_entries](../../schema/tradeskills/tradeskill_recipe_entries.md)"
+      "remote_table": "[tradeskill_recipe_entries](../../schema/tradeskills/tradeskill_recipe_entries.md)",
+      "remote_table_id": "tradeskill_recipe_entries",
+      "remote_table_label": "tradeskill_recipe_entries",
+      "remote_table_path": "../../schema/tradeskills/tradeskill_recipe_entries.md"
     }
   ],
   "search_aliases": [

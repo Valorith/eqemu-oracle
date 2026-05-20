@@ -34,13 +34,19 @@
       "local_key": "pets_index",
       "relationship_type": "One-to-One",
       "remote_key": "pets_index",
-      "remote_table": "[bot_pets](../../schema/bots/bot_pets.md)"
+      "remote_table": "[bot_pets](../../schema/bots/bot_pets.md)",
+      "remote_table_id": "bot_pets",
+      "remote_table_label": "bot_pets",
+      "remote_table_path": "../../schema/bots/bot_pets.md"
     },
     {
       "local_key": "item_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[items](../../schema/items/items.md)"
+      "remote_table": "[items](../../schema/items/items.md)",
+      "remote_table_id": "items",
+      "remote_table_label": "items",
+      "remote_table_path": "../../schema/items/items.md"
     }
   ],
   "search_aliases": [

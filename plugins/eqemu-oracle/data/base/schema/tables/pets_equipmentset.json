@@ -34,13 +34,19 @@
       "local_key": "set_id",
       "relationship_type": "Has-Many",
       "remote_key": "equipmentset",
-      "remote_table": "[pets](../../schema/pets/pets.md)"
+      "remote_table": "[pets](../../schema/pets/pets.md)",
+      "remote_table_id": "pets",
+      "remote_table_label": "pets",
+      "remote_table_path": "../../schema/pets/pets.md"
     },
     {
       "local_key": "set_id",
       "relationship_type": "Has-Many",
       "remote_key": "set_id",
-      "remote_table": "[pets_equipmentset_entries](../../schema/pets/pets_equipmentset_entries.md)"
+      "remote_table": "[pets_equipmentset_entries](../../schema/pets/pets_equipmentset_entries.md)",
+      "remote_table_id": "pets_equipmentset_entries",
+      "remote_table_label": "pets_equipmentset_entries",
+      "remote_table_path": "../../schema/pets/pets_equipmentset_entries.md"
     }
   ],
   "search_aliases": [

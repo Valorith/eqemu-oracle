@@ -104,13 +104,19 @@
       "local_key": "character_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+      "remote_table": "[character_data](../../schema/characters/character_data.md)",
+      "remote_table_id": "character_data",
+      "remote_table_label": "character_data",
+      "remote_table_path": "../../schema/characters/character_data.md"
     },
     {
       "local_key": "spell_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[spells_new](../../schema/spells/spells_new.md)"
+      "remote_table": "[spells_new](../../schema/spells/spells_new.md)",
+      "remote_table_id": "spells_new",
+      "remote_table_label": "spells_new",
+      "remote_table_path": "../../schema/spells/spells_new.md"
     }
   ],
   "search_aliases": [

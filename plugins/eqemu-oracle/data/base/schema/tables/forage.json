@@ -64,25 +64,37 @@
       "local_key": "content_flags",
       "relationship_type": "One-to-One",
       "remote_key": "flag_name",
-      "remote_table": "[content_flags](../../schema/flagging/content_flags.md)"
+      "remote_table": "[content_flags](../../schema/flagging/content_flags.md)",
+      "remote_table_id": "content_flags",
+      "remote_table_label": "content_flags",
+      "remote_table_path": "../../schema/flagging/content_flags.md"
     },
     {
       "local_key": "content_flags_disabled",
       "relationship_type": "One-to-One",
       "remote_key": "flag_name",
-      "remote_table": "[content_flags](../../schema/flagging/content_flags.md)"
+      "remote_table": "[content_flags](../../schema/flagging/content_flags.md)",
+      "remote_table_id": "content_flags",
+      "remote_table_label": "content_flags",
+      "remote_table_path": "../../schema/flagging/content_flags.md"
     },
     {
       "local_key": "Itemid",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[items](../../schema/items/items.md)"
+      "remote_table": "[items](../../schema/items/items.md)",
+      "remote_table_id": "items",
+      "remote_table_label": "items",
+      "remote_table_path": "../../schema/items/items.md"
     },
     {
       "local_key": "zoneid",
       "relationship_type": "One-to-One",
       "remote_key": "zoneidnumber",
-      "remote_table": "[zone](../../schema/zone/zone.md)"
+      "remote_table": "[zone](../../schema/zone/zone.md)",
+      "remote_table_id": "zone",
+      "remote_table_label": "zone",
+      "remote_table_path": "../../schema/zone/zone.md"
     }
   ],
   "search_aliases": [

@@ -34,13 +34,19 @@
       "local_key": "guild1",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[guilds](../../schema/guilds/guilds.md)"
+      "remote_table": "[guilds](../../schema/guilds/guilds.md)",
+      "remote_table_id": "guilds",
+      "remote_table_label": "guilds",
+      "remote_table_path": "../../schema/guilds/guilds.md"
     },
     {
       "local_key": "guild2",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[guilds](../../schema/guilds/guilds.md)"
+      "remote_table": "[guilds](../../schema/guilds/guilds.md)",
+      "remote_table_id": "guilds",
+      "remote_table_label": "guilds",
+      "remote_table_path": "../../schema/guilds/guilds.md"
     }
   ],
   "search_aliases": [

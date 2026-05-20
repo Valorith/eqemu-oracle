@@ -54,43 +54,64 @@
       "local_key": "dbstring",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[db_str](../../schema/client-files/db_str.md)"
+      "remote_table": "[db_str](../../schema/client-files/db_str.md)",
+      "remote_table_id": "db_str",
+      "remote_table_label": "db_str",
+      "remote_table_path": "../../schema/client-files/db_str.md"
     },
     {
       "local_key": "merc_npc_type_id",
       "relationship_type": "One-to-One",
       "remote_key": "merc_npc_type_id",
-      "remote_table": "[merc_npc_types](../../schema/mercenaries/merc_npc_types.md)"
+      "remote_table": "[merc_npc_types](../../schema/mercenaries/merc_npc_types.md)",
+      "remote_table_id": "merc_npc_types",
+      "remote_table_label": "merc_npc_types",
+      "remote_table_path": "../../schema/mercenaries/merc_npc_types.md"
     },
     {
       "local_key": "merc_template_id",
       "relationship_type": "One-to-One",
       "remote_key": "merc_merchant_template_entry_id",
-      "remote_table": "[merc_merchant_template_entries](../../schema/mercenaries/merc_merchant_template_entries.md)"
+      "remote_table": "[merc_merchant_template_entries](../../schema/mercenaries/merc_merchant_template_entries.md)",
+      "remote_table_id": "merc_merchant_template_entries",
+      "remote_table_label": "merc_merchant_template_entries",
+      "remote_table_path": "../../schema/mercenaries/merc_merchant_template_entries.md"
     },
     {
       "local_key": "merc_template_id",
       "relationship_type": "One-to-One",
       "remote_key": "merc_template_id",
-      "remote_table": "[merc_merchant_template_entries](../../schema/mercenaries/merc_merchant_template_entries.md)"
+      "remote_table": "[merc_merchant_template_entries](../../schema/mercenaries/merc_merchant_template_entries.md)",
+      "remote_table_id": "merc_merchant_template_entries",
+      "remote_table_label": "merc_merchant_template_entries",
+      "remote_table_path": "../../schema/mercenaries/merc_merchant_template_entries.md"
     },
     {
       "local_key": "merc_template_id",
       "relationship_type": "One-to-One",
       "remote_key": "TemplateID",
-      "remote_table": "[mercs](../../schema/mercenaries/mercs.md)"
+      "remote_table": "[mercs](../../schema/mercenaries/mercs.md)",
+      "remote_table_id": "mercs",
+      "remote_table_label": "mercs",
+      "remote_table_path": "../../schema/mercenaries/mercs.md"
     },
     {
       "local_key": "merc_subtype_id",
       "relationship_type": "One-to-One",
       "remote_key": "merc_subtype_id",
-      "remote_table": "[merc_subtypes](../../schema/mercenaries/merc_subtypes.md)"
+      "remote_table": "[merc_subtypes](../../schema/mercenaries/merc_subtypes.md)",
+      "remote_table_id": "merc_subtypes",
+      "remote_table_label": "merc_subtypes",
+      "remote_table_path": "../../schema/mercenaries/merc_subtypes.md"
     },
     {
       "local_key": "name_type_id",
       "relationship_type": "One-to-One",
       "remote_key": "name_type_id",
-      "remote_table": "[merc_name_types](../../schema/mercenaries/merc_name_types.md)"
+      "remote_table": "[merc_name_types](../../schema/mercenaries/merc_name_types.md)",
+      "remote_table_id": "merc_name_types",
+      "remote_table_label": "merc_name_types",
+      "remote_table_path": "../../schema/mercenaries/merc_name_types.md"
     }
   ],
   "search_aliases": [

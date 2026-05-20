@@ -59,79 +59,118 @@
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "instance_id",
-      "remote_table": "[adventure_details](../../schema/adventures/adventure_details.md)"
+      "remote_table": "[adventure_details](../../schema/adventures/adventure_details.md)",
+      "remote_table_id": "adventure_details",
+      "remote_table_label": "adventure_details",
+      "remote_table_path": "../../schema/adventures/adventure_details.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "instance_id",
-      "remote_table": "[character_bind](../../schema/characters/character_bind.md)"
+      "remote_table": "[character_bind](../../schema/characters/character_bind.md)",
+      "remote_table_id": "character_bind",
+      "remote_table_label": "character_bind",
+      "remote_table_path": "../../schema/characters/character_bind.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "instance_id",
-      "remote_table": "[character_corpses](../../schema/characters/character_corpses.md)"
+      "remote_table": "[character_corpses](../../schema/characters/character_corpses.md)",
+      "remote_table_id": "character_corpses",
+      "remote_table_label": "character_corpses",
+      "remote_table_path": "../../schema/characters/character_corpses.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "zone_instance",
-      "remote_table": "[character_data](../../schema/characters/character_data.md)"
+      "remote_table": "[character_data](../../schema/characters/character_data.md)",
+      "remote_table_id": "character_data",
+      "remote_table_label": "character_data",
+      "remote_table_path": "../../schema/characters/character_data.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "instance_id",
-      "remote_table": "[character_instance_safereturns](../../schema/characters/character_instance_safereturns.md)"
+      "remote_table": "[character_instance_safereturns](../../schema/characters/character_instance_safereturns.md)",
+      "remote_table_id": "character_instance_safereturns",
+      "remote_table_label": "character_instance_safereturns",
+      "remote_table_path": "../../schema/characters/character_instance_safereturns.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "instance_zone_id",
-      "remote_table": "[character_instance_safereturns](../../schema/characters/character_instance_safereturns.md)"
+      "remote_table": "[character_instance_safereturns](../../schema/characters/character_instance_safereturns.md)",
+      "remote_table_id": "character_instance_safereturns",
+      "remote_table_label": "character_instance_safereturns",
+      "remote_table_path": "../../schema/characters/character_instance_safereturns.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "dest_instance",
-      "remote_table": "[doors](../../schema/doors/doors.md)"
+      "remote_table": "[doors](../../schema/doors/doors.md)",
+      "remote_table_id": "doors",
+      "remote_table_label": "doors",
+      "remote_table_path": "../../schema/doors/doors.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "instance_id",
-      "remote_table": "[dynamic_zones](../../schema/tasks/shared_task_dynamic_zones.md)"
+      "remote_table": "[dynamic_zones](../../schema/tasks/shared_task_dynamic_zones.md)",
+      "remote_table_id": "shared_task_dynamic_zones",
+      "remote_table_label": "dynamic_zones",
+      "remote_table_path": "../../schema/tasks/shared_task_dynamic_zones.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "instance_id",
-      "remote_table": "[respawn_times](../../schema/spawns/respawn_times.md)"
+      "remote_table": "[respawn_times](../../schema/spawns/respawn_times.md)",
+      "remote_table_id": "respawn_times",
+      "remote_table_label": "respawn_times",
+      "remote_table_path": "../../schema/spawns/respawn_times.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "instance_id",
-      "remote_table": "[spawn_condition_values](../../schema/spawns/spawn_condition_values.md)"
+      "remote_table": "[spawn_condition_values](../../schema/spawns/spawn_condition_values.md)",
+      "remote_table_id": "spawn_condition_values",
+      "remote_table_label": "spawn_condition_values",
+      "remote_table_path": "../../schema/spawns/spawn_condition_values.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "target_instance",
-      "remote_table": "[zone_points](../../schema/zone/zone_points.md)"
+      "remote_table": "[zone_points](../../schema/zone/zone_points.md)",
+      "remote_table_id": "zone_points",
+      "remote_table_label": "zone_points",
+      "remote_table_path": "../../schema/zone/zone_points.md"
     },
     {
       "local_key": "version",
       "relationship_type": "One-to-One",
       "remote_key": "version",
-      "remote_table": "[zone](../../schema/zone/zone.md)"
+      "remote_table": "[zone](../../schema/zone/zone.md)",
+      "remote_table_id": "zone",
+      "remote_table_label": "zone",
+      "remote_table_path": "../../schema/zone/zone.md"
     },
     {
       "local_key": "zone",
       "relationship_type": "One-to-One",
       "remote_key": "zoneidnumber",
-      "remote_table": "[zone](../../schema/zone/zone.md)"
+      "remote_table": "[zone](../../schema/zone/zone.md)",
+      "remote_table_id": "zone",
+      "remote_table_label": "zone",
+      "remote_table_path": "../../schema/zone/zone.md"
     }
   ],
   "search_aliases": [

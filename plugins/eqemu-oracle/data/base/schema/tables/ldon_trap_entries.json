@@ -29,7 +29,10 @@
       "local_key": "trap_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[ldon_trap_templates](../../schema/traps/ldon_trap_templates.md)"
+      "remote_table": "[ldon_trap_templates](../../schema/traps/ldon_trap_templates.md)",
+      "remote_table_id": "ldon_trap_templates",
+      "remote_table_label": "ldon_trap_templates",
+      "remote_table_path": "../../schema/traps/ldon_trap_templates.md"
     }
   ],
   "search_aliases": [

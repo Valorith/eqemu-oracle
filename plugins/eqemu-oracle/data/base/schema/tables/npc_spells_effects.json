@@ -34,7 +34,10 @@
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "npc_spells_effects_id",
-      "remote_table": "[npc_spells_effects_entries](../../schema/npcs/npc_spells_effects_entries.md)"
+      "remote_table": "[npc_spells_effects_entries](../../schema/npcs/npc_spells_effects_entries.md)",
+      "remote_table_id": "npc_spells_effects_entries",
+      "remote_table_label": "npc_spells_effects_entries",
+      "remote_table_path": "../../schema/npcs/npc_spells_effects_entries.md"
     }
   ],
   "search_aliases": [

@@ -94,7 +94,10 @@
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "allocation_id",
-      "remote_table": "[char_create_combinations](../../schema/characters/char_create_combinations.md)"
+      "remote_table": "[char_create_combinations](../../schema/characters/char_create_combinations.md)",
+      "remote_table_id": "char_create_combinations",
+      "remote_table_label": "char_create_combinations",
+      "remote_table_path": "../../schema/characters/char_create_combinations.md"
     }
   ],
   "search_aliases": [

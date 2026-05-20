@@ -84,31 +84,46 @@
       "local_key": "id",
       "relationship_type": "One-to-One",
       "remote_key": "first_rank_id",
-      "remote_table": "[aa_ability](../../schema/aas/aa_ability.md)"
+      "remote_table": "[aa_ability](../../schema/aas/aa_ability.md)",
+      "remote_table_id": "aa_ability",
+      "remote_table_label": "aa_ability",
+      "remote_table_path": "../../schema/aas/aa_ability.md"
     },
     {
       "local_key": "id",
       "relationship_type": "One-to-One",
       "remote_key": "rank_id",
-      "remote_table": "[aa_rank_effects](../../schema/aas/aa_rank_effects.md)"
+      "remote_table": "[aa_rank_effects](../../schema/aas/aa_rank_effects.md)",
+      "remote_table_id": "aa_rank_effects",
+      "remote_table_label": "aa_rank_effects",
+      "remote_table_path": "../../schema/aas/aa_rank_effects.md"
     },
     {
       "local_key": "id",
       "relationship_type": "One-to-One",
       "remote_key": "aa_id",
-      "remote_table": "[aa_rank_prereqs](../../schema/aas/aa_rank_prereqs.md)"
+      "remote_table": "[aa_rank_prereqs](../../schema/aas/aa_rank_prereqs.md)",
+      "remote_table_id": "aa_rank_prereqs",
+      "remote_table_label": "aa_rank_prereqs",
+      "remote_table_path": "../../schema/aas/aa_rank_prereqs.md"
     },
     {
       "local_key": "id",
       "relationship_type": "One-to-One",
       "remote_key": "rank_id",
-      "remote_table": "[aa_rank_prereqs](../../schema/aas/aa_rank_prereqs.md)"
+      "remote_table": "[aa_rank_prereqs](../../schema/aas/aa_rank_prereqs.md)",
+      "remote_table_id": "aa_rank_prereqs",
+      "remote_table_label": "aa_rank_prereqs",
+      "remote_table_path": "../../schema/aas/aa_rank_prereqs.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "aa_id",
-      "remote_table": "[character_alternate_abilities](../../schema/characters/character_alternate_abilities.md)"
+      "remote_table": "[character_alternate_abilities](../../schema/characters/character_alternate_abilities.md)",
+      "remote_table_id": "character_alternate_abilities",
+      "remote_table_label": "character_alternate_abilities",
+      "remote_table_path": "../../schema/characters/character_alternate_abilities.md"
     }
   ],
   "search_aliases": [

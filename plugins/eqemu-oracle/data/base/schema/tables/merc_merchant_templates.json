@@ -34,19 +34,28 @@
       "local_key": "merc_merchant_template_id",
       "relationship_type": "Has-Many",
       "remote_key": "merc_merchant_template_id",
-      "remote_table": "[merc_merchant_entries](../../schema/mercenaries/merc_merchant_entries.md)"
+      "remote_table": "[merc_merchant_entries](../../schema/mercenaries/merc_merchant_entries.md)",
+      "remote_table_id": "merc_merchant_entries",
+      "remote_table_label": "merc_merchant_entries",
+      "remote_table_path": "../../schema/mercenaries/merc_merchant_entries.md"
     },
     {
       "local_key": "merc_merchant_template_id",
       "relationship_type": "Has-Many",
       "remote_key": "merc_merchant_template_id",
-      "remote_table": "[merc_merchant_template_entries](../../schema/mercenaries/merc_merchant_template_entries.md)"
+      "remote_table": "[merc_merchant_template_entries](../../schema/mercenaries/merc_merchant_template_entries.md)",
+      "remote_table_id": "merc_merchant_template_entries",
+      "remote_table_label": "merc_merchant_template_entries",
+      "remote_table_path": "../../schema/mercenaries/merc_merchant_template_entries.md"
     },
     {
       "local_key": "qglobal",
       "relationship_type": "Has-Many",
       "remote_key": "name",
-      "remote_table": "[quest_globals](../../schema/data-storage/quest_globals.md)"
+      "remote_table": "[quest_globals](../../schema/data-storage/quest_globals.md)",
+      "remote_table_id": "quest_globals",
+      "remote_table_label": "quest_globals",
+      "remote_table_path": "../../schema/data-storage/quest_globals.md"
     }
   ],
   "search_aliases": [

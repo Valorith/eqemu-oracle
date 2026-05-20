@@ -39,7 +39,10 @@
       "local_key": "name_type_id",
       "relationship_type": "Has-Many",
       "remote_key": "name_type_id",
-      "remote_table": "[merc_templates](../../schema/mercenaries/merc_templates.md)"
+      "remote_table": "[merc_templates](../../schema/mercenaries/merc_templates.md)",
+      "remote_table_id": "merc_templates",
+      "remote_table_label": "merc_templates",
+      "remote_table_path": "../../schema/mercenaries/merc_templates.md"
     }
   ],
   "search_aliases": [

@@ -64,37 +64,55 @@
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "id",
-      "remote_table": "[adventure_members](../../schema/adventures/adventure_members.md)"
+      "remote_table": "[adventure_members](../../schema/adventures/adventure_members.md)",
+      "remote_table_id": "adventure_members",
+      "remote_table_label": "adventure_members",
+      "remote_table_path": "../../schema/adventures/adventure_members.md"
     },
     {
       "local_key": "id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[adventure_template](../../schema/adventures/adventure_template.md)"
+      "remote_table": "[adventure_template](../../schema/adventures/adventure_template.md)",
+      "remote_table_id": "adventure_template",
+      "remote_table_label": "adventure_template",
+      "remote_table_path": "../../schema/adventures/adventure_template.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "id",
-      "remote_table": "[adventure_template_entry](../../schema/adventures/adventure_template_entry.md)"
+      "remote_table": "[adventure_template_entry](../../schema/adventures/adventure_template_entry.md)",
+      "remote_table_id": "adventure_template_entry",
+      "remote_table_label": "adventure_template_entry",
+      "remote_table_path": "../../schema/adventures/adventure_template_entry.md"
     },
     {
       "local_key": "id",
       "relationship_type": "Has-Many",
       "remote_key": "id",
-      "remote_table": "[adventure_template_entry_flavor](../../schema/adventures/adventure_template_entry_flavor.md)"
+      "remote_table": "[adventure_template_entry_flavor](../../schema/adventures/adventure_template_entry_flavor.md)",
+      "remote_table_id": "adventure_template_entry_flavor",
+      "remote_table_label": "adventure_template_entry_flavor",
+      "remote_table_path": "../../schema/adventures/adventure_template_entry_flavor.md"
     },
     {
       "local_key": "adventure_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[adventure_template](../../schema/adventures/adventure_template.md)"
+      "remote_table": "[adventure_template](../../schema/adventures/adventure_template.md)",
+      "remote_table_id": "adventure_template",
+      "remote_table_label": "adventure_template",
+      "remote_table_path": "../../schema/adventures/adventure_template.md"
     },
     {
       "local_key": "instance_id",
       "relationship_type": "One-to-One",
       "remote_key": "id",
-      "remote_table": "[instance_list](../../schema/instances/instance_list.md)"
+      "remote_table": "[instance_list](../../schema/instances/instance_list.md)",
+      "remote_table_id": "instance_list",
+      "remote_table_label": "instance_list",
+      "remote_table_path": "../../schema/instances/instance_list.md"
     }
   ],
   "search_aliases": [
