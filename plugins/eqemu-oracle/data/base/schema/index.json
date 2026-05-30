@@ -114,7 +114,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/aas/aa_ability.md",
     "table": "aa_ability",
@@ -185,7 +185,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/aas/aa_rank_effects.md",
     "table": "aa_rank_effects",
@@ -255,7 +255,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/aas/aa_rank_prereqs.md",
     "table": "aa_rank_prereqs",
@@ -402,7 +402,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/aas/aa_ranks.md",
     "table": "aa_ranks",
@@ -645,7 +645,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/account/account.md",
     "table": "account",
@@ -704,7 +704,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/account/account_flags.md",
     "table": "account_flags",
@@ -786,7 +786,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/account/account_ip.md",
     "table": "account_ip",
@@ -845,7 +845,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/account/account_rewards.md",
     "table": "account_rewards",
@@ -979,7 +979,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/adventures/adventure_details.md",
     "table": "adventure_details",
@@ -1042,7 +1042,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/adventures/adventure_members.md",
     "table": "adventure_members",
@@ -1141,7 +1141,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/adventures/adventure_stats.md",
     "table": "adventure_stats",
@@ -1386,7 +1386,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/adventures/adventure_template.md",
     "table": "adventure_template",
@@ -1449,7 +1449,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/adventures/adventure_template_entry.md",
     "table": "adventure_template_entry",
@@ -1503,7 +1503,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/adventures/adventure_template_entry_flavor.md",
     "table": "adventure_template_entry_flavor",
@@ -1575,7 +1575,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/alternate-currency/alternate_currency.md",
     "table": "alternate_currency",
@@ -1682,7 +1682,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/spells/auras.md",
     "table": "auras",
@@ -1736,7 +1736,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/banned_ips.md",
     "table": "banned_ips",
@@ -1819,7 +1819,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/client-files/base_data.md",
     "table": "base_data",
@@ -1952,7 +1952,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/spells/blocked_spells.md",
     "table": "blocked_spells",
@@ -2014,7 +2014,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/books/books.md",
     "table": "books",
@@ -2167,7 +2167,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/bots/bot_buffs.md",
     "table": "bot_buffs",
@@ -2215,7 +2215,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/bots/bot_command_settings.md",
     "table": "bot_command_settings",
@@ -2258,7 +2258,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/bots/bot_create_combinations.md",
     "table": "bot_create_combinations",
@@ -2638,7 +2638,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/bots/bot_data.md",
     "table": "bot_data",
@@ -2736,7 +2736,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/bots/bot_guild_members.md",
     "table": "bot_guild_members",
@@ -2804,7 +2804,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/bots/bot_heal_rotation_members.md",
     "table": "bot_heal_rotation_members",
@@ -2863,7 +2863,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/bots/bot_heal_rotation_targets.md",
     "table": "bot_heal_rotation_targets",
@@ -3005,7 +3005,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/bots/bot_heal_rotations.md",
     "table": "bot_heal_rotations",
@@ -3059,7 +3059,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/bots/bot_inspect_messages.md",
     "table": "bot_inspect_messages",
@@ -3251,7 +3251,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/bots/bot_inventories.md",
     "table": "bot_inventories",
@@ -3310,7 +3310,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/bots/bot_owner_options.md",
     "table": "bot_owner_options",
@@ -3388,7 +3388,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/bots/bot_pet_buffs.md",
     "table": "bot_pet_buffs",
@@ -3456,7 +3456,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/bots/bot_pet_inventories.md",
     "table": "bot_pet_inventories",
@@ -3557,7 +3557,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/bots/bot_pets.md",
     "table": "bot_pets",
@@ -3701,7 +3701,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/bots/bot_spell_casting_chances.md",
     "table": "bot_spell_casting_chances",
@@ -3769,7 +3769,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/bots/bot_spell_settings.md",
     "table": "bot_spell_settings",
@@ -3897,7 +3897,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/bots/bot_spells_entries.md",
     "table": "bot_spells_entries",
@@ -3960,7 +3960,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/bots/bot_stances.md",
     "table": "bot_stances",
@@ -4019,7 +4019,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/bots/bot_timers.md",
     "table": "bot_timers",
@@ -4250,7 +4250,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/bug_reports.md",
     "table": "bug_reports",
@@ -4367,7 +4367,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/bugs.md",
     "table": "bugs",
@@ -4458,7 +4458,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/buyers/buyer.md",
     "table": "buyer",
@@ -4541,7 +4541,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/char_create_combinations.md",
     "table": "char_create_combinations",
@@ -4660,7 +4660,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/char_create_point_allocations.md",
     "table": "char_create_point_allocations",
@@ -4728,7 +4728,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/char_recipe_list.md",
     "table": "char_recipe_list",
@@ -4815,7 +4815,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_activities.md",
     "table": "character_activities",
@@ -4883,7 +4883,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_alt_currency.md",
     "table": "character_alt_currency",
@@ -4956,7 +4956,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_alternate_abilities.md",
     "table": "character_alternate_abilities",
@@ -5024,7 +5024,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_auras.md",
     "table": "character_auras",
@@ -5107,7 +5107,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_bandolier.md",
     "table": "character_bandolier",
@@ -5209,7 +5209,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_bind.md",
     "table": "character_bind",
@@ -5347,7 +5347,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_buffs.md",
     "table": "character_buffs",
@@ -5529,7 +5529,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_corpse_items.md",
     "table": "character_corpse_items",
@@ -5864,7 +5864,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_corpses.md",
     "table": "character_corpses",
@@ -5993,7 +5993,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_currency.md",
     "table": "character_currency",
@@ -7371,7 +7371,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_data.md",
     "table": "character_data",
@@ -7439,7 +7439,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_disciplines.md",
     "table": "character_disciplines",
@@ -7502,7 +7502,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_enabledtasks.md",
     "table": "character_enabledtasks",
@@ -7580,7 +7580,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_exp_modifiers.md",
     "table": "character_exp_modifiers",
@@ -7659,7 +7659,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_expedition_lockouts.md",
     "table": "character_expedition_lockouts",
@@ -7713,7 +7713,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_inspect_messages.md",
     "table": "character_inspect_messages",
@@ -7829,7 +7829,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_instance_safereturns.md",
     "table": "character_instance_safereturns",
@@ -7897,7 +7897,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_item_recast.md",
     "table": "character_item_recast",
@@ -7956,7 +7956,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_languages.md",
     "table": "character_languages",
@@ -8015,7 +8015,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_leadership_abilities.md",
     "table": "character_leadership_abilities",
@@ -8094,7 +8094,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_material.md",
     "table": "character_material",
@@ -8162,7 +8162,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_memmed_spells.md",
     "table": "character_memmed_spells",
@@ -8225,7 +8225,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_peqzone_flags.md",
     "table": "character_peqzone_flags",
@@ -8333,7 +8333,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_pet_buffs.md",
     "table": "character_pet_buffs",
@@ -8431,7 +8431,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_pet_info.md",
     "table": "character_pet_info",
@@ -8504,7 +8504,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_pet_inventory.md",
     "table": "character_pet_inventory",
@@ -8586,7 +8586,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_potionbelt.md",
     "table": "character_potionbelt",
@@ -8645,7 +8645,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_skills.md",
     "table": "character_skills",
@@ -8713,7 +8713,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_spells.md",
     "table": "character_spells",
@@ -8796,7 +8796,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_task_timers.md",
     "table": "character_task_timers",
@@ -8888,7 +8888,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_tasks.md",
     "table": "character_tasks",
@@ -8952,7 +8952,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/character_tribute.md",
     "table": "character_tribute",
@@ -8995,7 +8995,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/chatchannel_reserved_names.md",
     "table": "chatchannel_reserved_names",
@@ -9052,7 +9052,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/chatchannels.md",
     "table": "chatchannels",
@@ -9100,7 +9100,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/factions/client_faction_associations.md",
     "table": "client_faction_associations",
@@ -9143,7 +9143,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/factions/client_faction_names.md",
     "table": "client_faction_names",
@@ -9186,7 +9186,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/factions/client_server_faction_map.md",
     "table": "client_server_faction_map",
@@ -9234,7 +9234,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/command_settings.md",
     "table": "command_settings",
@@ -9292,7 +9292,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/command_subsettings.md",
     "table": "command_subsettings",
@@ -9370,7 +9370,7 @@
       "tasks"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/tasks/completed_shared_task_activity_state.md",
     "table": "completed_shared_task_activity_state",
@@ -9438,7 +9438,7 @@
       "tasks"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/tasks/completed_shared_task_members.md",
     "table": "completed_shared_task_members",
@@ -9512,7 +9512,7 @@
       "tasks"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/tasks/completed_shared_tasks.md",
     "table": "completed_shared_tasks",
@@ -9594,7 +9594,7 @@
       "tasks"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/tasks/completed_tasks.md",
     "table": "completed_tasks",
@@ -9955,7 +9955,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/flagging/content_flags.md",
     "table": "content_flags",
@@ -10008,7 +10008,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/spells/damageshieldtypes.md",
     "table": "damageshieldtypes",
@@ -10096,7 +10096,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/data-storage/data_buckets.md",
     "table": "data_buckets",
@@ -10200,7 +10200,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/client-files/db_str.md",
     "table": "db_str",
@@ -10243,7 +10243,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/db_version.md",
     "table": "db_version",
@@ -10312,7 +10312,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/discord_webhooks.md",
     "table": "discord_webhooks",
@@ -10385,7 +10385,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/discovered_items.md",
     "table": "discovered_items",
@@ -10652,7 +10652,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/doors/doors.md",
     "table": "doors",
@@ -10720,7 +10720,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/dynamic-zones/dynamic_zone_members.md",
     "table": "dynamic_zone_members",
@@ -10874,7 +10874,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/dynamic-zones/dynamic_zone_templates.md",
     "table": "dynamic_zone_templates",
@@ -11069,7 +11069,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/dynamic-zones/dynamic_zones.md",
     "table": "dynamic_zones",
@@ -11131,7 +11131,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/eqtime.md",
     "table": "eqtime",
@@ -11242,7 +11242,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/eventlog.md",
     "table": "eventlog",
@@ -11316,7 +11316,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/expeditions/expedition_lockouts.md",
     "table": "expedition_lockouts",
@@ -11378,7 +11378,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/expeditions/expeditions.md",
     "table": "expeditions",
@@ -11516,7 +11516,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/factions/faction_association.md",
     "table": "faction_association",
@@ -11590,7 +11590,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/factions/faction_base_data.md",
     "table": "faction_base_data",
@@ -11658,7 +11658,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/factions/faction_list.md",
     "table": "faction_list",
@@ -11722,7 +11722,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/factions/faction_list_mod.md",
     "table": "faction_list_mod",
@@ -11795,7 +11795,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/factions/faction_values.md",
     "table": "faction_values",
@@ -11929,7 +11929,7 @@
       "tradeskills"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/tradeskills/fishing.md",
     "table": "fishing",
@@ -12044,7 +12044,7 @@
       "tradeskills"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/tradeskills/forage.md",
     "table": "forage",
@@ -12111,7 +12111,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/friends.md",
     "table": "friends",
@@ -12267,7 +12267,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/loot/global_loot.md",
     "table": "global_loot",
@@ -12335,7 +12335,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/gm_ips.md",
     "table": "gm_ips",
@@ -12388,7 +12388,7 @@
       "tasks"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/tasks/goallists.md",
     "table": "goallists",
@@ -12461,7 +12461,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/graveyards/graveyard.md",
     "table": "graveyard",
@@ -12542,7 +12542,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/grids/grid.md",
     "table": "grid",
@@ -12640,7 +12640,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/grids/grid_entries.md",
     "table": "grid_entries",
@@ -12815,7 +12815,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/ground-spawns/ground_spawns.md",
     "table": "ground_spawns",
@@ -12888,7 +12888,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/groups/group_id.md",
     "table": "group_id",
@@ -12986,7 +12986,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/groups/group_leaders.md",
     "table": "group_leaders",
@@ -13088,7 +13088,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/guilds/guild_bank.md",
     "table": "guild_bank",
@@ -13191,7 +13191,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/guilds/guild_members.md",
     "table": "guild_members",
@@ -13290,7 +13290,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/guilds/guild_ranks.md",
     "table": "guild_ranks",
@@ -13358,7 +13358,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/guilds/guild_relations.md",
     "table": "guild_relations",
@@ -13513,7 +13513,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/guilds/guilds.md",
     "table": "guilds",
@@ -13604,7 +13604,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/hackers.md",
     "table": "hackers",
@@ -13681,7 +13681,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/horses/horses.md",
     "table": "horses",
@@ -13873,7 +13873,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/instances/instance_list.md",
     "table": "instance_list",
@@ -13936,7 +13936,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/instances/instance_list_player.md",
     "table": "instance_list_player",
@@ -14121,7 +14121,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/inventory/inventory.md",
     "table": "inventory",
@@ -14313,7 +14313,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/inventory/inventory_snapshots.md",
     "table": "inventory_snapshots",
@@ -14361,7 +14361,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/inventory/inventory_versions.md",
     "table": "inventory_versions",
@@ -14420,7 +14420,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/ip_exemptions.md",
     "table": "ip_exemptions",
@@ -14503,7 +14503,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/items/item_tick.md",
     "table": "item_tick",
@@ -16573,7 +16573,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/items/items.md",
     "table": "items",
@@ -16640,7 +16640,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/keyring.md",
     "table": "keyring",
@@ -16693,7 +16693,7 @@
       "zone"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/zone/launcher.md",
     "table": "launcher",
@@ -16761,7 +16761,7 @@
       "zone"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/zone/launcher_zones.md",
     "table": "launcher_zones",
@@ -16815,7 +16815,7 @@
       "traps"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/traps/ldon_trap_entries.md",
     "table": "ldon_trap_entries",
@@ -16893,7 +16893,7 @@
       "traps"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/traps/ldon_trap_templates.md",
     "table": "ldon_trap_templates",
@@ -16941,7 +16941,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/level_exp_mods.md",
     "table": "level_exp_mods",
@@ -17029,7 +17029,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/lfguild.md",
     "table": "lfguild",
@@ -17127,7 +17127,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/loginserver/login_accounts.md",
     "table": "login_accounts",
@@ -17190,7 +17190,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/loginserver/login_api_tokens.md",
     "table": "login_api_tokens",
@@ -17292,7 +17292,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/loginserver/login_server_admins.md",
     "table": "login_server_admins",
@@ -17346,7 +17346,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/loginserver/login_server_list_types.md",
     "table": "login_server_list_types",
@@ -17458,7 +17458,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/loginserver/login_world_servers.md",
     "table": "login_world_servers",
@@ -17537,7 +17537,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/logsys_categories.md",
     "table": "logsys_categories",
@@ -17637,7 +17637,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/loot/lootdrop.md",
     "table": "lootdrop",
@@ -17745,7 +17745,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/loot/lootdrop_entries.md",
     "table": "lootdrop_entries",
@@ -17874,7 +17874,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/loot/loottable.md",
     "table": "loottable",
@@ -17957,7 +17957,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/loot/loottable_entries.md",
     "table": "loottable_entries",
@@ -18049,7 +18049,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/mail.md",
     "table": "mail",
@@ -18152,7 +18152,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/mercenaries/merc_armorinfo.md",
     "table": "merc_armorinfo",
@@ -18300,7 +18300,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/mercenaries/merc_buffs.md",
     "table": "merc_buffs",
@@ -18378,7 +18378,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/mercenaries/merc_inventory.md",
     "table": "merc_inventory",
@@ -18446,7 +18446,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/mercenaries/merc_merchant_entries.md",
     "table": "merc_merchant_entries",
@@ -18514,7 +18514,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/mercenaries/merc_merchant_template_entries.md",
     "table": "merc_merchant_template_entries",
@@ -18591,7 +18591,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/mercenaries/merc_merchant_templates.md",
     "table": "merc_merchant_templates",
@@ -18655,7 +18655,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/mercenaries/merc_name_types.md",
     "table": "merc_name_types",
@@ -18751,7 +18751,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/mercenaries/merc_npc_types.md",
     "table": "merc_npc_types",
@@ -18858,7 +18858,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/mercenaries/merc_spell_list_entries.md",
     "table": "merc_spell_list_entries",
@@ -18922,7 +18922,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/mercenaries/merc_spell_lists.md",
     "table": "merc_spell_lists",
@@ -18991,7 +18991,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/mercenaries/merc_stance_entries.md",
     "table": "merc_stance_entries",
@@ -19200,7 +19200,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/mercenaries/merc_stats.md",
     "table": "merc_stats",
@@ -19273,7 +19273,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/mercenaries/merc_subtypes.md",
     "table": "merc_subtypes",
@@ -19406,7 +19406,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/mercenaries/merc_templates.md",
     "table": "merc_templates",
@@ -19484,7 +19484,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/mercenaries/merc_types.md",
     "table": "merc_types",
@@ -19568,7 +19568,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/mercenaries/merc_weaponinfo.md",
     "table": "merc_weaponinfo",
@@ -19732,7 +19732,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/merchants/merchantlist.md",
     "table": "merchantlist",
@@ -19815,7 +19815,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/merchants/merchantlist_temp.md",
     "table": "merchantlist_temp",
@@ -20014,7 +20014,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/mercenaries/mercs.md",
     "table": "mercs",
@@ -20057,7 +20057,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/name_filter.md",
     "table": "name_filter",
@@ -20126,7 +20126,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/npcs/npc_emotes.md",
     "table": "npc_emotes",
@@ -20199,7 +20199,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/npcs/npc_faction.md",
     "table": "npc_faction",
@@ -20277,7 +20277,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/npcs/npc_faction_entries.md",
     "table": "npc_faction_entries",
@@ -20465,7 +20465,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/npcs/npc_scale_global_base.md",
     "table": "npc_scale_global_base",
@@ -20668,7 +20668,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/npcs/npc_spells.md",
     "table": "npc_spells",
@@ -20727,7 +20727,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/npcs/npc_spells_effects.md",
     "table": "npc_spells_effects",
@@ -20811,7 +20811,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/npcs/npc_spells_effects_entries.md",
     "table": "npc_spells_effects_entries",
@@ -20924,7 +20924,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/npcs/npc_spells_entries.md",
     "table": "npc_spells_entries",
@@ -21765,7 +21765,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/npcs/npc_types.md",
     "table": "npc_types",
@@ -21963,7 +21963,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/npcs/npc_types_tint.md",
     "table": "npc_types_tint",
@@ -22201,7 +22201,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/objects/object.md",
     "table": "object",
@@ -22377,7 +22377,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/objects/object_contents.md",
     "table": "object_contents",
@@ -22430,7 +22430,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/peq_admin.md",
     "table": "peq_admin",
@@ -22498,7 +22498,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/perl_event_export_settings.md",
     "table": "perl_event_export_settings",
@@ -22648,7 +22648,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/petitions.md",
     "table": "petitions",
@@ -22753,7 +22753,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/pets/pets.md",
     "table": "pets",
@@ -22821,7 +22821,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/pets/pets_beastlord_data.md",
     "table": "pets_beastlord_data",
@@ -22889,7 +22889,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/pets/pets_equipmentset.md",
     "table": "pets_equipmentset",
@@ -22957,7 +22957,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/pets/pets_equipmentset_entries.md",
     "table": "pets_equipmentset_entries",
@@ -23015,7 +23015,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/player_event_log_settings.md",
     "table": "player_event_log_settings",
@@ -23113,7 +23113,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/player_event_logs.md",
     "table": "player_event_logs",
@@ -23181,7 +23181,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/characters/player_titlesets.md",
     "table": "player_titlesets",
@@ -23219,7 +23219,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/profanity_list.md",
     "table": "profanity_list",
@@ -23302,7 +23302,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/npcs/proximities.md",
     "table": "proximities",
@@ -23439,7 +23439,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/query-server/qs_merchant_transaction_record.md",
     "table": "qs_merchant_transaction_record",
@@ -23573,7 +23573,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/query-server/qs_merchant_transaction_record_entries.md",
     "table": "qs_merchant_transaction_record_entries",
@@ -23632,7 +23632,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/query-server/qs_player_aa_rate_hourly.md",
     "table": "qs_player_aa_rate_hourly",
@@ -23701,7 +23701,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/query-server/qs_player_delete_record.md",
     "table": "qs_player_delete_record",
@@ -23835,7 +23835,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/query-server/qs_player_delete_record_entries.md",
     "table": "qs_player_delete_record_entries",
@@ -23904,7 +23904,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/query-server/qs_player_events.md",
     "table": "qs_player_events",
@@ -24032,7 +24032,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/query-server/qs_player_handin_record.md",
     "table": "qs_player_handin_record",
@@ -24171,7 +24171,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/query-server/qs_player_handin_record_entries.md",
     "table": "qs_player_handin_record_entries",
@@ -24255,7 +24255,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/query-server/qs_player_move_record.md",
     "table": "qs_player_move_record",
@@ -24394,7 +24394,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/query-server/qs_player_move_record_entries.md",
     "table": "qs_player_move_record_entries",
@@ -24472,7 +24472,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/query-server/qs_player_npc_kill_record.md",
     "table": "qs_player_npc_kill_record",
@@ -24526,7 +24526,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/query-server/qs_player_npc_kill_record_entries.md",
     "table": "qs_player_npc_kill_record_entries",
@@ -24628,7 +24628,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/query-server/qs_player_speech.md",
     "table": "qs_player_speech",
@@ -24751,7 +24751,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/query-server/qs_player_trade_record.md",
     "table": "qs_player_trade_record",
@@ -24900,7 +24900,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/query-server/qs_player_trade_record_entries.md",
     "table": "qs_player_trade_record_entries",
@@ -25019,7 +25019,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/data-storage/quest_globals.md",
     "table": "quest_globals",
@@ -25137,7 +25137,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/raids/raid_details.md",
     "table": "raid_details",
@@ -25226,7 +25226,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/raids/raid_leaders.md",
     "table": "raid_leaders",
@@ -25358,7 +25358,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/raids/raid_members.md",
     "table": "raid_members",
@@ -25421,7 +25421,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/reports.md",
     "table": "reports",
@@ -25494,7 +25494,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/spawns/respawn_times.md",
     "table": "respawn_times",
@@ -25548,7 +25548,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/rules/rule_sets.md",
     "table": "rule_sets",
@@ -25612,7 +25612,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/rules/rule_values.md",
     "table": "rule_values",
@@ -25654,7 +25654,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/saylink.md",
     "table": "saylink",
@@ -25772,7 +25772,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/scheduler/server_scheduled_events.md",
     "table": "server_scheduled_events",
@@ -25850,7 +25850,7 @@
       "tasks"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/tasks/shared_task_activity_state.md",
     "table": "shared_task_activity_state",
@@ -25913,7 +25913,7 @@
       "tasks"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/tasks/shared_task_dynamic_zones.md",
     "table": "shared_task_dynamic_zones",
@@ -25981,7 +25981,7 @@
       "tasks"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/tasks/shared_task_members.md",
     "table": "shared_task_members",
@@ -26082,7 +26082,7 @@
       "tasks"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/tasks/shared_tasks.md",
     "table": "shared_tasks",
@@ -26243,7 +26243,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/account/sharedbank.md",
     "table": "sharedbank",
@@ -26301,7 +26301,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/client-files/skill_caps.md",
     "table": "skill_caps",
@@ -26493,7 +26493,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/spawns/spawn2.md",
     "table": "spawn2",
@@ -26575,7 +26575,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/spawns/spawn_condition_values.md",
     "table": "spawn_condition_values",
@@ -26653,7 +26653,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/spawns/spawn_conditions.md",
     "table": "spawn_conditions",
@@ -26776,7 +26776,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/spawns/spawn_events.md",
     "table": "spawn_events",
@@ -26896,7 +26896,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/spawns/spawnentry.md",
     "table": "spawnentry",
@@ -27004,7 +27004,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/spawns/spawngroup.md",
     "table": "spawngroup",
@@ -27072,7 +27072,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/spells/spell_buckets.md",
     "table": "spell_buckets",
@@ -27145,7 +27145,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/spells/spell_globals.md",
     "table": "spell_globals",
@@ -28608,7 +28608,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/spells/spells_new.md",
     "table": "spells_new",
@@ -28774,7 +28774,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/start_zones.md",
     "table": "start_zones",
@@ -28910,7 +28910,7 @@
       "table"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/starting_items.md",
     "table": "starting_items",
@@ -29101,7 +29101,7 @@
       "tasks"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/tasks/task_activities.md",
     "table": "task_activities",
@@ -29315,7 +29315,7 @@
       "tasks"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/tasks/tasks.md",
     "table": "tasks",
@@ -29368,7 +29368,7 @@
       "tasksets"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/tasks/tasksets.md",
     "table": "tasksets",
@@ -29435,7 +29435,7 @@
       "timers"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/timers/timers.md",
     "table": "timers",
@@ -29565,7 +29565,7 @@
       "titles"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/titles/titles.md",
     "table": "titles",
@@ -29648,7 +29648,7 @@
       "tools"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/tools/tool_game_objects.md",
     "table": "tool_game_objects",
@@ -29722,7 +29722,7 @@
       "tools"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/tools/tool_gearup_armor_sets.md",
     "table": "tool_gearup_armor_sets",
@@ -29803,7 +29803,7 @@
       "trader"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/trader/trader.md",
     "table": "trader",
@@ -29900,7 +29900,7 @@
       "trader_audit"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/trader/trader_audit.md",
     "table": "trader_audit",
@@ -30042,7 +30042,7 @@
       "tradeskills"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/tradeskills/tradeskill_recipe.md",
     "table": "tradeskill_recipe",
@@ -30135,7 +30135,7 @@
       "tradeskills"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/tradeskills/tradeskill_recipe_entries.md",
     "table": "tradeskill_recipe_entries",
@@ -30329,7 +30329,7 @@
       "traps"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/traps/traps.md",
     "table": "traps",
@@ -30402,7 +30402,7 @@
       "tributes"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/tributes/tribute_levels.md",
     "table": "tribute_levels",
@@ -30469,7 +30469,7 @@
       "tributes"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/tributes/tributes.md",
     "table": "tributes",
@@ -30526,7 +30526,7 @@
       "variables"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/variables.md",
     "table": "variables",
@@ -30604,7 +30604,7 @@
       "veteran_reward_templates"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/admin/veteran_reward_templates.md",
     "table": "veteran_reward_templates",
@@ -30677,7 +30677,7 @@
       "vw_bot_character_mobs"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/views/vw_bot_character_mobs.md",
     "table": "vw_bot_character_mobs",
@@ -30735,7 +30735,7 @@
       "vw_groups"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/views/vw_groups.md",
     "table": "vw_groups",
@@ -30818,7 +30818,7 @@
       "vw_guild_members"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/views/vw_guild_members.md",
     "table": "vw_guild_members",
@@ -31818,7 +31818,7 @@
       "zone"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/zone/zone.md",
     "table": "zone",
@@ -31881,7 +31881,7 @@
       "zone_flags"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/zone/zone_flags.md",
     "table": "zone_flags",
@@ -32090,7 +32090,7 @@
       "zone_points"
     ],
     "source_branch": "main",
-    "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+    "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
     "source_repo": "https://github.com/EQEmu/eqemu-docs-v2",
     "source_url": "https://github.com/EQEmu/eqemu-docs-v2/blob/main/docs/schema/zone/zone_points.md",
     "table": "zone_points",

@@ -19,11 +19,11 @@
   "sources": {
     "docs": {
       "source_branch": "main",
-      "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+      "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
       "source_repo": "https://github.com/EQEmu/eqemu-docs-v2"
     },
     "quest-api": {
-      "last_refreshed": "2026-05-05T16:59:44.890492052Z",
+      "last_refreshed": "2026-05-29T23:44:46.359309701Z",
       "source_branch": "master",
       "source_ref": "839ef4932382d3729eedf5c9da57cc72c8faf907",
       "source_repo": "https://github.com/EQEmuTools/spire",
@@ -31,7 +31,7 @@
     },
     "schema": {
       "source_branch": "main",
-      "source_ref": "93b011c8f6cf66a6ab95637346a4735474868201",
+      "source_ref": "e31bebca7342326437e0d7f792b5bc5d4bed2c1e",
       "source_repo": "https://github.com/EQEmu/eqemu-docs-v2"
     }
   }
