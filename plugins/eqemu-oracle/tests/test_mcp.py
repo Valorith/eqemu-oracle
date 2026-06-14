@@ -279,7 +279,8 @@ class McpServerValidationTest(unittest.TestCase):
 
         self.assertIsNotNone(response)
         assert response is not None
-        tool_names = {tool["name"] for tool in response["result"]["tools"]}
+        tools = {tool["name"]: tool for tool in response["result"]["tools"]}
+        tool_names = set(tools)
         self.assertIn("get_quest_api_overloads", tool_names)
         self.assertIn("explain_db_relationships", tool_names)
         self.assertIn("get_eqemu_example_file", tool_names)
@@ -294,6 +295,9 @@ class McpServerValidationTest(unittest.TestCase):
         self.assertIn("garbage_collect_eqemu_server_ftp_write_history", tool_names)
         self.assertIn("preview_eqemu_server_ftp_undo", tool_names)
         self.assertIn("undo_eqemu_server_ftp_write", tool_names)
+        read_only_description = tools["set_eqemu_server_ftp_read_only_mode"]["description"]
+        self.assertIn("Disabling read-only mode requires explicit user instruction", read_only_description)
+        self.assertIn("re-enabling it is allowed as automatic safety cleanup", read_only_description)
 
     def test_remote_onboarding_tool_returns_cli_setup_guidance(self) -> None:
         with patch("eqemu_oracle.mcp.DataStore", return_value=self._stub_store()):

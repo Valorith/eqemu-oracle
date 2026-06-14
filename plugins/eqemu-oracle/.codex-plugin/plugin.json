@@ -1,6 +1,6 @@
 {
   "name": "eqemu-oracle",
-  "version": "1.1.0+codex.20260614212018",
+  "version": "1.1.0+codex.20260614213744",
   "description": "Deterministic EQEmu context plus guarded remote server file staging and undo for Codex.",
   "author": {
     "name": "Valorith",

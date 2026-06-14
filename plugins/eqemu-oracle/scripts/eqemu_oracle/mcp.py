@@ -480,7 +480,7 @@ class McpServer:
             },
             {
                 "name": "set_eqemu_server_ftp_read_only_mode",
-                "description": "Preview or set a configured FTP/FTPS profile's persisted read-only mode. Confirmed mode changes must only be run after explicit user instruction and exact confirmation fields; read-only mode blocks upload, undo, and undo garbage-collection apply.",
+                "description": "Preview or set a configured FTP/FTPS profile's persisted read-only mode. Disabling read-only mode requires explicit user instruction and exact confirmation fields; re-enabling it is allowed as automatic safety cleanup after an approved write task. Read-only mode blocks upload, undo, and undo garbage-collection apply.",
                 "inputSchema": {
                     "type": "object",
                     "properties": {

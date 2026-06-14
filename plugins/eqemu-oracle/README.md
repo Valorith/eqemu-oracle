@@ -117,7 +117,7 @@ For FTPS servers with self-signed certificates or certificates that do not match
 
 Pinned FTPS keeps the connection encrypted and refuses to send credentials if the server presents a different certificate later.
 
-Remote profiles also have a persisted read-only mode. Preview a mode change first, then apply it only after explicit user instruction with exact confirmation fields:
+Remote profiles also have a persisted read-only mode. Preview a mode change first, then apply it with exact confirmation fields. Disabling read-only mode requires explicit user instruction for that specific task. Re-enabling read-only mode is allowed as automatic safety cleanup after an approved write task where the agent disabled it for that same task:
 
 ```sh
 <python-launcher> plugins/eqemu-oracle/scripts/eqemu_oracle.py remote read-only live --enable
@@ -188,10 +188,13 @@ Agent workflow for remote server files:
 3. If one profile exists, use it for safe list/stage work unless the user names another profile.
 4. If multiple profiles exist, ask which profile to use before staging or writing.
 5. Use `map_eqemu_server_ftp_layout` before staging broad remote areas or when the active file location is ambiguous. Prefer the narrowest useful scope, for example `zone` for one zone, `plugins` for helper scripts, `logs` for crash triage, and `global-items` or `global-spells` for item/spell script work.
-6. Treat `read_only` as authoritative. Only call `set_eqemu_server_ftp_read_only_mode` after explicit user instruction for that exact mode change.
-7. Use upload only after explicit approval and only when read-only mode is off, then report the returned operation id.
-8. Use write history and undo preview before any undo, then run undo only after explicit approval and only when read-only mode is off.
-9. Use `garbage_collect_eqemu_server_ftp_write_history` to preview local undo cleanup when history reports retention pressure. Apply GC only after explicit approval with `confirm_write=true` and only when read-only mode is off; it never modifies remote server files.
+6. If the Nexus CLI skill/helper is setup and available, use it only when it is value-added to the current task, such as checking the Webhook Inbox for script errors, failed webhooks, or crash-report payloads that may identify the affected script.
+7. For script-error fixes on a configured server, map/list the FTP layout, optionally check value-added Nexus Webhook Inbox evidence, stage the active affected script locally, edit the local staged copy, then ask the user to review and explicitly approve upload before overwriting the remote file.
+8. After a script error fix is uploaded through FTP, if Nexus is setup and available, ask whether the user wants a Test Manager change record created. Only create it after explicit approval, and keep the Change Description concise and tester-facing: player-visible issue, what changed, and what should be tested.
+9. Treat `read_only` as authoritative. If the requested task requires writing while read-only mode is on, tell the user and ask for explicit permission to exit read-only mode for that task. Re-enable read-only mode automatically as cleanup after the approved FTP write task finishes, and report the final state.
+10. Use upload only after explicit approval and only when read-only mode is off, then report the returned operation id.
+11. Use write history and undo preview before any undo, then run undo only after explicit approval and only when read-only mode is off.
+12. Use `garbage_collect_eqemu_server_ftp_write_history` to preview local undo cleanup when history reports retention pressure. Apply GC only after explicit approval with `confirm_write=true` and only when read-only mode is off; it never modifies remote server files.
 
 ## Overlay Model
 
@@ -261,7 +264,7 @@ See:
 
 Getter and search tools also attach `presentation.markdown` and `copy_blocks` so Codex can answer users with a consistent polished format while still keeping the raw structured record available to agents. Quest API events are rendered in a Spire-style copyable code format.
 Maintenance tools that can write local plugin data or touch Git state require `confirm_write: true`.
-Remote FTP/FTPS map, list, history, preview, and stage tools are safe for agents to use when relevant. `trust_eqemu_server_ftp_certificate` and `set_eqemu_server_ftp_read_only_mode` must only be confirmed after explicit user instruction. `garbage_collect_eqemu_server_ftp_write_history` is safe to preview, but applying it deletes local undo restore points and requires explicit confirmation. `upload_eqemu_server_ftp_file`, `delete_eqemu_server_ftp_file`, and `undo_eqemu_server_ftp_write` require explicit confirmation and matching confirmation fields, and are blocked while read-only mode is enabled.
+Remote FTP/FTPS map, list, history, preview, and stage tools are safe for agents to use when relevant. `trust_eqemu_server_ftp_certificate` must only be confirmed after explicit user instruction. `set_eqemu_server_ftp_read_only_mode` must only be confirmed to disable read-only mode after explicit user instruction for that task; confirming an enable back to read-only is allowed as automatic safety cleanup after an approved write task. `garbage_collect_eqemu_server_ftp_write_history` is safe to preview, but applying it deletes local undo restore points and requires explicit confirmation. `upload_eqemu_server_ftp_file`, `delete_eqemu_server_ftp_file`, and `undo_eqemu_server_ftp_write` require explicit confirmation and matching confirmation fields, and are blocked while read-only mode is enabled.
 `search_eqemu_context` also accepts `prefer_fresh: true` to break ranking ties toward newer staged records.
 When `quests` or `plugins` is explicitly searched, configured example sources are indexed into the ignored cache so results can include real quest/plugin files, not just source metadata.
 
