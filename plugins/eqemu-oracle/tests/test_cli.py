@@ -102,3 +102,159 @@ class CliRefreshTest(unittest.TestCase):
 
         self.assertEqual(exit_code, 0)
         server._handle_tool.assert_called_once_with("get_db_table", {"table_name": "spawn2"})
+
+    def test_main_accepts_remote_onboarding_command(self) -> None:
+        with patch("eqemu_oracle.cli.remote_onboarding_payload", return_value={"recommended_setup_command": "setup"}):
+            with patch.object(sys, "argv", ["eqemu_oracle.py", "remote", "onboarding"]):
+                exit_code = cli.main()
+
+        self.assertEqual(exit_code, 0)
+
+    def test_remote_setup_with_password_env_requires_host_and_username(self) -> None:
+        with patch.object(sys, "argv", ["eqemu_oracle.py", "remote", "setup", "--password-env", "EQEMU_TEST_PASSWORD"]):
+            exit_code = cli.main()
+
+        self.assertEqual(exit_code, 2)
+
+    def test_main_accepts_remote_map_command(self) -> None:
+        with patch("eqemu_oracle.cli.map_remote_eqemu_server", return_value={"entries": []}) as mapper:
+            with patch.object(
+                sys,
+                "argv",
+                [
+                    "eqemu_oracle.py",
+                    "remote",
+                    "map",
+                    "live",
+                    "--scope",
+                    "zone",
+                    "--zone",
+                    "qeynos",
+                    "--max-depth",
+                    "4",
+                    "--limit",
+                    "250",
+                ],
+            ):
+                exit_code = cli.main()
+
+        self.assertEqual(exit_code, 0)
+        mapper.assert_called_once_with("live", remote_path=None, scope="zone", zone="qeynos", max_depth=4, limit=250)
+
+    def test_main_accepts_remote_trust_cert_command(self) -> None:
+        fingerprint = "A" * 64
+        with patch("eqemu_oracle.cli.trust_ftps_certificate", return_value={"trusted": True}) as trust:
+            with patch.object(
+                sys,
+                "argv",
+                [
+                    "eqemu_oracle.py",
+                    "remote",
+                    "trust-cert",
+                    "live",
+                    "--confirm-trust",
+                    "--confirm-sha256",
+                    fingerprint,
+                ],
+            ):
+                exit_code = cli.main()
+
+        self.assertEqual(exit_code, 0)
+        trust.assert_called_once_with("live", confirm_trust=True, confirm_sha256=fingerprint)
+
+    def test_main_accepts_remote_upload_allow_create(self) -> None:
+        with patch("eqemu_oracle.cli.upload_staged_file", return_value={"uploaded": True}) as upload:
+            with patch.object(
+                sys,
+                "argv",
+                [
+                    "eqemu_oracle.py",
+                    "remote",
+                    "upload",
+                    "live",
+                    "C:/staged/textFile.txt",
+                    "--remote-path",
+                    "/quests/global/textFile.txt",
+                    "--confirm-write",
+                    "--confirm-remote-path",
+                    "/quests/global/textFile.txt",
+                    "--allow-create",
+                ],
+            ):
+                exit_code = cli.main()
+
+        self.assertEqual(exit_code, 0)
+        upload.assert_called_once_with(
+            "live",
+            local_path="C:\\staged\\textFile.txt" if sys.platform == "win32" else "C:/staged/textFile.txt",
+            remote_path="/quests/global/textFile.txt",
+            confirm_write=True,
+            confirm_remote_path="/quests/global/textFile.txt",
+            create_backup=True,
+            allow_create=True,
+            allow_remote_changed=False,
+            max_backup_bytes=5 * 1024 * 1024,
+        )
+
+    def test_main_accepts_remote_delete_command(self) -> None:
+        fingerprint = "B" * 64
+        with patch("eqemu_oracle.cli.delete_remote_file", return_value={"deleted": True}) as delete:
+            with patch.object(
+                sys,
+                "argv",
+                [
+                    "eqemu_oracle.py",
+                    "remote",
+                    "delete",
+                    "live",
+                    "/quests/global/textFile.txt",
+                    "--confirm-delete",
+                    "--confirm-remote-path",
+                    "/quests/global/textFile.txt",
+                    "--confirm-remote-sha256",
+                    fingerprint,
+                    "--max-backup-bytes",
+                    "2048",
+                ],
+            ):
+                exit_code = cli.main()
+
+        self.assertEqual(exit_code, 0)
+        delete.assert_called_once_with(
+            "live",
+            remote_path="/quests/global/textFile.txt",
+            confirm_delete=True,
+            confirm_remote_path="/quests/global/textFile.txt",
+            confirm_remote_sha256=fingerprint,
+            max_backup_bytes=2048,
+        )
+
+    def test_main_accepts_remote_gc_command(self) -> None:
+        with patch("eqemu_oracle.cli.garbage_collect_write_history", return_value={"applied": False}) as gc:
+            with patch.object(
+                sys,
+                "argv",
+                [
+                    "eqemu_oracle.py",
+                    "remote",
+                    "gc",
+                    "live",
+                    "--apply",
+                    "--keep-operations",
+                    "3",
+                    "--max-bytes",
+                    "100",
+                    "--no-prune-orphans",
+                ],
+            ):
+                exit_code = cli.main()
+
+        self.assertEqual(exit_code, 0)
+        gc.assert_called_once_with(
+            "live",
+            apply=True,
+            confirm_write=False,
+            prune_orphans=False,
+            max_operations=3,
+            max_bytes=100,
+        )

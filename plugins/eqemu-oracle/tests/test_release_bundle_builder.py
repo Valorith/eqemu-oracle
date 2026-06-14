@@ -89,6 +89,36 @@ class ReleaseBundleBuilderTest(unittest.TestCase):
         self.assertFalse(any(".pytest_cache" in name for name in names))
         self.assertFalse(any(name.endswith((".pyc", ".pyo")) for name in names))
 
+    def test_build_release_bundle_excludes_local_remote_connection_files(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            repo_root = Path(temp_dir) / "repo"
+            plugin_root = repo_root / "plugins" / "eqemu-oracle"
+            plugin_root.mkdir(parents=True, exist_ok=True)
+            (plugin_root / "server-connections.json").write_text('{"password":"secret"}\n', encoding="utf-8")
+            remote_root = plugin_root / "remote-connections"
+            remote_root.mkdir()
+            (remote_root / "profile.json").write_text("secret\n", encoding="utf-8")
+            staged_root = plugin_root / "staged-files"
+            staged_root.mkdir()
+            (staged_root / "edited.pl").write_text("local edit\n", encoding="utf-8")
+            backup_root = plugin_root / "remote-backups"
+            backup_root.mkdir()
+            (backup_root / "npc.pl").write_text("backup\n", encoding="utf-8")
+            (plugin_root / "scripts").mkdir()
+            (plugin_root / "scripts" / "keep.py").write_text("print('ok')\n", encoding="utf-8")
+
+            archive_path = build_release_bundle(Path(temp_dir) / "dist", repo_root=repo_root)
+
+            with zipfile.ZipFile(archive_path) as archive:
+                names = set(archive.namelist())
+
+        bundle_root = get_bundle_root()
+        self.assertIn(f"{bundle_root}/plugins/eqemu-oracle/scripts/keep.py", names)
+        self.assertNotIn(f"{bundle_root}/plugins/eqemu-oracle/server-connections.json", names)
+        self.assertFalse(any("/remote-connections/" in name for name in names))
+        self.assertFalse(any("/staged-files/" in name for name in names))
+        self.assertFalse(any("/remote-backups/" in name for name in names))
+
 
 if __name__ == "__main__":
     unittest.main()

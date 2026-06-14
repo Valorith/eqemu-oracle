@@ -1,7 +1,7 @@
 {
   "name": "eqemu-oracle",
-  "version": "1.0.1",
-  "description": "Deterministic EQEmu scripting, schema, and documentation context for Codex.",
+  "version": "1.1.0+codex.20260614212018",
+  "description": "Deterministic EQEmu context plus guarded remote server file staging and undo for Codex.",
   "author": {
     "name": "Valorith",
     "email": "76063792+Valorith@users.noreply.github.com",
@@ -20,13 +20,12 @@
     "mcp"
   ],
   "skills": "./skills/",
-  "hooks": "./hooks.json",
   "mcpServers": "./.mcp.json",
   "apps": "./.app.json",
   "interface": {
     "displayName": "EQEmu Oracle",
-    "shortDescription": "Deterministic EQEmu context for scripting, schema, and docs",
-    "longDescription": "Bring deterministic EQEmu context into Codex through local staged snapshots, extension overlays, and a built-in MCP server for Perl and Lua quest API lookup, MySQL schema lookup, and official documentation lookup.",
+    "shortDescription": "EQEmu context plus guarded remote file staging",
+    "longDescription": "Bring deterministic EQEmu context into Codex through local staged snapshots, extension overlays, a built-in MCP server for Perl and Lua quest API lookup, MySQL schema lookup, official documentation lookup, and optional guarded FTP/FTPS staging for remote server files with local restore points and undo.",
     "developerName": "Valorith",
     "category": "Coding",
     "capabilities": [
@@ -39,7 +38,8 @@
     "defaultPrompt": [
       "Use EQEmu Oracle to explain this Perl or Lua quest API call",
       "Use EQEmu Oracle to find the schema and relationships for this EQEmu table",
-      "Use EQEmu Oracle to locate the official EQEmu documentation page for this topic"
+      "Use EQEmu Oracle to locate the official EQEmu documentation page for this topic",
+      "Use EQEmu Oracle to stage a remote EQEmu server file for review"
     ],
     "brandColor": "#00AFA7",
     "composerIcon": "./assets/eqemu-oracle-logo.png",

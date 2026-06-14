@@ -7,8 +7,16 @@ from zipfile import ZIP_DEFLATED, ZipFile, ZipInfo
 from .constants import PLUGIN_METADATA_PATH, REPO_ROOT
 
 
-SKIPPED_ROOTS = {".git", "dist", "dist-local-smoke"}
-SKIPPED_NAMES = {".DS_Store", "__pycache__", ".pytest_cache"}
+SKIPPED_ROOTS = {".git", "dist", "dist-local-smoke", ".eqemu-oracle"}
+SKIPPED_NAMES = {
+    ".DS_Store",
+    "__pycache__",
+    ".pytest_cache",
+    "server-connections.json",
+    "remote-connections",
+    "staged-files",
+    "remote-backups",
+}
 SKIPPED_SUFFIXES = {".pyc", ".pyo"}
 EXECUTABLE_BUNDLE_NAMES = {"install.sh", "install.command", "eqemu_oracle_launcher.cmd"}
 
@@ -21,6 +29,12 @@ def _should_skip_bundle_path(rel_path: Path) -> bool:
     if rel_path.suffix in SKIPPED_SUFFIXES:
         return True
     if rel_path.parts[:3] == ("plugins", "eqemu-oracle", "cache"):
+        return True
+    if rel_path.parts[:3] in {
+        ("plugins", "eqemu-oracle", "remote-connections"),
+        ("plugins", "eqemu-oracle", "staged-files"),
+        ("plugins", "eqemu-oracle", "remote-backups"),
+    }:
         return True
     if rel_path.parts[:3] == ("plugins", "eqemu-oracle", "local-extensions"):
         filename = rel_path.name

@@ -32,6 +32,7 @@ Once installed, the plugin can help <img src="assets/codex_dark_badge.svg" alt="
 - find and summarize official EQEmu documentation pages
 - search across those sources from one prompt
 - use your own local server-specific extensions if you want custom data later
+- securely configure an optional FTP/FTPS profile for a remote EQEmu server, then stage selected files locally for review and guarded edits
 
 ## <img src="plugins/eqemu-oracle/assets/eqemu-oracle-logo.png" alt="EQEmu Oracle logo" width="40"> EQEmu Why Use It
 
@@ -216,6 +217,24 @@ Use:
 For local additions, edit the installer-created `local.json` scaffold files or copy a `_example.json` file to a new filename and edit that copy. The plugin rebuilds local edits into its ignored overlay cache when it serves extension-backed results, and git ignores the local JSON files so private server resources are not uploaded to the repository or release bundles.
 
 This is optional. Most users can ignore it until they need custom behavior.
+
+## <img src="plugins/eqemu-oracle/assets/eqemu-oracle-logo.png" alt="EQEmu Oracle logo" width="40"> EQEmu Optional: Remote Server FTP/FTPS Access
+
+To stage files from a remote EQEmu server, run the local setup flow:
+
+```powershell
+py -3 plugins/eqemu-oracle/scripts/eqemu_oracle.py remote setup
+```
+
+The password prompt is hidden and credentials are stored locally outside the repository. Prefer `ftps` when the server supports it. Plain `ftp` is blocked unless you explicitly opt into the insecure transport.
+
+For self-signed or hostname-mismatched FTPS certificates, use `remote trust-cert <profile>` to pin the exact presented certificate fingerprint instead of disabling TLS verification globally. Pinned FTPS keeps encryption on and refuses to send credentials if the server certificate changes.
+
+Each remote profile has a persisted read-only mode. Preview mode changes with `remote read-only <profile> --enable` or `--disable`, then apply only after explicit user instruction with exact confirmation fields. When read-only mode is enabled, upload, delete, confirmed undo, and undo garbage-collection apply are blocked by the shared FTP implementation.
+
+Safe actions such as mapping, listing, write-history review, undo preview, and staging remote files can be used without extra confirmation. `remote map` is intended to be run on demand before remote work so the agent sees the actual available files first. It supports targeted scopes such as `overview`, `quests`, `zone`, `plugins`, `logs`, `binaries`, `global`, `global-items`, and `global-spells`, and is aware of the expected EQEmu server layout, including `/binaries`, crash logs under `/logs`, top-level Perl plugins under `/plugins`, zone and global scripts under `/quests`, global item/spell scripts, numeric NPC script names, and Lua-over-Perl same-basename priority. Upload is a guarded two-step action with an exact remote-path confirmation, a local restore point first, post-upload verification, and a write-history operation id; creating a new remote file additionally requires explicit `allow_create`. Delete is also guarded by preview, exact remote-path confirmation, exact SHA-256 confirmation, local restore-point backup, post-delete verification, and write-history tracking. Undo is confirmation-gated, checks that the remote file still matches the recorded post-write state, and creates a new restore point before restoring or removing a created file.
+
+Local undo restore points are retained per profile for the most recent 25 remote writes or 250 MB of restore-point data. Upload and undo prune beyond that policy automatically, and `remote gc` can preview or apply cleanup of older or orphaned local restore points. Applying GC deletes only local undo backups and requires explicit confirmation; it never touches remote server files. Rename, chmod, and directory-removal actions are not exposed.
 
 ## <img src="plugins/eqemu-oracle/assets/eqemu-oracle-logo.png" alt="EQEmu Oracle logo" width="40"> EQEmu Optional: Point To Different Sources
 

@@ -34,7 +34,7 @@ class HookTest(unittest.TestCase):
         manifest = json.loads((PLUGIN_ROOT / ".codex-plugin" / "plugin.json").read_text(encoding="utf-8"))
         hooks = json.loads((PLUGIN_ROOT / "hooks.json").read_text(encoding="utf-8"))
 
-        self.assertEqual(manifest["hooks"], "./hooks.json")
+        self.assertNotIn("hooks", manifest)
         self.assertIn("Stop", hooks["hooks"])
         self.assertIn("PostToolUse", hooks["hooks"])
         self.assertEqual(

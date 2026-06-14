@@ -43,3 +43,9 @@ plugins/eqemu-oracle/local-extensions/plugins/*
 # Local secrets
 .env
 .env.*
+.eqemu-oracle/
+plugins/eqemu-oracle/server-connections.json
+plugins/eqemu-oracle/remote-connections/
+plugins/eqemu-oracle/staged-files/
+plugins/eqemu-oracle/remote-backups/
+plugins/eqemu-oracle/*ftp*.local.json

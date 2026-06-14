@@ -283,6 +283,280 @@ class McpServerValidationTest(unittest.TestCase):
         self.assertIn("get_quest_api_overloads", tool_names)
         self.assertIn("explain_db_relationships", tool_names)
         self.assertIn("get_eqemu_example_file", tool_names)
+        self.assertIn("get_eqemu_server_ftp_onboarding", tool_names)
+        self.assertIn("map_eqemu_server_ftp_layout", tool_names)
+        self.assertIn("stage_eqemu_server_ftp_file", tool_names)
+        self.assertIn("upload_eqemu_server_ftp_file", tool_names)
+        self.assertIn("delete_eqemu_server_ftp_file", tool_names)
+        self.assertIn("list_eqemu_server_ftp_write_history", tool_names)
+        self.assertIn("set_eqemu_server_ftp_read_only_mode", tool_names)
+        self.assertIn("trust_eqemu_server_ftp_certificate", tool_names)
+        self.assertIn("garbage_collect_eqemu_server_ftp_write_history", tool_names)
+        self.assertIn("preview_eqemu_server_ftp_undo", tool_names)
+        self.assertIn("undo_eqemu_server_ftp_write", tool_names)
+
+    def test_remote_onboarding_tool_returns_cli_setup_guidance(self) -> None:
+        with patch("eqemu_oracle.mcp.DataStore", return_value=self._stub_store()):
+            server = McpServer()
+
+        with patch("eqemu_oracle.mcp.remote_onboarding_payload", return_value={"presentation": {"markdown": "setup command"}}) as onboarding:
+            response = server.handle(
+                {
+                    "jsonrpc": "2.0",
+                    "id": 13,
+                    "method": "tools/call",
+                    "params": {"name": "get_eqemu_server_ftp_onboarding", "arguments": {}},
+                }
+            )
+
+        self.assertIsNotNone(response)
+        assert response is not None
+        onboarding.assert_called_once_with()
+        self.assertEqual(response["result"]["content"][0]["text"], "setup command")
+
+    def test_remote_map_tool_classifies_eqemu_layout(self) -> None:
+        with patch("eqemu_oracle.mcp.DataStore", return_value=self._stub_store()):
+            server = McpServer()
+
+        mapped = {
+            "entries": [{"path": "/eqemu/quests/qeynos/Guard_Beren.lua", "role": "quest_script"}],
+            "presentation": {"markdown": "mapped layout"},
+        }
+        with patch("eqemu_oracle.mcp.map_remote_eqemu_server", return_value=mapped) as mapper:
+            response = server.handle(
+                {
+                    "jsonrpc": "2.0",
+                    "id": 131,
+                    "method": "tools/call",
+                    "params": {
+                        "name": "map_eqemu_server_ftp_layout",
+                        "arguments": {"profile": "live", "scope": "zone", "zone": "qeynos", "max_depth": 4, "limit": 250},
+                    },
+                }
+            )
+
+        self.assertIsNotNone(response)
+        assert response is not None
+        mapper.assert_called_once_with("live", remote_path=None, scope="zone", zone="qeynos", max_depth=4, limit=250)
+        self.assertEqual(response["result"]["content"][0]["text"], "mapped layout")
+        self.assertEqual(response["result"]["structuredContent"]["entries"][0]["role"], "quest_script")
+
+    def test_remote_trust_certificate_tool_requires_exact_confirmation_preview(self) -> None:
+        with patch("eqemu_oracle.mcp.DataStore", return_value=self._stub_store()):
+            server = McpServer()
+
+        fingerprint = "B" * 64
+        preview = {
+            "requires_confirmation": True,
+            "confirmation_arguments": {
+                "profile": "live",
+                "confirm_trust": True,
+                "confirm_sha256": fingerprint,
+            },
+            "presentation": {"markdown": "confirm cert"},
+        }
+        with patch("eqemu_oracle.mcp.trust_ftps_certificate", return_value=preview) as trust:
+            response = server.handle(
+                {
+                    "jsonrpc": "2.0",
+                    "id": 132,
+                    "method": "tools/call",
+                    "params": {
+                        "name": "trust_eqemu_server_ftp_certificate",
+                        "arguments": {"profile": "live"},
+                    },
+                }
+            )
+
+        self.assertIsNotNone(response)
+        assert response is not None
+        trust.assert_called_once_with("live", confirm_trust=False, confirm_sha256=None)
+        self.assertTrue(response["result"]["structuredContent"]["requires_confirmation"])
+
+    def test_remote_upload_tool_returns_confirmation_preview_without_uploading(self) -> None:
+        with patch("eqemu_oracle.mcp.DataStore", return_value=self._stub_store()):
+            server = McpServer()
+
+        preview = {
+            "requires_confirmation": True,
+            "remote_path": "/eqemu/quests/npc.pl",
+            "presentation": {"markdown": "confirm upload"},
+        }
+        with patch("eqemu_oracle.mcp.upload_staged_file", return_value=preview) as upload:
+            response = server.handle(
+                {
+                    "jsonrpc": "2.0",
+                    "id": 14,
+                    "method": "tools/call",
+                    "params": {
+                        "name": "upload_eqemu_server_ftp_file",
+                        "arguments": {"profile": "live", "local_path": "C:/staged/npc.pl"},
+                    },
+                }
+            )
+
+        self.assertIsNotNone(response)
+        assert response is not None
+        upload.assert_called_once_with(
+            "live",
+            local_path="C:/staged/npc.pl",
+            remote_path=None,
+            confirm_write=False,
+            confirm_remote_path=None,
+            create_backup=True,
+            allow_create=False,
+            allow_remote_changed=False,
+            max_backup_bytes=5242880,
+        )
+        self.assertTrue(response["result"]["structuredContent"]["requires_confirmation"])
+
+    def test_remote_delete_tool_returns_confirmation_preview_without_deleting(self) -> None:
+        with patch("eqemu_oracle.mcp.DataStore", return_value=self._stub_store()):
+            server = McpServer()
+
+        preview = {
+            "requires_confirmation": True,
+            "remote_path": "/eqemu/quests/global/textFile.txt",
+            "remote_sha256": "C" * 64,
+            "presentation": {"markdown": "confirm delete"},
+        }
+        with patch("eqemu_oracle.mcp.delete_remote_file", return_value=preview) as delete:
+            response = server.handle(
+                {
+                    "jsonrpc": "2.0",
+                    "id": 141,
+                    "method": "tools/call",
+                    "params": {
+                        "name": "delete_eqemu_server_ftp_file",
+                        "arguments": {
+                            "profile": "live",
+                            "remote_path": "/eqemu/quests/global/textFile.txt",
+                            "confirm_delete": True,
+                            "confirm_remote_path": "/eqemu/quests/global/textFile.txt",
+                            "confirm_remote_sha256": "C" * 64,
+                        },
+                    },
+                }
+            )
+
+        self.assertIsNotNone(response)
+        assert response is not None
+        delete.assert_called_once_with(
+            "live",
+            remote_path="/eqemu/quests/global/textFile.txt",
+            confirm_delete=True,
+            confirm_remote_path="/eqemu/quests/global/textFile.txt",
+            confirm_remote_sha256="C" * 64,
+            max_backup_bytes=5242880,
+        )
+        self.assertTrue(response["result"]["structuredContent"]["requires_confirmation"])
+
+    def test_remote_read_only_mode_tool_requires_confirmation_preview(self) -> None:
+        with patch("eqemu_oracle.mcp.DataStore", return_value=self._stub_store()):
+            server = McpServer()
+
+        preview = {
+            "requires_confirmation": True,
+            "confirmation_arguments": {
+                "profile": "live",
+                "read_only": True,
+                "confirm_mode_change": True,
+                "confirm_profile": "live",
+                "confirm_read_only_mode": "read-only",
+            },
+            "presentation": {"markdown": "confirm read-only"},
+        }
+        with patch("eqemu_oracle.mcp.set_profile_read_only_mode", return_value=preview) as set_mode:
+            response = server.handle(
+                {
+                    "jsonrpc": "2.0",
+                    "id": 17,
+                    "method": "tools/call",
+                    "params": {
+                        "name": "set_eqemu_server_ftp_read_only_mode",
+                        "arguments": {"profile": "live", "read_only": True},
+                    },
+                }
+            )
+
+        self.assertIsNotNone(response)
+        assert response is not None
+        set_mode.assert_called_once_with(
+            "live",
+            read_only=True,
+            confirm_mode_change=False,
+            confirm_profile=None,
+            confirm_read_only_mode=None,
+        )
+        self.assertTrue(response["result"]["structuredContent"]["requires_confirmation"])
+
+    def test_remote_gc_tool_returns_confirmation_preview_without_deleting(self) -> None:
+        with patch("eqemu_oracle.mcp.DataStore", return_value=self._stub_store()):
+            server = McpServer()
+
+        preview = {
+            "requires_confirmation": True,
+            "applied": False,
+            "presentation": {"markdown": "confirm gc"},
+        }
+        with patch("eqemu_oracle.mcp.garbage_collect_write_history", return_value=preview) as gc:
+            response = server.handle(
+                {
+                    "jsonrpc": "2.0",
+                    "id": 16,
+                    "method": "tools/call",
+                    "params": {
+                        "name": "garbage_collect_eqemu_server_ftp_write_history",
+                        "arguments": {"profile": "live", "apply": True},
+                    },
+                }
+            )
+
+        self.assertIsNotNone(response)
+        assert response is not None
+        gc.assert_called_once_with(
+            "live",
+            apply=True,
+            confirm_write=False,
+            prune_orphans=True,
+            max_operations=25,
+            max_bytes=262144000,
+        )
+        self.assertTrue(response["result"]["structuredContent"]["requires_confirmation"])
+
+    def test_remote_undo_tool_returns_confirmation_preview_without_writing(self) -> None:
+        with patch("eqemu_oracle.mcp.DataStore", return_value=self._stub_store()):
+            server = McpServer()
+
+        preview = {
+            "requires_confirmation": True,
+            "operation": {"id": "op-1"},
+            "presentation": {"markdown": "confirm undo"},
+        }
+        with patch("eqemu_oracle.mcp.undo_write_operation", return_value=preview) as undo:
+            response = server.handle(
+                {
+                    "jsonrpc": "2.0",
+                    "id": 15,
+                    "method": "tools/call",
+                    "params": {
+                        "name": "undo_eqemu_server_ftp_write",
+                        "arguments": {"profile": "live", "operation_id": "op-1"},
+                    },
+                }
+            )
+
+        self.assertIsNotNone(response)
+        assert response is not None
+        undo.assert_called_once_with(
+            "live",
+            operation_id="op-1",
+            confirm_write=False,
+            confirm_operation_id=None,
+            allow_remote_changed=False,
+            max_bytes=5242880,
+        )
+        self.assertTrue(response["result"]["structuredContent"]["requires_confirmation"])
 
     def test_provenance_resource_returns_payload(self) -> None:
         with patch("eqemu_oracle.mcp.DataStore", return_value=self._stub_store()):

@@ -65,6 +65,31 @@ class InstallerTest(unittest.TestCase):
                 rebuild_command = run_mock.call_args.args[0]
                 self.assertEqual(rebuild_command[1], str((target_root / "scripts" / "eqemu_oracle.py").resolve()))
 
+    def test_install_global_plugin_does_not_copy_local_remote_connection_files(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            home = Path(temp_dir) / "home"
+            source_root = Path(temp_dir) / "source" / "eqemu-oracle"
+            _seed_plugin_root(source_root)
+            (source_root / "server-connections.json").write_text('{"password":"secret"}\n', encoding="utf-8")
+            (source_root / "remote-connections").mkdir()
+            (source_root / "remote-connections" / "profile.json").write_text("secret\n", encoding="utf-8")
+            (source_root / "staged-files").mkdir()
+            (source_root / "staged-files" / "edited.pl").write_text("local edit\n", encoding="utf-8")
+            (source_root / "remote-backups").mkdir()
+            (source_root / "remote-backups" / "npc.pl").write_text("backup\n", encoding="utf-8")
+
+            with patch("eqemu_oracle.installer.subprocess.run") as run_mock:
+                run_mock.return_value.returncode = 0
+                run_mock.return_value.stdout = ""
+                run_mock.return_value.stderr = ""
+                installer.install_global_plugin(home=home, source_plugin_root=source_root)
+
+            target_root = home / "plugins" / "eqemu-oracle"
+            self.assertFalse((target_root / "server-connections.json").exists())
+            self.assertFalse((target_root / "remote-connections").exists())
+            self.assertFalse((target_root / "staged-files").exists())
+            self.assertFalse((target_root / "remote-backups").exists())
+
     def test_install_global_plugin_uses_codex_desktop_marketplace_when_available(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             home = Path(temp_dir) / "home"

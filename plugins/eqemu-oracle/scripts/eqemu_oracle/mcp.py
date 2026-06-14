@@ -19,6 +19,26 @@ from .constants import (
 from .dataset import DataStore, base_data_root, find_stale_schema_extensions, validate_extension_overlays
 from .extensions import ExtensionValidationError, extension_inputs_digest, extension_inputs_fingerprint, load_domain_extensions
 from .operations import prune_schema_extensions_dataset, rebuild_extensions_dataset, refresh_dataset
+from .remote import (
+    DEFAULT_MAX_DOWNLOAD_BYTES,
+    EQEMU_REMOTE_MAP_SCOPES,
+    WRITE_HISTORY_LIMIT,
+    WRITE_HISTORY_MAX_BYTES,
+    delete_remote_file,
+    garbage_collect_write_history,
+    map_remote_eqemu_server,
+    list_profiles as list_remote_profiles,
+    list_remote_files,
+    list_write_history,
+    onboarding_payload as remote_onboarding_payload,
+    preview_write_undo,
+    set_profile_read_only_mode,
+    stage_remote_file,
+    test_connection as test_remote_connection,
+    trust_ftps_certificate,
+    undo_write_operation,
+    upload_staged_file,
+)
 from .updater import update_plugin_repo
 
 
@@ -325,6 +345,203 @@ class McpServer:
                     "required": ["domain", "id"]
                 },
                 "annotations": {"readOnlyHint": True}
+            },
+            {
+                "name": "get_eqemu_server_ftp_onboarding",
+                "description": "Show the safe local onboarding flow for creating a stored EQEmu server FTP/FTPS profile without pasting passwords into chat.",
+                "inputSchema": {"type": "object", "properties": {}},
+                "annotations": {"readOnlyHint": True}
+            },
+            {
+                "name": "list_eqemu_server_ftp_profiles",
+                "description": "List locally configured EQEmu server FTP/FTPS profiles. Credentials are never returned.",
+                "inputSchema": {"type": "object", "properties": {}},
+                "annotations": {"readOnlyHint": True}
+            },
+            {
+                "name": "test_eqemu_server_ftp_connection",
+                "description": "Test a locally configured EQEmu server FTP/FTPS profile by opening a connection and reading a small root listing.",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {"profile": {"type": "string"}},
+                    "required": ["profile"]
+                },
+                "annotations": {"readOnlyHint": True}
+            },
+            {
+                "name": "trust_eqemu_server_ftp_certificate",
+                "description": "Preview or pin the currently presented FTPS certificate SHA-256 fingerprint for a profile. Confirmed pinning changes local trust metadata and must only be run after explicit user instruction and exact fingerprint confirmation.",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "profile": {"type": "string"},
+                        "confirm_trust": {"type": "boolean"},
+                        "confirm_sha256": {"type": "string"}
+                    },
+                    "required": ["profile"]
+                },
+                "annotations": {"readOnlyHint": False, "destructiveHint": True}
+            },
+            {
+                "name": "list_eqemu_server_ftp_files",
+                "description": "List files on a configured remote EQEmu server FTP/FTPS profile. The path is constrained to the profile root.",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "profile": {"type": "string"},
+                        "remote_path": {"type": "string"},
+                        "recursive": {"type": "boolean"},
+                        "limit": {"type": "integer", "minimum": 1}
+                    },
+                    "required": ["profile"]
+                },
+                "annotations": {"readOnlyHint": True}
+            },
+            {
+                "name": "map_eqemu_server_ftp_layout",
+                "description": "Read-only map of a configured remote EQEmu server FTP/FTPS layout. Classifies known EQEmu folders, quest/plugin/log paths, zone folders, global item/spell scripts, NPC name/id scripts, and Lua-over-Perl priority conflicts.",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "profile": {"type": "string"},
+                        "remote_path": {"type": "string"},
+                        "scope": {"type": "string", "enum": list(EQEMU_REMOTE_MAP_SCOPES)},
+                        "zone": {"type": "string"},
+                        "max_depth": {"type": "integer", "minimum": 0},
+                        "limit": {"type": "integer", "minimum": 1}
+                    },
+                    "required": ["profile"]
+                },
+                "annotations": {"readOnlyHint": True}
+            },
+            {
+                "name": "stage_eqemu_server_ftp_file",
+                "description": "Download one remote EQEmu server file into the local staging area for review or edit. Existing staged edits are preserved by versioning unless a different overwrite_policy is supplied.",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "profile": {"type": "string"},
+                        "remote_path": {"type": "string"},
+                        "overwrite_policy": {"type": "string", "enum": ["versioned", "overwrite", "fail"]},
+                        "max_bytes": {"type": "integer", "minimum": 1}
+                    },
+                    "required": ["profile", "remote_path"]
+                },
+                "annotations": {"readOnlyHint": False, "destructiveHint": False}
+            },
+            {
+                "name": "upload_eqemu_server_ftp_file",
+                "description": "Upload a staged local file back to the configured remote EQEmu server. Requires confirm_write=true and confirm_remote_path matching the resolved target path; creates a local restore point first, verifies the remote file after upload, and returns a write-history operation id for undo. Creating a new remote file additionally requires allow_create=true.",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "profile": {"type": "string"},
+                        "local_path": {"type": "string"},
+                        "remote_path": {"type": "string"},
+                        "confirm_write": {"type": "boolean"},
+                        "confirm_remote_path": {"type": "string"},
+                        "allow_create": {"type": "boolean"},
+                        "allow_remote_changed": {"type": "boolean"},
+                        "max_backup_bytes": {"type": "integer", "minimum": 1}
+                    },
+                    "required": ["profile", "local_path"]
+                },
+                "annotations": {"readOnlyHint": False, "destructiveHint": True}
+            },
+            {
+                "name": "delete_eqemu_server_ftp_file",
+                "description": "Delete one remote FTP/FTPS file after exact confirmation. Preview downloads the target for hash review; confirmed delete requires confirm_delete=true, exact confirm_remote_path, exact confirm_remote_sha256, saves a local restore point first, verifies the file is gone, and records a write-history operation id for undo.",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "profile": {"type": "string"},
+                        "remote_path": {"type": "string"},
+                        "confirm_delete": {"type": "boolean"},
+                        "confirm_remote_path": {"type": "string"},
+                        "confirm_remote_sha256": {"type": "string"},
+                        "max_backup_bytes": {"type": "integer", "minimum": 1}
+                    },
+                    "required": ["profile", "remote_path"]
+                },
+                "annotations": {"readOnlyHint": False, "destructiveHint": True}
+            },
+            {
+                "name": "list_eqemu_server_ftp_write_history",
+                "description": "List recent guarded remote FTP/FTPS writes and undo restore points for a configured EQEmu server profile.",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "profile": {"type": "string"},
+                        "limit": {"type": "integer", "minimum": 1}
+                    },
+                    "required": ["profile"]
+                },
+                "annotations": {"readOnlyHint": True}
+            },
+            {
+                "name": "set_eqemu_server_ftp_read_only_mode",
+                "description": "Preview or set a configured FTP/FTPS profile's persisted read-only mode. Confirmed mode changes must only be run after explicit user instruction and exact confirmation fields; read-only mode blocks upload, undo, and undo garbage-collection apply.",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "profile": {"type": "string"},
+                        "read_only": {"type": "boolean"},
+                        "confirm_mode_change": {"type": "boolean"},
+                        "confirm_profile": {"type": "string"},
+                        "confirm_read_only_mode": {"type": "string", "enum": ["read-only", "read-write"]}
+                    },
+                    "required": ["profile", "read_only"]
+                },
+                "annotations": {"readOnlyHint": False, "destructiveHint": True}
+            },
+            {
+                "name": "garbage_collect_eqemu_server_ftp_write_history",
+                "description": "Preview or apply local garbage collection for FTP/FTPS undo restore points beyond the retention policy. This never touches the remote server; apply mode deletes local restore-point files and requires confirm_write=true.",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "profile": {"type": "string"},
+                        "apply": {"type": "boolean"},
+                        "confirm_write": {"type": "boolean"},
+                        "prune_orphans": {"type": "boolean"},
+                        "max_operations": {"type": "integer", "minimum": 1},
+                        "max_bytes": {"type": "integer", "minimum": 1}
+                    },
+                    "required": ["profile"]
+                },
+                "annotations": {"readOnlyHint": False, "destructiveHint": True}
+            },
+            {
+                "name": "preview_eqemu_server_ftp_undo",
+                "description": "Preview restoring a previous remote FTP/FTPS write from its local restore-point backup. This is read-only and returns the exact confirmation arguments for undo.",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "profile": {"type": "string"},
+                        "operation_id": {"type": "string"},
+                        "check_remote": {"type": "boolean"},
+                        "max_bytes": {"type": "integer", "minimum": 1}
+                    },
+                    "required": ["profile", "operation_id"]
+                },
+                "annotations": {"readOnlyHint": True}
+            },
+            {
+                "name": "undo_eqemu_server_ftp_write",
+                "description": "Restore a previous remote FTP/FTPS write from its local restore-point backup. Requires confirm_write=true and confirm_operation_id matching the operation id; creates a new restore point first.",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "profile": {"type": "string"},
+                        "operation_id": {"type": "string"},
+                        "confirm_write": {"type": "boolean"},
+                        "confirm_operation_id": {"type": "string"},
+                        "allow_remote_changed": {"type": "boolean"},
+                        "max_bytes": {"type": "integer", "minimum": 1}
+                    },
+                    "required": ["profile", "operation_id"]
+                },
+                "annotations": {"readOnlyHint": False, "destructiveHint": True}
             }
         ]
 
@@ -465,6 +682,100 @@ class McpServer:
                 self._reset_extension_validation()
         elif name == "get_eqemu_example_file":
             result = self.store.get_example_file(arguments["domain"], arguments["id"])
+        elif name == "get_eqemu_server_ftp_onboarding":
+            result = remote_onboarding_payload()
+        elif name == "list_eqemu_server_ftp_profiles":
+            result = list_remote_profiles()
+        elif name == "test_eqemu_server_ftp_connection":
+            result = test_remote_connection(arguments["profile"])
+        elif name == "trust_eqemu_server_ftp_certificate":
+            result = trust_ftps_certificate(
+                arguments["profile"],
+                confirm_trust=self._bool_arg(arguments, "confirm_trust", False),
+                confirm_sha256=arguments.get("confirm_sha256"),
+            )
+        elif name == "list_eqemu_server_ftp_files":
+            result = list_remote_files(
+                arguments["profile"],
+                remote_path=str(arguments.get("remote_path", ".")),
+                recursive=self._bool_arg(arguments, "recursive", False),
+                limit=self._int_arg(arguments, "limit", 100, minimum=1),
+            )
+        elif name == "map_eqemu_server_ftp_layout":
+            result = map_remote_eqemu_server(
+                arguments["profile"],
+                remote_path=str(arguments["remote_path"]) if "remote_path" in arguments else None,
+                scope=str(arguments.get("scope", "auto")),
+                zone=str(arguments["zone"]) if "zone" in arguments else None,
+                max_depth=self._int_arg(arguments, "max_depth", 0, minimum=0) if "max_depth" in arguments else None,
+                limit=self._int_arg(arguments, "limit", 1000, minimum=1),
+            )
+        elif name == "stage_eqemu_server_ftp_file":
+            result = stage_remote_file(
+                arguments["profile"],
+                remote_path=arguments["remote_path"],
+                overwrite_policy=str(arguments.get("overwrite_policy", "versioned")),
+                max_bytes=self._int_arg(arguments, "max_bytes", DEFAULT_MAX_DOWNLOAD_BYTES, minimum=1),
+            )
+        elif name == "upload_eqemu_server_ftp_file":
+            result = upload_staged_file(
+                arguments["profile"],
+                local_path=arguments["local_path"],
+                remote_path=arguments.get("remote_path"),
+                confirm_write=self._bool_arg(arguments, "confirm_write", False),
+                confirm_remote_path=arguments.get("confirm_remote_path"),
+                create_backup=True,
+                allow_create=self._bool_arg(arguments, "allow_create", False),
+                allow_remote_changed=self._bool_arg(arguments, "allow_remote_changed", False),
+                max_backup_bytes=self._int_arg(arguments, "max_backup_bytes", DEFAULT_MAX_DOWNLOAD_BYTES, minimum=1),
+            )
+        elif name == "delete_eqemu_server_ftp_file":
+            result = delete_remote_file(
+                arguments["profile"],
+                remote_path=arguments["remote_path"],
+                confirm_delete=self._bool_arg(arguments, "confirm_delete", False),
+                confirm_remote_path=arguments.get("confirm_remote_path"),
+                confirm_remote_sha256=arguments.get("confirm_remote_sha256"),
+                max_backup_bytes=self._int_arg(arguments, "max_backup_bytes", DEFAULT_MAX_DOWNLOAD_BYTES, minimum=1),
+            )
+        elif name == "list_eqemu_server_ftp_write_history":
+            result = list_write_history(
+                arguments["profile"],
+                limit=self._int_arg(arguments, "limit", 25, minimum=1),
+            )
+        elif name == "set_eqemu_server_ftp_read_only_mode":
+            result = set_profile_read_only_mode(
+                arguments["profile"],
+                read_only=self._bool_arg(arguments, "read_only", False),
+                confirm_mode_change=self._bool_arg(arguments, "confirm_mode_change", False),
+                confirm_profile=arguments.get("confirm_profile"),
+                confirm_read_only_mode=arguments.get("confirm_read_only_mode"),
+            )
+        elif name == "garbage_collect_eqemu_server_ftp_write_history":
+            result = garbage_collect_write_history(
+                arguments["profile"],
+                apply=self._bool_arg(arguments, "apply", False),
+                confirm_write=self._bool_arg(arguments, "confirm_write", False),
+                prune_orphans=self._bool_arg(arguments, "prune_orphans", True),
+                max_operations=self._int_arg(arguments, "max_operations", WRITE_HISTORY_LIMIT, minimum=1),
+                max_bytes=self._int_arg(arguments, "max_bytes", WRITE_HISTORY_MAX_BYTES, minimum=1),
+            )
+        elif name == "preview_eqemu_server_ftp_undo":
+            result = preview_write_undo(
+                arguments["profile"],
+                operation_id=arguments["operation_id"],
+                check_remote=self._bool_arg(arguments, "check_remote", True),
+                max_bytes=self._int_arg(arguments, "max_bytes", DEFAULT_MAX_DOWNLOAD_BYTES, minimum=1),
+            )
+        elif name == "undo_eqemu_server_ftp_write":
+            result = undo_write_operation(
+                arguments["profile"],
+                operation_id=arguments["operation_id"],
+                confirm_write=self._bool_arg(arguments, "confirm_write", False),
+                confirm_operation_id=arguments.get("confirm_operation_id"),
+                allow_remote_changed=self._bool_arg(arguments, "allow_remote_changed", False),
+                max_bytes=self._int_arg(arguments, "max_bytes", DEFAULT_MAX_DOWNLOAD_BYTES, minimum=1),
+            )
         else:
             raise ValueError(f"Unknown tool '{name}'")
         if name in {

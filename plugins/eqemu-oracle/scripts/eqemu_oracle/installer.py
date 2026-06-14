@@ -38,6 +38,10 @@ COPY_IGNORE_NAMES = {
     "__pycache__",
     ".pytest_cache",
     "tests",
+    "server-connections.json",
+    "remote-connections",
+    "staged-files",
+    "remote-backups",
 }
 LOCAL_EXTENSION_SCAFFOLDS = {
     Path("local-extensions") / "quests" / "local.json": {
