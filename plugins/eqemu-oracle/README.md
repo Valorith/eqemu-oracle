@@ -136,6 +136,7 @@ Remote file workflow:
 <python-launcher> plugins/eqemu-oracle/scripts/eqemu_oracle.py remote map live --scope zone --zone qeynos
 <python-launcher> plugins/eqemu-oracle/scripts/eqemu_oracle.py remote list live --remote-path quests
 <python-launcher> plugins/eqemu-oracle/scripts/eqemu_oracle.py remote stage live quests/qeynos/Guard_Beren.pl
+<python-launcher> plugins/eqemu-oracle/scripts/eqemu_oracle.py remote upload-session live <local-staged-path> --confirm-write --confirm-remote-path /quests/qeynos/Guard_Beren.pl --confirm-remote-sha256 <sha256-from-stage-or-preview> --confirm-temporary-read-write --confirm-final-read-only
 <python-launcher> plugins/eqemu-oracle/scripts/eqemu_oracle.py remote history live
 <python-launcher> plugins/eqemu-oracle/scripts/eqemu_oracle.py remote gc live
 ```
@@ -152,7 +153,9 @@ Remote file workflow:
 
 The mapper also returns available-file buckets with sample paths, marks NPC quest scripts that use numeric NPC type ids versus script names, and reports Lua-over-Perl priority conflicts when `.lua` and `.pl` files share the same basename in the same script directory.
 
-Uploads are intentionally a two-step operation. A first upload call returns the exact confirmation arguments, and the confirmed call requires `--confirm-write` plus `--confirm-remote-path <resolved remote path>`. Creating a new remote file additionally requires `--allow-create`; otherwise a missing target is treated as a mistake and no write is attempted. Upload is blocked while the profile is in read-only mode. Every upload creates a local restore point before writing, verifies the remote file after upload, and records a write-history operation id.
+Uploads are intentionally a two-step operation. A first upload call returns exact confirmation arguments, and confirmed overwrite calls require `--confirm-write`, `--confirm-remote-path <resolved remote path>`, and `--confirm-remote-sha256 <sha256-from-stage-or-preview>`. Requiring the remote SHA makes the write fail if the server file changed after staging or preview. Creating a new remote file additionally requires `--allow-create`; otherwise a missing target is treated as a mistake and no write is attempted. Direct upload is blocked while the profile is in read-only mode.
+
+For approved script fixes, prefer `remote upload-session`. It performs one guarded upload, temporarily disables read-only mode only when needed, validates the upload, and re-enables read-only mode in cleanup before returning. Every upload creates a local restore point before writing, verifies the remote file after upload, records a write-history operation id, and returns `write_audit` with the operation id, remote path, before/after SHA-256 values, final read-only mode, and undo availability.
 
 Undo is also guarded:
 
@@ -192,9 +195,10 @@ Agent workflow for remote server files:
 7. For script-error fixes on a configured server, map/list the FTP layout, optionally check value-added Nexus Webhook Inbox evidence, stage the active affected script locally, edit the local staged copy, then ask the user to review and explicitly approve upload before overwriting the remote file.
 8. After a script error fix is uploaded through FTP, if Nexus is setup and available, ask whether the user wants a Test Manager change record created. Only create it after explicit approval, and keep the Change Description concise and tester-facing: player-visible issue, what changed, and what should be tested.
 9. Treat `read_only` as authoritative. If the requested task requires writing while read-only mode is on, tell the user and ask for explicit permission to exit read-only mode for that task. Re-enable read-only mode automatically as cleanup after the approved FTP write task finishes, and report the final state.
-10. Use upload only after explicit approval and only when read-only mode is off, then report the returned operation id.
-11. Use write history and undo preview before any undo, then run undo only after explicit approval and only when read-only mode is off.
-12. Use `garbage_collect_eqemu_server_ftp_write_history` to preview local undo cleanup when history reports retention pressure. Apply GC only after explicit approval with `confirm_write=true` and only when read-only mode is off; it never modifies remote server files.
+10. Prefer `run_eqemu_server_ftp_upload_session` for approved uploads so read-only mode is restored in tool cleanup. Confirm overwrites only with exact `confirm_remote_path` and `confirm_remote_sha256` from the staged or previewed remote file.
+11. After any successful upload, delete, or undo, report the returned `write_audit`: operation id, remote path, before/after SHA-256, final read-only mode, and undo availability.
+12. Use write history and undo preview before any undo, then run undo only after explicit approval and only when read-only mode is off.
+13. Use `garbage_collect_eqemu_server_ftp_write_history` to preview local undo cleanup when history reports retention pressure. Apply GC only after explicit approval with `confirm_write=true` and only when read-only mode is off; it never modifies remote server files.
 
 ## Overlay Model
 
@@ -255,6 +259,7 @@ See:
 - `map_eqemu_server_ftp_layout`
 - `stage_eqemu_server_ftp_file`
 - `upload_eqemu_server_ftp_file`
+- `run_eqemu_server_ftp_upload_session`
 - `delete_eqemu_server_ftp_file`
 - `list_eqemu_server_ftp_write_history`
 - `set_eqemu_server_ftp_read_only_mode`
@@ -264,7 +269,7 @@ See:
 
 Getter and search tools also attach `presentation.markdown` and `copy_blocks` so Codex can answer users with a consistent polished format while still keeping the raw structured record available to agents. Quest API events are rendered in a Spire-style copyable code format.
 Maintenance tools that can write local plugin data or touch Git state require `confirm_write: true`.
-Remote FTP/FTPS map, list, history, preview, and stage tools are safe for agents to use when relevant. `trust_eqemu_server_ftp_certificate` must only be confirmed after explicit user instruction. `set_eqemu_server_ftp_read_only_mode` must only be confirmed to disable read-only mode after explicit user instruction for that task; confirming an enable back to read-only is allowed as automatic safety cleanup after an approved write task. `garbage_collect_eqemu_server_ftp_write_history` is safe to preview, but applying it deletes local undo restore points and requires explicit confirmation. `upload_eqemu_server_ftp_file`, `delete_eqemu_server_ftp_file`, and `undo_eqemu_server_ftp_write` require explicit confirmation and matching confirmation fields, and are blocked while read-only mode is enabled.
+Remote FTP/FTPS map, list, history, preview, and stage tools are safe for agents to use when relevant. `trust_eqemu_server_ftp_certificate` must only be confirmed after explicit user instruction. `set_eqemu_server_ftp_read_only_mode` must only be confirmed to disable read-only mode after explicit user instruction for that task; confirming an enable back to read-only is allowed as automatic safety cleanup after an approved write task. `run_eqemu_server_ftp_upload_session` is the preferred approved-upload path because it handles temporary write access and read-only cleanup in code. `garbage_collect_eqemu_server_ftp_write_history` is safe to preview, but applying it deletes local undo restore points and requires explicit confirmation. `upload_eqemu_server_ftp_file`, `run_eqemu_server_ftp_upload_session`, `delete_eqemu_server_ftp_file`, and `undo_eqemu_server_ftp_write` require explicit confirmation and matching confirmation fields, and direct upload/delete/undo are blocked while read-only mode is enabled.
 `search_eqemu_context` also accepts `prefer_fresh: true` to break ranking ties toward newer staged records.
 When `quests` or `plugins` is explicitly searched, configured example sources are indexed into the ignored cache so results can include real quest/plugin files, not just source metadata.
 

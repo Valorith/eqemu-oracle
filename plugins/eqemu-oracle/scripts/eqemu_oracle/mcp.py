@@ -38,6 +38,7 @@ from .remote import (
     trust_ftps_certificate,
     undo_write_operation,
     upload_staged_file,
+    upload_staged_file_write_session,
 )
 from .updater import update_plugin_repo
 
@@ -431,7 +432,7 @@ class McpServer:
             },
             {
                 "name": "upload_eqemu_server_ftp_file",
-                "description": "Upload a staged local file back to the configured remote EQEmu server. Requires confirm_write=true and confirm_remote_path matching the resolved target path; creates a local restore point first, verifies the remote file after upload, and returns a write-history operation id for undo. Creating a new remote file additionally requires allow_create=true.",
+                "description": "Upload a staged local file back to the configured remote EQEmu server. Requires confirm_write=true, confirm_remote_path matching the resolved target path, and confirm_remote_sha256 matching the current remote file when overwriting; creates a local restore point first, verifies the remote file after upload, and returns a write-history operation id plus write audit for undo. Creating a new remote file additionally requires allow_create=true.",
                 "inputSchema": {
                     "type": "object",
                     "properties": {
@@ -440,6 +441,29 @@ class McpServer:
                         "remote_path": {"type": "string"},
                         "confirm_write": {"type": "boolean"},
                         "confirm_remote_path": {"type": "string"},
+                        "confirm_remote_sha256": {"type": "string"},
+                        "allow_create": {"type": "boolean"},
+                        "allow_remote_changed": {"type": "boolean"},
+                        "max_backup_bytes": {"type": "integer", "minimum": 1}
+                    },
+                    "required": ["profile", "local_path"]
+                },
+                "annotations": {"readOnlyHint": False, "destructiveHint": True}
+            },
+            {
+                "name": "run_eqemu_server_ftp_upload_session",
+                "description": "Run one explicitly approved FTP/FTPS upload session. If read-only mode is on, the tool temporarily disables it, performs one guarded upload with exact path and remote SHA confirmation, validates the upload, then re-enables read-only mode in cleanup before returning a write audit.",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "profile": {"type": "string"},
+                        "local_path": {"type": "string"},
+                        "remote_path": {"type": "string"},
+                        "confirm_write": {"type": "boolean"},
+                        "confirm_remote_path": {"type": "string"},
+                        "confirm_remote_sha256": {"type": "string"},
+                        "confirm_temporary_read_write": {"type": "boolean"},
+                        "confirm_final_read_only": {"type": "boolean"},
                         "allow_create": {"type": "boolean"},
                         "allow_remote_changed": {"type": "boolean"},
                         "max_backup_bytes": {"type": "integer", "minimum": 1}
@@ -724,7 +748,22 @@ class McpServer:
                 remote_path=arguments.get("remote_path"),
                 confirm_write=self._bool_arg(arguments, "confirm_write", False),
                 confirm_remote_path=arguments.get("confirm_remote_path"),
+                confirm_remote_sha256=arguments.get("confirm_remote_sha256"),
                 create_backup=True,
+                allow_create=self._bool_arg(arguments, "allow_create", False),
+                allow_remote_changed=self._bool_arg(arguments, "allow_remote_changed", False),
+                max_backup_bytes=self._int_arg(arguments, "max_backup_bytes", DEFAULT_MAX_DOWNLOAD_BYTES, minimum=1),
+            )
+        elif name == "run_eqemu_server_ftp_upload_session":
+            result = upload_staged_file_write_session(
+                arguments["profile"],
+                local_path=arguments["local_path"],
+                remote_path=arguments.get("remote_path"),
+                confirm_write=self._bool_arg(arguments, "confirm_write", False),
+                confirm_remote_path=arguments.get("confirm_remote_path"),
+                confirm_remote_sha256=arguments.get("confirm_remote_sha256"),
+                confirm_temporary_read_write=self._bool_arg(arguments, "confirm_temporary_read_write", False),
+                confirm_final_read_only=self._bool_arg(arguments, "confirm_final_read_only", False),
                 allow_create=self._bool_arg(arguments, "allow_create", False),
                 allow_remote_changed=self._bool_arg(arguments, "allow_remote_changed", False),
                 max_backup_bytes=self._int_arg(arguments, "max_backup_bytes", DEFAULT_MAX_DOWNLOAD_BYTES, minimum=1),

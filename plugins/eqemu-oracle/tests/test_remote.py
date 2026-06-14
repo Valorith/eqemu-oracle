@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import contextlib
 import ftplib
+import hashlib
 import io
 import json
 import os
@@ -44,6 +45,7 @@ from eqemu_oracle.remote import (  # noqa: E402
     trust_ftps_certificate,
     undo_write_operation,
     upload_staged_file,
+    upload_staged_file_write_session,
 )
 
 
@@ -234,6 +236,8 @@ class LoopbackFtpHandler(socketserver.StreamRequestHandler):
                 self._send_file(argument)
             elif command == "STOR":
                 self._store_file(argument)
+            elif command == "DELE":
+                self._delete_file(argument)
             elif command == "NOOP" or command.startswith("OPTS"):
                 self._send("200 OK")
             elif command == "QUIT":
@@ -418,6 +422,18 @@ class LoopbackFtpHandler(socketserver.StreamRequestHandler):
                 chunks.append(chunk)
         local_path.write_bytes(b"".join(chunks))
         self._send("226 Transfer complete")
+
+    def _delete_file(self, value: str) -> None:
+        try:
+            local_path = self._local_path(value)
+        except FileNotFoundError:
+            self._send("550 Path unavailable")
+            return
+        if not local_path.is_file():
+            self._send("550 File unavailable")
+            return
+        local_path.unlink()
+        self._send("250 File deleted")
 
 
 class LoopbackFtpServer(socketserver.ThreadingTCPServer):
@@ -797,6 +813,7 @@ class RemoteProfileTest(unittest.TestCase):
                     local_path=str(staged_path),
                     confirm_write=True,
                     confirm_remote_path="/eqemu/quests/qeynos/Guard_Beren.pl",
+                    confirm_remote_sha256=staged["sha256"],
                     config_path=config_path,
                     data_root=root,
                     secret_store=secret_store,
@@ -835,6 +852,54 @@ class RemoteProfileTest(unittest.TestCase):
             self.assertEqual(quest_file.read_text(encoding="utf-8"), original_quest_text)
             self.assertEqual(history["count"], 2)
             self.assertEqual(history["operations"][0]["kind"], "undo")
+
+    def test_loopback_ftp_delete_and_undo_round_trip(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            ftp_root = root / "ftp-root"
+            target_file = ftp_root / "eqemu" / "quests" / "global" / "textFile.txt"
+            target_file.parent.mkdir(parents=True, exist_ok=True)
+            original_text = "delete and restore over loopback ftp\n"
+            target_file.write_text(original_text, encoding="utf-8")
+            secret_store = FakeSecretStore()
+            with LoopbackFtpServer(ftp_root) as server:
+                config_path = self._save_loopback_ftp_profile(root, server, secret_store)
+
+                preview = delete_remote_file(
+                    "live",
+                    remote_path="quests/global/textFile.txt",
+                    config_path=config_path,
+                    data_root=root,
+                    secret_store=secret_store,
+                )
+                deleted = delete_remote_file(
+                    "live",
+                    remote_path="quests/global/textFile.txt",
+                    confirm_delete=True,
+                    confirm_remote_path="/eqemu/quests/global/textFile.txt",
+                    confirm_remote_sha256=preview["remote_sha256"],
+                    config_path=config_path,
+                    data_root=root,
+                    secret_store=secret_store,
+                )
+                exists_after_delete = target_file.exists()
+                undone = undo_write_operation(
+                    "live",
+                    operation_id=deleted["operation_id"],
+                    confirm_write=True,
+                    confirm_operation_id=deleted["operation_id"],
+                    config_path=config_path,
+                    data_root=root,
+                    secret_store=secret_store,
+                )
+                restored_text = target_file.read_text(encoding="utf-8")
+
+        self.assertTrue(deleted["deleted"])
+        self.assertFalse(exists_after_delete)
+        self.assertEqual(deleted["write_audit"]["remote_after_sha256"], None)
+        self.assertIn("Write audit:", deleted["presentation"]["markdown"])
+        self.assertTrue(undone["undone"])
+        self.assertEqual(restored_text, original_text)
 
     def test_loopback_ftp_map_classifies_eqemu_layout_and_script_priority(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -963,6 +1028,7 @@ class RemoteProfileTest(unittest.TestCase):
                 staged_path.write_text("sub EVENT_SAY { quest::say('local update'); }\n", encoding="utf-8")
                 changed_remote_text = "sub EVENT_SAY { quest::say('remote changed'); }\n"
                 quest_file.write_text(changed_remote_text, encoding="utf-8")
+                changed_remote_sha256 = hashlib.sha256(quest_file.read_bytes()).hexdigest()
 
                 with self.assertRaisesRegex(RemoteTransferError, "remote file changed"):
                     upload_staged_file(
@@ -970,6 +1036,7 @@ class RemoteProfileTest(unittest.TestCase):
                         local_path=str(staged_path),
                         confirm_write=True,
                         confirm_remote_path="/eqemu/quests/qeynos/Guard_Beren.pl",
+                        confirm_remote_sha256=changed_remote_sha256,
                         config_path=config_path,
                         data_root=root,
                         secret_store=secret_store,
@@ -1001,27 +1068,29 @@ class RemoteProfileTest(unittest.TestCase):
                 config_path=config_path,
             )
 
-            with self.assertRaisesRegex(RemoteConfigError, "read-only mode"):
-                upload_staged_file(
-                    "live",
-                    local_path=str(staged_path),
-                    config_path=config_path,
-                    data_root=root,
-                    secret_store=secret_store,
-                    client_factory=fake_client_factory,
-                )
+            preview = upload_staged_file(
+                "live",
+                local_path=str(staged_path),
+                config_path=config_path,
+                data_root=root,
+                secret_store=secret_store,
+                client_factory=fake_client_factory,
+            )
             with self.assertRaisesRegex(RemoteConfigError, "read-only mode"):
                 upload_staged_file(
                     "live",
                     local_path=str(staged_path),
                     confirm_write=True,
                     confirm_remote_path="/eqemu/quests/qeynos/Guard_Beren.pl",
+                    confirm_remote_sha256=staged["sha256"],
                     config_path=config_path,
                     data_root=root,
                     secret_store=secret_store,
                     client_factory=fake_client_factory,
                 )
 
+        self.assertTrue(preview["read_only_blocked"])
+        self.assertIsNone(preview["confirmation_arguments"])
         self.assertEqual(FakeClient.uploaded, [])
         self.assertEqual(FakeClient.files["/eqemu/quests/qeynos/Guard_Beren.pl"], FakeClient.initial_files["/eqemu/quests/qeynos/Guard_Beren.pl"])
 
@@ -1046,6 +1115,7 @@ class RemoteProfileTest(unittest.TestCase):
                 local_path=str(staged_path),
                 confirm_write=True,
                 confirm_remote_path="/eqemu/quests/qeynos/Guard_Beren.pl",
+                confirm_remote_sha256=staged["sha256"],
                 config_path=config_path,
                 data_root=root,
                 secret_store=secret_store,
@@ -1095,6 +1165,109 @@ class RemoteProfileTest(unittest.TestCase):
         self.assertFalse(gc_preview["applied"])
         self.assertEqual(FakeClient.files["/eqemu/quests/qeynos/Guard_Beren.pl"], updated_text)
 
+    def test_approved_upload_session_restores_read_only_after_success(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            secret_store = FakeSecretStore()
+            config_path = self._save_test_profile(root, secret_store)
+            staged = stage_remote_file(
+                "live",
+                remote_path="quests/qeynos/Guard_Beren.pl",
+                config_path=config_path,
+                data_root=root,
+                secret_store=secret_store,
+                client_factory=fake_client_factory,
+            )
+            staged_path = Path(staged["local_path"])
+            staged_path.write_text("sub EVENT_SAY { quest::say('session upload'); }\n", encoding="utf-8")
+            set_profile_read_only_mode(
+                "live",
+                read_only=True,
+                confirm_mode_change=True,
+                confirm_profile="live",
+                confirm_read_only_mode="read-only",
+                config_path=config_path,
+            )
+
+            preview = upload_staged_file_write_session(
+                "live",
+                local_path=str(staged_path),
+                config_path=config_path,
+                data_root=root,
+                secret_store=secret_store,
+                client_factory=fake_client_factory,
+            )
+            uploaded = upload_staged_file_write_session(
+                "live",
+                local_path=str(staged_path),
+                confirm_write=True,
+                confirm_remote_path="/eqemu/quests/qeynos/Guard_Beren.pl",
+                confirm_remote_sha256=staged["sha256"],
+                confirm_temporary_read_write=True,
+                confirm_final_read_only=True,
+                config_path=config_path,
+                data_root=root,
+                secret_store=secret_store,
+                client_factory=fake_client_factory,
+            )
+            profile_after = list_profiles(config_path=config_path)["profiles"][0]
+
+        self.assertTrue(preview["requires_confirmation"])
+        self.assertTrue(preview["read_only_session"]["will_temporarily_disable_read_only"])
+        self.assertTrue(uploaded["uploaded"])
+        self.assertTrue(uploaded["read_only_session"]["temporary_read_write_enabled"])
+        self.assertTrue(uploaded["read_only_session"]["final_read_only"])
+        self.assertTrue(uploaded["write_audit"]["read_only_final"])
+        self.assertEqual(uploaded["write_audit"]["operation_id"], uploaded["operation_id"])
+        self.assertIn("Final read-only mode: `on`", uploaded["presentation"]["markdown"])
+        self.assertTrue(profile_after["read_only"])
+
+    def test_approved_upload_session_restores_read_only_after_refused_upload(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            secret_store = FakeSecretStore()
+            config_path = self._save_test_profile(root, secret_store)
+            staged = stage_remote_file(
+                "live",
+                remote_path="quests/qeynos/Guard_Beren.pl",
+                config_path=config_path,
+                data_root=root,
+                secret_store=secret_store,
+                client_factory=fake_client_factory,
+            )
+            staged_path = Path(staged["local_path"])
+            staged_path.write_text("sub EVENT_SAY { quest::say('session upload'); }\n", encoding="utf-8")
+            changed_remote = b"changed before approved session\n"
+            FakeClient.files["/eqemu/quests/qeynos/Guard_Beren.pl"] = changed_remote
+            set_profile_read_only_mode(
+                "live",
+                read_only=True,
+                confirm_mode_change=True,
+                confirm_profile="live",
+                confirm_read_only_mode="read-only",
+                config_path=config_path,
+            )
+
+            with self.assertRaisesRegex(RemoteTransferError, "confirm_remote_sha256"):
+                upload_staged_file_write_session(
+                    "live",
+                    local_path=str(staged_path),
+                    confirm_write=True,
+                    confirm_remote_path="/eqemu/quests/qeynos/Guard_Beren.pl",
+                    confirm_remote_sha256=staged["sha256"],
+                    confirm_temporary_read_write=True,
+                    confirm_final_read_only=True,
+                    config_path=config_path,
+                    data_root=root,
+                    secret_store=secret_store,
+                    client_factory=fake_client_factory,
+                )
+            profile_after = list_profiles(config_path=config_path)["profiles"][0]
+
+        self.assertTrue(profile_after["read_only"])
+        self.assertEqual(FakeClient.uploaded, [])
+        self.assertEqual(FakeClient.files["/eqemu/quests/qeynos/Guard_Beren.pl"], changed_remote)
+
     @unittest.skipUnless(OPENSSL is not None, "openssl is required for loopback FTPS tests")
     def test_loopback_ftps_stage_uses_tls_control_and_data_connections(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -1129,6 +1302,55 @@ class RemoteProfileTest(unittest.TestCase):
             self.assertEqual(connection["profile"]["verify_tls"], False)
             self.assertIn("/eqemu/quests/qeynos/Guard_Beren.pl", {entry["path"] for entry in listing["entries"]})
             self.assertEqual(Path(staged["local_path"]).read_text(encoding="utf-8"), "sub EVENT_SAY { quest::say('ftps hail'); }\n")
+
+    @unittest.skipUnless(OPENSSL is not None, "openssl is required for loopback FTPS tests")
+    def test_loopback_ftps_upload_session_restores_read_only(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            ftp_root = root / "ftp-root"
+            quest_file = ftp_root / "eqemu" / "quests" / "qeynos" / "Guard_Beren.pl"
+            quest_file.parent.mkdir(parents=True, exist_ok=True)
+            quest_file.write_text("sub EVENT_SAY { quest::say('ftps hail'); }\n", encoding="utf-8")
+            secret_store = FakeSecretStore()
+            tls_context = make_loopback_tls_context(root)
+            with LoopbackFtpServer(ftp_root, ssl_context=tls_context) as server:
+                config_path = self._save_loopback_ftps_profile(root, server, secret_store)
+                staged = stage_remote_file(
+                    "live",
+                    remote_path="quests/qeynos/Guard_Beren.pl",
+                    config_path=config_path,
+                    data_root=root,
+                    secret_store=secret_store,
+                )
+                staged_path = Path(staged["local_path"])
+                staged_path.write_text("sub EVENT_SAY { quest::say('ftps session upload'); }\n", encoding="utf-8")
+                set_profile_read_only_mode(
+                    "live",
+                    read_only=True,
+                    confirm_mode_change=True,
+                    confirm_profile="live",
+                    confirm_read_only_mode="read-only",
+                    config_path=config_path,
+                )
+                uploaded = upload_staged_file_write_session(
+                    "live",
+                    local_path=str(staged_path),
+                    confirm_write=True,
+                    confirm_remote_path="/eqemu/quests/qeynos/Guard_Beren.pl",
+                    confirm_remote_sha256=staged["sha256"],
+                    confirm_temporary_read_write=True,
+                    confirm_final_read_only=True,
+                    config_path=config_path,
+                    data_root=root,
+                    secret_store=secret_store,
+                )
+                profile_after = list_profiles(config_path=config_path)["profiles"][0]
+                final_text = quest_file.read_text(encoding="utf-8")
+
+        self.assertTrue(uploaded["uploaded"])
+        self.assertTrue(uploaded["read_only_session"]["final_read_only"])
+        self.assertTrue(profile_after["read_only"])
+        self.assertEqual(final_text, "sub EVENT_SAY { quest::say('ftps session upload'); }\n")
 
     @unittest.skipUnless(OPENSSL is not None, "openssl is required for loopback FTPS tests")
     def test_loopback_ftps_certificate_pin_allows_self_signed_hostname_mismatch(self) -> None:
@@ -1408,7 +1630,9 @@ class RemoteProfileTest(unittest.TestCase):
                         str(staged_path),
                         "--confirm-write",
                         "--confirm-remote-path",
-                        "/eqemu/quests/qeynos/Guard_Beren.pl",
+                        preview["confirmation_arguments"]["confirm_remote_path"],
+                        "--confirm-remote-sha256",
+                        preview["confirmation_arguments"]["confirm_remote_sha256"],
                     ],
                     env,
                 )
@@ -1541,6 +1765,7 @@ class RemoteProfileTest(unittest.TestCase):
                 local_path=str(local_path),
                 confirm_write=True,
                 confirm_remote_path="/eqemu/quests/qeynos/Guard_Beren.pl",
+                confirm_remote_sha256=staged["sha256"],
                 config_path=config_path,
                 data_root=root,
                 secret_store=secret_store,
@@ -1573,6 +1798,7 @@ class RemoteProfileTest(unittest.TestCase):
             local_path = Path(staged["local_path"])
             local_path.write_text("sub EVENT_SAY { quest::say('updated'); }\n", encoding="utf-8")
             FakeClient.files["/eqemu/quests/qeynos/Guard_Beren.pl"] = b"remote changed\n"
+            changed_remote_sha256 = hashlib.sha256(FakeClient.files["/eqemu/quests/qeynos/Guard_Beren.pl"]).hexdigest()
 
             with self.assertRaises(RemoteTransferError):
                 upload_staged_file(
@@ -1580,6 +1806,7 @@ class RemoteProfileTest(unittest.TestCase):
                     local_path=str(local_path),
                     confirm_write=True,
                     confirm_remote_path="/eqemu/quests/qeynos/Guard_Beren.pl",
+                    confirm_remote_sha256=changed_remote_sha256,
                     config_path=config_path,
                     data_root=root,
                     secret_store=secret_store,
@@ -1591,6 +1818,7 @@ class RemoteProfileTest(unittest.TestCase):
                 local_path=str(local_path),
                 confirm_write=True,
                 confirm_remote_path="/eqemu/quests/qeynos/Guard_Beren.pl",
+                confirm_remote_sha256=changed_remote_sha256,
                 allow_remote_changed=True,
                 config_path=config_path,
                 data_root=root,
@@ -1749,6 +1977,7 @@ class RemoteProfileTest(unittest.TestCase):
                     local_path=str(local_path),
                     confirm_write=True,
                     confirm_remote_path="/eqemu/quests/qeynos/Guard_Beren.pl",
+                    confirm_remote_sha256=staged["sha256"],
                     max_backup_bytes=4,
                     config_path=config_path,
                     data_root=root,
@@ -1931,6 +2160,7 @@ class RemoteProfileTest(unittest.TestCase):
                 local_path=str(local_path),
                 confirm_write=True,
                 confirm_remote_path="/eqemu/quests/qeynos/Guard_Beren.pl",
+                confirm_remote_sha256=staged["sha256"],
                 config_path=config_path,
                 data_root=root,
                 secret_store=secret_store,
@@ -2009,6 +2239,7 @@ class RemoteProfileTest(unittest.TestCase):
                 local_path=str(local_path),
                 confirm_write=True,
                 confirm_remote_path="/eqemu/quests/qeynos/Guard_Beren.pl",
+                confirm_remote_sha256=staged["sha256"],
                 config_path=config_path,
                 data_root=root,
                 secret_store=secret_store,

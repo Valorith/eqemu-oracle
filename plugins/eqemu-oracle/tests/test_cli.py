@@ -178,6 +178,8 @@ class CliRefreshTest(unittest.TestCase):
                     "--confirm-write",
                     "--confirm-remote-path",
                     "/quests/global/textFile.txt",
+                    "--confirm-remote-sha256",
+                    "A" * 64,
                     "--allow-create",
                 ],
             ):
@@ -190,6 +192,7 @@ class CliRefreshTest(unittest.TestCase):
             remote_path="/quests/global/textFile.txt",
             confirm_write=True,
             confirm_remote_path="/quests/global/textFile.txt",
+            confirm_remote_sha256="A" * 64,
             create_backup=True,
             allow_create=True,
             allow_remote_changed=False,
@@ -227,6 +230,46 @@ class CliRefreshTest(unittest.TestCase):
             confirm_remote_path="/quests/global/textFile.txt",
             confirm_remote_sha256=fingerprint,
             max_backup_bytes=2048,
+        )
+
+    def test_main_accepts_remote_upload_session_command(self) -> None:
+        fingerprint = "C" * 64
+        with patch("eqemu_oracle.cli.upload_staged_file_write_session", return_value={"uploaded": True}) as upload_session:
+            with patch.object(
+                sys,
+                "argv",
+                [
+                    "eqemu_oracle.py",
+                    "remote",
+                    "upload-session",
+                    "live",
+                    "C:/staged/textFile.txt",
+                    "--remote-path",
+                    "/quests/global/textFile.txt",
+                    "--confirm-write",
+                    "--confirm-remote-path",
+                    "/quests/global/textFile.txt",
+                    "--confirm-remote-sha256",
+                    fingerprint,
+                    "--confirm-temporary-read-write",
+                    "--confirm-final-read-only",
+                ],
+            ):
+                exit_code = cli.main()
+
+        self.assertEqual(exit_code, 0)
+        upload_session.assert_called_once_with(
+            "live",
+            local_path="C:\\staged\\textFile.txt" if sys.platform == "win32" else "C:/staged/textFile.txt",
+            remote_path="/quests/global/textFile.txt",
+            confirm_write=True,
+            confirm_remote_path="/quests/global/textFile.txt",
+            confirm_remote_sha256=fingerprint,
+            confirm_temporary_read_write=True,
+            confirm_final_read_only=True,
+            allow_create=False,
+            allow_remote_changed=False,
+            max_backup_bytes=5 * 1024 * 1024,
         )
 
     def test_main_accepts_remote_gc_command(self) -> None:

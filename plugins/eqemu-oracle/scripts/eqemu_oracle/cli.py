@@ -36,6 +36,7 @@ from .remote import (
     trust_ftps_certificate,
     undo_write_operation,
     upload_staged_file,
+    upload_staged_file_write_session,
 )
 from .release_bundle import build_release_bundle
 from .updater import update_plugin_repo
@@ -225,7 +226,26 @@ def remote_upload(args: argparse.Namespace) -> int:
         remote_path=args.remote_path,
         confirm_write=bool(args.confirm_write),
         confirm_remote_path=args.confirm_remote_path,
+        confirm_remote_sha256=args.confirm_remote_sha256,
         create_backup=True,
+        allow_create=bool(args.allow_create),
+        allow_remote_changed=bool(args.allow_remote_changed),
+        max_backup_bytes=args.max_backup_bytes,
+    )
+    print(json.dumps(result, indent=2, sort_keys=True))
+    return 0
+
+
+def remote_upload_session(args: argparse.Namespace) -> int:
+    result = upload_staged_file_write_session(
+        args.profile,
+        local_path=str(args.local_path),
+        remote_path=args.remote_path,
+        confirm_write=bool(args.confirm_write),
+        confirm_remote_path=args.confirm_remote_path,
+        confirm_remote_sha256=args.confirm_remote_sha256,
+        confirm_temporary_read_write=bool(args.confirm_temporary_read_write),
+        confirm_final_read_only=bool(args.confirm_final_read_only),
         allow_create=bool(args.allow_create),
         allow_remote_changed=bool(args.allow_remote_changed),
         max_backup_bytes=args.max_backup_bytes,
@@ -455,10 +475,28 @@ def main() -> int:
     remote_upload_parser.add_argument("--remote-path")
     remote_upload_parser.add_argument("--confirm-write", action="store_true")
     remote_upload_parser.add_argument("--confirm-remote-path")
+    remote_upload_parser.add_argument("--confirm-remote-sha256")
     remote_upload_parser.add_argument("--allow-create", action="store_true")
     remote_upload_parser.add_argument("--allow-remote-changed", action="store_true")
     remote_upload_parser.add_argument("--max-backup-bytes", type=int, default=DEFAULT_MAX_DOWNLOAD_BYTES)
     remote_upload_parser.set_defaults(func=remote_upload)
+
+    remote_upload_session_parser = remote_subparsers.add_parser(
+        "upload-session",
+        help="Run one approved upload, temporarily opening write access if needed and restoring read-only mode afterward",
+    )
+    remote_upload_session_parser.add_argument("profile")
+    remote_upload_session_parser.add_argument("local_path", type=Path)
+    remote_upload_session_parser.add_argument("--remote-path")
+    remote_upload_session_parser.add_argument("--confirm-write", action="store_true")
+    remote_upload_session_parser.add_argument("--confirm-remote-path")
+    remote_upload_session_parser.add_argument("--confirm-remote-sha256")
+    remote_upload_session_parser.add_argument("--confirm-temporary-read-write", action="store_true")
+    remote_upload_session_parser.add_argument("--confirm-final-read-only", action="store_true")
+    remote_upload_session_parser.add_argument("--allow-create", action="store_true")
+    remote_upload_session_parser.add_argument("--allow-remote-changed", action="store_true")
+    remote_upload_session_parser.add_argument("--max-backup-bytes", type=int, default=DEFAULT_MAX_DOWNLOAD_BYTES)
+    remote_upload_session_parser.set_defaults(func=remote_upload_session)
 
     remote_delete_parser = remote_subparsers.add_parser("delete", help="Delete one remote file after exact confirmation and a local restore-point backup")
     remote_delete_parser.add_argument("profile")

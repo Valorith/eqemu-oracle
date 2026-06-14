@@ -215,6 +215,15 @@ def _normalize_sha256_fingerprint(value: str | None) -> str | None:
     return cleaned
 
 
+def _normalize_sha256_hex(value: str | None, *, field_name: str = "sha256") -> str | None:
+    if value is None:
+        return None
+    cleaned = re.sub(r"[^A-Fa-f0-9]", "", value).lower()
+    if len(cleaned) != 64 or not re.fullmatch(r"[a-f0-9]{64}", cleaned):
+        raise RemoteConfigError(f"{field_name} must be a SHA-256 hex value.")
+    return cleaned
+
+
 def build_profile(
     *,
     name: str,
@@ -1261,7 +1270,13 @@ def _sha256_bytes(data: bytes) -> str:
 
 def _remote_missing_error(exc: BaseException) -> bool:
     message = str(exc).lower()
-    return "550" in message and ("no such file" in message or "not found" in message or "cannot find" in message)
+    return "550" in message and (
+        "no such file" in message
+        or "not found" in message
+        or "cannot find" in message
+        or "file unavailable" in message
+        or "path unavailable" in message
+    )
 
 
 def _sha256_path(path: Path) -> str:
@@ -1270,6 +1285,54 @@ def _sha256_path(path: Path) -> str:
         for chunk in iter(lambda: handle.read(1024 * 1024), b""):
             digest.update(chunk)
     return digest.hexdigest()
+
+
+def _format_optional_sha256(value: str | None) -> str:
+    return value if value else "(none)"
+
+
+def _write_audit_payload(
+    *,
+    kind: str,
+    profile: RemoteProfile,
+    operation_id: str,
+    remote_path: str,
+    remote_before_sha256: str | None,
+    remote_after_sha256: str | None,
+    local_sha256: str | None,
+    backup_path: str | None,
+    read_only_final: bool,
+    undo_available: bool,
+) -> dict[str, Any]:
+    return {
+        "kind": kind,
+        "operation_id": operation_id,
+        "profile": profile.name,
+        "remote_path": remote_path,
+        "remote_before_sha256": remote_before_sha256,
+        "remote_after_sha256": remote_after_sha256,
+        "local_sha256": local_sha256,
+        "backup_path": backup_path,
+        "undo_available": undo_available,
+        "read_only_final": read_only_final,
+        "reported_at": _utc_now(),
+    }
+
+
+def _write_audit_markdown(audit: dict[str, Any]) -> str:
+    before_sha = audit.get("remote_before_sha256") if isinstance(audit.get("remote_before_sha256"), str) else None
+    after_sha = audit.get("remote_after_sha256") if isinstance(audit.get("remote_after_sha256"), str) else None
+    return "\n".join(
+        [
+            "Write audit:",
+            f"- Operation id: `{audit.get('operation_id')}`",
+            f"- Remote path: `{audit.get('remote_path')}`",
+            f"- Before SHA-256: `{_format_optional_sha256(before_sha)}`",
+            f"- After SHA-256: `{_format_optional_sha256(after_sha)}`",
+            f"- Final read-only mode: `{'on' if audit.get('read_only_final') else 'off'}`",
+            f"- Undo restore point: `{'available' if audit.get('undo_available') else 'unavailable'}`",
+        ]
+    )
 
 
 def _versioned_path(path: Path) -> Path:
@@ -1861,6 +1924,7 @@ def upload_staged_file(
     remote_path: str | None = None,
     confirm_write: bool = False,
     confirm_remote_path: str | None = None,
+    confirm_remote_sha256: str | None = None,
     create_backup: bool = True,
     allow_create: bool = False,
     allow_remote_changed: bool = False,
@@ -1873,7 +1937,6 @@ def upload_staged_file(
     if not create_backup:
         raise RemoteConfigError("Remote upload requires a local restore-point backup before writing.")
     profile = load_profile(profile_name, config_path=config_path)
-    _assert_profile_allows_write(profile, "remote upload")
     stage_root = _profile_stage_root(profile, data_root)
     source_path = Path(local_path).expanduser()
     _assert_relative_to(source_path, stage_root)
@@ -1887,10 +1950,23 @@ def upload_staged_file(
     source_size = source_path.stat().st_size
     source_sha256 = _sha256_path(source_path)
     staged_sha256 = stage_entry.get("sha256") if isinstance(stage_entry, dict) and isinstance(stage_entry.get("sha256"), str) else None
+    normalized_confirm_remote_sha256 = _normalize_sha256_hex(confirm_remote_sha256, field_name="confirm_remote_sha256")
+    confirmation_arguments = None
+    if not profile.read_only:
+        confirmation_arguments = {
+            "confirm_write": True,
+            "confirm_remote_path": target_remote_path,
+        }
+        if staged_sha256 is not None:
+            confirmation_arguments["confirm_remote_sha256"] = staged_sha256
     preview = {
         "requires_confirmation": True,
         "tool": "upload_eqemu_server_ftp_file",
-        "message": "Uploading can overwrite a remote server file. Re-run only after explicit user approval with confirm_write=true and confirm_remote_path set exactly to the target remote path.",
+        "message": (
+            "Upload is blocked while this FTP profile is in read-only mode."
+            if profile.read_only
+            else "Uploading can overwrite a remote server file. Re-run only after explicit user approval with confirm_write=true, confirm_remote_path set exactly to the target remote path, and confirm_remote_sha256 set to the staged or previewed remote hash when overwriting an existing file."
+        ),
         "profile": public_profile(profile),
         "local_path": str(source_path.resolve()),
         "remote_path": target_remote_path,
@@ -1900,13 +1976,12 @@ def upload_staged_file(
         "create_backup": True,
         "allow_create": allow_create,
         "allow_remote_changed": allow_remote_changed,
-        "confirmation_arguments": {
-            "confirm_write": True,
-            "confirm_remote_path": target_remote_path,
-        },
+        "read_only_blocked": profile.read_only,
+        "confirmation_arguments": confirmation_arguments,
     }
     if not confirm_write:
         return preview
+    _assert_profile_allows_write(profile, "remote upload")
     if confirm_remote_path != target_remote_path:
         raise RemoteConfigError("confirm_remote_path must exactly match the resolved remote_path for upload.")
     if source_size > max_backup_bytes:
@@ -1929,9 +2004,15 @@ def upload_staged_file(
             backup_path.write_bytes(existing)
             backup_sha256 = _sha256_bytes(existing)
             backup_size = len(existing)
+            if normalized_confirm_remote_sha256 is None:
+                raise RemoteConfigError(
+                    "confirm_remote_sha256 is required when uploading over an existing remote file. Use the SHA-256 from the latest staged/downloaded or previewed remote file."
+                )
+            if normalized_confirm_remote_sha256 != backup_sha256:
+                raise RemoteTransferError("Refusing to upload because confirm_remote_sha256 does not match the current remote file hash.")
             if staged_sha256 is not None and backup_sha256 != staged_sha256 and not allow_remote_changed:
                 raise RemoteTransferError(
-                    "Refusing to upload because the remote file changed since it was staged. Re-stage the file or explicitly allow the changed remote state."
+                    "Refusing to upload because the remote file changed since it was staged. Re-stage the file or explicitly allow the changed remote state with the exact current remote SHA-256."
                 )
         except RemoteTransferError as exc:
             if not allow_create or not _remote_missing_error(exc):
@@ -1945,6 +2026,8 @@ def upload_staged_file(
             backup_path.write_bytes(b"")
             backup_sha256 = _sha256_bytes(b"")
             backup_size = 0
+        except RemoteConfigError:
+            raise
         except Exception as exc:
             raise RemoteTransferError(f"Refusing to upload because the remote backup could not be created: {exc}") from exc
         client.upload_file(source_path, target_remote_path)
@@ -1970,10 +2053,25 @@ def upload_staged_file(
         "staged_remote_sha256": staged_sha256,
         "allow_create": allow_create,
         "allow_remote_changed": allow_remote_changed,
+        "confirmed_remote_sha256": normalized_confirm_remote_sha256,
         "created_at": _utc_now(),
     }
     _append_write_operation(profile, operation, data_root)
 
+    remote_before_sha256 = backup_sha256 if remote_existed_before else None
+    backup_path_text = str(backup_path.resolve())
+    audit = _write_audit_payload(
+        kind="upload",
+        profile=profile,
+        operation_id=operation_id,
+        remote_path=target_remote_path,
+        remote_before_sha256=remote_before_sha256,
+        remote_after_sha256=verified_sha256,
+        local_sha256=source_sha256,
+        backup_path=backup_path_text,
+        read_only_final=profile.read_only,
+        undo_available=backup_path.is_file(),
+    )
     result = {
         "uploaded": True,
         "operation_id": operation_id,
@@ -1981,18 +2079,175 @@ def upload_staged_file(
         "local_path": str(source_path.resolve()),
         "remote_path": target_remote_path,
         "local_sha256": source_sha256,
+        "remote_before_sha256": remote_before_sha256,
         "remote_after_sha256": verified_sha256,
-        "backup_path": str(backup_path.resolve()),
+        "backup_path": backup_path_text,
         "backup_sha256": backup_sha256,
+        "write_audit": audit,
         "write_history_path": str(_write_history_path(profile, data_root).resolve()),
         "undo_tool": {
             "name": "undo_eqemu_server_ftp_write",
             "preview_arguments": {"profile": profile.name, "operation_id": operation_id},
             "apply_arguments": {"profile": profile.name, "operation_id": operation_id, "confirm_write": True, "confirm_operation_id": operation_id},
         },
-        "presentation": {"markdown": f"Uploaded `{source_path.resolve()}` to `{target_remote_path}`. Restore point `{operation_id}` saved at `{backup_path.resolve()}`."},
+        "presentation": {
+            "markdown": (
+                f"Uploaded `{source_path.resolve()}` to `{target_remote_path}`. Restore point `{operation_id}` saved at `{backup_path.resolve()}`.\n\n"
+                f"{_write_audit_markdown(audit)}"
+            )
+        },
     }
     return result
+
+
+def upload_staged_file_write_session(
+    profile_name: str,
+    *,
+    local_path: str,
+    remote_path: str | None = None,
+    confirm_write: bool = False,
+    confirm_remote_path: str | None = None,
+    confirm_remote_sha256: str | None = None,
+    confirm_temporary_read_write: bool = False,
+    confirm_final_read_only: bool = False,
+    allow_create: bool = False,
+    allow_remote_changed: bool = False,
+    max_backup_bytes: int = DEFAULT_MAX_DOWNLOAD_BYTES,
+    config_path: Path | None = None,
+    data_root: Path | None = None,
+    secret_store: SecretStore | None = None,
+    client_factory: Any = None,
+) -> dict[str, Any]:
+    profile = load_profile(profile_name, config_path=config_path)
+    preview = upload_staged_file(
+        profile_name,
+        local_path=local_path,
+        remote_path=remote_path,
+        confirm_write=False,
+        allow_create=allow_create,
+        allow_remote_changed=allow_remote_changed,
+        max_backup_bytes=max_backup_bytes,
+        config_path=config_path,
+        data_root=data_root,
+        secret_store=secret_store,
+        client_factory=client_factory,
+    )
+    confirmation_arguments = {
+        "profile": profile.name,
+        "local_path": str(Path(local_path).expanduser()),
+        "confirm_write": True,
+        "confirm_remote_path": preview["remote_path"],
+        "confirm_temporary_read_write": True,
+        "confirm_final_read_only": True,
+    }
+    staged_sha256 = preview.get("staged_remote_sha256")
+    if isinstance(staged_sha256, str):
+        confirmation_arguments["confirm_remote_sha256"] = staged_sha256
+    if remote_path is not None:
+        confirmation_arguments["remote_path"] = remote_path
+    if allow_create:
+        confirmation_arguments["allow_create"] = True
+    if allow_remote_changed:
+        confirmation_arguments["allow_remote_changed"] = True
+    preview.update(
+        {
+            "tool": "run_eqemu_server_ftp_upload_session",
+            "message": (
+                "Approved upload session preview. Confirm only after explicit user approval. The session temporarily opens write access if needed, performs one guarded upload, validates it, then re-enables read-only mode in cleanup."
+            ),
+            "read_only_session": {
+                "initial_read_only": profile.read_only,
+                "will_temporarily_disable_read_only": profile.read_only,
+                "will_reenable_read_only": True,
+            },
+            "confirmation_arguments": confirmation_arguments,
+        }
+    )
+    if not confirm_write or not confirm_temporary_read_write or not confirm_final_read_only:
+        return preview
+    if confirm_remote_path != preview["remote_path"]:
+        raise RemoteConfigError("confirm_remote_path must exactly match the resolved remote_path for the approved upload session.")
+
+    upload_result: dict[str, Any] | None = None
+    upload_error: Exception | None = None
+    cleanup_error: Exception | None = None
+    temporary_read_write_enabled = False
+    try:
+        if profile.read_only:
+            set_profile_read_only_mode(
+                profile.name,
+                read_only=False,
+                confirm_mode_change=True,
+                confirm_profile=profile.name,
+                confirm_read_only_mode="read-write",
+                config_path=config_path,
+            )
+            temporary_read_write_enabled = True
+        upload_result = upload_staged_file(
+            profile_name,
+            local_path=local_path,
+            remote_path=remote_path,
+            confirm_write=True,
+            confirm_remote_path=confirm_remote_path,
+            confirm_remote_sha256=confirm_remote_sha256,
+            create_backup=True,
+            allow_create=allow_create,
+            allow_remote_changed=allow_remote_changed,
+            max_backup_bytes=max_backup_bytes,
+            config_path=config_path,
+            data_root=data_root,
+            secret_store=secret_store,
+            client_factory=client_factory,
+        )
+    except Exception as exc:
+        upload_error = exc
+    finally:
+        try:
+            set_profile_read_only_mode(
+                profile.name,
+                read_only=True,
+                confirm_mode_change=True,
+                confirm_profile=profile.name,
+                confirm_read_only_mode="read-only",
+                config_path=config_path,
+            )
+        except Exception as exc:
+            cleanup_error = exc
+
+    final_profile = load_profile(profile.name, config_path=config_path)
+    if upload_error is not None:
+        if cleanup_error is not None:
+            raise RemoteTransferError(f"{upload_error}; additionally failed to re-enable read-only mode: {cleanup_error}") from upload_error
+        raise upload_error
+    if upload_result is None:
+        raise RemoteTransferError("Approved upload session did not produce an upload result.")
+    if cleanup_error is not None:
+        raise RemoteConfigError(f"Upload succeeded but failed to re-enable read-only mode: {cleanup_error}") from cleanup_error
+
+    read_only_session = {
+        "initial_read_only": profile.read_only,
+        "temporary_read_write_enabled": temporary_read_write_enabled,
+        "cleanup_attempted": True,
+        "cleanup_succeeded": True,
+        "final_read_only": final_profile.read_only,
+    }
+    upload_result["read_only_session"] = read_only_session
+    upload_result["profile"] = public_profile(final_profile)
+    audit = upload_result.get("write_audit")
+    if isinstance(audit, dict):
+        audit["read_only_final"] = final_profile.read_only
+        upload_result["write_audit"] = audit
+        presentation = upload_result.get("presentation") if isinstance(upload_result.get("presentation"), dict) else {}
+        markdown = presentation.get("markdown") if isinstance(presentation.get("markdown"), str) else ""
+        if "Final read-only mode: `off`" in markdown:
+            markdown = markdown.replace("Final read-only mode: `off`", "Final read-only mode: `on`")
+        upload_result["presentation"] = {
+            "markdown": (
+                f"{markdown}\n\nRead-only cleanup: `{'on' if final_profile.read_only else 'off'}` "
+                f"(temporary read/write {'enabled' if temporary_read_write_enabled else 'was already available'})."
+            ).strip()
+        }
+    return upload_result
 
 
 def delete_remote_file(
@@ -2092,21 +2347,41 @@ def delete_remote_file(
         "created_at": _utc_now(),
     }
     _append_write_operation(profile, operation, data_root)
+    backup_path_text = str(backup_path.resolve())
+    audit = _write_audit_payload(
+        kind="delete",
+        profile=profile,
+        operation_id=operation_id,
+        remote_path=target_remote_path,
+        remote_before_sha256=current_sha256,
+        remote_after_sha256=None,
+        local_sha256=None,
+        backup_path=backup_path_text,
+        read_only_final=profile.read_only,
+        undo_available=backup_path.is_file(),
+    )
     return {
         "deleted": True,
         "operation_id": operation_id,
         "profile": public_profile(profile),
         "remote_path": target_remote_path,
-        "backup_path": str(backup_path.resolve()),
+        "backup_path": backup_path_text,
         "backup_sha256": current_sha256,
         "remote_before_sha256": current_sha256,
+        "remote_after_sha256": None,
+        "write_audit": audit,
         "write_history_path": str(_write_history_path(profile, data_root).resolve()),
         "undo_tool": {
             "name": "undo_eqemu_server_ftp_write",
             "preview_arguments": {"profile": profile.name, "operation_id": operation_id},
             "apply_arguments": {"profile": profile.name, "operation_id": operation_id, "confirm_write": True, "confirm_operation_id": operation_id},
         },
-        "presentation": {"markdown": f"Deleted `{target_remote_path}` after saving restore point `{operation_id}` at `{backup_path.resolve()}`."},
+        "presentation": {
+            "markdown": (
+                f"Deleted `{target_remote_path}` after saving restore point `{operation_id}` at `{backup_path.resolve()}`.\n\n"
+                f"{_write_audit_markdown(audit)}"
+            )
+        },
     }
 
 
@@ -2374,6 +2649,19 @@ def undo_write_operation(
         "created_at": _utc_now(),
     }
     _append_write_operation(profile, undo_operation, data_root)
+    undo_backup_path_text = str(undo_backup_path.resolve())
+    audit = _write_audit_payload(
+        kind="undo",
+        profile=profile,
+        operation_id=undo_operation_id,
+        remote_path=target_remote_path,
+        remote_before_sha256=current_sha256,
+        remote_after_sha256=verified_sha256,
+        local_sha256=restore_sha256 if restore_remote_exists else None,
+        backup_path=undo_backup_path_text,
+        read_only_final=profile.read_only,
+        undo_available=undo_backup_path.is_file(),
+    )
     return {
         "undone": True,
         "operation_id": undo_operation_id,
@@ -2381,14 +2669,16 @@ def undo_write_operation(
         "profile": public_profile(profile),
         "remote_path": target_remote_path,
         "restored_from": str(restore_path.resolve()),
-        "backup_path": str(undo_backup_path.resolve()),
+        "backup_path": undo_backup_path_text,
+        "remote_before_sha256": current_sha256,
         "remote_after_sha256": verified_sha256,
+        "write_audit": audit,
         "write_history_path": str(_write_history_path(profile, data_root).resolve()),
         "presentation": {
             "markdown": (
-                f"Restored `{target_remote_path}` from restore point `{operation_id}`. Undo operation `{undo_operation_id}` created a new restore point first."
+                f"Restored `{target_remote_path}` from restore point `{operation_id}`. Undo operation `{undo_operation_id}` created a new restore point first.\n\n{_write_audit_markdown(audit)}"
                 if restore_remote_exists
-                else f"Removed newly-created `{target_remote_path}` while undoing `{operation_id}`. Undo operation `{undo_operation_id}` created a restore point first."
+                else f"Removed newly-created `{target_remote_path}` while undoing `{operation_id}`. Undo operation `{undo_operation_id}` created a restore point first.\n\n{_write_audit_markdown(audit)}"
             )
         },
     }

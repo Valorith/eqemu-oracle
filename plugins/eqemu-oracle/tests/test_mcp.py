@@ -288,6 +288,7 @@ class McpServerValidationTest(unittest.TestCase):
         self.assertIn("map_eqemu_server_ftp_layout", tool_names)
         self.assertIn("stage_eqemu_server_ftp_file", tool_names)
         self.assertIn("upload_eqemu_server_ftp_file", tool_names)
+        self.assertIn("run_eqemu_server_ftp_upload_session", tool_names)
         self.assertIn("delete_eqemu_server_ftp_file", tool_names)
         self.assertIn("list_eqemu_server_ftp_write_history", tool_names)
         self.assertIn("set_eqemu_server_ftp_read_only_mode", tool_names)
@@ -407,6 +408,7 @@ class McpServerValidationTest(unittest.TestCase):
             remote_path=None,
             confirm_write=False,
             confirm_remote_path=None,
+            confirm_remote_sha256=None,
             create_backup=True,
             allow_create=False,
             allow_remote_changed=False,
@@ -454,6 +456,56 @@ class McpServerValidationTest(unittest.TestCase):
             max_backup_bytes=5242880,
         )
         self.assertTrue(response["result"]["structuredContent"]["requires_confirmation"])
+
+    def test_remote_upload_session_tool_maps_transaction_confirmation_fields(self) -> None:
+        with patch("eqemu_oracle.mcp.DataStore", return_value=self._stub_store()):
+            server = McpServer()
+
+        payload = {
+            "uploaded": True,
+            "operation_id": "op-1",
+            "read_only_session": {"final_read_only": True},
+            "write_audit": {"operation_id": "op-1", "read_only_final": True},
+            "presentation": {"markdown": "uploaded with cleanup"},
+        }
+        with patch("eqemu_oracle.mcp.upload_staged_file_write_session", return_value=payload) as upload_session:
+            response = server.handle(
+                {
+                    "jsonrpc": "2.0",
+                    "id": 142,
+                    "method": "tools/call",
+                    "params": {
+                        "name": "run_eqemu_server_ftp_upload_session",
+                        "arguments": {
+                            "profile": "live",
+                            "local_path": "C:/staged/npc.pl",
+                            "remote_path": "/eqemu/quests/npc.pl",
+                            "confirm_write": True,
+                            "confirm_remote_path": "/eqemu/quests/npc.pl",
+                            "confirm_remote_sha256": "A" * 64,
+                            "confirm_temporary_read_write": True,
+                            "confirm_final_read_only": True,
+                        },
+                    },
+                }
+            )
+
+        self.assertIsNotNone(response)
+        assert response is not None
+        upload_session.assert_called_once_with(
+            "live",
+            local_path="C:/staged/npc.pl",
+            remote_path="/eqemu/quests/npc.pl",
+            confirm_write=True,
+            confirm_remote_path="/eqemu/quests/npc.pl",
+            confirm_remote_sha256="A" * 64,
+            confirm_temporary_read_write=True,
+            confirm_final_read_only=True,
+            allow_create=False,
+            allow_remote_changed=False,
+            max_backup_bytes=5242880,
+        )
+        self.assertTrue(response["result"]["structuredContent"]["read_only_session"]["final_read_only"])
 
     def test_remote_read_only_mode_tool_requires_confirmation_preview(self) -> None:
         with patch("eqemu_oracle.mcp.DataStore", return_value=self._stub_store()):
